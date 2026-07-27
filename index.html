@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EDOCENTIA — Centro de Automatización Docente | IA para Profesores</title>
+<meta name="description" content="Plataforma completa de automatización docente con IA. Tareas competenciales, visualizador de notas, warm-up, ideas de clase, laboratorio educativo, programaciones didácticas y más. By Ana Hernández Iranzo.">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--indigo:#6366f1;--violet:#8b5cf6;--orange:#f97316;--cyan:#06b6d4;--dark:#0a0f1e}
+html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--dark);color:#fff;overflow-x:hidden}
+.hero-bg{background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(99,102,241,.5) 0%,transparent 60%),radial-gradient(ellipse 60% 50% at 90% 50%,rgba(139,92,246,.3) 0%,transparent 60%),linear-gradient(180deg,#0a0f1e 0%,#0d1322 100%)}
+.section-dark{background:linear-gradient(180deg,#0a0f1e 0%,#0d1527 100%)}
+.glass{background:rgba(255,255,255,.04);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.08);border-radius:1.5rem;transition:all .4s ease}
+.glass:hover{background:rgba(255,255,255,.07);border-color:rgba(99,102,241,.3);transform:translateY(-4px);box-shadow:0 20px 60px rgba(99,102,241,.15)}
+.gradient-text{background:linear-gradient(135deg,#fff 0%,#c7d2fe 40%,#a78bfa 70%,#f97316 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.gradient-text-2{background:linear-gradient(135deg,#6366f1,#a78bfa,#f97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.gradient-brand{background:linear-gradient(135deg,#6366f1,#a78bfa)}
+.gradient-btn{background:linear-gradient(135deg,#6366f1,#8b5cf6);box-shadow:0 8px 32px rgba(99,102,241,.4);transition:all .3s}
+.gradient-btn:hover{box-shadow:0 12px 40px rgba(99,102,241,.6);transform:translateY(-2px)}
+.glow-dot{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;z-index:0}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;transition:all .4s ease}
+nav.scrolled{background:rgba(10,15,30,.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.05)}
+.section-badge{display:inline-flex;align-items:center;gap:.5rem;padding:.4rem 1rem;border-radius:20px;font-size:.72rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase}
+#scroll-bar{position:fixed;top:0;left:0;width:0;height:3px;background:linear-gradient(90deg,#6366f1,#a78bfa,#f97316);z-index:9999;transition:width .1s linear}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s cubic-bezier(.4,0,.2,1)}
+.reveal.in-view{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
+.reveal-delay-4{transition-delay:.4s}
+.reveal-delay-5{transition-delay:.5s}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:#0a0f1e}
+::-webkit-scrollbar-thumb{background:linear-gradient(#6366f1,#a78bfa);border-radius:3px}
+.grid-bg{background-image:linear-gradient(rgba(99,102,241,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(99,102,241,.04) 1px,transparent 1px);background-size:60px 60px}
+.stat-card{background:linear-gradient(135deg,rgba(99,102,241,.1),rgba(139,92,246,.06));border:1px solid rgba(99,102,241,.2);border-radius:1.25rem;padding:2rem;text-align:center;transition:.3s}
+.stat-card:hover{background:linear-gradient(135deg,rgba(99,102,241,.18),rgba(139,92,246,.12));transform:translateY(-2px)}
+/* MOD CARDS */
+.mod-card{border-radius:1.5rem;padding:0;overflow:hidden;transition:all .45s cubic-bezier(.4,0,.2,1);position:relative;cursor:pointer;text-decoration:none;display:block}
+.mod-card:hover{transform:translateY(-8px) scale(1.01)}
+.mod-card:hover .mod-overlay{opacity:1}
+.mod-card .mod-overlay{position:absolute;inset:0;background:rgba(0,0,0,.15);transition:.3s;opacity:0;border-radius:1.5rem}
+/* Colores por módulo */
+.mod-1{background:linear-gradient(135deg,#1e1b4b 0%,#312e81 60%,#1a1744 100%);box-shadow:0 8px 40px rgba(99,102,241,.25),0 0 0 1px rgba(99,102,241,.2)}
+.mod-2{background:linear-gradient(135deg,#042f3a 0%,#0e4f62 60%,#031f28 100%);box-shadow:0 8px 40px rgba(6,182,212,.25),0 0 0 1px rgba(6,182,212,.2)}
+.mod-3{background:linear-gradient(135deg,#1a0030 0%,#3b0764 60%,#12002b 100%);box-shadow:0 8px 40px rgba(139,92,246,.25),0 0 0 1px rgba(139,92,246,.2)}
+.mod-4{background:linear-gradient(135deg,#052e16 0%,#14532d 60%,#052e16 100%);box-shadow:0 8px 40px rgba(16,185,129,.25),0 0 0 1px rgba(16,185,129,.2)}
+.mod-5{background:linear-gradient(135deg,#1c1917 0%,#44403c 60%,#1c1917 100%);box-shadow:0 8px 40px rgba(120,113,108,.25),0 0 0 1px rgba(120,113,108,.2)}
+.mod-6{background:linear-gradient(135deg,#3a1500 0%,#6b2c00 60%,#2a0f00 100%);box-shadow:0 8px 40px rgba(249,115,22,.25),0 0 0 1px rgba(249,115,22,.2)}
+.mod-7{background:linear-gradient(135deg,#1e0030 0%,#4c0073 60%,#1e0030 100%);box-shadow:0 8px 40px rgba(168,85,247,.25),0 0 0 1px rgba(168,85,247,.2)}
+.mod-8{background:linear-gradient(135deg,#0c2a1e 0%,#134e38 60%,#0c2a1e 100%);box-shadow:0 8px 40px rgba(52,211,153,.25),0 0 0 1px rgba(52,211,153,.2)}
+.mod-9{background:linear-gradient(135deg,#450a0a 0%,#7f1d1d 60%,#450a0a 100%);box-shadow:0 8px 40px rgba(239,68,68,.25),0 0 0 1px rgba(239,68,68,.2)}
+.mod-10{background:linear-gradient(135deg,#1c2030 0%,#2e3f5c 60%,#1c2030 100%);box-shadow:0 8px 40px rgba(59,130,246,.25),0 0 0 1px rgba(59,130,246,.2)}
+.mod-card:hover.mod-1{box-shadow:0 20px 60px rgba(99,102,241,.45)}
+.mod-card:hover.mod-2{box-shadow:0 20px 60px rgba(6,182,212,.45)}
+.mod-card:hover.mod-3{box-shadow:0 20px 60px rgba(139,92,246,.45)}
+.mod-card:hover.mod-4{box-shadow:0 20px 60px rgba(16,185,129,.45)}
+.mod-card:hover.mod-5{box-shadow:0 20px 60px rgba(120,113,108,.45)}
+.mod-card:hover.mod-6{box-shadow:0 20px 60px rgba(249,115,22,.45)}
+.mod-card:hover.mod-7{box-shadow:0 20px 60px rgba(168,85,247,.45)}
+.mod-card:hover.mod-8{box-shadow:0 20px 60px rgba(52,211,153,.45)}
+.mod-card:hover.mod-9{box-shadow:0 20px 60px rgba(239,68,68,.45)}
+.mod-card:hover.mod-10{box-shadow:0 20px 60px rgba(59,130,246,.45)}
+.ui-float{animation:float 6s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+.pulse-ring{animation:pulse-glow 3s ease-in-out infinite}
+@keyframes pulse-glow{0%,100%{box-shadow:0 0 20px rgba(99,102,241,.3)}50%{box-shadow:0 0 40px rgba(99,102,241,.6)}}
+</style>
+</head>
+<body>
+<div id="scroll-bar"></div>
+
+<!-- NAV -->
+<nav id="navbar" class="py-4 px-6 md:px-16">
+  <div class="max-w-7xl mx-auto flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="w-9 h-9 rounded-xl gradient-brand flex items-center justify-center text-white font-black text-sm shadow-lg">E</div>
+      <div>
+        <div class="font-black text-lg tracking-tight">EDOCENTIA</div>
+        <div class="text-xs text-indigo-300 -mt-0.5 font-medium">La IA para docentes</div>
+      </div>
+    </div>
+    <div class="hidden md:flex items-center gap-6 text-sm font-semibold text-slate-300">
+      <a href="#modulos" class="hover:text-white transition-colors">Módulos</a>
+      <a href="#herramientas" class="hover:text-white transition-colors">Herramientas IA</a>
+      <a href="#normativa" class="hover:text-white transition-colors">Normativa</a>
+    </div>
+    <a href="app-ia.html" class="gradient-btn text-white font-bold px-5 py-2.5 rounded-xl text-sm inline-flex items-center gap-2">
+      <i class="fas fa-rocket text-yellow-300"></i> App IA
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero-bg min-h-screen flex items-center pt-28 pb-20 px-6 md:px-16 relative overflow-hidden grid-bg">
+  <div class="glow-dot w-96 h-96 bg-indigo-600/30 top-10 left-10"></div>
+  <div class="glow-dot w-72 h-72 bg-violet-600/25 top-1/3 right-0"></div>
+  <div class="glow-dot w-64 h-64 bg-orange-500/15 bottom-20 left-1/3"></div>
+
+  <div class="max-w-7xl mx-auto w-full relative z-10">
+    <div class="max-w-4xl mx-auto text-center reveal">
+      <div class="section-badge bg-indigo-500/15 border border-indigo-500/30 text-indigo-300 mb-6 mx-auto inline-flex">
+        <span class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></span>
+        🌐 EDOCENTIA · Automatización Docente con IA
+      </div>
+
+      <h1 class="text-4xl md:text-6xl lg:text-7xl font-black leading-[1.05] mb-6">
+        <span class="gradient-text">Todo lo que necesitas</span><br>
+        <span class="text-white">como docente,</span><br>
+        <span class="text-white">automatizado con IA</span>
+      </h1>
+
+      <p class="text-xl text-slate-300 leading-relaxed mb-3 max-w-2xl mx-auto">
+        10 herramientas especializadas. Prompts ultra-detallados listos para usar. Compatible con <strong class="text-white">ChatGPT, Claude y Gemini</strong>.
+      </p>
+      <p class="text-sm text-indigo-300 font-semibold mb-10 flex items-center gap-2 justify-center">
+        <i class="fas fa-star text-yellow-400 text-xs"></i>
+        Creado por Ana Hernández Iranzo con asistencia IA
+      </p>
+
+      <div class="flex flex-wrap gap-4 justify-center mb-12">
+        <a href="#modulos" class="gradient-btn text-white font-extrabold px-8 py-4 rounded-2xl text-base inline-flex items-center gap-2">
+          <i class="fas fa-play text-yellow-300"></i> Explorar módulos
+        </a>
+        <a href="app-ia.html" class="text-white font-bold px-8 py-4 rounded-2xl text-base inline-flex items-center gap-2 transition-all hover:bg-white/10" style="background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.2)">
+          <i class="fas fa-robot text-indigo-300"></i> App IA Interactiva
+        </a>
+      </div>
+
+      <!-- TRUST BADGES -->
+      <div class="flex flex-wrap justify-center gap-3">
+        <span class="text-xs text-slate-400 bg-white/5 border border-white/10 rounded-full px-3 py-1.5 font-semibold flex items-center gap-1.5"><i class="fas fa-layer-group text-indigo-300"></i> 10 módulos especializados</span>
+        <span class="text-xs text-slate-400 bg-white/5 border border-white/10 rounded-full px-3 py-1.5 font-semibold flex items-center gap-1.5"><i class="fas fa-magic text-violet-300"></i> Prompts ultra-detallados</span>
+        <span class="text-xs text-slate-400 bg-white/5 border border-white/10 rounded-full px-3 py-1.5 font-semibold flex items-center gap-1.5"><i class="fas fa-shield-alt text-emerald-300"></i> RGPD compliant</span>
+        <span class="text-xs text-slate-400 bg-white/5 border border-white/10 rounded-full px-3 py-1.5 font-semibold flex items-center gap-1.5"><i class="fas fa-graduation-cap text-orange-300"></i> ESO · Bach · FP</span>
+      </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 reveal reveal-delay-2">
+      <div class="stat-card">
+        <div class="text-3xl font-black gradient-text-2 mb-1">10</div>
+        <div class="text-sm text-slate-400">Módulos completos</div>
+      </div>
+      <div class="stat-card">
+        <div class="text-3xl font-black gradient-text-2 mb-1">60+</div>
+        <div class="text-sm text-slate-400">Prompts listos</div>
+      </div>
+      <div class="stat-card">
+        <div class="text-3xl font-black gradient-text-2 mb-1">3</div>
+        <div class="text-sm text-slate-400">IAs compatibles</div>
+      </div>
+      <div class="stat-card">
+        <div class="text-3xl font-black gradient-text-2 mb-1">10h+</div>
+        <div class="text-sm text-slate-400">ahorradas / semana</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOS 10 MÓDULOS -->
+<section id="modulos" class="py-20 px-6 md:px-16 relative" style="background:linear-gradient(180deg,#0d1527,#0a0f1e)">
+  <div class="glow-dot w-72 h-72 bg-indigo-600/15 top-0 right-0 opacity-50"></div>
+  <div class="max-w-7xl mx-auto relative z-10">
+    <div class="text-center reveal mb-14">
+      <div class="section-badge bg-indigo-500/15 border border-indigo-500/30 text-indigo-300 mb-4 mx-auto inline-flex">
+        <i class="fas fa-layer-group"></i> Los Módulos
+      </div>
+      <h2 class="text-3xl md:text-4xl font-black mb-3">10 Herramientas Docentes</h2>
+      <p class="text-slate-400 max-w-2xl mx-auto">Cada módulo es una sesión con partes estructuradas. Prompts listos para usar con cualquier IA.</p>
+    </div>
+
+    <!-- GRID 5×2 -->
+    <div class="grid md:grid-cols-2 gap-5 mb-5">
+
+      <!-- MÓDULO 1 -->
+      <a href="modulo-1-tareas-competenciales/index.html" class="mod-card mod-1 reveal reveal-delay-1">
+        <div class="mod-overlay"></div>
+        <div class="p-7 relative z-10">
+          <div class="flex items-start justify-between mb-4">
+            <div>
+              <div class="section-badge bg-indigo-400/20 border border-indigo-400/30 text-indigo-200 mb-3" style="font-size:.65rem">MÓDULO 01</div>
+              <div class="text-4xl mb-3">🎯</div>
+              <h3 class="text-xl font-black text-white mb-2">Tareas Competenciales & Situaciones de Aprendizaje</h3>
+              <p class="text-indigo-200 text-sm leading-relaxed">Genera tareas, SA y proyectos alineados con LOMLOE a partir de tus contenidos, nivel y asignatura.</p>
+            </div>
+          </div>
+          <div class="space-y-1.5 mb-5">
+            <div class="flex items-center gap-2 text-xs text-indigo-200"><i class="fas fa-check-circle text-emerald-400 w-4"></i> Situaciones de aprendizaje completas</div>
+            <div class="flex items-center gap-2 text-xs text-indigo-200"><i class="fas fa-check-circle text-emerald-400 w-4"></i> Tareas por competencias clave</div>
+            <div class="flex items-center gap-2 text-xs text-indigo-200"><i class="fas fa-check-circle text-emerald-400 w-4"></i> Proyectos ABP con rúbrica</div>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="px-2.5 py-1 bg-indigo-400/15 text-indigo-300 rounded-full text-xs font-bold">LOMLOE · Competencias</span>
+            <div class="text-white font-bold text-sm flex items-center gap-1.5">Acceder <i class="fas fa-arrow-right"></i></div>
+          </div>
+        </div>
+      </a>
+
+      <!-- MÓDULO 2 -->
+      <a href="modulo-2-visualizador-notas/index.html" class="mod-card mod-2 reveal reveal-delay-2">
+        <div class="mod-overlay"></div>
+        <div class="p-7 relative z-10">
+          <div class="flex items-start justify-between mb-4">
+            <div>
+              <div class="section-badge bg-cyan-400/20 border border-cyan-400/30 text-cyan-200 mb-3" style="font-size:.65rem">MÓDULO 02</div>
+              <div class="text-4xl mb-3">📊</div>
+              <h3 class="text-xl font-black text-white mb-2">Visualizador de Notas & Análisis de Clase</h3>
+              <p class="text-cyan-200 text-sm leading-relaxed">Introduce tus notas y analiza tu clase con 10 tipos de gráficos e interpretación pedagógica por IA.</p>
+            </div>
+          </div>
+          <div class="space-y-1.5 mb-5">
+            <div class="flex items-center gap-2 text-xs text-cyan-200"><i class="fas fa-check-circle text-emerald-400 w-4"></i> 10 tipos de gráficos interactivos</div>
+            <div class="flex items-center gap-2 text-xs text-cyan-200"><i class="fas fa-check-circle text-emerald-400 w-4"></i> Análisis estadístico de grupo</div>
+            <div class="flex items-center gap-2 text-xs text-cyan-200"><i class="fas fa-check-circle text-emerald-400 w-4"></i> Prompts de interpretación pedagógica</div>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="px-2.5 py-1 bg-cyan-400/15 text-cyan-300 rounded-full text-xs font-bold">Chart.js · Análisis IA</span>
+            <div class="text-white font-bold text-sm flex items-center gap-1.5">Acceder <i class="fas fa-arrow-right"></i></div>
+          </div>
+        </div>
+      </a>
+
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-5 mb-5">
+
+      <!-- MÓDULO 3 -->
+      <a href="modulo-3-warmup/index.html" class="mod-card mod-3 reveal reveal-delay-1">
+        <div class="mod-overlay"></div>
+        <div class="p-7 relative z-10">
+          <div class="section-badge bg-violet-400/20 border border-violet-400/30 text-violet-200 mb-3" style="font-size:.65rem">MÓDULO 03</div>
+          <div class="text-4xl mb-3">🔥</div>
+          <h3 class="text-lg font-black text-white mb-2">Generador de Warm-Up</h3>
+          <p class="text-violet-200 text-sm leading-relaxed mb-4">Actividades de calentamiento para arrancar la clase con energía: debates, puzzles, preguntas rompehielo.</p>
+          <div class="flex items-center justify-between">
+            <span class="px-2.5 py-1 bg-violet-400/15 text-violet-300 rounded-full text-xs font-bold">Motivación · Activación</span>
+            <div class="text-white font-bold text-sm">→</div>
+          </div>
+        </div>
+      </a>
+
+      <!-- MÓDULO 4 -->
+      <a href="modulo-4-ideas-clase/index.html" class="mod-card mod-4 reveal reveal-delay-2">
+        <div class="mod-overlay"></div>
+        <div class="p-7 relative z-10">
+          <div class="section-badge bg-emerald-400/20 border border-emerald-400/30 text-emerald-200 mb-3" style="font-size:.65rem">MÓDULO 04</div>
+          <div class="text-4xl mb-3">💡</div>
+          <h3 class="text-lg font-black text-white mb-2">Ideas para Clase</h3>
+          <p class="text-emerald-200 text-sm leading-relaxed mb-4">Brainstorming de actividades, dinámicas y metodologías pedagógicas para cualquier tema y nivel.</p>
+          <div class="flex items-center justify-between">
+            <span class="px-2.5 py-1 bg-emerald-400/15 text-emerald-300 rounded-full text-xs font-bold">Creatividad · Innovación</span>
+            <div class="text-white font-bold text-sm">→</div>
+          </div>
+        </div>
+      </a>
+
+      <!-- MÓDULO 5 -->
+      <a href="modulo-5-laboratorio/index.html" class="mod-card mod-5 reveal reveal-delay-3">
+        <div class="mod-overlay"></div>
+        <div class="p-7 relative z-10">
+          <div class="section-badge bg-stone-400/20 border border-stone-400/30 text-stone-200 mb-3" style="font-size:.65rem">MÓDULO 05</div>
+          <div class="text-4xl mb-3">🧪</div>
+          <h3 class="text-lg font-black text-white mb-2">Laboratorio & Simulador</h3>
+          <p class="text-stone-200 text-sm leading-relaxed mb-4">Diseño de experimentos, prácticas de laboratorio y simuladores educativos para aprender conceptos.</p>
+          <div class="flex items-center justify-between">
+            <span class="px-2.5 py-1 bg-stone-400/15 text-stone-300 rounded-full text-xs font-bold">STEM · Experimentación</span>
+            <div class="text-white font-bold text-sm">→</div>
+          </div>
+        </div>
+      </a>
+
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-5 mb-5">
+
+      <!-- MÓDULO 6 -->
+      <a href="modulo-6-programaciones/index.html" class="mod-card mod-6 reveal reveal-delay-1">
+        <div class="mod-overlay"></div>
+        <div class="p-7 relative z-10">
+          <div class="flex items-start justify-between mb-4">
+            <div>
+              <div class="section-badge bg-orange-400/20 border border-orange-400/30 text-orange-200 mb-3" style="font-size:.65rem">MÓDULO 06</div>
+              <div class="text-4xl mb-3">📋</div>
+              <h3 class="text-xl font-black text-white mb-2">Generador de Programaciones Didácticas</h3>
+              <p class="text-orange-200 text-sm leading-relaxed">Introduce el contenido y la normativa y la IA redacta tu programación completa lista para revisión.</p>
+            </div>
+          </div>
+          <div class="space-y-1.5 mb-5">
+            <div class="flex items-center gap-2 text-xs text-orange-200"><i class="fas fa-check-circle text-emerald-400 w-4"></i> LOMLOE, Decretos autonómicos</div>
+            <div class="flex items-center gap-2 text-xs text-orange-200"><i class="fas fa-check-circle text-emerald-400 w-4"></i> ESO, Bachillerato y FP</div>
+            <div class="flex items-center gap-2 text-xs text-orange-200"><i class="fas fa-check-circle text-emerald-400 w-4"></i> Estructura legal completa</div>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="px-2.5 py-1 bg-orange-400/15 text-orange-300 rounded-full text-xs font-bold">Normativa · Legal</span>
+            <div class="text-white font-bold text-sm flex items-center gap-1.5">Acceder <i class="fas fa-arrow-right"></i></div>
+          </div>
+        </div>
+      </a>
+
+      <!-- MÓDULO 7 -->
+      <a href="modulo-7-examenes/index.html" class="mod-card mod-7 reveal reveal-delay-2">
+        <div class="mod-overlay"></div>
+        <div class="p-7 relative z-10">
+          <div class="flex items-start justify-between mb-4">
+            <div>
+              <div class="section-badge bg-purple-400/20 border border-purple-400/30 text-purple-200 mb-3" style="font-size:.65rem">MÓDULO 07</div>
+              <div class="text-4xl mb-3">✏️</div>
+              <h3 class="text-xl font-black text-white mb-2">Generador de Exámenes & Pruebas</h3>
+              <p class="text-purple-200 text-sm leading-relaxed">Exámenes, tests y pruebas de evaluación personalizadas con rúbricas de corrección y banco de preguntas.</p>
+            </div>
+          </div>
+          <div class="space-y-1.5 mb-5">
+            <div class="flex items-center gap-2 text-xs text-purple-200"><i class="fas fa-check-circle text-emerald-400 w-4"></i> Pruebas escritas por competencias</div>
+            <div class="flex items-center gap-2 text-xs text-purple-200"><i class="fas fa-check-circle text-emerald-400 w-4"></i> Quiz y tests autocorregibles</div>
+            <div class="flex items-center gap-2 text-xs text-purple-200"><i class="fas fa-check-circle text-emerald-400 w-4"></i> Rúbrica de corrección incluida</div>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="px-2.5 py-1 bg-purple-400/15 text-purple-300 rounded-full text-xs font-bold">Evaluación · Tests</span>
+            <div class="text-white font-bold text-sm flex items-center gap-1.5">Acceder <i class="fas fa-arrow-right"></i></div>
+          </div>
+        </div>
+      </a>
+
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-5">
+
+      <!-- MÓDULO 8 -->
+      <a href="modulo-8-feedback/index.html" class="mod-card mod-8 reveal reveal-delay-1">
+        <div class="mod-overlay"></div>
+        <div class="p-7 relative z-10">
+          <div class="section-badge bg-emerald-400/20 border border-emerald-400/30 text-emerald-200 mb-3" style="font-size:.65rem">MÓDULO 08</div>
+          <div class="text-4xl mb-3">🗣️</div>
+          <h3 class="text-lg font-black text-white mb-2">Feedback Formativo</h3>
+          <p class="text-emerald-200 text-sm leading-relaxed mb-4">Comentarios de retroalimentación personalizados para trabajos, notas e informes a familias.</p>
+          <div class="flex items-center justify-between">
+            <span class="px-2.5 py-1 bg-emerald-400/15 text-emerald-300 rounded-full text-xs font-bold">Formativo · Familias</span>
+            <div class="text-white font-bold text-sm">→</div>
+          </div>
+        </div>
+      </a>
+
+      <!-- MÓDULO 9 -->
+      <a href="modulo-9-gamificacion/index.html" class="mod-card mod-9 reveal reveal-delay-2">
+        <div class="mod-overlay"></div>
+        <div class="p-7 relative z-10">
+          <div class="section-badge bg-red-400/20 border border-red-400/30 text-red-200 mb-3" style="font-size:.65rem">MÓDULO 09</div>
+          <div class="text-4xl mb-3">🎮</div>
+          <h3 class="text-lg font-black text-white mb-2">Gamificación</h3>
+          <p class="text-red-200 text-sm leading-relaxed mb-4">Sistemas de puntos, insignias, escape rooms, Kahoot, Pasapalabra y retos para el aula.</p>
+          <div class="flex items-center justify-between">
+            <span class="px-2.5 py-1 bg-red-400/15 text-red-300 rounded-full text-xs font-bold">Juego · Motivación</span>
+            <div class="text-white font-bold text-sm">→</div>
+          </div>
+        </div>
+      </a>
+
+      <!-- MÓDULO 10 -->
+      <a href="modulo-10-comunicacion/index.html" class="mod-card mod-10 reveal reveal-delay-3">
+        <div class="mod-overlay"></div>
+        <div class="p-7 relative z-10">
+          <div class="section-badge bg-blue-400/20 border border-blue-400/30 text-blue-200 mb-3" style="font-size:.65rem">MÓDULO 10</div>
+          <div class="text-4xl mb-3">📧</div>
+          <h3 class="text-lg font-black text-white mb-2">Comunicación & Familias</h3>
+          <p class="text-blue-200 text-sm leading-relaxed mb-4">Emails, circulares e informes para familias adaptados al contexto y al perfil del alumno.</p>
+          <div class="flex items-center justify-between">
+            <span class="px-2.5 py-1 bg-blue-400/15 text-blue-300 rounded-full text-xs font-bold">Comunicación · RGPD</span>
+            <div class="text-white font-bold text-sm">→</div>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- HERRAMIENTAS IA -->
+<section id="herramientas" class="py-20 px-6 md:px-16" style="background:#0a0f1e">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center reveal mb-12">
+      <div class="section-badge bg-violet-500/15 border border-violet-500/30 text-violet-300 mb-4 mx-auto inline-flex">
+        <i class="fas fa-robot"></i> Herramientas IA App Completa
+      </div>
+      <h2 class="text-3xl md:text-4xl font-black mb-3">Apps Especializadas</h2>
+      <p class="text-slate-400 max-w-xl mx-auto">Acceso directo a todas las aplicaciones del ecosistema EDOCENTIA.</p>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+      <a href="app-ia.html" class="glass p-6 text-center cursor-pointer hover:border-indigo-500/40 group reveal reveal-delay-1" style="text-decoration:none">
+        <div class="text-4xl mb-4 group-hover:scale-110 transition-transform">🤖</div>
+        <h3 class="font-bold text-white mb-2 text-sm">App IA Interactiva</h3>
+        <p class="text-slate-400 text-xs leading-relaxed">40+ tareas con formularios inteligentes y lanzamiento directo a tu IA.</p>
+        <div class="mt-3 text-indigo-400 text-xs font-bold">Abrir →</div>
+      </a>
+      <a href="app-rubricas.html" class="glass p-6 text-center cursor-pointer hover:border-pink-500/40 group reveal reveal-delay-2" style="text-decoration:none">
+        <div class="text-4xl mb-4 group-hover:scale-110 transition-transform">⭐</div>
+        <h3 class="font-bold text-white mb-2 text-sm">Rúbricas & Agentes</h3>
+        <p class="text-slate-400 text-xs leading-relaxed">Rúbricas, chatbots educativos y feedback automatizado.</p>
+        <div class="mt-3 text-pink-400 text-xs font-bold">Abrir →</div>
+      </a>
+      <a href="app-prompts.html" class="glass p-6 text-center cursor-pointer hover:border-emerald-500/40 group reveal reveal-delay-3" style="text-decoration:none">
+        <div class="text-4xl mb-4 group-hover:scale-110 transition-transform">📚</div>
+        <h3 class="font-bold text-white mb-2 text-sm">Biblioteca de Prompts</h3>
+        <p class="text-slate-400 text-xs leading-relaxed">60+ prompts listos para copiar. Sin formularios. Directos.</p>
+        <div class="mt-3 text-emerald-400 text-xs font-bold">Abrir →</div>
+      </a>
+      <a href="normativa-cv/index.html" class="glass p-6 text-center cursor-pointer hover:border-orange-500/40 group reveal reveal-delay-1" style="text-decoration:none">
+        <div class="text-4xl mb-4 group-hover:scale-110 transition-transform">⚖️</div>
+        <h3 class="font-bold text-white mb-2 text-sm">Normativa CV</h3>
+        <p class="text-slate-400 text-xs leading-relaxed">Marco normativo completo de la Comunitat Valenciana: ESO, Bach y FP.</p>
+        <div class="mt-3 text-orange-400 text-xs font-bold">Abrir →</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- NORMATIVA -->
+<section id="normativa" class="py-20 px-6 md:px-16" style="background:linear-gradient(135deg,#1e1b4b 0%,#312e81 40%,#1e1b4b 100%)">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center reveal mb-12">
+      <div class="section-badge bg-white/10 border border-white/20 text-white mb-4 mx-auto inline-flex">
+        <i class="fas fa-balance-scale"></i> Marco Legal
+      </div>
+      <h2 class="text-3xl md:text-4xl font-black mb-3">Alineado con la normativa vigente</h2>
+      <p class="text-indigo-200 max-w-2xl mx-auto">Todos los prompts y módulos están construidos sobre el marco legal español y autonómico actualizado.</p>
+    </div>
+    <div class="flex flex-wrap justify-center gap-4">
+      <div class="glass px-6 py-4 text-center rounded-2xl min-w-[130px] hover:bg-white/10 transition-all reveal reveal-delay-1">
+        <div class="text-3xl mb-2">📜</div>
+        <div class="text-sm font-bold text-white">LOMLOE</div>
+        <div class="text-xs text-indigo-300 mt-0.5">Ley Orgánica 3/2020</div>
+      </div>
+      <div class="glass px-6 py-4 text-center rounded-2xl min-w-[130px] hover:bg-white/10 transition-all reveal reveal-delay-2">
+        <div class="text-3xl mb-2">🌐</div>
+        <div class="text-sm font-bold text-white">UNESCO IA</div>
+        <div class="text-xs text-indigo-300 mt-0.5">Guías IA educativa</div>
+      </div>
+      <div class="glass px-6 py-4 text-center rounded-2xl min-w-[130px] hover:bg-white/10 transition-all reveal reveal-delay-3">
+        <div class="text-3xl mb-2">🏛️</div>
+        <div class="text-sm font-bold text-white">Decreto 107/2022</div>
+        <div class="text-xs text-indigo-300 mt-0.5">ESO · CV</div>
+      </div>
+      <div class="glass px-6 py-4 text-center rounded-2xl min-w-[130px] hover:bg-white/10 transition-all reveal reveal-delay-1">
+        <div class="text-3xl mb-2">🎓</div>
+        <div class="text-sm font-bold text-white">Decreto 108/2022</div>
+        <div class="text-xs text-indigo-300 mt-0.5">Bachillerato · CV</div>
+      </div>
+      <div class="glass px-6 py-4 text-center rounded-2xl min-w-[130px] hover:bg-white/10 transition-all reveal reveal-delay-2">
+        <div class="text-3xl mb-2">⚙️</div>
+        <div class="text-sm font-bold text-white">Decretos FP 2025</div>
+        <div class="text-xs text-indigo-300 mt-0.5">GM/GS/Básica · CV</div>
+      </div>
+      <div class="glass px-6 py-4 text-center rounded-2xl min-w-[130px] hover:bg-white/10 transition-all reveal reveal-delay-3">
+        <div class="text-3xl mb-2">🔒</div>
+        <div class="text-sm font-bold text-white">RGPD · LOPDGDD</div>
+        <div class="text-xs text-indigo-300 mt-0.5">Privacidad de datos</div>
+      </div>
+      <div class="glass px-6 py-4 text-center rounded-2xl min-w-[130px] hover:bg-white/10 transition-all reveal reveal-delay-1">
+        <div class="text-3xl mb-2">♿</div>
+        <div class="text-sm font-bold text-white">Marco DUA</div>
+        <div class="text-xs text-indigo-300 mt-0.5">Diseño Universal</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="py-24 px-6 md:px-16 relative overflow-hidden" style="background:radial-gradient(ellipse 80% 80% at 50% 50%,rgba(99,102,241,.25) 0%,transparent 70%),linear-gradient(180deg,#0d1527,#0a0f1e)">
+  <div class="glow-dot w-96 h-96 bg-indigo-600/30 top-0 left-1/4 opacity-40"></div>
+  <div class="max-w-3xl mx-auto text-center relative z-10 reveal">
+    <div class="text-6xl mb-6">🚀</div>
+    <h2 class="text-4xl md:text-5xl font-black mb-4">Empieza ahora.<br><span class="gradient-text">Es gratuito.</span></h2>
+    <p class="text-slate-400 text-lg leading-relaxed mb-4 max-w-xl mx-auto">Elige el módulo que necesitas y genera prompts perfectos para tu IA favorita en segundos.</p>
+    <p class="text-sm text-indigo-300 font-semibold mb-10 flex items-center justify-center gap-2">
+      <i class="fas fa-star text-yellow-400 text-xs"></i>
+      Creado por Ana Hernández Iranzo con asistencia IA
+    </p>
+    <div class="flex flex-wrap justify-center gap-4">
+      <a href="#modulos" class="gradient-btn text-white font-extrabold px-12 py-5 rounded-2xl text-lg inline-flex items-center gap-3">
+        <i class="fas fa-play text-yellow-300 text-xl"></i> Explorar módulos
+      </a>
+      <a href="app-ia.html" class="text-white font-bold px-10 py-5 rounded-2xl text-lg inline-flex items-center gap-3 transition-all hover:bg-white/10" style="background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.2)">
+        <i class="fas fa-robot text-indigo-300"></i> App IA Interactiva
+      </a>
+    </div>
+    <div class="flex flex-wrap justify-center gap-5 mt-10 text-xs text-slate-500 font-semibold">
+      <span class="flex items-center gap-1.5"><i class="fas fa-check-circle text-emerald-400"></i> 100% gratuito</span>
+      <span class="flex items-center gap-1.5"><i class="fas fa-check-circle text-emerald-400"></i> Sin registro</span>
+      <span class="flex items-center gap-1.5"><i class="fas fa-check-circle text-emerald-400"></i> Sin instalar nada</span>
+      <span class="flex items-center gap-1.5"><i class="fas fa-check-circle text-emerald-400"></i> RGPD compliant</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:#060a14;border-top:1px solid rgba(255,255,255,.05)" class="py-12 px-6 md:px-16">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid md:grid-cols-4 gap-8 mb-10">
+      <div class="md:col-span-2">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-xl gradient-brand flex items-center justify-center text-white font-black">E</div>
+          <div>
+            <div class="font-black text-xl">EDOCENTIA</div>
+            <div class="text-xs text-indigo-400">by Ana Hernández Iranzo · IA para docentes</div>
+          </div>
+        </div>
+        <p class="text-slate-500 text-sm leading-relaxed mb-3 max-w-xs">10 módulos de automatización docente con IA. Prompts ultra-detallados, listos para usar con ChatGPT, Claude o Gemini.</p>
+        <p class="text-indigo-400 text-xs font-semibold flex items-center gap-1.5">
+          <i class="fas fa-star text-yellow-400 text-xs"></i>
+          Creado por Ana Hernández Iranzo con asistencia IA
+        </p>
+      </div>
+      <div>
+        <div class="font-bold text-slate-300 text-sm mb-4 uppercase tracking-wide">Módulos</div>
+        <div class="space-y-2 text-sm text-slate-500">
+          <a href="modulo-1-tareas-competenciales/index.html" class="block hover:text-indigo-400 transition-colors">01 — Tareas Competenciales</a>
+          <a href="modulo-2-visualizador-notas/index.html" class="block hover:text-cyan-400 transition-colors">02 — Visualizador de Notas</a>
+          <a href="modulo-3-warmup/index.html" class="block hover:text-violet-400 transition-colors">03 — Warm-Up</a>
+          <a href="modulo-4-ideas-clase/index.html" class="block hover:text-emerald-400 transition-colors">04 — Ideas de Clase</a>
+          <a href="modulo-5-laboratorio/index.html" class="block hover:text-stone-400 transition-colors">05 — Laboratorio</a>
+        </div>
+      </div>
+      <div>
+        <div class="font-bold text-slate-300 text-sm mb-4 uppercase tracking-wide">Más módulos</div>
+        <div class="space-y-2 text-sm text-slate-500">
+          <a href="modulo-6-programaciones/index.html" class="block hover:text-orange-400 transition-colors">06 — Programaciones</a>
+          <a href="modulo-7-examenes/index.html" class="block hover:text-purple-400 transition-colors">07 — Exámenes</a>
+          <a href="modulo-8-feedback/index.html" class="block hover:text-emerald-400 transition-colors">08 — Feedback</a>
+          <a href="modulo-9-gamificacion/index.html" class="block hover:text-red-400 transition-colors">09 — Gamificación</a>
+          <a href="modulo-10-comunicacion/index.html" class="block hover:text-blue-400 transition-colors">10 — Comunicación</a>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="text-xs text-slate-600"><strong class="text-slate-400">EDOCENTIA</strong> · Automatización Docente con IA · Curso 2025–2026</div>
+      <div class="text-xs text-slate-600 text-center">Idea original y creación: <strong class="text-slate-400">Ana Hernández Iranzo</strong> · desarrollada con asistencia de IA · 🔒 Sin cookies · Cumple RGPD</div>
+      <div class="flex items-center gap-3 text-xs text-slate-600">
+        <span>ESO</span><span>·</span><span>Bachillerato</span><span>·</span><span>FP</span><span>·</span><span>Primaria</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+window.addEventListener('scroll',()=>{
+  const b=document.getElementById('scroll-bar');
+  b.style.width=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100+'%';
+  document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>60);
+});
+const io=new IntersectionObserver(e=>e.forEach(en=>{if(en.isIntersecting)en.target.classList.add('in-view')}),{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+console.log('%cEDOCENTIA 🎓 | Creado por Ana Hernández Iranzo con asistencia IA','color:#6366f1;font-weight:800;font-size:14px;');
+</script>
+</body>
+</html>
