@@ -3,17 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f6f3eb">
-  <meta name="description" content="Herramientas prácticas para planificar, evaluar y crear recursos educativos. Un proyecto de Ana Hernández Iranzo.">
-  <title>EDOCENTIA — Herramientas para enseñar</title>
+  <meta name="theme-color" content="#faf8f5">
+  <meta name="description" content="Herramientas prácticas para planificar, evaluar y crear recursos educativos con IA. Un proyecto de Ana Hernández Iranzo (Curiousminds123).">
+  <title>EDOCENTIA — Todo lo que necesitas como docente, automatizado con IA</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/site.css">
   <script src="assets/site.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  
   <header class="site-header">
     <div class="shell header-inner">
       <a class="brand" href="index.html" aria-label="EDOCENTIA, inicio">
@@ -27,164 +28,362 @@
       <nav class="primary-nav" id="primary-nav" aria-label="Navegación principal">
         <a href="#herramientas">Herramientas</a>
         <a href="apps.html">Biblioteca abierta</a>
+        <a href="app-ia.html">App IA</a>
+        <a href="app-prompts.html">Prompts</a>
+        <a href="app-rubricas.html">Rúbricas</a>
         <a href="#sobre-edocentia">El proyecto</a>
-        <a class="nav-cta" href="apps.html">Explorar recursos <span aria-hidden="true">↗</span></a>
+        <a class="nav-cta" href="apps.html">Explorar biblioteca <span aria-hidden="true">↗</span></a>
       </nav>
     </div>
   </header>
 
   <main id="contenido">
+    <!-- HERO SECTION -->
     <section class="hero shell">
       <div class="hero-copy">
-        <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> Ideas y herramientas para el aula</p>
+        <div class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> Innovación e Inteligencia Artificial en el Aula</div>
         <h1>Menos tiempo en tareas repetidas.<br><em>Más tiempo para enseñar.</em></h1>
-        <p class="hero-intro">Un espacio de trabajo para preparar clases, evaluar y dar forma a buenas ideas. Herramientas útiles, hechas pensando en el día a día docente.</p>
+        <p class="hero-intro">Un espacio pedagógico vivo para diseñar situaciones de aprendizaje, automatizar la evaluación formativa y dinamizar tus clases con herramientas abiertas y fáciles de usar.</p>
+        
         <div class="hero-actions">
-          <a class="button button-primary" href="#herramientas">Ver herramientas <span aria-hidden="true">↓</span></a>
-          <a class="text-link" href="apps.html">Buscar recursos abiertos <span aria-hidden="true">↗</span></a>
+          <a class="button button-primary" href="#herramientas">Explorar herramientas <span aria-hidden="true">↓</span></a>
+          <a class="button button-secondary" href="apps.html">Biblioteca de apps (225) <span aria-hidden="true">↗</span></a>
+          <a class="text-link" href="https://github.com/Curiousminds123" target="_blank" rel="noopener">Repositorios Curiousminds123 <span aria-hidden="true">↗</span></a>
         </div>
+        
         <div class="hero-byline">
           <span class="byline-rule" aria-hidden="true"></span>
-          <span>Creado por <strong>Ana Hernández Iranzo</strong></span>
+          <span>Proyecto de <strong>Ana Hernández Iranzo</strong></span>
+          <span class="byline-badge">CC BY-SA 4.0 · Compartir Igual</span>
         </div>
       </div>
-      <div class="hero-art" aria-label="Vista de una planificación semanal de aula">
-        <div class="art-paper">
-          <div class="paper-topline">
-            <span>CUADERNO DE AULA</span>
-            <span class="paper-date">01 / 06</span>
+      
+      <!-- HERO ART & PHOTO COMPOSITION -->
+      <div class="hero-art-composite" aria-label="Composición visual ilustrativa de educación y docencia">
+        <!-- Floating Sticker Top -->
+        <div class="floating-badge floating-badge-top">
+          <div class="floating-badge-icon">
+            <img src="assets/img/icon-8.png" alt="" aria-hidden="true">
           </div>
-          <div class="paper-title">Una semana<br>con intención</div>
-          <div class="week-list">
-            <div class="week-row"><span class="day-mark">L</span><span class="week-task">Activar ideas previas</span><span class="week-tag tag-sage">Inicio</span></div>
-            <div class="week-row"><span class="day-mark">M</span><span class="week-task">Investigar en equipo</span><span class="week-tag tag-sand">Explorar</span></div>
-            <div class="week-row"><span class="day-mark">X</span><span class="week-task">Compartir hallazgos</span><span class="week-tag tag-rose">Crear</span></div>
+          <div>
+            <div style="font-size: 10px; color: var(--muted); text-transform: uppercase;">Creatividad docente</div>
+            <div>Ideas y Warm-ups interactivos</div>
           </div>
-          <div class="paper-note"><span class="note-mark" aria-hidden="true">✳</span><span>Una buena pregunta<br>puede cambiar la clase.</span></div>
-          <div class="paper-footer"><span>PLANIFICAR · PROBAR · APRENDER</span><span class="paper-page">04</span></div>
         </div>
-        <span class="art-stamp" aria-hidden="true">PARA<br>EL AULA</span>
-        <span class="art-leaf art-leaf-one" aria-hidden="true"></span>
-        <span class="art-leaf art-leaf-two" aria-hidden="true"></span>
+
+        <!-- Central Illustrated Photo Frame -->
+        <div class="hero-photo-wrapper">
+          <img class="hero-photo-img" src="assets/img/hero-educacion.jpg" alt="Profesorado y alumnado colaborando activamente en el aula" loading="eager">
+          <div class="hero-photo-overlay"></div>
+          <div class="hero-photo-caption">
+            <div>
+              <strong>Espacio de Trabajo Docente</strong>
+              <span>Planificación, evaluación y gamificación</span>
+            </div>
+            <span style="background: rgba(255,255,255,0.25); backdrop-filter: blur(4px); padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700;">10 Módulos</span>
+          </div>
+        </div>
+
+        <!-- Floating Sticker Bottom -->
+        <div class="floating-badge floating-badge-bottom">
+          <div class="floating-badge-icon">
+            <img src="assets/img/icon-6.png" alt="" aria-hidden="true">
+          </div>
+          <div>
+            <div style="font-size: 10px; color: var(--muted); text-transform: uppercase;">Evaluación formativa</div>
+            <div>Rúbricas LOMLOE y Criterios</div>
+          </div>
+        </div>
       </div>
     </section>
 
+    <!-- TRUST & STATS STRIP -->
     <section class="trust-strip" aria-label="Características del proyecto">
       <div class="shell trust-inner">
-        <p><strong>10</strong><span>herramientas docentes</span></p>
-        <span class="trust-divider" aria-hidden="true"></span>
-        <p><strong>219</strong><span>recursos con licencia compartir igual</span></p>
-        <span class="trust-divider" aria-hidden="true"></span>
-        <p><strong>En línea</strong><span>acceso desde el navegador</span></p>
+        <div class="trust-item trust-item-coral">
+          <div class="trust-icon-box">
+            <img src="assets/img/icon-1.png" alt="" aria-hidden="true">
+          </div>
+          <div class="trust-item-info">
+            <strong>10 herramientas</strong>
+            <span>Módulos listos para el aula</span>
+          </div>
+        </div>
+        
+        <div class="trust-item trust-item-yellow">
+          <div class="trust-icon-box">
+            <img src="assets/img/icon-11.png" alt="" aria-hidden="true">
+          </div>
+          <div class="trust-item-info">
+            <strong>225 recursos</strong>
+            <span>Biblioteca abierta compartida</span>
+          </div>
+        </div>
+
+        <div class="trust-item trust-item-lavender">
+          <div class="trust-icon-box">
+            <img src="assets/img/icon-3.png" alt="" aria-hidden="true">
+          </div>
+          <div class="trust-item-info">
+            <strong>Curiousminds123</strong>
+            <span>6 repositorios Ana H. Iranzo</span>
+          </div>
+        </div>
+
+        <div class="trust-item trust-item-sky">
+          <div class="trust-icon-box">
+            <img src="assets/img/icon-10.png" alt="" aria-hidden="true">
+          </div>
+          <div class="trust-item-info">
+            <strong>Compartir Igual</strong>
+            <span>Licencias abiertas CC BY-SA</span>
+          </div>
+        </div>
       </div>
     </section>
 
+    <!-- HERRAMIENTAS DOCENTES (10 TARJETAS CON PALETA PASTEL) -->
     <section class="section shell" id="herramientas">
       <div class="section-heading">
         <div>
-          <p class="eyebrow">Un buen punto de partida</p>
-          <h2>Herramientas para cada momento de clase</h2>
+          <div class="eyebrow" style="background: var(--yellow-light); border-color: var(--yellow-border); color: var(--yellow-dark);">
+            <span class="eyebrow-dot" style="background: var(--yellow);" aria-hidden="true"></span> Ecosistema de aplicaciones
+          </div>
+          <h2>Herramientas para cada momento de tu clase</h2>
         </div>
-        <p class="section-intro">Elige una necesidad y continúa desde ahí. Cada herramienta abre directamente en tu navegador.</p>
+        <p class="section-intro">Elige una necesidad pedagógica y continúa desde ahí. Cada herramienta funciona directamente en tu navegador de forma gratuita.</p>
       </div>
+
       <div class="tool-grid">
-        <a class="tool-card" href="modulo-1-tareas-competenciales/index.html">
-          <span class="tool-number">01</span><span class="tool-type">Diseño de aprendizaje</span>
-          <h3>Tareas competenciales</h3><p>Diseña situaciones de aprendizaje, retos auténticos y proyectos conectados con la vida real.</p>
-          <span class="card-link">Abrir herramienta <span aria-hidden="true">↗</span></span>
+        <!-- 01: Tareas competenciales (Coral / Rosa) -->
+        <a class="tool-card card-coral" href="modulo-1-tareas-competenciales/index.html">
+          <div class="tool-card-header">
+            <div class="tool-icon-blob">
+              <img src="assets/img/icon-6.png" class="tool-icon-img" alt="Icono de tareas y rúbricas">
+            </div>
+            <span class="tool-number">01</span>
+          </div>
+          <span class="tool-badge">Diseño de aprendizaje</span>
+          <h3>Tareas competenciales</h3>
+          <p>Diseña situaciones de aprendizaje, retos auténticos y proyectos conectados con la vida real según el marco curricular.</p>
+          <span class="card-link">Abrir herramienta <span class="card-link-arrow" aria-hidden="true">→</span></span>
         </a>
-        <a class="tool-card" href="modulo-2-visualizador-notas/index.html">
-          <span class="tool-number">02</span><span class="tool-type">Evaluación</span>
-          <h3>Visualizador de notas</h3><p>Explora resultados del grupo y convierte los datos de evaluación en información comprensible.</p>
-          <span class="card-link">Abrir herramienta <span aria-hidden="true">↗</span></span>
+
+        <!-- 02: Visualizador de notas (Lila / Lavanda) -->
+        <a class="tool-card card-lavender" href="modulo-2-visualizador-notas/index.html">
+          <div class="tool-card-header">
+            <div class="tool-icon-blob">
+              <img src="assets/img/icon-9.png" class="tool-icon-img" alt="Icono de visualización de notas">
+            </div>
+            <span class="tool-number">02</span>
+          </div>
+          <span class="tool-badge">Evaluación</span>
+          <h3>Visualizador de notas</h3>
+          <p>Explora resultados del grupo y convierte los datos de evaluación en gráficos y porcentajes claros para la toma de decisiones.</p>
+          <span class="card-link">Abrir herramienta <span class="card-link-arrow" aria-hidden="true">→</span></span>
         </a>
-        <a class="tool-card" href="modulo-3-warmup/index.html">
-          <span class="tool-number">03</span><span class="tool-type">Activación</span>
-          <h3>Warm-up de aula</h3><p>Encuentra preguntas, dinámicas breves y actividades para empezar la sesión con energía.</p>
-          <span class="card-link">Abrir herramienta <span aria-hidden="true">↗</span></span>
+
+        <!-- 03: Warm-up (Amarillo Oro) -->
+        <a class="tool-card card-yellow" href="modulo-3-warmup/index.html">
+          <div class="tool-card-header">
+            <div class="tool-icon-blob">
+              <img src="assets/img/icon-8.png" class="tool-icon-img" alt="Icono de ideas y warm-up">
+            </div>
+            <span class="tool-number">03</span>
+          </div>
+          <span class="tool-badge">Activación</span>
+          <h3>Warm-up de aula</h3>
+          <p>Genera preguntas provocadoras, dinámicas de entrada y actividades rompehielos para empezar cada sesión con energía.</p>
+          <span class="card-link">Abrir herramienta <span class="card-link-arrow" aria-hidden="true">→</span></span>
         </a>
-        <a class="tool-card" href="modulo-4-ideas-clase/index.html">
-          <span class="tool-number">04</span><span class="tool-type">Creatividad</span>
-          <h3>Ideas para clase</h3><p>Desbloquea nuevas dinámicas y enfoques para trabajar cualquier tema y nivel.</p>
-          <span class="card-link">Abrir herramienta <span aria-hidden="true">↗</span></span>
+
+        <!-- 04: Ideas para clase (Coral Intenso) -->
+        <a class="tool-card card-coral" href="modulo-4-ideas-clase/index.html">
+          <div class="tool-card-header">
+            <div class="tool-icon-blob">
+              <img src="assets/img/icon-1.png" class="tool-icon-img" alt="Icono de ideas de clase">
+            </div>
+            <span class="tool-number">04</span>
+          </div>
+          <span class="tool-badge">Creatividad</span>
+          <h3>Ideas para clase</h3>
+          <p>Desbloquea nuevas dinámicas, enfoques interdisciplinares y recursos prácticos para cualquier nivel educativo.</p>
+          <span class="card-link">Abrir herramienta <span class="card-link-arrow" aria-hidden="true">→</span></span>
         </a>
-        <a class="tool-card" href="modulo-5-laboratorio/index.html">
-          <span class="tool-number">05</span><span class="tool-type">Ciencia y práctica</span>
-          <h3>Laboratorio y simulador</h3><p>Prepara experimentos y prácticas para aprender haciendo, observar y sacar conclusiones.</p>
-          <span class="card-link">Abrir herramienta <span aria-hidden="true">↗</span></span>
+
+        <!-- 05: Laboratorio y simulador (Azul Cielo) -->
+        <a class="tool-card card-sky" href="modulo-5-laboratorio/index.html">
+          <div class="tool-card-header">
+            <div class="tool-icon-blob">
+              <img src="assets/img/icon-3.png" class="tool-icon-img" alt="Icono de laboratorio y prácticas">
+            </div>
+            <span class="tool-number">05</span>
+          </div>
+          <span class="tool-badge">Ciencia y práctica</span>
+          <h3>Laboratorio y simulador</h3>
+          <p>Prepara guías de prácticas, hipótesis de laboratorio y simulaciones para aprender haciendo y extraer conclusiones rigurosas.</p>
+          <span class="card-link">Abrir herramienta <span class="card-link-arrow" aria-hidden="true">→</span></span>
         </a>
-        <a class="tool-card" href="modulo-6-programaciones/index.html">
-          <span class="tool-number">06</span><span class="tool-type">Planificación</span>
-          <h3>Programaciones didácticas</h3><p>Organiza objetivos, contenidos y propuestas curriculares para después revisarlas y adaptarlas.</p>
-          <span class="card-link">Abrir herramienta <span aria-hidden="true">↗</span></span>
+
+        <!-- 06: Programaciones didácticas (Ámbar / Amarillo) -->
+        <a class="tool-card card-yellow" href="modulo-6-programaciones/index.html">
+          <div class="tool-card-header">
+            <div class="tool-icon-blob">
+              <img src="assets/img/icon-2.png" class="tool-icon-img" alt="Icono de programaciones didácticas">
+            </div>
+            <span class="tool-number">06</span>
+          </div>
+          <span class="tool-badge">Planificación</span>
+          <h3>Programaciones didácticas</h3>
+          <p>Estructura objetivos, saberes básicos, criterios de evaluación y secuenciación temporal adaptada a tu grupo.</p>
+          <span class="card-link">Abrir herramienta <span class="card-link-arrow" aria-hidden="true">→</span></span>
         </a>
-        <a class="tool-card" href="modulo-7-examenes/index.html">
-          <span class="tool-number">07</span><span class="tool-type">Evaluación</span>
-          <h3>Exámenes y pruebas</h3><p>Prepara actividades de evaluación variadas, preguntas y criterios de corrección.</p>
-          <span class="card-link">Abrir herramienta <span aria-hidden="true">↗</span></span>
+
+        <!-- 07: Exámenes y pruebas (Verde Menta) -->
+        <a class="tool-card card-mint" href="modulo-7-examenes/index.html">
+          <div class="tool-card-header">
+            <div class="tool-icon-blob">
+              <img src="assets/img/icon-5.png" class="tool-icon-img" alt="Icono de exámenes y pruebas">
+            </div>
+            <span class="tool-number">07</span>
+          </div>
+          <span class="tool-badge">Evaluación formativa</span>
+          <h3>Exámenes y pruebas</h3>
+          <p>Construye pruebas de evaluación variadas, preguntas competenciales con solucionario y criterios de corrección transparentes.</p>
+          <span class="card-link">Abrir herramienta <span class="card-link-arrow" aria-hidden="true">→</span></span>
         </a>
-        <a class="tool-card" href="modulo-8-feedback/index.html">
-          <span class="tool-number">08</span><span class="tool-type">Acompañamiento</span>
-          <h3>Feedback formativo</h3><p>Redacta comentarios claros y constructivos para acompañar el progreso del alumnado.</p>
-          <span class="card-link">Abrir herramienta <span aria-hidden="true">↗</span></span>
+
+        <!-- 08: Feedback formativo (Rosa Pastel) -->
+        <a class="tool-card card-rose" href="modulo-8-feedback/index.html">
+          <div class="tool-card-header">
+            <div class="tool-icon-blob">
+              <img src="assets/img/icon-12.png" class="tool-icon-img" alt="Icono de feedback formativo">
+            </div>
+            <span class="tool-number">08</span>
+          </div>
+          <span class="tool-badge">Acompañamiento</span>
+          <h3>Feedback formativo</h3>
+          <p>Redacta comentarios personalizados, orientaciones constructivas y mensajes de refuerzo positivo que impulsan el aprendizaje.</p>
+          <span class="card-link">Abrir herramienta <span class="card-link-arrow" aria-hidden="true">→</span></span>
         </a>
-        <a class="tool-card" href="modulo-9-gamificacion/index.html">
-          <span class="tool-number">09</span><span class="tool-type">Motivación</span>
-          <h3>Gamificación</h3><p>Da forma a misiones, retos y dinámicas de juego con una intención pedagógica clara.</p>
-          <span class="card-link">Abrir herramienta <span aria-hidden="true">↗</span></span>
+
+        <!-- 09: Gamificación (Turquesa / Menta) -->
+        <a class="tool-card card-teal" href="modulo-9-gamificacion/index.html">
+          <div class="tool-card-header">
+            <div class="tool-icon-blob">
+              <img src="assets/img/icon-10.png" class="tool-icon-img" alt="Icono de gamificación y retos">
+            </div>
+            <span class="tool-number">09</span>
+          </div>
+          <span class="tool-badge">Motivación</span>
+          <h3>Gamificación</h3>
+          <p>Crea narrativas, insignias, misiones cooperativas y dinámicas de juego con una intencionalidad pedagógica clara.</p>
+          <span class="card-link">Abrir herramienta <span class="card-link-arrow" aria-hidden="true">→</span></span>
         </a>
-        <a class="tool-card" href="modulo-10-comunicacion/index.html">
-          <span class="tool-number">10</span><span class="tool-type">Comunidad educativa</span>
-          <h3>Comunicación</h3><p>Prepara comunicaciones útiles para el aula, el departamento y las familias.</p>
-          <span class="card-link">Abrir herramienta <span aria-hidden="true">↗</span></span>
+
+        <!-- 10: Comunicación (Azul Celeste / Marino) -->
+        <a class="tool-card card-sky" href="modulo-10-comunicacion/index.html">
+          <div class="tool-card-header">
+            <div class="tool-icon-blob">
+              <img src="assets/img/icon-7.png" class="tool-icon-img" alt="Icono de comunicación escolar">
+            </div>
+            <span class="tool-number">10</span>
+          </div>
+          <span class="tool-badge">Comunidad educativa</span>
+          <h3>Comunicación</h3>
+          <p>Prepara circulares claras, correos a familias, informes de tutoría y mensajes efectivos para el equipo docente.</p>
+          <span class="card-link">Abrir herramienta <span class="card-link-arrow" aria-hidden="true">→</span></span>
         </a>
       </div>
     </section>
 
-    <section class="library-band" id="biblioteca">
-      <div class="shell library-inner">
+    <!-- BANDA BIBLIOTECA ABIERTA Y CURIOUSMINDS123 -->
+    <section class="library-band shell" id="biblioteca">
+      <div class="library-inner">
         <div class="library-copy">
-          <p class="eyebrow eyebrow-light">Una biblioteca para compartir</p>
-          <h2>Buenas ideas que ya están en uso.</h2>
-          <p>Explora aplicaciones educativas creadas por docentes de la comunidad Vibe Coding Educativo. Cada ficha identifica a su autor y muestra la licencia declarada; la selección incluye licencias CC BY-SA y CC BY-NC-SA.</p>
-          <a class="button button-paper" href="apps.html">Entrar en la biblioteca <span aria-hidden="true">↗</span></a>
+          <div class="eyebrow eyebrow-light">
+            <span class="eyebrow-dot" style="background: var(--yellow);" aria-hidden="true"></span> Repositorio y Biblioteca Abierta
+          </div>
+          <h2>Buenas ideas educativas creadas para compartir.</h2>
+          <p>Explora 225 aplicaciones educativas abiertas, incluyendo los repositorios de <strong>Curiousminds123 (Ana H. Iranzo)</strong> y aportaciones docentes de la comunidad Vibe Coding Educativo, todas con autoría declarada y licencias de compartir igual.</p>
+          
+          <div class="library-badges-row">
+            <span class="library-badge-pill">★ CC BY-SA 4.0</span>
+            <span class="library-badge-pill">✦ ELE & Idiomas</span>
+            <span class="library-badge-pill">⚡ Automatización con IA</span>
+            <span class="library-badge-pill">☕ Código Abierto en GitHub</span>
+          </div>
+
+          <div style="display: flex; flex-wrap: wrap; gap: 16px;">
+            <a class="button button-paper" href="apps.html">Entrar en la biblioteca (225) <span aria-hidden="true">↗</span></a>
+            <a class="button" style="background: rgba(255,255,255,0.15); color: white; border: 1px solid rgba(255,255,255,0.25);" href="https://github.com/Curiousminds123" target="_blank" rel="noopener">Ver repositorios en GitHub <span aria-hidden="true">↗</span></a>
+          </div>
         </div>
-        <div class="library-aside">
-          <div class="aside-number">219</div>
-          <p>recursos con licencia<br><strong>Creative Commons BY-SA / BY-NC-SA</strong></p>
-          <span class="aside-rule" aria-hidden="true"></span>
-          <p class="aside-small">Las fichas enlazan con las aplicaciones originales. Algunas licencias limitan el uso comercial.</p>
+
+        <div class="library-visual-card">
+          <img class="library-visual-img" src="assets/img/biblioteca-recursos.jpg" alt="Libros y recursos educativos organizados" loading="lazy">
+          <div class="library-visual-stat">
+            <div>
+              <div class="library-stat-num">225</div>
+              <div style="font-size: 11px; color: var(--yellow);">Recursos en catálogo</div>
+            </div>
+            <div class="library-stat-txt">
+              <strong>Creative Commons</strong><br>
+              Reconocimiento · Compartir Igual
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
+    <!-- SECCIÓN SOBRE EDOCENTIA -->
     <section class="section about-section shell" id="sobre-edocentia">
       <div class="about-mark" aria-hidden="true">E</div>
       <div class="about-copy">
-        <p class="eyebrow">Una herramienta al servicio de la enseñanza</p>
+        <div class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> Pedagogía e Innovación</div>
         <h2>Tecnología con intención pedagógica.</h2>
-        <p>EDOCENTIA reúne recursos para ahorrar tiempo sin perder de vista lo importante: el criterio docente, el contexto del grupo y las relaciones que hacen que una clase funcione.</p>
-        <p class="about-byline">Un proyecto de <strong>Ana Hernández Iranzo</strong>.</p>
+        <p>EDOCENTIA reúne herramientas diseñadas para ahorrar tiempo administrativo y mecánico sin perder de vista lo esencial: el criterio docente, la conexión humana con el alumnado y el rigor pedagógico.</p>
+        
+        <div class="about-byline">
+          Iniciativa creada por <strong>Ana Hernández Iranzo</strong> (Curiousminds123) · Publicado bajo licencia <strong>Compartir Igual (CC BY-SA)</strong>.
+        </div>
       </div>
+      
       <div class="about-links">
-        <a href="app-ia.html">App IA interactiva <span aria-hidden="true">↗</span></a>
-        <a href="app-prompts.html">Biblioteca de prompts <span aria-hidden="true">↗</span></a>
-        <a href="app-rubricas.html">Rúbricas y agentes <span aria-hidden="true">↗</span></a>
-        <a href="normativa-cv/index.html">Normativa docente CV <span aria-hidden="true">↗</span></a>
+        <a class="about-link-pill" href="app-ia.html">
+          <span>App IA interactiva</span>
+          <span aria-hidden="true">↗</span>
+        </a>
+        <a class="about-link-pill" href="app-prompts.html">
+          <span>Biblioteca de prompts</span>
+          <span aria-hidden="true">↗</span>
+        </a>
+        <a class="about-link-pill" href="app-rubricas.html">
+          <span>Rúbricas y agentes IA</span>
+          <span aria-hidden="true">↗</span>
+        </a>
+        <a class="about-link-pill" href="normativa-cv/index.html">
+          <span>Normativa docente CV</span>
+          <span aria-hidden="true">↗</span>
+        </a>
       </div>
     </section>
   </main>
 
+  <!-- FOOTER -->
   <footer class="site-footer">
     <div class="shell footer-main">
-      <a class="brand brand-footer" href="index.html"><span class="brand-mark" aria-hidden="true">e.</span><span class="brand-name">EDOCENTIA</span></a>
-      <p>Recursos para enseñar con tiempo, criterio y curiosidad.</p>
+      <a class="brand brand-footer" href="index.html">
+        <span class="brand-mark" aria-hidden="true">e.</span>
+        <span class="brand-name">EDOCENTIA</span>
+      </a>
+      <p>Herramientas y recursos abiertos para enseñar con tiempo, criterio y curiosidad.</p>
       <a class="footer-top" href="#contenido">Volver arriba ↑</a>
     </div>
     <div class="shell footer-bottom">
-      <span>Creado por Ana Hernández Iranzo</span>
-      <span>Las licencias se indican por recurso. Consulta la atribución en la biblioteca.</span>
-      <a href="https://github.com/Curiousminds123/EDOCENTIA" target="_blank" rel="noopener">Código del proyecto ↗</a>
+      <span>Creado por <strong>Ana Hernández Iranzo</strong> · Curiousminds123</span>
+      <span>Licencias abiertas: atribución individual en cada ficha de la biblioteca.</span>
+      <a href="https://github.com/Curiousminds123/EDOCENTIA" target="_blank" rel="noopener">Código en GitHub ↗</a>
     </div>
   </footer>
 </body>
