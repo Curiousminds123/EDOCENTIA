@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Módulo 4 — Ideas para Clase | EDOCENTIA</title>
+<meta name="description" content="Generador de ideas, actividades y dinámicas pedagógicas para cualquier asignatura, nivel y tema. Brainstorming pedagógico con IA. By EDOCENTIA.">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:#f8fafc;color:#1e293b}
+#scroll-progress{position:fixed;top:0;left:0;width:0;height:4px;background:linear-gradient(90deg,#10b981,#34d399,#f97316);z-index:9999}
+.hero-section{background-image:linear-gradient(135deg,rgba(5,150,105,.93) 0%,rgba(16,185,129,.9) 60%,rgba(6,182,212,.85) 100%),url('https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=2000&auto=format&fit=crop');background-size:cover;background-position:center;background-attachment:fixed}
+.hero-shimmer{background:linear-gradient(90deg,#fff 40%,rgba(255,255,255,.6) 50%,#fff 60%);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:shimmer 4s linear infinite}
+@keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
+.card-pro{background:#fff;border-radius:1.25rem;box-shadow:0 4px 20px rgba(0,0,0,.05);border:1px solid rgba(0,0,0,.04);transition:all .3s ease}
+.card-pro:hover{transform:translateY(-2px);box-shadow:0 12px 35px rgba(0,0,0,.09)}
+aside nav a{transition:all .25s ease;color:#475569;border-left:3px solid transparent;display:flex;align-items:center;gap:.6rem;padding:.6rem .9rem;border-radius:.75rem;font-size:.85rem;font-weight:500;text-decoration:none}
+aside nav a:hover{background:linear-gradient(90deg,rgba(16,185,129,.1),transparent)!important;color:#059669;border-left-color:#10b981;padding-left:1.2rem;font-weight:700}
+#sidebar-toggle{display:none;position:fixed;top:1rem;left:1rem;z-index:999;background:linear-gradient(135deg,#10b981,#06b6d4);color:#fff;border:none;width:2.8rem;height:2.8rem;border-radius:.9rem;align-items:center;justify-content:center;font-size:1.1rem;cursor:pointer}
+#sidebar-backdrop{display:none;position:fixed;inset:0;background:rgba(15,23,42,.5);backdrop-filter:blur(4px);z-index:490}
+@media(max-width:1023px){#sidebar-toggle{display:flex}aside{position:fixed!important;top:0;left:0;height:100dvh!important;width:85vw!important;max-width:340px!important;z-index:500;transform:translateX(-110%);transition:transform .35s cubic-bezier(.4,0,.2,1);overflow-y:auto}aside.sidebar-open{transform:translateX(0)}#sidebar-backdrop.active{display:block}#main-content{width:100%!important}}
+details summary{user-select:none;cursor:pointer;list-style:none;outline:none}
+details summary::-webkit-details-marker{display:none}
+details summary .chev{transition:transform .3s ease}
+details[open] summary .chev{transform:rotate(180deg)}
+details:hover{border-color:rgba(16,185,129,.25)!important}
+details[open]{box-shadow:0 8px 30px rgba(16,185,129,.08)!important}
+.field-label{display:block;font-size:.8rem;font-weight:700;color:#059669;margin-bottom:.35rem}
+.field-input{width:100%;border:1.5px solid #d1fae5;border-radius:.65rem;padding:.55rem .85rem;font-size:.85rem;color:#1e293b;font-family:'Plus Jakarta Sans',sans-serif;background:#f0fdf4;transition:.2s;outline:none}
+.field-input:focus{border-color:#10b981;box-shadow:0 0 0 3px rgba(16,185,129,.12);background:#fff}
+.field-input::placeholder{color:#94a3b8}
+.field-group{margin-bottom:1rem}
+.gen-btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.75rem 1.6rem;border-radius:.85rem;font-weight:700;font-size:.9rem;cursor:pointer;transition:.25s;border:none;width:100%;margin-top:.5rem}
+.gen-btn-green{background:linear-gradient(135deg,#10b981,#34d399);color:#fff;box-shadow:0 4px 16px rgba(16,185,129,.35)}
+.gen-btn-green:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(16,185,129,.5)}
+.gen-btn-teal{background:linear-gradient(135deg,#0d9488,#06b6d4);color:#fff;box-shadow:0 4px 16px rgba(6,182,212,.35)}
+.gen-btn-teal:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(6,182,212,.5)}
+.prompt-result{background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:.75rem;padding:1.25rem;font-size:.8rem;line-height:1.7;color:#475569;white-space:pre-wrap;max-height:250px;overflow-y:auto;display:none;margin-top:.75rem}
+.prompt-result.show{display:block}
+.copy-btn{display:inline-flex;align-items:center;gap:.4rem;padding:.5rem 1.1rem;background:rgba(16,185,129,.1);border:1px dashed rgba(16,185,129,.4);border-radius:.6rem;color:#059669;font-size:.78rem;font-weight:700;cursor:pointer;transition:.2s;margin-top:.5rem}
+.copy-btn:hover{background:rgba(16,185,129,.18);border-style:solid}
+.copy-btn.copied{background:rgba(16,185,129,.12);border-color:rgba(16,185,129,.4);color:#059669}
+.prompt-card{background:#fff;border:1.5px solid #e2e8f0;border-radius:1rem;padding:1.5rem;transition:.3s;margin-bottom:1rem}
+.prompt-card:hover{border-color:rgba(16,185,129,.3);box-shadow:0 8px 30px rgba(16,185,129,.09)}
+.fade-in{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s cubic-bezier(.4,0,.2,1)}
+.fade-in.in-view{opacity:1;transform:translateY(0)}
+#toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(80px);background:#1e293b;color:#fff;padding:.75rem 1.5rem;border-radius:1rem;font-size:.85rem;font-weight:600;z-index:9999;transition:.3s;display:flex;align-items:center;gap:.5rem}
+#toast.show{transform:translateX(-50%) translateY(0)}
+#back-to-top{position:fixed;bottom:2rem;right:2rem;width:3rem;height:3rem;background:linear-gradient(135deg,#10b981,#06b6d4);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;pointer-events:none;transform:translateY(20px);transition:.3s;z-index:998;border:none}
+#back-to-top.visible{opacity:1;pointer-events:all;transform:translateY(0)}
+.cat-icon{width:2.5rem;height:2.5rem;border-radius:.9rem;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+.idea-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1rem}
+@media(max-width:640px){.idea-grid{grid-template-columns:1fr}}
+</style>
+  <link rel="stylesheet" href="../assets/portal-nav.css">
+</head>
+<body class="antialiased">
+<div id="scroll-progress"></div>
+<button id="sidebar-toggle"><i class="fas fa-bars"></i></button>
+<div id="sidebar-backdrop"></div>
+<button id="back-to-top"><i class="fas fa-arrow-up"></i></button>
+<div id="toast"><i class="fas fa-lightbulb text-yellow-400"></i> <span id="toast-msg">¡Listo!</span></div>
+
+<div class="flex min-h-screen">
+<aside class="w-64 flex-shrink-0 bg-white border-r border-slate-100 shadow-sm sticky top-0 h-screen overflow-y-auto z-50">
+  <div class="p-5 border-b border-slate-100">
+    <div class="flex items-center gap-2.5 mb-1">
+      <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white shadow text-base">💡</div>
+      <div>
+        <div class="font-extrabold text-slate-800 text-sm leading-tight">Ideas para Clase</div>
+        <div class="text-xs text-slate-400">Módulo 04 · EDOCENTIA</div>
+      </div>
+    </div>
+  </div>
+  <nav class="p-3 space-y-0.5">
+    <p class="text-xs font-bold text-slate-400 uppercase tracking-widest px-2 pt-3 pb-1">Partes del módulo</p>
+    <a href="#parte-1"><i class="fas fa-lightbulb w-4 text-yellow-500"></i> Brainstorming de Actividades</a>
+    <a href="#parte-2"><i class="fas fa-tools w-4 text-emerald-500"></i> Metodologías Activas</a>
+    <a href="#parte-3"><i class="fas fa-dice w-4 text-teal-500"></i> Actividades por Tipo</a>
+    <a href="#parte-4"><i class="fas fa-graduation-cap w-4 text-cyan-500"></i> Plan de Sesión Creativo</a>
+    <a href="#parte-5"><i class="fas fa-star w-4 text-violet-500"></i> Ideas para Casos Difíciles</a>
+    <hr class="my-2 border-slate-100">
+    <a href="../index.html"><i class="fas fa-home w-4 text-slate-400"></i> Homepage EDOCENTIA</a>
+    <a href="../app-ia.html"><i class="fas fa-robot w-4 text-violet-500"></i> App IA Interactiva</a>
+  </nav>
+</aside>
+
+<main id="main-content" class="flex-1 min-w-0">
+<section class="hero-section text-white py-16 px-8 md:px-14">
+  <div class="max-w-4xl">
+    <a href="../index.html" class="inline-flex items-center gap-2 text-white/70 hover:text-white text-xs font-semibold mb-5 transition-colors"><i class="fas fa-arrow-left"></i> Volver a EDOCENTIA</a>
+    <div class="inline-flex items-center gap-2 bg-white/15 border border-white/25 rounded-full px-4 py-1.5 text-xs font-semibold mb-4 backdrop-blur-sm">
+      <i class="fas fa-lightbulb text-yellow-300"></i> Módulo 04 — Creatividad Pedagógica
+    </div>
+    <h1 class="text-3xl md:text-5xl font-extrabold leading-tight mb-3 hero-shimmer">Generador de<br>Ideas para Clase</h1>
+    <p class="text-base text-white/85 max-w-2xl leading-relaxed mb-5">Combate el bloqueo creativo. Genera decenas de ideas para actividades, metodologías y dinámicas pedagógicas para cualquier asignatura, nivel y contenido. La IA como tu co-docente creativo.</p>
+    <div class="flex flex-wrap gap-3">
+      <a href="#parte-1" class="bg-white text-emerald-700 font-bold px-5 py-2.5 rounded-xl text-sm shadow hover:-translate-y-0.5 transition-all">💡 Brainstorming</a>
+      <a href="#parte-2" class="bg-white/15 border border-white/30 text-white font-bold px-5 py-2.5 rounded-xl text-sm hover:bg-white/25 transition-all">🛠️ Metodologías</a>
+      <a href="#parte-4" class="bg-white/15 border border-white/30 text-white font-bold px-5 py-2.5 rounded-xl text-sm hover:bg-white/25 transition-all">📋 Plan de sesión</a>
+    </div>
+  </div>
+</section>
+
+<div class="max-w-5xl mx-auto px-5 md:px-10 py-10 space-y-8">
+
+<!-- PARTE 1: BRAINSTORMING -->
+<div id="parte-1" class="fade-in">
+<details class="card-pro !p-0 border border-slate-100" open>
+<summary class="flex items-center justify-between p-5 cursor-pointer">
+  <div class="flex items-center gap-3">
+    <div class="cat-icon bg-yellow-100 text-yellow-700">💡</div>
+    <div><div class="font-bold text-slate-800">Parte 1 — Brainstorming de Actividades</div><div class="text-xs text-slate-400">Genera 10-20 ideas de actividades para cualquier tema y nivel</div></div>
+  </div>
+  <i class="fas fa-chevron-down text-slate-400 chev"></i>
+</summary>
+<div class="px-5 pb-6 pt-3 border-t border-slate-50">
+
+<div class="idea-grid">
+
+<div class="prompt-card">
+  <div class="text-2xl mb-2">⚡</div>
+  <div class="font-bold text-slate-700 text-sm mb-3">Brainstorming Express (20 ideas)</div>
+  <div class="field-group"><label class="field-label">📚 Asignatura, nivel y tema</label><input type="text" class="field-input" id="bs1-tema" placeholder="Ej: Biología 4.º ESO — La genética"></div>
+  <div class="field-group"><label class="field-label">🎯 Enfoque principal</label><select class="field-input" id="bs1-enfoque"><option selected>Variedad total (todos los tipos)</option><option>Solo actividades digitales</option><option>Sin tecnología (analógicas)</option><option>Trabajo cooperativo</option><option>Individual y autónomo</option><option>Actividades fuera del aula</option></select></div>
+  <button class="gen-btn gen-btn-green" onclick="generateAndShow('brainstorm-20')"><i class="fas fa-lightbulb"></i> Generar 20 ideas</button>
+  <div class="prompt-result" id="result-brainstorm-20"></div>
+  <button class="copy-btn" id="copy-brainstorm-20" onclick="copyPrompt('brainstorm-20')" style="display:none"><i class="fas fa-copy"></i> Copiar</button>
+</div>
+
+<div class="prompt-card">
+  <div class="text-2xl mb-2">🎯</div>
+  <div class="font-bold text-slate-700 text-sm mb-3">Ideas según Taxonomía de Bloom</div>
+  <div class="field-group"><label class="field-label">📚 Tema y nivel</label><input type="text" class="field-input" id="bs2-tema" placeholder="Ej: Matemáticas 2.º ESO — Ecuaciones"></div>
+  <div class="field-group"><label class="field-label">🎯 Nivel de Bloom prioritario</label><select class="field-input" id="bs2-bloom"><option>Recordar (conocimiento)</option><option>Comprender (comprensión)</option><option>Aplicar (aplicación)</option><option selected>Analizar y Evaluar</option><option>Crear (nivel máximo)</option><option>Todos los niveles</option></select></div>
+  <button class="gen-btn gen-btn-teal" onclick="generateAndShow('bloom-ideas')"><i class="fas fa-layer-group"></i> Generar por Bloom</button>
+  <div class="prompt-result" id="result-bloom-ideas"></div>
+  <button class="copy-btn" id="copy-bloom-ideas" onclick="copyPrompt('bloom-ideas')" style="display:none"><i class="fas fa-copy"></i> Copiar</button>
+</div>
+
+</div>
+</div>
+</details>
+</div>
+
+<!-- PARTE 2: METODOLOGÍAS ACTIVAS -->
+<div id="parte-2" class="fade-in">
+<details class="card-pro !p-0 border border-slate-100">
+<summary class="flex items-center justify-between p-5 cursor-pointer">
+  <div class="flex items-center gap-3">
+    <div class="cat-icon bg-teal-100 text-teal-700">🛠️</div>
+    <div><div class="font-bold text-slate-800">Parte 2 — Metodologías Activas Aplicadas</div><div class="text-xs text-slate-400">ABP, Flipped, Design Thinking, Cooperativo, Gamificación...</div></div>
+  </div>
+  <i class="fas fa-chevron-down text-slate-400 chev"></i>
+</summary>
+<div class="px-5 pb-6 pt-3 border-t border-slate-50">
+
+<div class="prompt-card">
+  <div class="font-bold text-slate-700 text-sm mb-3">🛠️ Adaptar mi tema a una metodología activa concreta</div>
+  <div class="grid md:grid-cols-2 gap-3">
+    <div class="field-group"><label class="field-label">📚 Asignatura, nivel y contenido</label><input type="text" class="field-input" id="met-contenido" placeholder="Ej: Historia 3.º ESO — La Primera Guerra Mundial"></div>
+    <div class="field-group"><label class="field-label">🛠️ Metodología a aplicar</label><select class="field-input" id="met-metodologia">
+      <option selected>Aprendizaje Basado en Proyectos (ABP)</option>
+      <option>Flipped Classroom (Clase invertida)</option>
+      <option>Aprendizaje Cooperativo (estructuras Kagan)</option>
+      <option>Design Thinking</option>
+      <option>Gamificación completa</option>
+      <option>Aprendizaje-Servicio (APS)</option>
+      <option>Visual Thinking</option>
+      <option>Debate socrático</option>
+      <option>Estudio de casos</option>
+      <option>Aprendizaje por indagación (Inquiry)</option>
+    </select></div>
+    <div class="field-group"><label class="field-label">📅 Sesiones disponibles</label><input type="text" class="field-input" id="met-sesiones" placeholder="Ej: 4 sesiones de 55 minutos"></div>
+    <div class="field-group"><label class="field-label">💻 Recursos disponibles</label><input type="text" class="field-input" id="met-recursos" placeholder="Ej: Chromebooks, cartulinas, pizarra digital..."></div>
+  </div>
+  <button class="gen-btn gen-btn-green" onclick="generateAndShow('metodologia-activa')"><i class="fas fa-tools"></i> Adaptar al método</button>
+  <div class="prompt-result" id="result-metodologia-activa"></div>
+  <button class="copy-btn" id="copy-metodologia-activa" onclick="copyPrompt('metodologia-activa')" style="display:none"><i class="fas fa-copy"></i> Copiar</button>
+</div>
+
+</div>
+</details>
+</div>
+
+<!-- PARTE 3: ACTIVIDADES POR TIPO -->
+<div id="parte-3" class="fade-in">
+<details class="card-pro !p-0 border border-slate-100">
+<summary class="flex items-center justify-between p-5 cursor-pointer">
+  <div class="flex items-center gap-3">
+    <div class="cat-icon bg-cyan-100 text-cyan-700">🎲</div>
+    <div><div class="font-bold text-slate-800">Parte 3 — Actividades por Tipo y Formato</div><div class="text-xs text-slate-400">Orales, escritas, digitales, creativas, práticas, investigación...</div></div>
+  </div>
+  <i class="fas fa-chevron-down text-slate-400 chev"></i>
+</summary>
+<div class="px-5 pb-6 pt-3 border-t border-slate-50">
+
+<div class="idea-grid">
+<div class="prompt-card">
+  <div class="text-2xl mb-2">🎙️</div>
+  <div class="font-bold text-slate-700 text-sm mb-3">Actividades de Expresión Oral</div>
+  <div class="field-group"><label class="field-label">📚 Asignatura, nivel y tema</label><input type="text" class="field-input" id="oral-tema" placeholder="Ej: Inglés 4.º ESO — Daily routines"></div>
+  <div class="field-group"><label class="field-label">🎯 Formato oral preferido</label><select class="field-input" id="oral-formato"><option selected>Todas variadas</option><option>Debates y argumentación</option><option>Presentaciones</option><option>Role-plays</option><option>Entrevistas</option><option>Storytelling</option></select></div>
+  <button class="gen-btn gen-btn-green" onclick="generateAndShow('actividades-oral')"><i class="fas fa-microphone"></i> Generar actividades orales</button>
+  <div class="prompt-result" id="result-actividades-oral"></div>
+  <button class="copy-btn" id="copy-actividades-oral" onclick="copyPrompt('actividades-oral')" style="display:none"><i class="fas fa-copy"></i> Copiar</button>
+</div>
+
+<div class="prompt-card">
+  <div class="text-2xl mb-2">💻</div>
+  <div class="font-bold text-slate-700 text-sm mb-3">Actividades Digitales con IA</div>
+  <div class="field-group"><label class="field-label">📚 Asignatura, nivel y tema</label><input type="text" class="field-input" id="digital-tema" placeholder="Ej: Lengua Castellana 3.º ESO — El texto argumentativo"></div>
+  <div class="field-group"><label class="field-label">💻 Herramienta disponible</label><select class="field-input" id="digital-herramienta"><option selected>ChatGPT / Claude / Gemini</option><option>Canva y herramientas visuales</option><option>Padlet / Kahoot / Mentimeter</option><option>Google Workspace</option><option>Sin herramienta específica</option></select></div>
+  <button class="gen-btn gen-btn-teal" onclick="generateAndShow('actividades-digital')"><i class="fas fa-laptop"></i> Generar con IA</button>
+  <div class="prompt-result" id="result-actividades-digital"></div>
+  <button class="copy-btn" id="copy-actividades-digital" onclick="copyPrompt('actividades-digital')" style="display:none"><i class="fas fa-copy"></i> Copiar</button>
+</div>
+</div>
+
+</div>
+</details>
+</div>
+
+<!-- PARTE 4: PLAN DE SESIÓN CREATIVO -->
+<div id="parte-4" class="fade-in">
+<details class="card-pro !p-0 border border-slate-100">
+<summary class="flex items-center justify-between p-5 cursor-pointer">
+  <div class="flex items-center gap-3">
+    <div class="cat-icon bg-violet-100 text-violet-700">📋</div>
+    <div><div class="font-bold text-slate-800">Parte 4 — Plan de Sesión Creativo (1 clase)</div><div class="text-xs text-slate-400">Guion completo para una sesión diferente y memorable</div></div>
+  </div>
+  <i class="fas fa-chevron-down text-slate-400 chev"></i>
+</summary>
+<div class="px-5 pb-6 pt-3 border-t border-slate-50">
+
+<div class="prompt-card">
+  <div class="font-bold text-slate-700 text-sm mb-3">📋 Plan de sesión diferente y memorable</div>
+  <div class="grid md:grid-cols-2 gap-3">
+    <div class="field-group"><label class="field-label">📚 Asignatura, nivel y tema</label><input type="text" class="field-input" id="plan-tema" placeholder="Ej: Física 2.º Bach — Las leyes de Newton"></div>
+    <div class="field-group"><label class="field-label">⏱️ Duración de la sesión</label><select class="field-input" id="plan-duracion"><option>45 minutos</option><option selected>55 minutos</option><option>60 minutos</option><option>90 minutos</option></select></div>
+    <div class="field-group"><label class="field-label">🎨 Estilo de sesión</label><select class="field-input" id="plan-estilo"><option selected>Totalmente diferente a lo habitual</option><option>Con elemento sorpresa al inicio</option><option>Basada en investigación</option><option>Práctica y manipulativa</option><option>Cooperativa + exposición</option></select></div>
+    <div class="field-group"><label class="field-label">🎯 Objetivo principal de la sesión</label><input type="text" class="field-input" id="plan-objetivo" placeholder="Ej: que entiendan la física detrás del deporte..."></div>
+  </div>
+  <button class="gen-btn gen-btn-green" onclick="generateAndShow('plan-sesion')"><i class="fas fa-magic"></i> Generar plan de sesión</button>
+  <div class="prompt-result" id="result-plan-sesion"></div>
+  <button class="copy-btn" id="copy-plan-sesion" onclick="copyPrompt('plan-sesion')" style="display:none"><i class="fas fa-copy"></i> Copiar</button>
+</div>
+
+</div>
+</details>
+</div>
+
+<!-- PARTE 5: IDEAS PARA CASOS DIFÍCILES -->
+<div id="parte-5" class="fade-in">
+<details class="card-pro !p-0 border border-slate-100">
+<summary class="flex items-center justify-between p-5 cursor-pointer">
+  <div class="flex items-center gap-3">
+    <div class="cat-icon bg-orange-100 text-orange-700">🆘</div>
+    <div><div class="font-bold text-slate-800">Parte 5 — Ideas para Situaciones Difíciles</div><div class="text-xs text-slate-400">Grupos desmotivados, viernes a última hora, post-navidad, exámenes...</div></div>
+  </div>
+  <i class="fas fa-chevron-down text-slate-400 chev"></i>
+</summary>
+<div class="px-5 pb-6 pt-3 border-t border-slate-50">
+
+<div class="prompt-card">
+  <div class="font-bold text-slate-700 text-sm mb-3">🆘 Ideas para situaciones docentes difíciles</div>
+  <div class="grid md:grid-cols-2 gap-3">
+    <div class="field-group"><label class="field-label">📚 Asignatura y nivel</label><input type="text" class="field-input" id="dif-materia" placeholder="Ej: Matemáticas 3.º ESO"></div>
+    <div class="field-group"><label class="field-label">😤 Situación difícil</label><select class="field-input" id="dif-situacion"><option selected>Grupo muy desmotivado / sin ganas</option><option>Viernes última hora</option><option>Después de examen (día siguiente)</option><option>Inicio de curso (no se conocen)</option><option>Post-vacaciones (enero, Semana Santa)</option><option>Tema muy árido o abstracto</option><option>Mucho ruido y falta de atención</option><option>Clima de conflicto en el grupo</option></select></div>
+    <div class="field-group"><label class="field-label">📋 Contenido que debes dar igualmente</label><input type="text" class="field-input" id="dif-contenido" placeholder="Ej: teorema de Pitágoras / La Segunda República..."></div>
+    <div class="field-group"><label class="field-label">💡 ¿Qué has intentado ya?</label><input type="text" class="field-input" id="dif-intentado" placeholder="Ej: explicación en pizarra, kahoot, trabajos en grupo..."></div>
+  </div>
+  <button class="gen-btn gen-btn-green" onclick="generateAndShow('ideas-dificil')"><i class="fas fa-star"></i> Generar estrategias</button>
+  <div class="prompt-result" id="result-ideas-dificil"></div>
+  <button class="copy-btn" id="copy-ideas-dificil" onclick="copyPrompt('ideas-dificil')" style="display:none"><i class="fas fa-copy"></i> Copiar</button>
+</div>
+
+</div>
+</details>
+</div>
+
+</div><!-- end main -->
+</main>
+</div>
+
+<script>
+window.addEventListener('scroll',()=>{
+  document.getElementById('scroll-progress').style.width=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100+'%';
+  document.getElementById('back-to-top').classList.toggle('visible',window.scrollY>400);
+});
+document.getElementById('back-to-top').onclick=()=>window.scrollTo({top:0,behavior:'smooth'});
+const io=new IntersectionObserver(e=>e.forEach(en=>{if(en.isIntersecting)en.target.classList.add('in-view')}),{threshold:.08});
+document.querySelectorAll('.fade-in').forEach(el=>io.observe(el));
+const toggle=document.getElementById('sidebar-toggle');
+const aside=document.querySelector('aside');
+const backdrop=document.getElementById('sidebar-backdrop');
+toggle.onclick=()=>{aside.classList.toggle('sidebar-open');backdrop.classList.toggle('active')};
+backdrop.onclick=()=>{aside.classList.remove('sidebar-open');backdrop.classList.remove('active')};
+function showToast(msg){document.getElementById('toast-msg').textContent=msg;document.getElementById('toast').classList.add('show');setTimeout(()=>document.getElementById('toast').classList.remove('show'),2500);}
+
+const PROMPTS={
+  'brainstorm-20':()=>{const t=document.getElementById('bs1-tema').value||'[tema]';const e=document.getElementById('bs1-enfoque').value;return `Actúa como pedagogo creativo experto en innovación educativa. Genera 20 IDEAS DE ACTIVIDADES para ${t}. Enfoque: ${e}.\n\nPara cada idea:\nNÚMERO Y NOMBRE ATRACTIVO\n• Descripción breve (2-3 líneas)\n• Formato: [individual/parejas/grupo/gran grupo]\n• Duración estimada\n• Material necesario\n• Nivel de novedad/creatividad (⭐ básico / ⭐⭐ original / ⭐⭐⭐ muy creativo)\n\nOrden de presentación: de más simple a más compleja/innovadora.\nVariedad obligatoria: incluye actividades digitales, analógicas, cooperativas, individuales, creativas, de investigación y de presentación.`;},
+  
+  'bloom-ideas':()=>{const t=document.getElementById('bs2-tema').value||'[tema]';const b=document.getElementById('bs2-bloom').value;return `Actúa como experto en pedagogía cognitiva. Genera ACTIVIDADES POR TAXONOMÍA DE BLOOM para ${t}. Nivel solicitado: ${b}.\n\nPara cada nivel de Bloom relevante (según lo solicitado), proporciona 3-4 actividades:\n\n🔵 RECORDAR (Conocimiento)\nActividades: [si aplica]\n\n🟢 COMPRENDER\nActividades: [si aplica]\n\n🟡 APLICAR\nActividades: [si aplica]\n\n🟠 ANALIZAR\nActividades: [si aplica]\n\n🔴 EVALUAR\nActividades: [si aplica]\n\n🔴 CREAR (nivel máximo)\nActividades: [si aplica]\n\nPara cada actividad: nombre, descripción, tiempo, materiales y cómo evaluarla brevemente.\n\nFinaliza con: SECUENCIA RECOMENDADA (en qué orden usar los niveles en la unidad para una progresión óptima).`;},
+
+  'metodologia-activa':()=>{const c=document.getElementById('met-contenido').value||'[contenido]';const m=document.getElementById('met-metodologia').value;const s=document.getElementById('met-sesiones').value||'4 sesiones';const r=document.getElementById('met-recursos').value||'recursos estándar';return `Actúa como experto en metodologías activas. Diseña una propuesta de ${m} para: ${c}. Duración: ${s}. Recursos: ${r}.\n\n1. JUSTIFICACIÓN\nPor qué ${m} es ideal para este contenido\n\n2. ADAPTACIÓN COMPLETA DEL CONTENIDO\nCómo llevar ${c} al formato de ${m} paso a paso\n\n3. ESTRUCTURA DE ${s.toUpperCase()}\nPara cada sesión: objetivo, actividades, rol docente, rol alumnado, cierre\n\n4. ROLES Y AGRUPAMIENTOS\nCómo organizar al alumnado, qué roles asignar\n\n5. MATERIALES Y RECURSOS\nLista completa de recursos necesarios (adaptados a lo disponible: ${r})\n\n6. EVALUACIÓN CON ${m.toUpperCase()}\nCómo evaluar dentro de esta metodología (sin examen tradicional)\nRúbrica de proceso + rúbrica de producto\n\n7. POSIBLES PROBLEMAS Y SOLUCIONES\nLos 3 problemas más frecuentes con ${m} y cómo prevenirlos\n\n8. CONSEJOS PRÁCTICOS\nTips de docentes que ya usan ${m} con éxito`;},
+
+  'actividades-oral':()=>{const t=document.getElementById('oral-tema').value||'[tema]';const f=document.getElementById('oral-formato').value;return `Actúa como docente especialista en expresión oral. Genera 8 ACTIVIDADES DE EXPRESIÓN ORAL para ${t}, formato: ${f}.\n\nPara cada actividad:\nNOMBRE Y EMOJI\n• Descripción paso a paso\n• Duración: X min\n• Agrupamiento\n• Cómo evitar que sea un monólogo (estrategia de interacción)\n• Rúbrica express (3 criterios para evaluar la expresión oral)\n• Variante digital (si hay dispositivos disponibles)\n\nIncluye actividades para distintos perfiles: el tímido que no habla, el que monopoliza y el que no prepara.\nFinaliza con PROTOCOLO ANTI-VERGÜENZA: cómo crear un clima seguro para la expresión oral.`;},
+
+  'actividades-digital':()=>{const t=document.getElementById('digital-tema').value||'[tema]';const h=document.getElementById('digital-herramienta').value;return `Actúa como docente innovador en tecnología educativa. Genera 8 ACTIVIDADES DIGITALES CON IA para ${t}. Herramienta: ${h}.\n\nPara cada actividad:\nNOMBRE Y TIPO\n• Descripción detallada de cómo usar ${h} para esta actividad\n• Instrucciones claras para el alumnado\n• Qué hace la IA y qué hace el alumno/a (división de roles)\n• Cómo evitar el plagio o el uso irreflexivo de la IA\n• Evaluación: qué se corrige (proceso o producto)\n• Nivel de dificultad técnica (bajo/medio/alto)\n\nEtica IA: incluye en cada actividad una nota sobre uso responsable.\nFinaliza con GUIA RAPIDA de uso de ${h} por si algún alumno no sabe usarlo.`;},
+
+  'plan-sesion':()=>{const t=document.getElementById('plan-tema').value||'[tema]';const d=document.getElementById('plan-duracion').value;const e=document.getElementById('plan-estilo').value;const o=document.getElementById('plan-objetivo').value||'que el alumnado comprenda el tema';return `Actúa como docente creativo innovador. Diseña un PLAN DE SESIÓN ${e.toUpperCase()} de ${d} para ${t}. Objetivo: ${o}.\n\nEl plan debe ser DIFERENTE, MEMORABLE y eficaz:\n\n1. ELEMENTO DIFERENCIADOR\nQué hace esta sesión única y memorable\nCómo captará la atención desde el minuto 1\n\n2. ESTRUCTURA COMPLETA (${d})\nMinuto 0-X: [FASE INICIO — nombre creativo]\n• Actividad exacta\n• Materiales\n• Rol docente / Rol alumnado\n\nMinuto X-Y: [FASE DESARROLLO — nombre]\n• Actividad central\n• Cómo garantizar que todos participan\n• Gestión del aula\n\nMinuto Y-Z: [FASE CIERRE — connection & synthesis]\n• Síntesis del aprendizaje\n• Metacognición (¿qué has aprendido?)\n• Transición a próxima sesión\n\n3. MATERIALES NECESARIOS\nLista completa (con alternativas low-tech)\n\n4. PLAN B\nQué hacer si el elemento creativo no funciona\n\n5. CÓMO SABRÁS QUE HA FUNCIONADO\n3 indicadores de que la sesión fue un éxito`;},
+
+  'ideas-dificil':()=>{const m=document.getElementById('dif-materia').value||'[materia]';const s=document.getElementById('dif-situacion').value;const c=document.getElementById('dif-contenido').value||'[contenido]';const i=document.getElementById('dif-intentado').value||'nada todavía';return `Actúa como orientador pedagógico y coach docente. Necesito IDEAS PARA UNA SITUACIÓN DIFÍCIL en ${m}.\n\nSITUACIÓN: ${s}\nCONTENIDO que debo dar igualmente: ${c}\nQUE HE INTENTADO YA: ${i}\n\n1. DIAGNÓSTICO DE LA SITUACIÓN\nPor qué ocurre "${s}" y qué hay detrás pedagógicamente\n\n2. PRIMEROS 5 MINUTOS\nCómo arrancar ESTA clase específica de forma que conecte con el grupo\n\n3. ESTRATEGIAS PARA ${c} en este contexto\n3 ideas concretas y diferentes para enseñar ${c} cuando "${s}"\nPara cada idea: descripción, materiales, por qué funciona en este contexto\n\n4. GESTIÓN EMOCIONAL DEL DOCENTE\nCómo mantener la energía y paciencia cuando la situación es difícil\n\n5. ACTIVIDAD SORPRESA\nUna actividad completamente inesperada que rompe el patrón y resetea al grupo\n\n6. CIERRE EMPÁTICO\nCómo cerrar la clase dejando un poso positivo a pesar de la dificultad`;}
+};
+
+function generateAndShow(key){const prompt=PROMPTS[key]();const el=document.getElementById('result-'+key);el.textContent=prompt;el.classList.add('show');const btn=document.getElementById('copy-'+key);if(btn)btn.style.display='inline-flex';el.scrollIntoView({behavior:'smooth',block:'nearest'});}
+function copyPrompt(key){const el=document.getElementById('result-'+key);navigator.clipboard.writeText(el.textContent).then(()=>{const btn=document.getElementById('copy-'+key);if(btn){btn.classList.add('copied');btn.innerHTML='<i class="fas fa-check"></i> ¡Copiado!';}showToast('✅ Prompt copiado');setTimeout(()=>{if(btn){btn.classList.remove('copied');btn.innerHTML='<i class="fas fa-copy"></i> Copiar';}},2000);});}
+</script>
+  <script src="../assets/portal-nav.js"></script>
+</body>
+</html>

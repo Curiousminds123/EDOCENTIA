@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Módulo 8 — Feedback Formativo con IA | EDOCENTIA</title>
+<meta name="description" content="Genera feedback individual y de grupo personalizado, comentarios de corrección, mensajes a familias e informes de evaluación con IA. By EDOCENTIA.">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:#f8fafc;color:#1e293b}
+#scroll-progress{position:fixed;top:0;left:0;width:0;height:4px;background:linear-gradient(90deg,#0ea5e9,#38bdf8,#a78bfa);z-index:9999}
+.hero-section{background-image:linear-gradient(135deg,rgba(3,105,161,.93) 0%,rgba(2,132,199,.9) 60%,rgba(99,102,241,.85) 100%),url('https://images.unsplash.com/photo-1531545514256-b1400bc00f31?q=80&w=2000&auto=format&fit=crop');background-size:cover;background-position:center;background-attachment:fixed}
+.hero-shimmer{background:linear-gradient(90deg,#fff 40%,rgba(255,255,255,.6) 50%,#fff 60%);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:shimmer 4s linear infinite}
+@keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
+.card-pro{background:#fff;border-radius:1.25rem;box-shadow:0 4px 20px rgba(0,0,0,.05);border:1px solid rgba(0,0,0,.04);transition:.3s}
+.card-pro:hover{transform:translateY(-2px);box-shadow:0 12px 35px rgba(0,0,0,.09)}
+aside nav a{transition:.25s;color:#475569;border-left:3px solid transparent;display:flex;align-items:center;gap:.6rem;padding:.6rem .9rem;border-radius:.75rem;font-size:.85rem;font-weight:500;text-decoration:none}
+aside nav a:hover{background:linear-gradient(90deg,rgba(14,165,233,.1),transparent)!important;color:#0284c7;border-left-color:#0ea5e9;padding-left:1.2rem;font-weight:700}
+#sidebar-toggle{display:none;position:fixed;top:1rem;left:1rem;z-index:999;background:linear-gradient(135deg,#0ea5e9,#38bdf8);color:#fff;border:none;width:2.8rem;height:2.8rem;border-radius:.9rem;align-items:center;justify-content:center;font-size:1.1rem;cursor:pointer}
+#sidebar-backdrop{display:none;position:fixed;inset:0;background:rgba(15,23,42,.5);z-index:490}
+@media(max-width:1023px){#sidebar-toggle{display:flex}aside{position:fixed!important;top:0;left:0;height:100dvh!important;width:85vw!important;max-width:340px!important;z-index:500;transform:translateX(-110%);transition:.35s;overflow-y:auto}aside.sidebar-open{transform:translateX(0)}#sidebar-backdrop.active{display:block}#main-content{width:100%!important}}
+details summary{user-select:none;cursor:pointer;list-style:none;outline:none}
+details summary::-webkit-details-marker{display:none}
+details summary .chev{transition:.3s}
+details[open] summary .chev{transform:rotate(180deg)}
+.field-label{display:block;font-size:.8rem;font-weight:700;color:#0284c7;margin-bottom:.35rem}
+.field-input{width:100%;border:1.5px solid #bae6fd;border-radius:.65rem;padding:.55rem .85rem;font-size:.85rem;color:#1e293b;font-family:'Plus Jakarta Sans',sans-serif;background:#f0f9ff;transition:.2s;outline:none}
+.field-input:focus{border-color:#0ea5e9;box-shadow:0 0 0 3px rgba(14,165,233,.12);background:#fff}
+.field-input::placeholder{color:#94a3b8}
+textarea.field-input{resize:vertical;min-height:70px}
+.field-group{margin-bottom:1rem}
+.gen-btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.75rem 1.6rem;border-radius:.85rem;font-weight:700;font-size:.9rem;cursor:pointer;transition:.25s;border:none;width:100%;margin-top:.5rem}
+.gen-btn-sky{background:linear-gradient(135deg,#0ea5e9,#38bdf8);color:#fff;box-shadow:0 4px 16px rgba(14,165,233,.35)}
+.gen-btn-sky:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(14,165,233,.5)}
+.gen-btn-indigo{background:linear-gradient(135deg,#6366f1,#a78bfa);color:#fff;box-shadow:0 4px 16px rgba(99,102,241,.35)}
+.gen-btn-indigo:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(99,102,241,.5)}
+.prompt-result{background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:.75rem;padding:1.25rem;font-size:.8rem;line-height:1.7;color:#475569;white-space:pre-wrap;max-height:280px;overflow-y:auto;display:none;margin-top:.75rem}
+.prompt-result.show{display:block}
+.copy-btn{display:inline-flex;align-items:center;gap:.4rem;padding:.5rem 1.1rem;background:rgba(14,165,233,.1);border:1px dashed rgba(14,165,233,.4);border-radius:.6rem;color:#0284c7;font-size:.78rem;font-weight:700;cursor:pointer;transition:.2s;margin-top:.5rem}
+.copy-btn:hover{background:rgba(14,165,233,.18);border-style:solid}
+.copy-btn.copied{background:rgba(16,185,129,.12);border-color:rgba(16,185,129,.4);color:#059669}
+.prompt-card{background:#fff;border:1.5px solid #e2e8f0;border-radius:1rem;padding:1.5rem;transition:.3s;margin-bottom:1rem}
+.prompt-card:hover{border-color:rgba(14,165,233,.3);box-shadow:0 8px 30px rgba(14,165,233,.09)}
+.fade-in{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s cubic-bezier(.4,0,.2,1)}
+.fade-in.in-view{opacity:1;transform:translateY(0)}
+#toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(80px);background:#1e293b;color:#fff;padding:.75rem 1.5rem;border-radius:1rem;font-size:.85rem;font-weight:600;z-index:9999;transition:.3s;display:flex;align-items:center;gap:.5rem}
+#toast.show{transform:translateX(-50%) translateY(0)}
+#back-to-top{position:fixed;bottom:2rem;right:2rem;width:3rem;height:3rem;background:linear-gradient(135deg,#0ea5e9,#38bdf8);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;pointer-events:none;transform:translateY(20px);transition:.3s;z-index:998;border:none}
+#back-to-top.visible{opacity:1;pointer-events:all;transform:translateY(0)}
+.cat-icon{width:2.5rem;height:2.5rem;border-radius:.9rem;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+.grid-2{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1rem}
+@media(max-width:640px){.grid-2{grid-template-columns:1fr}}
+</style>
+  <link rel="stylesheet" href="../assets/portal-nav.css">
+</head>
+<body class="antialiased">
+<div id="scroll-progress"></div>
+<button id="sidebar-toggle"><i class="fas fa-bars"></i></button>
+<div id="sidebar-backdrop"></div>
+<button id="back-to-top"><i class="fas fa-arrow-up"></i></button>
+<div id="toast"><i class="fas fa-comment-alt text-sky-400"></i> <span id="toast-msg">¡Listo!</span></div>
+
+<div class="flex min-h-screen">
+<aside class="w-64 flex-shrink-0 bg-white border-r border-slate-100 shadow-sm sticky top-0 h-screen overflow-y-auto z-50">
+  <div class="p-5 border-b border-slate-100">
+    <div class="flex items-center gap-2.5">
+      <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-sky-500 to-indigo-600 flex items-center justify-center text-white shadow text-base">💬</div>
+      <div><div class="font-extrabold text-slate-800 text-sm leading-tight">Feedback Formativo</div><div class="text-xs text-slate-400">Módulo 08 · EDOCENTIA</div></div>
+    </div>
+  </div>
+  <nav class="p-3 space-y-0.5">
+    <p class="text-xs font-bold text-slate-400 uppercase tracking-widest px-2 pt-3 pb-1">Partes</p>
+    <a href="#parte-1"><i class="fas fa-comment-dots w-4 text-sky-500"></i> Feedback Individual</a>
+    <a href="#parte-2"><i class="fas fa-users w-4 text-indigo-500"></i> Feedback de Grupo</a>
+    <a href="#parte-3"><i class="fas fa-home w-4 text-teal-500"></i> Mensaje a Familias</a>
+    <a href="#parte-4"><i class="fas fa-file-user w-4 text-violet-500"></i> Informe de Evaluación</a>
+    <a href="#parte-5"><i class="fas fa-robot w-4 text-emerald-500"></i> Chatbot de Feedback</a>
+    <hr class="my-2 border-slate-100">
+    <a href="../index.html"><i class="fas fa-home w-4 text-slate-400"></i> Homepage</a>
+  </nav>
+</aside>
+
+<main id="main-content" class="flex-1 min-w-0">
+<section class="hero-section text-white py-16 px-8 md:px-14">
+  <div class="max-w-4xl">
+    <a href="../index.html" class="inline-flex items-center gap-2 text-white/70 hover:text-white text-xs font-semibold mb-5 transition-colors"><i class="fas fa-arrow-left"></i> Volver a EDOCENTIA</a>
+    <div class="inline-flex items-center gap-2 bg-white/15 border border-white/25 rounded-full px-4 py-1.5 text-xs font-semibold mb-4 backdrop-blur-sm">
+      <i class="fas fa-comment-alt text-yellow-300"></i> Módulo 08 — Evaluación Formativa
+    </div>
+    <h1 class="text-3xl md:text-5xl font-extrabold leading-tight mb-3 hero-shimmer">Feedback Formativo<br>e Informes con IA</h1>
+    <p class="text-base text-white/85 max-w-2xl leading-relaxed mb-5">Genera comentarios de feedback constructivos, mensajes para familias, informes trimestrales y configura chatbots para dar feedback automático a tu alumnado. Todo personalizado y con intención pedagógica.</p>
+  </div>
+</section>
+
+<div class="max-w-5xl mx-auto px-5 md:px-10 py-10 space-y-8">
+
+<div id="parte-1" class="fade-in">
+<details class="card-pro !p-0 border border-slate-100" open>
+<summary class="flex items-center justify-between p-5 cursor-pointer">
+  <div class="flex items-center gap-3">
+    <div class="cat-icon bg-sky-100 text-sky-700">💬</div>
+    <div><div class="font-bold text-slate-800">Parte 1 — Feedback Individual Constructivo</div><div class="text-xs text-slate-400">Comentarios personalizados para cada alumno/a orientados a la mejora</div></div>
+  </div>
+  <i class="fas fa-chevron-down text-slate-400 chev"></i>
+</summary>
+<div class="px-5 pb-6 pt-3 border-t border-slate-50">
+<div class="grid-2">
+<div class="prompt-card">
+  <div class="text-2xl mb-2">🌟</div>
+  <div class="font-bold text-slate-700 text-sm mb-3">Feedback para un trabajo o proyecto</div>
+  <div class="field-group"><label class="field-label">📚 Asignatura y tarea</label><input type="text" class="field-input" id="fb-tarea" placeholder="Ej: Historia 4.º ESO — Proyecto Revolución Industrial"></div>
+  <div class="field-group"><label class="field-label">📊 Nota recibida</label><input type="text" class="field-input" id="fb-nota" placeholder="Ej: 7,5 / 10"></div>
+  <div class="field-group"><label class="field-label">✅ Puntos fuertes observados</label><textarea class="field-input" id="fb-positivo" placeholder="Qué ha hecho bien: estructura, investigación, creatividad..."></textarea></div>
+  <div class="field-group"><label class="field-label">🔧 Aspectos a mejorar</label><textarea class="field-input" id="fb-mejorar" placeholder="Qué falla: fuentes, argumentación, ortografía..."></textarea></div>
+  <div class="field-group"><label class="field-label">🎯 Tono del feedback</label><select class="field-input" id="fb-tono"><option selected>Constructivo y motivador (equilibrado)</option><option>Muy positivo (nota alta)</option><option>Empático con mejoras claras (nota baja)</option><option>Técnico (Bachillerato o FP)</option></select></div>
+  <button class="gen-btn gen-btn-sky" onclick="generateAndShow('feedback-individual')"><i class="fas fa-comment-dots"></i> Generar feedback</button>
+  <div class="prompt-result" id="result-feedback-individual"></div>
+  <button class="copy-btn" id="copy-feedback-individual" onclick="copyPrompt('feedback-individual')" style="display:none"><i class="fas fa-copy"></i> Copiar</button>
+</div>
+
+<div class="prompt-card">
+  <div class="text-2xl mb-2">⚡</div>
+  <div class="font-bold text-slate-700 text-sm mb-3">Banco de 30 comentarios de corrección</div>
+  <div class="field-group"><label class="field-label">📚 Asignatura y tipo de tarea</label><input type="text" class="field-input" id="banco-fb-materia" placeholder="Ej: Lengua 3.º ESO — redacciones argumentativas"></div>
+  <div class="field-group"><label class="field-label">🎯 Errores frecuentes en este tipo de tarea</label><textarea class="field-input" id="banco-fb-errores" placeholder="Ej: conectores, tesis, argumentos débiles, ortografía..."></textarea></div>
+  <button class="gen-btn gen-btn-indigo" onclick="generateAndShow('banco-feedback')"><i class="fas fa-list"></i> Generar banco 30 comentarios</button>
+  <div class="prompt-result" id="result-banco-feedback"></div>
+  <button class="copy-btn" id="copy-banco-feedback" onclick="copyPrompt('banco-feedback')" style="display:none"><i class="fas fa-copy"></i> Copiar</button>
+</div>
+</div>
+</div>
+</details>
+</div>
+
+<div id="parte-2" class="fade-in">
+<details class="card-pro !p-0 border border-slate-100">
+<summary class="flex items-center justify-between p-5 cursor-pointer">
+  <div class="flex items-center gap-3">
+    <div class="cat-icon bg-indigo-100 text-indigo-700">👥</div>
+    <div><div class="font-bold text-slate-800">Parte 2 — Feedback de Grupo y Clase</div><div class="text-xs text-slate-400">Reflexión colectiva y estrategias de mejora para el grupo</div></div>
+  </div>
+  <i class="fas fa-chevron-down text-slate-400 chev"></i>
+</summary>
+<div class="px-5 pb-6 pt-3 border-t border-slate-50">
+<div class="prompt-card">
+  <div class="font-bold text-slate-700 text-sm mb-3">👥 Feedback grupal después de un examen o prueba</div>
+  <div class="grid md:grid-cols-2 gap-3">
+    <div class="field-group"><label class="field-label">📚 Asignatura y grupo</label><input type="text" class="field-input" id="fbg-materia" placeholder="Ej: Matemáticas 2.º ESO B"></div>
+    <div class="field-group"><label class="field-label">📊 Resultados generales</label><input type="text" class="field-input" id="fbg-resultados" placeholder="Ej: media 6.1, 18% suspensos, máxima 9.5"></div>
+    <div class="field-group"><label class="field-label">❌ Errores más comunes del grupo</label><textarea class="field-input" id="fbg-errores" placeholder="Ej: fallan la parte de fracciones, confunden media y moda, no leen bien el enunciado..."></textarea></div>
+    <div class="field-group"><label class="field-label">✅ Qué ha funcionado bien</label><input type="text" class="field-input" id="fbg-bien" placeholder="Ej: la parte de geometría la han hecho muy bien"></div>
+  </div>
+  <button class="gen-btn gen-btn-sky" onclick="generateAndShow('feedback-grupo')"><i class="fas fa-users"></i> Generar feedback de grupo</button>
+  <div class="prompt-result" id="result-feedback-grupo"></div>
+  <button class="copy-btn" id="copy-feedback-grupo" onclick="copyPrompt('feedback-grupo')" style="display:none"><i class="fas fa-copy"></i> Copiar</button>
+</div>
+</div>
+</details>
+</div>
+
+<div id="parte-3" class="fade-in">
+<details class="card-pro !p-0 border border-slate-100">
+<summary class="flex items-center justify-between p-5 cursor-pointer">
+  <div class="flex items-center gap-3">
+    <div class="cat-icon bg-teal-100 text-teal-700">🏠</div>
+    <div><div class="font-bold text-slate-800">Parte 3 — Mensajes y Comunicación con Familias</div><div class="text-xs text-slate-400">Emails, notas en Aules y mensajes formales para familias</div></div>
+  </div>
+  <i class="fas fa-chevron-down text-slate-400 chev"></i>
+</summary>
+<div class="px-5 pb-6 pt-3 border-t border-slate-50">
+<div class="grid-2">
+<div class="prompt-card">
+  <div class="text-2xl mb-2">📧</div>
+  <div class="font-bold text-slate-700 text-sm mb-3">Email / nota para familia</div>
+  <div class="field-group"><label class="field-label">🎯 Motivo del mensaje</label><select class="field-input" id="fam-motivo"><option selected>Resultados de evaluación (nota)</option><option>Alumnado en riesgo de suspenso</option><option>Conducta o actitud</option><option>Mejora notable del alumno/a</option><option>Convocatoria de reunión</option><option>Incidencia o conflicto</option></select></div>
+  <div class="field-group"><label class="field-label">📋 Información específica</label><textarea class="field-input" id="fam-info" placeholder="Detalla la situación concreta del alumno/a (sin usar nombre real)..."></textarea></div>
+  <div class="field-group"><label class="field-label">🎯 Tono</label><select class="field-input" id="fam-tono"><option selected>Formal y constructivo</option><option>Positivo (felicitación)</option><option>Preocupación con soluciones</option><option>Urgente pero empático</option></select></div>
+  <button class="gen-btn gen-btn-sky" onclick="generateAndShow('mensaje-familia')"><i class="fas fa-envelope"></i> Generar mensaje</button>
+  <div class="prompt-result" id="result-mensaje-familia"></div>
+  <button class="copy-btn" id="copy-mensaje-familia" onclick="copyPrompt('mensaje-familia')" style="display:none"><i class="fas fa-copy"></i> Copiar</button>
+</div>
+
+<div class="prompt-card">
+  <div class="text-2xl mb-2">📋</div>
+  <div class="font-bold text-slate-700 text-sm mb-3">Informe de evaluación trimestral</div>
+  <div class="field-group"><label class="field-label">📚 Asignatura</label><input type="text" class="field-input" id="inf-ev-materia" placeholder="Ej: Inglés 3.º ESO"></div>
+  <div class="field-group"><label class="field-label">📊 Datos del alumno</label><textarea class="field-input" id="inf-ev-datos" placeholder="Nota obtenida, comportamiento en clase, actitud, esfuerzo, evolución, asistencia..."></textarea></div>
+  <div class="field-group"><label class="field-label">📅 Trimestre</label><select class="field-input" id="inf-ev-trim"><option selected>1.er trimestre</option><option>2.º trimestre</option><option>3.er trimestre (final)</option></select></div>
+  <button class="gen-btn gen-btn-indigo" onclick="generateAndShow('informe-trimestral')"><i class="fas fa-file-alt"></i> Generar informe</button>
+  <div class="prompt-result" id="result-informe-trimestral"></div>
+  <button class="copy-btn" id="copy-informe-trimestral" onclick="copyPrompt('informe-trimestral')" style="display:none"><i class="fas fa-copy"></i> Copiar</button>
+</div>
+</div>
+</div>
+</details>
+</div>
+
+<div id="parte-4" class="fade-in">
+<details class="card-pro !p-0 border border-slate-100">
+<summary class="flex items-center justify-between p-5 cursor-pointer">
+  <div class="flex items-center gap-3"><div class="cat-icon bg-violet-100 text-violet-700">📄</div><div><div class="font-bold text-slate-800">Parte 4 — Informe de Evaluación Formal</div><div class="text-xs text-slate-400">Informe detallado para juntas de evaluación u orientación</div></div></div>
+  <i class="fas fa-chevron-down text-slate-400 chev"></i>
+</summary>
+<div class="px-5 pb-6 pt-3 border-t border-slate-50">
+<div class="prompt-card">
+  <div class="font-bold text-slate-700 text-sm mb-3">📄 Informe pedagógico completo (para orientación o junta)</div>
+  <div class="grid md:grid-cols-2 gap-3">
+    <div class="field-group"><label class="field-label">📚 Asignatura y nivel</label><input type="text" class="field-input" id="inf-for-materia" placeholder="Ej: Matemáticas 3.º ESO"></div>
+    <div class="field-group"><label class="field-label">🎯 Motivo del informe</label><select class="field-input" id="inf-for-motivo"><option selected>Junta de evaluación (fin trimestre)</option><option>Detección NEE / orientación</option><option>Solicitud de medidas de refuerzo</option><option>Cambio de grupo</option><option>Reunión con inspección</option></select></div>
+    <div class="field-group md:col-span-2"><label class="field-label">📋 Datos pedagógicos del alumno</label><textarea class="field-input" id="inf-for-datos" placeholder="Nivel académico, evolución, actitud, comportamiento, relaciones, asistencia, necesidades detectadas..."></textarea></div>
+    <div class="field-group"><label class="field-label">🚨 Preocupaciones principales</label><input type="text" class="field-input" id="inf-for-preocupaciones" placeholder="Ej: absentismo, bajo rendimiento, dificultades emocionales..."></div>
+    <div class="field-group"><label class="field-label">✅ Medidas ya implementadas</label><input type="text" class="field-input" id="inf-for-medidas" placeholder="Ej: refuerzo en clase, contacto con familia, adaptación de tareas..."></div>
+  </div>
+  <button class="gen-btn gen-btn-sky" onclick="generateAndShow('informe-formal')"><i class="fas fa-file-user"></i> Generar informe formal</button>
+  <div class="prompt-result" id="result-informe-formal"></div>
+  <button class="copy-btn" id="copy-informe-formal" onclick="copyPrompt('informe-formal')" style="display:none"><i class="fas fa-copy"></i> Copiar</button>
+</div>
+</div>
+</details>
+</div>
+
+<div id="parte-5" class="fade-in">
+<details class="card-pro !p-0 border border-slate-100">
+<summary class="flex items-center justify-between p-5 cursor-pointer">
+  <div class="flex items-center gap-3"><div class="cat-icon bg-emerald-100 text-emerald-700">🤖</div><div><div class="font-bold text-slate-800">Parte 5 — Configura un Chatbot de Feedback con IA</div><div class="text-xs text-slate-400">Diseña un chatbot que dé feedback automático a tu alumnado</div></div></div>
+  <i class="fas fa-chevron-down text-slate-400 chev"></i>
+</summary>
+<div class="px-5 pb-6 pt-3 border-t border-slate-50">
+<div class="bg-emerald-50 border border-emerald-100 rounded-xl p-4 mb-4 text-sm text-emerald-800">
+  <i class="fas fa-robot mr-1 text-emerald-600"></i> <strong>Feedback automatizado:</strong> Puedes configurar ChatGPT, Claude o Gemini con un prompt de sistema para que actúe como corrector automático de trabajos. El alumno envía su texto y recibe feedback inmediato. <strong>Tú como docente siempre supervisas la evaluación final.</strong>
+</div>
+<div class="prompt-card">
+  <div class="font-bold text-slate-700 text-sm mb-3">🤖 Configura un chatbot corrector para tu asignatura</div>
+  <div class="grid md:grid-cols-2 gap-3">
+    <div class="field-group"><label class="field-label">📚 Asignatura y tipo de tarea a corregir</label><input type="text" class="field-input" id="bot-materia" placeholder="Ej: Inglés B1 — redacciones argumentativas"></div>
+    <div class="field-group"><label class="field-label">📋 Criterios de evaluación que usará</label><textarea class="field-input" id="bot-criterios" placeholder="Ej: vocabulario, gramática, coherencia, conectores, extensión..."></textarea></div>
+    <div class="field-group"><label class="field-label">🎯 Nivel y perfil del alumnado</label><input type="text" class="field-input" id="bot-nivel" placeholder="Ej: 4.º ESO, nivel B1-B2, alta motivación"></div>
+    <div class="field-group"><label class="field-label">🚫 Límites del chatbot (qué no debe hacer)</label><input type="text" class="field-input" id="bot-limites" placeholder="Ej: no debe dar la respuesta correcta, no calificará con nota numérica..."></div>
+  </div>
+  <button class="gen-btn gen-btn-sky" onclick="generateAndShow('chatbot-feedback')"><i class="fas fa-robot"></i> Generar prompt de sistema chatbot</button>
+  <div class="prompt-result" id="result-chatbot-feedback"></div>
+  <button class="copy-btn" id="copy-chatbot-feedback" onclick="copyPrompt('chatbot-feedback')" style="display:none"><i class="fas fa-copy"></i> Copiar</button>
+</div>
+</div>
+</details>
+</div>
+
+</div>
+</main>
+</div>
+
+<script>
+window.addEventListener('scroll',()=>{document.getElementById('scroll-progress').style.width=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100+'%';document.getElementById('back-to-top').classList.toggle('visible',window.scrollY>400);});
+document.getElementById('back-to-top').onclick=()=>window.scrollTo({top:0,behavior:'smooth'});
+const io=new IntersectionObserver(e=>e.forEach(en=>{if(en.isIntersecting)en.target.classList.add('in-view')}),{threshold:.08});
+document.querySelectorAll('.fade-in').forEach(el=>io.observe(el));
+document.getElementById('sidebar-toggle').onclick=()=>{document.querySelector('aside').classList.toggle('sidebar-open');document.getElementById('sidebar-backdrop').classList.toggle('active')};
+document.getElementById('sidebar-backdrop').onclick=()=>{document.querySelector('aside').classList.remove('sidebar-open');document.getElementById('sidebar-backdrop').classList.remove('active')};
+function showToast(msg){document.getElementById('toast-msg').textContent=msg;document.getElementById('toast').classList.add('show');setTimeout(()=>document.getElementById('toast').classList.remove('show'),2500);}
+
+const PROMPTS={
+  'feedback-individual':()=>{const t=document.getElementById('fb-tarea').value||'[tarea]';const n=document.getElementById('fb-nota').value||'[nota]';const p=document.getElementById('fb-positivo').value||'[aspectos positivos]';const m=document.getElementById('fb-mejorar').value||'[aspectos a mejorar]';const to=document.getElementById('fb-tono').value;return `Actúa como docente experto en feedback formativo. Escribe un COMENTARIO DE FEEDBACK CONSTRUCTIVO de 150-200 palabras para la tarea "${t}" (nota: ${n}).\n\nTONO: ${to}\nPUNTOS FUERTES: ${p}\nASPECTOS A MEJORAR: ${m}\n\nEstructura del feedback (Modelo SBI - Situación, Comportamiento, Impacto):\n\n🌟 RECONOCIMIENTO:\n[Comentario específico sobre lo bien hecho: qué exactamente y por qué importa]\n\n🔧 ÁREAS DE MEJORA:\n[Máximo 2-3 aspectos concretos a mejorar, formulados como oportunidades, no como errores]\n\n📈 PRÓXIMO PASO:\n[Una acción concreta y alcanzable que el alumno puede hacer para mejorar]\n\n💪 CIERRE MOTIVADOR:\n[Frase que reconoce el esfuerzo y proyecta confianza hacia el futuro]\n\nReglas:\n• Lenguaje: accesible, cálido, sin jerga técnica innecesaria\n• Evitar: "pero", "sin embargo" negativos; usar "además", "para avanzar..."\n• Hacer referencia explícita al trabajo (no genérico)\n• No desvelar la nota en el comentario\n• Máximo 200 palabras`;},
+
+  'banco-feedback':()=>{const m=document.getElementById('banco-fb-materia').value||'[materia]';const e=document.getElementById('banco-fb-errores').value||'errores frecuentes';return `Actúa como docente experto en feedback formativo. Crea un BANCO DE 30 COMENTARIOS DE CORRECCIÓN para ${m}.\n\nERRORES FRECUENTES: ${e}\n\nOrganiza los 30 comentarios en 5 categorías:\n\n🌟 FEEDBACK POSITIVO (6 comentarios)\nPara notas altas (8-10), reconocimiento específico\n\n📈 MEJORA PARCIAL (6 comentarios)\nPara notas medias (5-7), equilibrio positivo-mejora\n\n🔧 ASPECTOS TÉCNICOS (6 comentarios)\nSobre los errores técnicos más frecuentes: ${e}\n\n💪 MOTIVACIÓN Y ESFUERZO (6 comentarios)\nPara alumnado que ha mejorado o se ha esforzado\n\n🚀 AMPLIACIÓN (6 comentarios)\nPara alumnado avanzado que puede ir más allá\n\nFormato de cada comentario:\nCOMENTARIO [N] — [CATEGORÍA]\n[Texto del comentario: 2-3 frases en lenguaje accesible y constructivo]\nUSAR CUANDO: [situación específica en que aplicarlo]\n\nAl finalizar: INSTRUCCIONES DE USO del banco (cómo seleccionar el comentario correcto rápidamente al corregir 30 ejercicios)`;},
+
+  'feedback-grupo':()=>{const m=document.getElementById('fbg-materia').value||'[materia]';const r=document.getElementById('fbg-resultados').value||'[resultados]';const e=document.getElementById('fbg-errores').value||'varios errores';const b=document.getElementById('fbg-bien').value||'algunos aspectos positivos';return `Actúa como docente experto en evaluación formativa. Diseña una SESIÓN DE FEEDBACK GRUPAL post-examen para ${m}.\n\nRESULTADOS: ${r}\nERRORES MÁS COMUNES: ${e}\nLO QUE HA FUNCIONADO BIEN: ${b}\n\n1. GUION DE LA SESIÓN DE DEVOLUCIÓN (20-30 min)\n\nFASE 1 — CONTEXTO GENERAL (5 min)\n• Cómo presentar los resultados sin generar drama\n• Frases exactas para comunicar la media y distribución\n• Reconocimiento del esfuerzo colectivo\n\nFASE 2 — ANÁLISIS DE ERRORES COMUNES (10 min)\nPara los errores: ${e}\n• Cómo explicar cada error de forma que entiendan por qué se equivocaron\n• Actividad rápida para trabajar el error en clase\n• "La próxima vez que veáis esto, recordad que..."\n\nFASE 3 — LO QUE HA FUNCIONADO (5 min)\n• Reconocimiento específico de ${b}\n• Qué estrategia les ha dado resultado\n\nFASE 4 — PLAN DE ACCIÓN (5-10 min)\n• ¿Qué hará el alumno diferente en la próxima evaluación?\n• Autoevaluación rápida: semáforo de comprensión\n\n2. MENSAJE ESCRITO PARA AULES/GOOGLE CLASSROOM\nMensaje que puedes publicar en la plataforma digital con el resumen del feedback grupal`;},
+
+  'mensaje-familia':()=>{const mo=document.getElementById('fam-motivo').value;const info=document.getElementById('fam-info').value||'[información del alumno]';const to=document.getElementById('fam-tono').value;return `Actúa como docente experto en comunicación con familias. Redacta un MENSAJE FORMAL PARA FAMILIA sobre: ${mo}.\n\nINFORMACIÓN: ${info}\nTONO: ${to}\n\nRedacta:\n\n1. EMAIL FORMAL (formato completo)\nAsunto: [asunto claro y neutro]\nCuerpo:\n• Saludo formal apropiado\n• Contexto (sin usar nombre del menor)\n• Información concreta sobre ${mo}\n• Impacto en el aprendizaje\n• Propuesta de acción o siguiente paso\n• Invitación a colaborar familia-centro\n• Cierre formal con datos de contacto\n\n2. VERSIÓN BREVE PARA AULES (máx. 100 palabras)\n\n3. GUIA PARA LA CONVERSACIÓN PRESENCIAL (si hay reunión)\n• Puntos clave a tratar en la reunión\n• Cómo manejar posibles reacciones defensivas\n• Compromisos a pedir a la familia`;},
+
+  'informe-trimestral':()=>{const m=document.getElementById('inf-ev-materia').value||'[materia]';const d=document.getElementById('inf-ev-datos').value||'datos del alumno';const t=document.getElementById('inf-ev-trim').value;return `Actúa como docente. Redacta un INFORME TRIMESTRAL (${t}) de ${m} para incluir en el boletín de calificaciones.\n\nDATOS DEL ALUMNO: ${d}\n\nEl informe debe:\n• Extensión: 3-5 frases (boletín) + versión extendida (1 párrafo)\n• Lenguaje: formal pero accesible para familias\n• Incluir: nivel de logro de los CE, evolución respecto al trimestre anterior, actitud y esfuerzo, recomendaciones concretas para mejorar\n• Evitar: tecnicismos sin explicar, lengua genérica, frases hechas vacías\n• NUNCA incluir datos personales del alumno (usar "el alumno/la alumna")\n\nFormato:\nVERSIÓN BOLETÍN (3-4 frases):\n[Texto]\n\nVERSIÓN EXTENDIDA (para Aules o reunión de fin de trimestre):\n[Texto completo]\n\nCOMENTARIO ADICIONAL PARA EL DOCENTE:\n[Notas internas que no van al boletín pero ayudan al seguimiento]`;},
+
+  'informe-formal':()=>{const m=document.getElementById('inf-for-materia').value||'[materia]';const mo=document.getElementById('inf-for-motivo').value;const d=document.getElementById('inf-for-datos').value||'[datos]';const p=document.getElementById('inf-for-preocupaciones').value||'[preocupaciones]';const me=document.getElementById('inf-for-medidas').value||'[medidas]';return `Actúa como docente experto. Redacta un INFORME PEDAGÓGICO FORMAL para ${mo} en ${m}.\n\nDATOS DEL ALUMNO: ${d}\nPREOCUPACIONES: ${p}\nMEDIDAS YA IMPLEMENTADAS: ${me}\n\n1. ENCABEZADO\n• Datos del informe (fecha, asignatura, docente, destinatario)\n• Carácter del informe (confidencial)\n\n2. SITUACIÓN ACADÉMICA ACTUAL\n• Nivel de logro en ${m}\n• Evolución observada\n• Comparativa con el grupo\n\n3. ANÁLISIS DE LAS DIFICULTADES\n• Descripción objetiva de ${p}\n• Posibles causas detectadas\n• Factores protectores y de riesgo\n\n4. MEDIDAS IMPLEMENTADAS\n• ${me}\n• Valoración de su efectividad\n\n5. PROPUESTAS DE INTERVENCIÓN\n• Medidas recomendadas a nivel de aula\n• Necesidad de apoyo externo (orientación, PT, AL)\n• Coordinación con otras asignaturas\n\n6. COMPROMISOS Y SEGUIMIENTO\n• Próxima revisión\n• Indicadores de mejora\n\nRedactado con lenguaje técnico-pedagógico formal, objetivo y constructivo.`;},
+
+  'chatbot-feedback':()=>{const m=document.getElementById('bot-materia').value||'[materia y tarea]';const c=document.getElementById('bot-criterios').value||'[criterios]';const n=document.getElementById('bot-nivel').value||'[nivel]';const l=document.getElementById('bot-limites').value||'no dar la respuesta directa';return `Este es el PROMPT DE SISTEMA para configurar un CHATBOT CORRECTOR en ChatGPT, Claude o Gemini.\n\nCómo usarlo: En ChatGPT → "Crear un GPT" o "Instrucciones del sistema". En Claude → "Modo proyecto". En Gemini → "Instrucciones personalizadas".\n\n━━━ INICIO DEL PROMPT DE SISTEMA ━━━\n\nEres un asistente de corrección y feedback para la asignatura de ${m}. Tu rol es ayudar al alumnado de ${n} a mejorar su trabajo proporcionando feedback formativo detallado y constructivo.\n\nCRITERIOS QUE EVALÚAS:\n${c}\n\nTU FORMA DE FUNCIONAR:\n1. El alumno/a te envía su trabajo o texto\n2. Tú lo analices siguiendo los criterios: ${c}\n3. Proporcionas feedback estructurado con:\n   • ✅ Lo que está bien (específico y detallado)\n   • 🔧 Lo que puede mejorar (máximo 3 aspectos, formulado como oportunidad)\n   • 📌 Sugerencia concreta de cómo mejorar ese aspecto\n   • 💪 Frase final de motivación\n\nLÍMITES IMPORTANTES:\n• ${l}\n• Nunca des una nota numérica (solo feedback cualitativo)\n• Nunca reescribas el trabajo del alumno (solo orientaciones)\n• Nunca seas negativo ni desmotivador\n• Si ves plagio o texto generado por IA: indica que lo revisará el docente\n\nTONO: accesible, cálido, profesional. Usa emojis moderadamente.\nIDIOMA: español (a menos que la tarea sea en otro idioma)\nEXTENSIÓN FEEDBACK: 150-250 palabras\n\nAL INICIO DE CADA CONVERSACIÓN: Preséntate como "Asistente de ${m}" y pide al alumno que envíe su trabajo.\n\n━━━ FIN DEL PROMPT DE SISTEMA ━━━\n\nNOTA RGPD: Recuerda a tu alumnado que no incluya datos personales (solo el texto del trabajo). El docente siempre realiza la evaluación sumativa final.`}
+};
+
+function generateAndShow(key){const prompt=PROMPTS[key]();const el=document.getElementById('result-'+key);el.textContent=prompt;el.classList.add('show');const btn=document.getElementById('copy-'+key);if(btn)btn.style.display='inline-flex';el.scrollIntoView({behavior:'smooth',block:'nearest'});}
+function copyPrompt(key){const el=document.getElementById('result-'+key);navigator.clipboard.writeText(el.textContent).then(()=>{const btn=document.getElementById('copy-'+key);if(btn){btn.classList.add('copied');btn.innerHTML='<i class="fas fa-check"></i> ¡Copiado!';}showToast('✅ Prompt copiado');setTimeout(()=>{if(btn){btn.classList.remove('copied');btn.innerHTML='<i class="fas fa-copy"></i> Copiar';}},2000);});}
+</script>
+  <script src="../assets/portal-nav.js"></script>
+</body>
+</html>

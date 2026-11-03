@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>App Rúbricas, Agentes & Vibe Coding | AutoDocente CV</title>
+<meta name="description" content="Diseña rúbricas con IA, crea agentes y chatbots educativos, genera apps con Vibe Coding y automatiza el feedback. Para docentes de la Comunitat Valenciana.">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+:root{--purple:#6366f1;--orange:#f97316;--pink:#ec4899}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:#f8fafc;color:#1e293b;margin:0}
+#scroll-progress{position:fixed;top:0;left:0;width:0;height:4px;background:linear-gradient(90deg,#ec4899,#8b5cf6,#6366f1);z-index:9999;transition:width .1s linear;border-radius:0 2px 2px 0}
+#back-to-top{position:fixed;bottom:2rem;right:2rem;width:3rem;height:3rem;background:linear-gradient(135deg,#ec4899,#8b5cf6);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;pointer-events:none;transform:translateY(20px);transition:all .3s ease;z-index:998;border:none;box-shadow:0 8px 25px rgba(236,72,153,.4);font-size:1rem}
+#back-to-top.visible{opacity:1;pointer-events:all;transform:translateY(0)}
+.hero-section{background-image:linear-gradient(135deg,rgba(236,72,153,.92) 0%,rgba(139,92,246,.9) 50%,rgba(99,102,241,.88) 100%),url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=2000&auto=format&fit=crop');background-size:cover;background-position:center;background-attachment:fixed}
+.hero-shimmer{background:linear-gradient(90deg,#fff 40%,rgba(255,255,255,.6) 50%,#fff 60%);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:shimmer 4s linear infinite}
+@keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
+.gradient-text{background:linear-gradient(135deg,#ec4899,#8b5cf6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.card-pro{background:#fff;border-radius:1.25rem;box-shadow:0 4px 20px rgba(0,0,0,.05);border:1px solid rgba(0,0,0,.04);transition:all .3s ease}
+.card-pro:hover{transform:translateY(-2px);box-shadow:0 12px 35px rgba(0,0,0,.09)}
+aside nav a{transition:all .25s ease;color:#475569;border-left:3px solid transparent;display:flex;align-items:center;gap:.6rem;padding:.6rem .9rem;border-radius:.75rem;font-size:.85rem;font-weight:500;text-decoration:none}
+aside nav a:hover,aside nav a.active{background:linear-gradient(90deg,rgba(236,72,153,.1),transparent)!important;color:#ec4899;border-left-color:#ec4899;padding-left:1.2rem;font-weight:700}
+#sidebar-toggle{display:none;position:fixed;top:1rem;left:1rem;z-index:999;background:linear-gradient(135deg,#ec4899,#8b5cf6);color:#fff;border:none;width:2.8rem;height:2.8rem;border-radius:.9rem;align-items:center;justify-content:center;font-size:1.1rem;cursor:pointer;box-shadow:0 4px 16px rgba(236,72,153,.4)}
+#sidebar-backdrop{display:none;position:fixed;inset:0;background:rgba(15,23,42,.5);backdrop-filter:blur(4px);z-index:490}
+@media(max-width:1023px){#sidebar-toggle{display:flex}aside{position:fixed!important;top:0;left:0;height:100dvh!important;width:85vw!important;max-width:340px!important;z-index:500;transform:translateX(-110%);transition:transform .35s cubic-bezier(.4,0,.2,1);overflow-y:auto}aside.sidebar-open{transform:translateX(0);box-shadow:8px 0 40px rgba(0,0,0,.18)}#sidebar-backdrop.active{display:block}#main-content{width:100%!important}}
+details{transition:box-shadow .3s ease}
+details:hover{border-color:rgba(236,72,153,.25)!important}
+details[open]{box-shadow:0 8px 30px rgba(236,72,153,.08)!important}
+details summary{user-select:none;cursor:pointer;list-style:none;outline:none}
+details summary::-webkit-details-marker{display:none}
+details summary .chev{transition:transform .3s ease}
+details[open] summary .chev{transform:rotate(180deg)}
+.task-card{background:#fff;border:1.5px solid #e2e8f0;border-radius:1rem;padding:1.5rem;transition:all .3s ease;position:relative;overflow:hidden}
+.task-card:hover{border-color:rgba(236,72,153,.3);box-shadow:0 8px 30px rgba(236,72,153,.09)}
+.field-group{margin-bottom:1rem}
+.field-label{display:block;font-size:.8rem;font-weight:700;color:#be185d;margin-bottom:.35rem;display:flex;align-items:center;gap:.4rem}
+.field-input{width:100%;border:1.5px solid #fce7f3;border-radius:.65rem;padding:.55rem .85rem;font-size:.85rem;color:#1e293b;font-family:'Plus Jakarta Sans',sans-serif;background:#fdf4f9;transition:all .2s ease;outline:none}
+.field-input:focus{border-color:#ec4899;box-shadow:0 0 0 3px rgba(236,72,153,.12);background:#fff}
+.field-input::placeholder{color:#94a3b8}
+select.field-input{cursor:pointer}
+.launch-btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.7rem 1.6rem;border-radius:.85rem;font-weight:700;font-size:.9rem;cursor:pointer;transition:all .25s ease;border:none;margin-top:.5rem;width:100%}
+.launch-btn-pink{background:linear-gradient(135deg,#ec4899,#f472b6);color:#fff;box-shadow:0 4px 16px rgba(236,72,153,.35)}
+.launch-btn-pink:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(236,72,153,.5)}
+.launch-btn-purple{background:linear-gradient(135deg,#8b5cf6,#a78bfa);color:#fff;box-shadow:0 4px 16px rgba(139,92,246,.35)}
+.launch-btn-purple:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(139,92,246,.5)}
+.launch-btn-indigo{background:linear-gradient(135deg,#6366f1,#818cf8);color:#fff;box-shadow:0 4px 16px rgba(99,102,241,.35)}
+.launch-btn-indigo:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(99,102,241,.5)}
+.launch-btn-orange{background:linear-gradient(135deg,#f97316,#fb923c);color:#fff;box-shadow:0 4px 16px rgba(249,115,22,.3)}
+.launch-btn-orange:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(249,115,22,.45)}
+.ai-btn{padding:.4rem .9rem;border-radius:20px;font-size:.75rem;font-weight:700;cursor:pointer;border:1.5px solid;transition:all .2s ease}
+.ai-btn[data-ai="chatgpt"]{border-color:#10b981;color:#059669;background:rgba(16,185,129,.07)}
+.ai-btn[data-ai="claude"]{border-color:#f97316;color:#c2410c;background:rgba(249,115,22,.07)}
+.ai-btn[data-ai="gemini"]{border-color:#6366f1;color:#4f46e5;background:rgba(99,102,241,.07)}
+.ai-btn.selected{color:#fff!important;transform:scale(1.05)}
+.ai-btn[data-ai="chatgpt"].selected{background:#10b981!important;border-color:#10b981}
+.ai-btn[data-ai="claude"].selected{background:#f97316!important;border-color:#f97316}
+.ai-btn[data-ai="gemini"].selected{background:#6366f1!important;border-color:#6366f1}
+.preview-box{background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:.75rem;padding:1rem;font-size:.8rem;line-height:1.7;color:#475569;white-space:pre-wrap;max-height:200px;overflow-y:auto;word-break:break-word;display:none}
+.preview-box.show{display:block}
+.stage-tag{display:inline-flex;align-items:center;gap:.3rem;padding:.2rem .6rem;border-radius:20px;font-size:.68rem;font-weight:700;letter-spacing:.3px}
+.tag-eso{background:#e0e7ff;color:#4f46e5}
+.tag-bach{background:#ffedd5;color:#c2410c}
+.tag-fp{background:#dcfce7;color:#15803d}
+.tag-all{background:#fce7f3;color:#be185d}
+.fade-in{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s cubic-bezier(.4,0,.2,1)}
+.fade-in.in-view{opacity:1;transform:translateY(0)}
+.cat-icon{width:2.5rem;height:2.5rem;border-radius:.9rem;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+.tasks-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.25rem}
+@media(max-width:640px){.tasks-grid{grid-template-columns:1fr}}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:#f1f5f9}
+::-webkit-scrollbar-thumb{background:#fbcfe8;border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:#ec4899}
+#toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(80px);background:#1e293b;color:#fff;padding:.75rem 1.5rem;border-radius:1rem;font-size:.85rem;font-weight:600;z-index:9999;transition:transform .3s ease;display:flex;align-items:center;gap:.5rem;box-shadow:0 8px 30px rgba(0,0,0,.25)}
+#toast.show{transform:translateX(-50%) translateY(0)}
+/* CODE BLOCK */
+.code-block{background:#0f172a;color:#e2e8f0;border-radius:.75rem;padding:1rem;font-family:'Fira Code',monospace;font-size:.78rem;line-height:1.7;overflow-x:auto;position:relative;margin:.5rem 0}
+.code-block .kw{color:#c084fc}
+.code-block .str{color:#86efac}
+.code-block .cm{color:#64748b}
+.code-block .fn{color:#67e8f9}
+/* STEP BADGES */
+.step-badge{width:1.75rem;height:1.75rem;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:800;flex-shrink:0}
+</style>
+  <link rel="stylesheet" href="assets/portal-nav.css">
+</head>
+<body class="antialiased">
+<div id="scroll-progress"></div>
+<button id="sidebar-toggle"><i class="fas fa-bars"></i></button>
+<div id="sidebar-backdrop"></div>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i></button>
+<div id="toast"><i class="fas fa-rocket text-pink-400"></i> <span id="toast-msg">¡Abriendo IA!</span></div>
+
+<div class="flex min-h-screen">
+
+<!-- SIDEBAR -->
+<aside class="w-64 flex-shrink-0 bg-white border-r border-slate-100 shadow-sm sticky top-0 h-screen overflow-y-auto z-50">
+  <div class="p-5 border-b border-slate-100">
+    <div class="flex items-center gap-2.5 mb-3">
+      <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-pink-500 to-violet-700 flex items-center justify-center text-white shadow">⭐</div>
+      <div>
+        <div class="font-extrabold text-slate-800 text-sm leading-tight">Rúbricas & Agentes</div>
+        <div class="text-xs text-slate-400">App especializada · AutoDocente CV</div>
+      </div>
+    </div>
+    <div class="text-xs font-bold text-slate-400 uppercase tracking-wide mb-2">IA preferida:</div>
+    <div class="flex gap-1.5 flex-wrap" id="global-ai-selector">
+      <button class="ai-btn selected" data-ai="chatgpt" onclick="selectGlobalAI('chatgpt',this)">💚 ChatGPT</button>
+      <button class="ai-btn" data-ai="claude" onclick="selectGlobalAI('claude',this)">🟠 Claude</button>
+      <button class="ai-btn" data-ai="gemini" onclick="selectGlobalAI('gemini',this)">🔵 Gemini</button>
+    </div>
+  </div>
+  <nav class="p-3 space-y-0.5">
+    <p class="text-xs font-bold text-slate-400 uppercase tracking-widest px-2 pt-3 pb-1">Secciones</p>
+    <a href="#r1"><i class="fas fa-star w-4 text-yellow-400"></i> Rúbricas con IA</a>
+    <a href="#r2"><i class="fas fa-robot w-4 text-violet-500"></i> Creación de Agentes</a>
+    <a href="#r3"><i class="fas fa-code w-4 text-cyan-500"></i> Vibe Coding</a>
+    <a href="#r4"><i class="fas fa-comments w-4 text-emerald-500"></i> Feedback Automatizado</a>
+    <hr class="my-2 border-slate-100">
+    <a href="app-ia.html"><i class="fas fa-arrow-left w-4 text-slate-400"></i> App IA Interactiva</a>
+    <a href="app-prompts.html"><i class="fas fa-copy w-4 text-indigo-400"></i> Biblioteca Prompts</a>
+    <a href="normativa-cv/index.html"><i class="fas fa-balance-scale w-4 text-slate-400"></i> Normativa CV</a>
+  </nav>
+  <div class="p-3 mx-3 mb-3 rounded-2xl bg-gradient-to-br from-pink-50 to-violet-50 border border-pink-100">
+    <div class="text-xs font-bold text-pink-700 mb-1">🔒 RGPD</div>
+    <div class="text-xs text-slate-500 leading-relaxed">No se almacena ningún dato. Nunca introduzcas datos personales de menores en los prompts.</div>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<main id="main-content" class="flex-1 min-w-0">
+
+<!-- HERO -->
+<section class="hero-section text-white py-16 px-8 md:px-14">
+  <div class="max-w-4xl">
+    <div class="inline-flex items-center gap-2 bg-white/15 border border-white/25 rounded-full px-4 py-1.5 text-xs font-semibold mb-5 backdrop-blur-sm">
+      <i class="fas fa-star text-yellow-300"></i> Evaluación · Agentes · Vibe Coding · Feedback
+    </div>
+    <h1 class="text-3xl md:text-5xl font-extrabold leading-tight mb-2 hero-shimmer">Rúbricas, Agentes<br>& Vibe Coding</h1>
+    <p class="text-lg md:text-xl font-bold text-white/90 mb-4">Herramientas Avanzadas de IA para Docentes</p>
+    <p class="text-base text-white/80 max-w-2xl leading-relaxed mb-5">Diseña rúbricas alineadas con la normativa, crea agentes y chatbots personalizados, genera apps educativas con Vibe Coding y automatiza el feedback para ganar tiempo con tu alumnado.</p>
+    <div class="flex flex-wrap gap-3">
+      <a href="#r1" class="bg-white text-pink-700 font-bold px-5 py-2.5 rounded-xl text-sm shadow hover:-translate-y-0.5 transition-all">⭐ Rúbricas</a>
+      <a href="#r2" class="bg-white/15 border border-white/30 text-white font-bold px-5 py-2.5 rounded-xl text-sm hover:bg-white/25 transition-all">🤖 Agentes</a>
+      <a href="#r3" class="bg-white/15 border border-white/30 text-white font-bold px-5 py-2.5 rounded-xl text-sm hover:bg-white/25 transition-all">💻 Vibe Coding</a>
+      <a href="#r4" class="bg-white/15 border border-white/30 text-white font-bold px-5 py-2.5 rounded-xl text-sm hover:bg-white/25 transition-all">💬 Feedback</a>
+    </div>
+  </div>
+</section>
+
+<div class="max-w-6xl mx-auto px-5 md:px-10 py-10 space-y-8">
+
+<!-- ══ SECCIÓN 1 – RÚBRICAS ══ -->
+<div id="r1" class="fade-in">
+<details class="card-pro !p-0 border border-pink-100" open>
+<summary class="flex items-center justify-between p-5 cursor-pointer">
+  <div class="flex items-center gap-3">
+    <div class="cat-icon bg-yellow-100 text-yellow-700">⭐</div>
+    <div>
+      <div class="font-bold text-slate-800">Diseño de Rúbricas con IA</div>
+      <div class="text-xs text-slate-400">Criterios · Indicadores de logro · Alineadas con LOMLOE y Decretos CV</div>
+    </div>
+  </div>
+  <i class="fas fa-chevron-down text-slate-400 chev"></i>
+</summary>
+<div class="px-5 pb-6 pt-3 border-t border-pink-50">
+
+<div class="bg-yellow-50 border border-yellow-100 rounded-xl p-4 mb-5 text-sm text-yellow-800">
+  <i class="fas fa-lightbulb mr-1 text-yellow-500"></i> <strong>¿Sabías que?</strong> Las rúbricas bien diseñadas reducen el tiempo de corrección hasta un 40% y aumentan la percepción de justicia del alumnado. La IA puede generarlas en segundos alineadas con los criterios del Decreto 107/2022 o 108/2022.
+</div>
+
+<div class="tasks-grid">
+
+  <div class="task-card">
+    <div class="flex flex-wrap items-center gap-2 mb-3">
+      <span class="stage-tag tag-all">Todas</span>
+      <span class="font-bold text-slate-700 text-sm">⭐ Rúbrica Analítica Completa</span>
+    </div>
+    <div id="form-rubrica-analitica" class="space-y-2"></div>
+    <div class="flex gap-2 mt-3">
+      <button class="launch-btn launch-btn-pink flex-1" onclick="launch('rubrica-analitica')"><i class="fas fa-star"></i> Crear</button>
+      <button class="launch-btn flex-1" style="background:#f1f5f9;color:#475569;border:0" onclick="previewPrompt('rubrica-analitica')"><i class="fas fa-eye"></i> Preview</button>
+    </div>
+    <div class="preview-box mt-3" id="preview-rubrica-analitica"></div>
+  </div>
+
+  <div class="task-card">
+    <div class="flex flex-wrap items-center gap-2 mb-3">
+      <span class="stage-tag tag-all">Todas</span>
+      <span class="font-bold text-slate-700 text-sm">📊 Rúbrica Holística</span>
+    </div>
+    <div id="form-rubrica-holistica" class="space-y-2"></div>
+    <button class="launch-btn launch-btn-pink mt-3" onclick="launch('rubrica-holistica')"><i class="fas fa-rocket"></i> Crear</button>
+    <div class="preview-box mt-3" id="preview-rubrica-holistica"></div>
+  </div>
+
+  <div class="task-card">
+    <div class="flex flex-wrap items-center gap-2 mb-3">
+      <span class="stage-tag tag-all">Todas</span>
+      <span class="font-bold text-slate-700 text-sm">🔄 Convertir Examen → Rúbrica</span>
+    </div>
+    <div id="form-examen-rubrica" class="space-y-2"></div>
+    <button class="launch-btn launch-btn-purple mt-3" onclick="launch('examen-rubrica')"><i class="fas fa-exchange-alt"></i> Convertir</button>
+    <div class="preview-box mt-3" id="preview-examen-rubrica"></div>
+  </div>
+
+  <div class="task-card">
+    <div class="flex flex-wrap items-center gap-2 mb-3">
+      <span class="stage-tag tag-all">Todas</span>
+      <span class="font-bold text-slate-700 text-sm">👥 Rúbrica de Coevaluación y Autoevaluación</span>
+    </div>
+    <div id="form-coeval" class="space-y-2"></div>
+    <button class="launch-btn launch-btn-pink mt-3" onclick="launch('coeval')"><i class="fas fa-users"></i> Diseñar</button>
+    <div class="preview-box mt-3" id="preview-coeval"></div>
+  </div>
+
+  <div class="task-card">
+    <div class="flex flex-wrap items-center gap-2 mb-3">
+      <span class="stage-tag tag-all">Todas</span>
+      <span class="font-bold text-slate-700 text-sm">📋 Checklist de Evaluación por Competencias</span>
+    </div>
+    <div id="form-checklist" class="space-y-2"></div>
+    <button class="launch-btn launch-btn-purple mt-3" onclick="launch('checklist')"><i class="fas fa-check-square"></i> Crear</button>
+    <div class="preview-box mt-3" id="preview-checklist"></div>
+  </div>
+
+  <div class="task-card">
+    <div class="flex flex-wrap items-center gap-2 mb-3">
+      <span class="stage-tag tag-all">Todas</span>
+      <span class="font-bold text-slate-700 text-sm">🗣️ Rúbrica de Expresión Oral</span>
+    </div>
+    <div id="form-rubrica-oral" class="space-y-2"></div>
+    <button class="launch-btn launch-btn-pink mt-3" onclick="launch('rubrica-oral')"><i class="fas fa-microphone"></i> Crear</button>
+    <div class="preview-box mt-3" id="preview-rubrica-oral"></div>
+  </div>
+
+</div>
+</div>
+</details>
+</div>
+
+<!-- ══ SECCIÓN 2 – AGENTES ══ -->
+<div id="r2" class="fade-in">
+<details class="card-pro !p-0 border border-violet-100">
+<summary class="flex items-center justify-between p-5 cursor-pointer">
+  <div class="flex items-center gap-3">
+    <div class="cat-icon bg-violet-100 text-violet-700">🤖</div>
+    <div>
+      <div class="font-bold text-slate-800">Creación de Agentes Educativos</div>
+      <div class="text-xs text-slate-400">Chatbots · Tutores IA · Asistentes personalizados · GPTs personalizados</div>
+    </div>
+  </div>
+  <i class="fas fa-chevron-down text-slate-400 chev"></i>
+</summary>
+<div class="px-5 pb-6 pt-3 border-t border-violet-50">
+
+<div class="bg-violet-50 border border-violet-100 rounded-xl p-4 mb-5 text-sm text-violet-800">
+  <i class="fas fa-robot mr-1 text-violet-500"></i> <strong>Crea agentes sin código.</strong> Un agente educativo es un chatbot configurado con instrucciones específicas para actuar como tutor, corrector, orientador o asistente para una tarea concreta. Solo necesitas un buen prompt de sistema.
+</div>
+
+<div class="tasks-grid">
+
+  <div class="task-card">
+    <div class="flex flex-wrap items-center gap-2 mb-3">
+      <span class="stage-tag tag-all">Todas</span>
+      <span class="font-bold text-slate-700 text-sm">🎓 Agente Tutor de Materia</span>
+    </div>
+    <div id="form-agente-tutor" class="space-y-2"></div>
+    <button class="launch-btn launch-btn-purple mt-3" onclick="launch('agente-tutor')"><i class="fas fa-robot"></i> Configurar</button>
+    <div class="preview-box mt-3" id="preview-agente-tutor"></div>
+  </div>
+
+  <div class="task-card">
+    <div class="flex flex-wrap items-center gap-2 mb-3">
+      <span class="stage-tag tag-all">Todas</span>
+      <span class="font-bold text-slate-700 text-sm">✅ Agente Corrector de Textos</span>
+    </div>
+    <div id="form-agente-corrector" class="space-y-2"></div>
+    <button class="launch-btn launch-btn-purple mt-3" onclick="launch('agente-corrector')"><i class="fas fa-pen-fancy"></i> Configurar</button>
+    <div class="preview-box mt-3" id="preview-agente-corrector"></div>
+  </div>
+
+  <div class="task-card">
+    <div class="flex flex-wrap items-center gap-2 mb-3">
+      <span class="stage-tag tag-all">Todas</span>
+      <span class="font-bold text-slate-700 text-sm">🔮 Agente Socrático (solo preguntas)</span>
+    </div>
+    <div id="form-agente-socratico" class="space-y-2"></div>
+    <button class="launch-btn launch-btn-indigo mt-3" onclick="launch('agente-socratico')"><i class="fas fa-question-circle"></i> Configurar</button>
+    <div class="preview-box mt-3" id="preview-agente-socratico"></div>
+  </div>
+
+  <div class="task-card">
+    <div class="flex flex-wrap items-center gap-2 mb-3">
+      <span class="stage-tag tag-all">Todas</span>
+      <span class="font-bold text-slate-700 text-sm">🧑‍💼 Agente Orientador Vocacional (FP/Bach)</span>
+    </div>
+    <div id="form-agente-orientador" class="space-y-2"></div>
+    <button class="launch-btn launch-btn-purple mt-3" onclick="launch('agente-orientador')"><i class="fas fa-compass"></i> Configurar</button>
+    <div class="preview-box mt-3" id="preview-agente-orientador"></div>
+  </div>
+
+  <div class="task-card">
+    <div class="flex flex-wrap items-center gap-2 mb-3">
+      <span class="stage-tag tag-all">Todas</span>
+      <span class="font-bold text-slate-700 text-sm">📖 Agente Lector y Generador de Preguntas</span>
+    </div>
+    <div id="form-agente-lector" class="space-y-2"></div>
+    <button class="launch-btn launch-btn-pink mt-3" onclick="launch('agente-lector')"><i class="fas fa-book-reader"></i> Configurar</button>
+    <div class="preview-box mt-3" id="preview-agente-lector"></div>
+  </div>
+
+  <div class="task-card" style="background:linear-gradient(135deg,#fdf4ff,#f5f3ff);border-color:#e9d5ff">
+    <div class="flex flex-wrap items-center gap-2 mb-3">
+      <span class="stage-tag" style="background:#f3e8ff;color:#7c3aed">GPT Custom</span>
+      <span class="font-bold text-slate-700 text-sm">🔧 GPT Personalizado (instrucciones completas)</span>
+    </div>
+    <div id="form-gpt-custom" class="space-y-2"></div>
+    <button class="launch-btn mt-3" style="background:linear-gradient(135deg,#7c3aed,#6366f1);color:#fff;box-shadow:0 4px 16px rgba(124,58,237,.35)" onclick="launch('gpt-custom')"><i class="fas fa-magic"></i> Generar</button>
+    <div class="preview-box mt-3" id="preview-gpt-custom"></div>
+  </div>
+
+</div>
+</div>
+</details>
+</div>
+
+<!-- ══ SECCIÓN 3 – VIBE CODING ══ -->
+<div id="r3" class="fade-in">
+<details class="card-pro !p-0 border border-cyan-100">
+<summary class="flex items-center justify-between p-5 cursor-pointer">
+  <div class="flex items-center gap-3">
+    <div class="cat-icon bg-cyan-100 text-cyan-700">💻</div>
+    <div>
+      <div class="font-bold text-slate-800">Creación de Apps con Vibe Coding</div>
+      <div class="text-xs text-slate-400">Cuadernos digitales · Análisis de datos · Textos personalizados · Apps a medida</div>
+    </div>
+  </div>
+  <i class="fas fa-chevron-down text-slate-400 chev"></i>
+</summary>
+<div class="px-5 pb-6 pt-3 border-t border-cyan-50">
+
+<div class="grid md:grid-cols-2 gap-4 mb-5">
+  <div class="bg-cyan-50 border border-cyan-100 rounded-xl p-4 text-sm text-cyan-800">
+    <div class="font-bold mb-1">💡 ¿Qué es el Vibe Coding?</div>
+    <p class="text-xs leading-relaxed">El Vibe Coding es escribir en lenguaje natural lo que quieres que haga una app — y la IA escribe el código. Tú diseñas, la IA codifica. No necesitas saber programar.</p>
+  </div>
+  <div class="bg-indigo-50 border border-indigo-100 rounded-xl p-4 text-sm text-indigo-800">
+    <div class="font-bold mb-1">🏆 Recomendados para Vibe Coding</div>
+    <p class="text-xs leading-relaxed">Claude (Artifacts), ChatGPT (Canvas) y Gemini son los mejores para generar código HTML/CSS/JS completo en un solo archivo listo para usar.</p>
+  </div>
+</div>
+
+<div class="tasks-grid">
+
+  <div class="task-card">
+    <div class="flex flex-wrap items-center gap-2 mb-3">
+      <span class="stage-tag tag-all">Todas</span>
+      <span class="font-bold text-slate-700 text-sm">📓 Cuaderno Digital del Alumno</span>
+    </div>
+    <div id="form-cuaderno" class="space-y-2"></div>
+    <button class="launch-btn launch-btn-indigo mt-3" onclick="launch('cuaderno')"><i class="fas fa-code"></i> Crear App</button>
+    <div class="preview-box mt-3" id="preview-cuaderno"></div>
+  </div>
+
+  <div class="task-card">
+    <div class="flex flex-wrap items-center gap-2 mb-3">
+      <span class="stage-tag tag-all">Todas</span>
+      <span class="font-bold text-slate-700 text-sm">📊 Analizador de Calificaciones</span>
+    </div>
+    <div id="form-analizador" class="space-y-2"></div>
+    <button class="launch-btn launch-btn-indigo mt-3" onclick="launch('analizador')"><i class="fas fa-chart-bar"></i> Crear App</button>
+    <div class="preview-box mt-3" id="preview-analizador"></div>
+  </div>
+
+  <div class="task-card">
+    <div class="flex flex-wrap items-center gap-2 mb-3">
+      <span class="stage-tag tag-all">Todas</span>
+      <span class="font-bold text-slate-700 text-sm">📄 Generador de Textos Personalizados</span>
+    </div>
+    <div id="form-texto-personalizado" class="space-y-2"></div>
+    <button class="launch-btn launch-btn-indigo mt-3" onclick="launch('texto-personalizado')"><i class="fas fa-file-alt"></i> Crear App</button>
+    <div class="preview-box mt-3" id="preview-texto-personalizado"></div>
+  </div>
+
+  <div class="task-card">
+    <div class="flex flex-wrap items-center gap-2 mb-3">
+      <span class="stage-tag tag-all">Todas</span>
+      <span class="font-bold text-slate-700 text-sm">🎙️ Guion para Texto-a-Audio Personalizado</span>
+    </div>
+    <div id="form-audio-personalizado" class="space-y-2"></div>
+    <button class="launch-btn launch-btn-purple mt-3" onclick="launch('audio-personalizado')"><i class="fas fa-headphones"></i> Crear Guion</button>
+    <div class="preview-box mt-3" id="preview-audio-personalizado"></div>
+  </div>
+
+  <div class="task-card">
+    <div class="flex flex-wrap items-center gap-2 mb-3">
+      <span class="stage-tag tag-all">Todas</span>
+      <span class="font-bold text-slate-700 text-sm">📥 Importador de Rúbricas (HTML interactivo)</span>
+    </div>
+    <div id="form-importar-rubrica" class="space-y-2"></div>
+    <button class="launch-btn launch-btn-indigo mt-3" onclick="launch('importar-rubrica')"><i class="fas fa-upload"></i> Crear App</button>
+    <div class="preview-box mt-3" id="preview-importar-rubrica"></div>
+  </div>
+
+  <div class="task-card">
+    <div class="flex flex-wrap items-center gap-2 mb-3">
+      <span class="stage-tag tag-all">Todas</span>
+      <span class="font-bold text-slate-700 text-sm">🎲 Generador de Actividades Aleatorias</span>
+    </div>
+    <div id="form-actividades-random" class="space-y-2"></div>
+    <button class="launch-btn launch-btn-pink mt-3" onclick="launch('actividades-random')"><i class="fas fa-dice"></i> Crear App</button>
+    <div class="preview-box mt-3" id="preview-actividades-random"></div>
+  </div>
+
+</div>
+</div>
+</details>
+</div>
+
+<!-- ══ SECCIÓN 4 – FEEDBACK AUTOMATIZADO ══ -->
+<div id="r4" class="fade-in">
+<details class="card-pro !p-0 border border-emerald-100">
+<summary class="flex items-center justify-between p-5 cursor-pointer">
+  <div class="flex items-center gap-3">
+    <div class="cat-icon bg-emerald-100 text-emerald-700">💬</div>
+    <div>
+      <div class="font-bold text-slate-800">Feedback Automatizado</div>
+      <div class="text-xs text-slate-400">Gana tiempo en gestión administrativa para dárselo al alumnado</div>
+    </div>
+  </div>
+  <i class="fas fa-chevron-down text-slate-400 chev"></i>
+</summary>
+<div class="px-5 pb-6 pt-3 border-t border-emerald-50">
+
+<div class="bg-emerald-50 border border-emerald-100 rounded-xl p-4 mb-5 text-sm text-emerald-800">
+  <i class="fas fa-clock mr-1 text-emerald-500"></i> <strong>El mayor regalo que puedes hacer al alumnado</strong> es devolverles tiempo de calidad para interactuar. El feedback automatizado no sustituye al docente — libera al docente para lo que de verdad importa.
+</div>
+
+<div class="tasks-grid">
+
+  <div class="task-card">
+    <div class="flex flex-wrap items-center gap-2 mb-3">
+      <span class="stage-tag tag-all">Todas</span>
+      <span class="font-bold text-slate-700 text-sm">⚡ Sistema de Feedback Rápido por Rúbrica</span>
+    </div>
+    <div id="form-feedback-rubrica" class="space-y-2"></div>
+    <button class="launch-btn launch-btn-orange mt-3" onclick="launch('feedback-rubrica')"><i class="fas fa-bolt"></i> Diseñar</button>
+    <div class="preview-box mt-3" id="preview-feedback-rubrica"></div>
+  </div>
+
+  <div class="task-card">
+    <div class="flex flex-wrap items-center gap-2 mb-3">
+      <span class="stage-tag tag-all">Todas</span>
+      <span class="font-bold text-slate-700 text-sm">📝 Plantilla de Comentarios Personalizables</span>
+    </div>
+    <div id="form-plantilla-comentarios" class="space-y-2"></div>
+    <button class="launch-btn launch-btn-orange mt-3" onclick="launch('plantilla-comentarios')"><i class="fas fa-clipboard-list"></i> Generar</button>
+    <div class="preview-box mt-3" id="preview-plantilla-comentarios"></div>
+  </div>
+
+  <div class="task-card">
+    <div class="flex flex-wrap items-center gap-2 mb-3">
+      <span class="stage-tag tag-all">Todas</span>
+      <span class="font-bold text-slate-700 text-sm">🤖 App Autocorrectora con Feedback Inmediato</span>
+    </div>
+    <div id="form-autocorrector" class="space-y-2"></div>
+    <button class="launch-btn launch-btn-indigo mt-3" onclick="launch('autocorrector')"><i class="fas fa-code"></i> Crear App</button>
+    <div class="preview-box mt-3" id="preview-autocorrector"></div>
+  </div>
+
+  <div class="task-card">
+    <div class="flex flex-wrap items-center gap-2 mb-3">
+      <span class="stage-tag tag-all">Todas</span>
+      <span class="font-bold text-slate-700 text-sm">📧 Emails a Familias Personalizados (lote)</span>
+    </div>
+    <div id="form-emails-familias" class="space-y-2"></div>
+    <button class="launch-btn launch-btn-orange mt-3" onclick="launch('emails-familias')"><i class="fas fa-envelope"></i> Redactar</button>
+    <div class="preview-box mt-3" id="preview-emails-familias"></div>
+  </div>
+
+  <div class="task-card">
+    <div class="flex flex-wrap items-center gap-2 mb-3">
+      <span class="stage-tag tag-all">Todas</span>
+      <span class="font-bold text-slate-700 text-sm">⏱️ Plan de Ahorro de Tiempo Docente</span>
+    </div>
+    <div id="form-ahorro-tiempo" class="space-y-2"></div>
+    <button class="launch-btn launch-btn-pink mt-3" onclick="launch('ahorro-tiempo')"><i class="fas fa-hourglass-half"></i> Analizar</button>
+    <div class="preview-box mt-3" id="preview-ahorro-tiempo"></div>
+  </div>
+
+</div>
+</div>
+</details>
+</div>
+
+<!-- RGPD CARD -->
+<div class="fade-in card-pro border border-emerald-200 bg-gradient-to-br from-emerald-50 to-teal-50 p-6">
+  <div class="flex items-start gap-4">
+    <div class="w-10 h-10 rounded-xl bg-emerald-500 flex items-center justify-center text-white text-lg flex-shrink-0">🔒</div>
+    <div>
+      <h3 class="font-bold text-emerald-800 mb-1">Privacidad y Protección de Datos (RGPD)</h3>
+      <p class="text-sm text-emerald-700 leading-relaxed">Esta aplicación <strong>no recoge, almacena ni procesa ningún dato personal</strong>. Los prompts se envían directamente a tu IA elegida. <strong>Nunca introduzcas nombres, notas ni datos identificativos de menores.</strong> El profesorado es responsable del uso de las herramientas de IA con su alumnado conforme al RGPD y la LOPDGDD.</p>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="fade-in card-pro bg-gradient-to-br from-slate-800 to-indigo-900 text-white text-center p-10 border-0">
+  <div class="text-4xl mb-3">🚀</div>
+  <h2 class="text-2xl font-extrabold mb-2">Descubre todas las herramientas</h2>
+  <p class="text-slate-300 mb-6 max-w-lg mx-auto text-sm">La App IA Interactiva tiene 12 categorías y 40+ tareas automatizadas. La Biblioteca de Prompts tiene más de 35 plantillas listas para copiar.</p>
+  <div class="flex flex-wrap gap-3 justify-center">
+    <a href="app-ia.html" class="inline-flex items-center gap-2 bg-white text-indigo-700 font-bold px-6 py-3 rounded-xl shadow hover:-translate-y-1 transition-all text-sm"><i class="fas fa-magic"></i> App IA Interactiva</a>
+    <a href="app-prompts.html" class="inline-flex items-center gap-2 bg-white/15 border border-white/30 text-white font-bold px-6 py-3 rounded-xl hover:bg-white/25 transition-all text-sm"><i class="fas fa-copy"></i> Biblioteca Prompts</a>
+  </div>
+</div>
+
+</div>
+
+<footer class="bg-white border-t border-slate-100 py-8 px-6 text-center mt-8">
+  <div class="max-w-2xl mx-auto">
+    <div class="font-extrabold text-slate-700 text-base mb-1">AutoDocente CV · Rúbricas, Agentes & Vibe Coding</div>
+    <div class="text-sm text-slate-500 mb-3">App creada y revisada por <strong class="text-pink-600">Ana Hernández Iranzo</strong> asistida con IA · Comunitat Valenciana · Curso 2025–2026</div>
+    <div class="text-xs text-slate-400 border-t border-slate-100 pt-3 mt-3">Idea original <strong>Ana Hernández Iranzo</strong> — Desarrollada con asistencia de Inteligencia Artificial · 🔒 Sin cookies · Sin datos personales · Cumple RGPD</div>
+  </div>
+</footer>
+</main>
+</div>
+
+<script>
+const AI_URLS={chatgpt:'https://chatgpt.com/?q=',claude:'https://claude.ai/new?q=',gemini:'https://gemini.google.com/app?q='};
+let globalAI='chatgpt';
+function selectGlobalAI(ai,el){globalAI=ai;document.querySelectorAll('#global-ai-selector .ai-btn').forEach(b=>b.classList.remove('selected'));el.classList.add('selected');showToast('✅ '+ai.charAt(0).toUpperCase()+ai.slice(1)+' seleccionado');}
+
+const TEMPLATES={
+  'rubrica-analitica':{
+    fields:[
+      {id:'tarea',label:'Tarea o actividad a evaluar',placeholder:'Ej: Presentación oral, ensayo argumentativo, proyecto investigación...'},
+      {id:'materia',label:'Materia y curso',placeholder:'Ej: Lengua 4.º ESO / Historia 2.º Bach.'},
+      {id:'criterios',label:'Criterios de evaluación (códigos o descripciones)',placeholder:'Ej: CE.LCL.3.1 - Producción de textos orales formales...'},
+      {id:'num_criterios',label:'Número de criterios en la rúbrica',placeholder:'Ej: 4, 5 o 6 criterios'},
+      {id:'uso',label:'Uso de la rúbrica',placeholder:'Heteroevaluación / Coevaluación / Autoevaluación / Los tres'}
+    ],
+    prompt:(f)=>`Crea una rúbrica analítica completa para evaluar "${f.tarea}" en ${f.materia}.
+
+Criterios de evaluación: ${f.criterios}
+Número de criterios: ${f.num_criterios}
+Uso: ${f.uso}
+
+ESTRUCTURA DE LA RÚBRICA (formato tabla):
+- 4 niveles de logro: Inicio (1-3 pts) / En proceso (4-5) / Consolidado (6-7) / Avanzado (8-10)
+- Para CADA criterio:
+  * Peso % en la calificación final
+  * Descriptor claro y observable en cada nivel (qué hace el alumno/a exactamente)
+  * Indicador de logro vinculado al criterio del Decreto 107/2022 o 108/2022
+- Fila final: calificación global y cómo se combina
+- Apartado de observaciones del docente
+- Versión simplificada de la tabla para entregar al alumnado antes de la tarea
+- Cómo explicar la rúbrica al alumnado (co-creación de criterios)
+Formato: tabla completa, profesional y lista para usar o pegar en Word/Google Docs.`
+  },
+  'rubrica-holistica':{
+    fields:[
+      {id:'tarea',label:'Tarea evaluada',placeholder:'Ej: Trabajo de investigación en grupo'},
+      {id:'materia',label:'Materia y curso',placeholder:'Ej: Biología y Geología 3.º ESO'},
+      {id:'peso',label:'Peso en la calificación',placeholder:'Ej: 40% de la nota del trimestre'}
+    ],
+    prompt:(f)=>`Crea una rúbrica holística completa para evaluar "${f.tarea}" en ${f.materia}. Peso: ${f.peso}.
+
+La rúbrica holística debe:
+- Describir el desempeño GLOBAL del alumno en 4 niveles (Inicio/En proceso/Consolidado/Avanzado)
+- Cada nivel con descriptor holístico de 4-6 frases que capture la impresión global
+- Puntuación numérica equivalente para cada nivel
+- Escala de conversión a nota (1-10)
+- Pros/contras de este tipo de rúbrica y cuándo usarla
+- Versión rápida para feedback verbal en clase (3 frases por nivel)
+- Cómo combinar con rúbrica analítica para máxima eficiencia`
+  },
+  'examen-rubrica':{
+    fields:[
+      {id:'examen',label:'Descripción del examen/actividad que tienes',placeholder:'Copia aquí las preguntas o describe el examen que ya tienes...'},
+      {id:'materia',label:'Materia y curso',placeholder:'Ej: Física 2.º Bachillerato'},
+      {id:'tiempo',label:'Tiempo de corrección disponible',placeholder:'Ej: 10 minutos por examen / 5 minutos'}
+    ],
+    prompt:(f)=>`Tengo el siguiente examen/actividad y quiero convertirlo en una rúbrica de corrección eficiente:
+
+EXAMEN/ACTIVIDAD: ${f.examen}
+
+Materia: ${f.materia}
+Tiempo máximo de corrección por alumno: ${f.tiempo}
+
+Por favor:
+1. Crea una rúbrica de corrección analítica basada exactamente en las preguntas del examen
+2. Para cada pregunta: criterio claro, puntuación máxima, descriptores de respuesta completa/incompleta/incorrecta y errores típicos del alumnado
+3. Plantilla de corrección rápida: tabla donde solo hay que marcar con una X el nivel
+4. Calificación automática: fórmula para calcular la nota final
+5. Banco de comentarios de feedback: 3-5 comentarios tipo para los errores más frecuentes`
+  },
+  'coeval':{
+    fields:[
+      {id:'tarea',label:'Tarea a coevaluar',placeholder:'Ej: Presentación en grupo, debate, trabajo cooperativo...'},
+      {id:'materia',label:'Materia y curso',placeholder:'Ej: CCSS 3.º ESO'},
+      {id:'proporciones',label:'Proporción de la nota',placeholder:'Ej: Hetero 60% + Coeval 20% + Auto 20%'}
+    ],
+    prompt:(f)=>`Diseña un sistema completo de coevaluación y autoevaluación para "${f.tarea}" en ${f.materia}.
+
+Distribución de la nota: ${f.proporciones}
+
+Necesito:
+1. RÚBRICA DE COEVALUACIÓN (para evaluar al compañero/a): criterios claros, lenguaje accesible para el alumnado, 4 niveles, pesos
+2. RÚBRICA DE AUTOEVALUACIÓN (para evaluarse uno mismo): mismos criterios reformulados en primera persona
+3. FORMULARIO de recogida (preguntas abiertas + cerradas): máx. 6 ítems de respuesta rápida
+4. Protocolo para el docente: cómo introducir la coevaluación, evitar sesgos de amistad, calcular la nota combinada
+5. Actividad de "calibración": cómo enseñar al alumnado a evaluar antes de que evalúen solos`
+  },
+  'checklist':{
+    fields:[
+      {id:'tarea',label:'Proyecto o tarea',placeholder:'Ej: Proyecto ABP, portafolio digital, práctica de laboratorio...'},
+      {id:'materia',label:'Materia y curso',placeholder:'Ej: Tecnología 4.º ESO'},
+      {id:'fases',label:'Fases o partes del proyecto',placeholder:'Ej: Planificación, desarrollo, presentación y memoria'}
+    ],
+    prompt:(f)=>`Crea una checklist de evaluación por competencias para "${f.tarea}" en ${f.materia}.
+
+Fases: ${f.fases}
+
+La checklist debe:
+- Organizarse por FASES del proyecto con subtareas concretas y observables
+- Para cada ítem: indicador observable (qué hace el alumno/a) + opción Sí/En proceso/No
+- Vincular cada bloque con las competencias clave (CCL, STEM, CD, CPSAA, CC, CE, CCEC)
+- Versión para el docente (hetero) + versión para el alumno (auto) + versión para coeval
+- Barra de progreso visual o código de colores para seguimiento
+- Apartado de "próximo paso" para el alumno cuando algo no está conseguido`
+  },
+  'rubrica-oral':{
+    fields:[
+      {id:'tarea',label:'Tipo de expresión oral',placeholder:'Ej: Debate, presentación PowerPoint, exposición oral examen...'},
+      {id:'materia',label:'Materia y curso',placeholder:'Ej: Inglés 4.º ESO / Filosofía Bach.'},
+      {id:'tiempo',label:'Duración de la intervención',placeholder:'Ej: 5 minutos por alumno/a'},
+      {id:'idioma',label:'Idioma de la presentación',placeholder:'Español / Inglés / Valenciano'}
+    ],
+    prompt:(f)=>`Crea una rúbrica completa para evaluar expresión oral: "${f.tarea}" en ${f.materia}. Duración: ${f.tiempo}. Idioma: ${f.idioma}.
+
+Criterios a incluir (con peso distribución sugerida):
+- Contenido y adecuación al tema (30%)
+- Estructura y organización del discurso (20%)
+- Expresión lingüística: vocabulario, gramática, registro (20%)
+- Pronunciación, fluidez y entonación (15%)
+- Comunicación no verbal: contacto visual, postura, gestualidad (10%)
+- Interacción con el público/evaluador (5%)
+
+Para CADA criterio: 4 niveles + descriptores específicos adaptados al idioma y nivel. Incluye: ficha de observación para completar en directo (durante la presentación), versión del alumno para preparar, y rúbrica específica para ${f.idioma}.`
+  },
+  'agente-tutor':{
+    fields:[
+      {id:'materia',label:'Materia',placeholder:'Ej: Matemáticas, Física, Historia, Inglés...'},
+      {id:'nivel',label:'Nivel del alumnado',placeholder:'Ej: 3.º ESO (14 años) / 1.º Bach / FP Grado Medio'},
+      {id:'objetivo',label:'Objetivo del agente',placeholder:'Ej: Resolver dudas del tema, repasar conceptos, preparar examen...'},
+      {id:'restricciones',label:'Lo que el agente NO debe hacer',placeholder:'Ej: No dar las respuestas directas, no salirse del temario...'},
+      {id:'tono',label:'Tono y personalidad',placeholder:'Ej: Cercano y motivador / Formal / Socrático / Gamificado'}
+    ],
+    prompt:(f)=>`Crea el PROMPT DE SISTEMA COMPLETO para configurar un agente tutor de ${f.materia} para alumnado de ${f.nivel}.
+
+Objetivo del agente: ${f.objetivo}
+Restricciones: ${f.restricciones}
+Tono y personalidad: ${f.tono}
+
+El prompt de sistema debe incluir:
+1. ROL Y PERSONALIDAD: quién es el agente, cómo se llama, cómo habla
+2. OBJETOS Y ALCANCE: qué puede y no puede hacer, límites claros
+3. MÉTODO PEDAGÓGICO: cómo responde a preguntas step-by-step
+4. MANEJO DE ERRORES: qué hace cuando el alumno/a se equivoca
+5. CIERRE DE SESIÓN: cómo finaliza la conversación y qué resumen proporciona
+6. CONTROL DE SEGURIDAD: cómo evita contenidos inapropiados o fuera de scope
+7. INSTRUCCIONES PARA EL DOCENTE: cómo configurarlo en ChatGPT/Claude/Gemini
+8. INSTRUCCIONES PARA EL ALUMNO: texto para entregar al alumnado sobre cómo usarlo correctamente
+9. Ejemplo de conversación tipo (3 turnos)`
+  },
+  'agente-corrector':{
+    fields:[
+      {id:'tipo_texto',label:'Tipo de texto a corregir',placeholder:'Ej: Redacción, email formal, resumen, ensayo filosófico...'},
+      {id:'nivel',label:'Nivel del alumnado',placeholder:'Ej: 2.º ESO / B1 Inglés / 2.º Bachillerato'},
+      {id:'aspectos',label:'Aspectos a corregir prioritariamente',placeholder:'Ej: Ortografía, cohesión textual, argumentación, gramática...'},
+      {id:'feedback_tipo',label:'Tipo de feedback a dar',placeholder:'Ej: Señalar errores + explicación / Solo indicar dónde / Proponer mejoras'}
+    ],
+    prompt:(f)=>`Crea el PROMPT DE SISTEMA COMPLETO para un agente corrector de ${f.tipo_texto} para ${f.nivel}.
+
+Aspectos a corregir: ${f.aspectos}
+Tipo de feedback: ${f.feedback_tipo}
+
+El agente corrector debe:
+1. Recibir el texto del alumno/a
+2. Analizarlo según estos criterios: ${f.aspectos}
+3. Dar feedback estructurado en: Puntos fuertes (mínimo 2) + Errores encontrados (con explicación y corrección) + 1 consejo de mejora prioritario + Puntuación orientativa
+4. NUNCA reescribir el texto entero — solo señalar y explicar
+5. Adaptar el lenguaje al nivel ${f.nivel}
+6. Finalizar con una pregunta reflexiva para el alumno/a
+
+Incluye: el prompt de sistema completo + instrucciones de uso para el docente + cómo integrarlo en el flujo de trabajo del aula`
+  },
+  'agente-socratico':{
+    fields:[
+      {id:'materia',label:'Materia y tema',placeholder:'Ej: Filosofía - El conocimiento / Matemáticas - Derivadas'},
+      {id:'nivel',label:'Nivel del alumnado',placeholder:'Ej: 1.º Bachillerato (16-17 años)'},
+      {id:'objetivo',label:'Qué debe descubrir el alumno',placeholder:'Ej: El concepto de verdad subjetiva / La regla de la cadena'}
+    ],
+    prompt:(f)=>`Crea un agente socrático para ${f.materia}, nivel ${f.nivel}. Objetivo: que el alumno/a descubra por sí mismo: "${f.objetivo}"
+
+REGLA DE ORO: El agente socrático NUNCA da la respuesta. Solo hace preguntas que guíen el pensamiento.
+
+El prompt de sistema debe incluir:
+1. Identidad: soy Sócrates digital, solo pregunto
+2. Banco de preguntas socrátiras categorizadas: de clarificación / de suposiciones / de evidencia / de perspectiva / de consecuencias / metacognitivas
+3. Protocolo ante respuestas incorrectas: reformular sin corregir directamente
+4. Protocolo ante "no sé": preguntas de anclaje más simples  
+5. Cierre: cuando el alumno llega a la conclusión correcta, cómo celebrarlo sin decir explícitamente que es correcta
+6. Ejemplo completo de diálogo socrático (8-10 turnos) sobre "${f.objetivo}"`
+  },
+  'agente-orientador':{
+    fields:[
+      {id:'etapa',label:'Etapa educativa',placeholder:'Ej: 4.º ESO (orientación post-obligatoria) / 2.º Bachillerato (universidad/FP)'},
+      {id:'perfil',label:'Perfil del alumnado a orientar',placeholder:'Ej: Intereses en ciencias, duda entre medicina e ingeniería...'},
+      {id:'sistema',label:'Sistema educativo de referencia',placeholder:'Ej: España / Comunitat Valenciana / EBAU 2025-2026'}
+    ],
+    prompt:(f)=>`Crea un agente orientador vocacional para ${f.etapa} en el contexto de ${f.sistema}.
+
+El agente debe ayudar a alumnado con: ${f.perfil}
+
+Estructura del agente:
+1. Entrevista diagnóstica: 5-7 preguntas para conocer intereses, fortalezas, valores y estilo de aprendizaje
+2. Base de conocimiento: opciones tras ${f.etapa} (Bachillerato, FP Grado Medio/Superior, acceso directo al trabajo, formación no reglada)
+3. Análisis de perfil: cómo interpretar las respuestas y proponer opciones
+4. Información específica CV: notas de corte EBAU, ciclos FP populares en la Comunitat Valenciana, universidades públicas
+5. Recursos externos: páginas para explorar (EducaWeb, Todofp, universidades CV)
+6. Privacidad: qué datos NO pedir al alumnado (datos personales)
+7. Derivación: cuándo recomendar al alumno que hable con el orientador del centro`
+  },
+  'agente-lector':{
+    fields:[
+      {id:'materia',label:'Materia',placeholder:'Ej: Lengua Castellana, Historia, Inglés...'},
+      {id:'tipo_texto',label:'Tipo de texto con el que trabaja',placeholder:'Ej: Textos históricos, noticias actuales, textos literarios, artículos científicos...'},
+      {id:'nivel',label:'Nivel del alumnado',placeholder:'Ej: 3.º ESO / B1 Inglés'},
+      {id:'habilidades',label:'Habilidades lectoras a trabajar',placeholder:'Ej: Comprensión literal, inferencial, pensamiento crítico, vocabulario en contexto'}
+    ],
+    prompt:(f)=>`Crea un agente lector y generador de preguntas para ${f.materia} (${f.tipo_texto}), nivel ${f.nivel}.
+
+Habilidades a desarrollar: ${f.habilidades}
+
+El agente debe:
+1. Recibir cualquier texto (pegado por el docente o el alumno)
+2. Generar automáticamente: preguntas literales (comprensión), inferenciales (interpretación), críticas (valoración) y creativas (relacionar con vida propia)
+3. Adaptar la dificultad al nivel ${f.nivel}
+4. Crear glosario del texto (vocabulario difícil con definición contextual)
+5. Generar actividades adicionales: completar frases del texto, ordenar ideas, debatir afirmaciones del texto
+6. Dar feedback si el alumno/a responde las preguntas
+Incluye: prompt de sistema completo + instrucciones de uso en clase`
+  },
+  'gpt-custom':{
+    fields:[
+      {id:'proposito',label:'¿Para qué es este GPT/agente?',placeholder:'Ej: Asistente de mi asignatura de Química para 2.º Bach.'},
+      {id:'usuarios',label:'¿Quiénes lo usarán?',placeholder:'Ej: Mis alumnos de 16-18 años / Solo yo como docente'},
+      {id:'puede',label:'¿Qué PUEDE hacer?',placeholder:'Ej: Resolver dudas del temario, generar ejemplos, corregir ejercicios...'},
+      {id:'no_puede',label:'¿Qué NO PUEDE hacer?',placeholder:'Ej: Dar exámenes resueltos, hablar de otros temas, hablar de política...'},
+      {id:'personalidad',label:'Personalidad y tono',placeholder:'Ej: Profesora paciente y motivadora llamada "Quimia"'},
+      {id:'idioma',label:'Idioma(s) de respuesta',placeholder:'Español / Inglés / Valenciano / Bilingüe'}
+    ],
+    prompt:(f)=>`Genera las INSTRUCCIONES DE SISTEMA COMPLETAS para un Custom GPT/Agente con este propósito: ${f.proposito}
+
+USUARIOS: ${f.usuarios}
+PUEDE: ${f.puede}
+NO PUEDE: ${f.no_puede}  
+PERSONALIDAD: ${f.personalidad}
+IDIOMA: ${f.idioma}
+
+Dame:
+1. NOMBRE y descripción del GPT (para el campo "Configure GPT" de ChatGPT)
+2. INSTRUCCIONES DE SISTEMA (prompt completo, mínimo 400 palabras, con todos los comportamientos definidos)
+3. CONVERSATION STARTERS: 4 preguntas de inicio sugeridas para el usuario
+4. KNOWLEDGE: qué documentos/archivos ideales subir al Knowledge del GPT
+5. CAPABILITIES: qué activar (Web browsing, Code interpreter, Image generation)
+6. INSTRUCCIONES PARA EL DOCENTE: cómo compartir el GPT con el alumnado de forma segura
+7. AVISO RGPD: qué comunicar al alumnado sobre el uso de datos en ChatGPT`
+  },
+  'cuaderno':{
+    fields:[
+      {id:'materia',label:'Materia',placeholder:'Ej: Biología, Historia, Matemáticas...'},
+      {id:'curso',label:'Curso',placeholder:'Ej: 3.º ESO / 1.º Bachillerato'},
+      {id:'secciones',label:'Secciones del cuaderno',placeholder:'Ej: Apuntes, tareas, autoevaluación, portfolio de trabajos, reflexiones...'},
+      {id:'funciones',label:'Funciones especiales',placeholder:'Ej: Checklist de tareas, registro de notas, calendario de entregas...'}
+    ],
+    prompt:(f)=>`Crea un CUADERNO DIGITAL INTERACTIVO en HTML/CSS/JS (UN SOLO ARCHIVO .html) para la asignatura ${f.materia}, ${f.curso}.
+
+Secciones: ${f.secciones}
+Funciones especiales: ${f.funciones}
+
+El cuaderno digital debe:
+- Diseño atractivo y apropiado para ${f.curso} (colores, tipografía moderna)
+- Navegación con tabs o sidebar para cada sección
+- LocalStorage para guardar los datos del alumno entre sesiones (SIN enviar datos a ningún servidor)
+- Campo de nombre del alumno/a (solo guardado localmente)
+- ${f.secciones} implementadas como secciones interactivas
+- Apartado de notas/apuntes con editor de texto simple
+- Lista de tareas con checkbox y fechas de entrega
+- Exportar a PDF (botón que abre el diálogo de impresión)
+IMPORTANTE: Todo guardado en LocalStorage del navegador. NUNCA enviar datos a servidores externos. Añadir aviso de privacidad visible.
+ENTREGA solo el código HTML completo.`
+  },
+  'analizador':{
+    fields:[
+      {id:'tipo_datos',label:'Tipo de datos a analizar',placeholder:'Ej: Notas de exámenes, asistencia, participación, entregas de tareas...'},
+      {id:'num_alumnos',label:'(Opcional) Nº aproximado de alumnos',placeholder:'Ej: 25-30 alumnos (sin nombres, datos anónimos)'},
+      {id:'graficas',label:'Tipo de gráficas deseadas',placeholder:'Ej: Histograma de notas, distribución por rangos, evolución trimestral...'},
+      {id:'funciones',label:'Funciones extra',placeholder:'Ej: Calcular media/mediana/moda, identificar alumnos en riesgo, exportar...'}
+    ],
+    prompt:(f)=>`Crea una APP ANALIZADORA DE CALIFICACIONES en HTML/CSS/JS (UN SOLO ARCHIVO .html) para docentes.
+
+Tipo de datos: ${f.tipo_datos}
+Gráficas: ${f.graficas}
+Funciones extra: ${f.funciones}
+
+La app debe:
+- Interfaz de entrada de datos: tabla editable donde el docente introduce datos (ANÓNIMOS, sin nombres)
+- Cálculos automáticos: media, mediana, moda, desviación típica, porcentaje superan/no superan
+- Visualización con Chart.js (CDN): ${f.graficas}
+- Panel de resumen: estadísticas clave visibles al instante
+- Función de importar datos copiando desde Excel/Sheets (pegado en textarea)
+- Exportar gráficas y datos (print/PDF)
+- AVISO DE PRIVACIDAD: texto visible que indique que los datos son locales
+- Opción de borrar todos los datos con un botón
+IMPORTANTE: Todos los datos en memoria, NUNCA enviados a ningún servidor.
+ENTREGA solo el código HTML completo.`
+  },
+  'texto-personalizado':{
+    fields:[
+      {id:'tipo_texto',label:'Tipo de texto a generar',placeholder:'Ej: Textos de lectura adaptados, problemas matemáticos, noticias ficticias sobre el tema...'},
+      {id:'materia',label:'Materia',placeholder:'Ej: Lengua, Matemáticas, Historia...'},
+      {id:'variables',label:'Variables personalizables',placeholder:'Ej: Nombre del protagonista, ciudad, deporte favorito, nivel de dificultad...'},
+      {id:'cantidad',label:'Cantidad de textos diferentes',placeholder:'Ej: 5 versiones diferentes / 1 por alumno'}
+    ],
+    prompt:(f)=>`Crea una APP GENERADORA DE TEXTOS PERSONALIZADOS en HTML/CSS/JS (UN SOLO ARCHIVO .html) para generar ${f.tipo_texto} para ${f.materia}.
+
+Variables personalizables: ${f.variables}
+Cantidad: ${f.cantidad}
+
+La app debe:
+- Formulario de personalización: campos para cada variable (${f.variables})
+- Banco de plantillas de textos con [VARIABLES] marcadas
+- Motor de sustitución: reemplaza las variables por los valores introducidos
+- Vista previa del texto generado
+- Botón "Generar aleatoriamente" para crear versiones variadas
+- Botón "Copiar texto" y "Imprimir"
+- Al menos ${f.cantidad} plantillas base diferentes
+- Nivel de dificultad ajustable (simplificado/estándar/avanzado)
+ENTREGA solo el código HTML completo.`
+  },
+  'audio-personalizado':{
+    fields:[
+      {id:'tipo_contenido',label:'Tipo de contenido para audio',placeholder:'Ej: Instrucciones de tarea, cuento personalizado, explicación de concepto...'},
+      {id:'materia',label:'Materia y curso',placeholder:'Ej: Inglés Listening 3.º ESO / Ciencias Naturales 1.º ESO'},
+      {id:'duracion',label:'Duración objetivo del audio',placeholder:'Ej: 2-3 minutos / 5 minutos'},
+      {id:'herramienta',label:'Herramienta de texto-a-voz a usar',placeholder:'Ej: ElevenLabs, Google TTS, NotebookLM, leer en voz alta en Word...'}
+    ],
+    prompt:(f)=>`Crea un guion completo de texto-a-audio para ${f.tipo_contenido} en ${f.materia}. Duración objetivo: ${f.duracion}. Herramienta: ${f.herramienta}.
+
+El guion debe:
+- Estar escrito para ser HABLADO (ritmo natural, frases cortas, pausas marcadas con [PAUSA])
+- Empezar con un gancho que enganche en los primeros 10 segundos
+- Incluir marcas de [ÉNFASIS] en palabras clave
+- Indicar [PAUSA LARGA] donde el alumno debe reflexionar o hacer algo
+- Incluir repaso de los puntos clave al final
+- Añadir instrucciones de producción: velocidad de locución, tono sugerido
+- Versión completa del guion lista para pegar en ${f.herramienta}
+- Actividad de comprensión auditiva para usar después del audio (3-5 preguntas)`
+  },
+  'importar-rubrica':{
+    fields:[
+      {id:'rubrica_desc',label:'Describe la rúbrica que tienes',placeholder:'Ej: Rúbrica con 4 criterios y 4 niveles, en formato tabla Word/Google Docs...'},
+      {id:'materia',label:'Materia y curso',placeholder:'Ej: Lengua 3.º ESO'},
+      {id:'uso',label:'Para qué la usarán los alumnos',placeholder:'Ej: Ver qué se evalúa, autoevaluarse, ver su corrección...'}
+    ],
+    prompt:(f)=>`Crea una APP INTERACTIVA en HTML/CSS/JS (UN SOLO ARCHIVO .html) para usar rúbricas digitalmente. La rúbrica es: ${f.rubrica_desc}. Para ${f.materia}. Uso: ${f.uso}.
+
+La app debe:
+- Mostrar la rúbrica de forma visual y atractiva (tabla interactiva)
+- Permitir al docente seleccionar el nivel conseguido para cada criterio (click en celda)
+- Calcular automáticamente la nota final basada en los pesos
+- Generar un INFORME DE FEEDBACK automático: texto personalizado combinando los descriptores de los niveles seleccionados
+- Botón "Copiar feedback" para pegarlo fácilmente
+- Botón "Nueva evaluación" para resetear
+- Modo alumno: vista de solo lectura donde ve en qué nivel está en cada criterio
+- Aviso de privacidad: datos solo en memoria del navegador
+ENTREGA solo el código HTML completo.`
+  },
+  'actividades-random':{
+    fields:[
+      {id:'materia',label:'Materia',placeholder:'Ej: Matemáticas, Historia, Inglés...'},
+      {id:'tipo_actividades',label:'Tipo de actividades a generar aleatoriamente',placeholder:'Ej: Problemas de refuerzo, preguntas de repaso, ejercicios de vocabulario...'},
+      {id:'curso',label:'Curso y nivel',placeholder:'Ej: 2.º ESO / B1 Inglés'},
+      {id:'banco',label:'Banco de actividades (cuántas)',placeholder:'Ej: 30 actividades aleatorias diferentes'}
+    ],
+    prompt:(f)=>`Crea una APP GENERADORA DE ACTIVIDADES ALEATORIAS en HTML/CSS/JS (UN SOLO ARCHIVO .html) para ${f.materia}, nivel ${f.curso}.
+
+Tipo de actividades: ${f.tipo_actividades}
+Banco de actividades: ${f.banco}
+
+La app debe:
+- Banco interno de ${f.banco} actividades/preguntas sobre ${f.materia} para ${f.curso}
+- Botón principal "Nueva actividad" que muestra una actividad aleatoria
+- Mostrar la actividad claramente: enunciado, espacio para respuesta, pista (opcional), respuesta correcta (oculta hasta click)
+- Opción de filtrar por dificultad (fácil/media/difícil)
+- Contador de actividades realizadas + botón "Reset"
+- Diseño atractivo apropiado para ${f.curso}
+- Las 30 actividades deben estar variadas y cubrir diferentes aspectos de ${f.materia}
+ENTREGA solo el código HTML completo con las actividades ya integradas.`
+  },
+  'feedback-rubrica':{
+    fields:[
+      {id:'materia',label:'Materia y tarea evaluada',placeholder:'Ej: Inglés 4.º ESO - Writing Task: Opinion Essay'},
+      {id:'criterios_rubrica',label:'Criterios de la rúbrica (pega o describe)',placeholder:'Ej: Contenido (30%), Organización (20%), Vocabulario (25%), Gramática (25%)'},
+      {id:'tiempo_objetivo',label:'Tiempo objetivo por corrección',placeholder:'Ej: Menos de 5 minutos por alumno / 3 minutos máximo'}
+    ],
+    prompt:(f)=>`Diseña un sistema completo de feedback rápido por rúbrica para ${f.materia}.
+
+Criterios de la rúbrica: ${f.criterios_rubrica}
+Tiempo objetivo: ${f.tiempo_objetivo}
+
+El sistema debe incluir:
+1. PLANTILLA RÁPIDA DE CORRECCIÓN: tabla donde solo marco con X o número el nivel de cada criterio
+2. BANCO DE FEEDBACK PREESCRITO: para cada criterio y cada nivel (4x4 = 16 comentarios tipo) que puedo combinar con click
+3. SISTEMA DE CÓDIGOS: abreviaturas de 1-2 letras para anotar en el margen del trabajo (Ej: VR=Vocabulario rico, EST=Problema de estructura)
+4. GUION ORAL para devolver el trabajo en 2 minutos por alumno
+5. WORKFLOW COMPLETO: paso a paso de cómo corregir ${f.materia} en ${f.tiempo_objetivo}
+6. PLANTILLA DE EMAIL de devolución (copiar y pegar cambiando el nombre)`
+  },
+  'plantilla-comentarios':{
+    fields:[
+      {id:'materia',label:'Materia',placeholder:'Ej: Matemáticas, Lengua, Inglés...'},
+      {id:'momento',label:'Momento de uso',placeholder:'Ej: Devolución de examen, final de trimestre, entrega de trabajo...'},
+      {id:'tipos',label:'Tipos de comentarios necesarios',placeholder:'Ej: Positivos, de mejora, motivadores, para familias...'},
+      {id:'num',label:'Número de plantillas',placeholder:'Ej: 30 plantillas variadas / 15 por tipo'}
+    ],
+    prompt:(f)=>`Crea un banco de ${f.num} plantillas de comentarios personalizables para ${f.materia}, momento: ${f.momento}.
+
+Tipos: ${f.tipos}
+
+Para cada plantilla:
+- Texto del comentario con [NOMBRE] y [ELEMENTO_PERSONALIZABLE] como variables
+- Tono identificado: motivador / constructivo / formal / cercano
+- Contexto de uso: cuándo usar este comentario específico
+- Versión corta (para boletín o campo limitado) + Versión larga (para email/informe)
+
+Los comentarios deben:
+- Nunca comparar el alumno/a con otros
+- Usar lenguaje orientado al crecimiento (growth mindset)
+- Incluir siempre un elemento positivo y uno de mejora
+- Ser apropiados para compartir con familias si es necesario`
+  },
+  'autocorrector':{
+    fields:[
+      {id:'tipo_ejercicio',label:'Tipo de ejercicio autocorregible',placeholder:'Ej: Preguntas test, completar frases, relacionar columnas, vocabulario...'},
+      {id:'materia',label:'Materia y tema',placeholder:'Ej: Historia 3.º ESO - La Revolución Francesa'},
+      {id:'num_ejercicios',label:'Número de ejercicios',placeholder:'Ej: 20 preguntas / 3 actividades con 10 ítems cada una'},
+      {id:'feedback_tipo',label:'Tipo de feedback al alumno',placeholder:'Ej: Solo correcto/incorrecto / Explicación del por qué / Pista antes de dar la respuesta'}
+    ],
+    prompt:(f)=>`Crea una APP AUTOCORRECTORA con feedback inmediato en HTML/CSS/JS (UN SOLO ARCHIVO .html). Tipo: ${f.tipo_ejercicio}. Materia: ${f.materia}.
+
+Ejercicios: ${f.num_ejercicios}
+Feedback: ${f.feedback_tipo}
+
+La app debe:
+- Interfaz atractiva y motivadora con emojis y colores (verde=correcto, naranja=mejorable)
+- ${f.num_ejercicios} sobre ${f.materia} con respuestas correctas integradas en el código
+- Al responder: feedback inmediato del tipo "${f.feedback_tipo}"
+- Contador de aciertos y progreso visible (barra de progreso)
+- Al finalizar: resultados completos, nota orientativa, repaso de errores
+- Botón "Intentar de nuevo" (mezcla las preguntas aleatoriamente)
+- Sin envíos de datos — todo funciona en el navegador
+ENTREGA solo el código HTML completo.`
+  },
+  'emails-familias':{
+    fields:[
+      {id:'ocasion',label:'Ocasión del email',placeholder:'Ej: Fin de trimestre, convocatoria de reunión, comunicado de resultados, felicitación...'},
+      {id:'curso',label:'Curso',placeholder:'Ej: 3.º ESO A'},
+      {id:'tono',label:'Tono del email',placeholder:'Ej: Formal y profesional / Cercano y empático / Urgente pero tranquilizador'},
+      {id:'puntos',label:'Puntos clave a comunicar',placeholder:'Ej: Notas generales del grupo, próxima reunión, conducta del alumno, logros...'}
+    ],
+    prompt:(f)=>`Crea 5 versiones de email para familias del curso ${f.curso} para la ocasión: "${f.ocasion}".
+
+Tono: ${f.tono}
+Puntos clave: ${f.puntos}
+
+Para cada versión:
+- Asunto del email (claro y específico)
+- Saludo personalizable ([Estimada familia de / Estimado/a Don/Doña])
+- Cuerpo del email con los puntos: ${f.puntos}
+- Cierre cordial con disponibilidad para consultas
+- Firma del docente
+
+Las 5 versiones deben variar en:
+1. Tono muy formal
+2. Tono cercano
+3. Versión corta (para WhatsApp o nota)
+4. Versión para logros positivos del alumno/a
+5. Versión para situación que requiere acción de la familia
+
+Añade: lista de errores frecuentes de comunicación con familias que evitar.`
+  },
+  'ahorro-tiempo':{
+    fields:[
+      {id:'tareas_pesadas',label:'Tus 5 tareas docentes que más tiempo te consumen',placeholder:'Ej: Corregir redacciones, preparar exámenes, rellenar informes, planificar unidades...'},
+      {id:'horas',label:'Horas semanales dedicadas a tareas administrativas',placeholder:'Ej: 10 horas/semana en corrección / 5 horas en planificación...'},
+      {id:'objetivo',label:'¿Cuánto tiempo quieres ahorrar?',placeholder:'Ej: 5 horas semanales / la mitad del tiempo de corrección'},
+      {id:'herramientas',label:'Herramientas IA que ya usas o estás dispuesto/a a usar',placeholder:'Ej: ChatGPT, Claude, Gemini... o ninguna aún'}
+    ],
+    prompt:(f)=>`Actúa como consultor de productividad docente especializado en IA. Analiza mi situación y diseña un plan de ahorro de tiempo personalizado.
+
+MIS TAREAS QUE MÁS TIEMPO CONSUMEN: ${f.tareas_pesadas}
+HORAS ACTUALES: ${f.horas}
+OBJETIVO: ${f.objetivo}
+HERRAMIENTAS DISPONIBLES: ${f.herramientas}
+
+El plan debe incluir:
+1. DIAGNÓSTICO: análisis de qué tareas son automatizables vs. requieren presencia humana
+2. PLAN DE IMPLEMENTACIÓN (4 semanas):
+   - Semana 1: Quick wins (cambios rápidos con mayor impacto)
+   - Semana 2: Automatización de corrección
+   - Semana 3: Automatización de planificación  
+   - Semana 4: Optimización de comunicaciones
+3. PARA CADA TAREA: prompt exacto + herramienta recomendada + tiempo estimado ahorrado
+4. CALCULADORA DE AHORRO: tabla con horas actuales vs. horas con IA
+5. QUÉ HACER CON EL TIEMPO AHORRADO: cómo reinvertirlo en el alumnado
+6. AVISO IMPORTANTE: qué tareas nunca delegar en la IA (evaluación sumativa, tutorías...)`
+  }
+};
+
+function buildForms(){
+  Object.keys(TEMPLATES).forEach(id=>{
+    const t=TEMPLATES[id];
+    const container=document.getElementById('form-'+id);
+    if(!container)return;
+    t.fields.forEach(f=>{
+      const div=document.createElement('div');
+      div.className='field-group';
+      if(f.type==='select'){
+        div.innerHTML=`<label class="field-label" for="field-${id}-${f.id}"><i class="fas fa-tag text-pink-400 text-xs"></i> ${f.label}</label><select id="field-${id}-${f.id}" class="field-input"><option value="">-- Elige --</option>${f.options.map(o=>`<option>${o}</option>`).join('')}</select>`;
+      } else if(f.type==='textarea'){
+        div.innerHTML=`<label class="field-label" for="field-${id}-${f.id}"><i class="fas fa-tag text-pink-400 text-xs"></i> ${f.label}</label><textarea id="field-${id}-${f.id}" class="field-input" rows="3" placeholder="${f.placeholder}"></textarea>`;
+      } else {
+        div.innerHTML=`<label class="field-label" for="field-${id}-${f.id}"><i class="fas fa-tag text-pink-400 text-xs"></i> ${f.label}</label><input type="text" id="field-${id}-${f.id}" class="field-input" placeholder="${f.placeholder}" autocomplete="off">`;
+      }
+      container.appendChild(div);
+    });
+  });
+}
+
+function getValues(id){
+  const t=TEMPLATES[id];
+  const values={};
+  t.fields.forEach(f=>{
+    const el=document.getElementById('field-'+id+'-'+f.id);
+    values[f.id]=el?(el.value.trim()||el.placeholder):'';
+  });
+  return values;
+}
+
+function launch(id){
+  const values=getValues(id);
+  const t=TEMPLATES[id];
+  const prompt=t.prompt(values);
+  const url=AI_URLS[globalAI]+encodeURIComponent(prompt);
+  window.open(url,'_blank');
+  showToast('🚀 Abriendo '+globalAI.charAt(0).toUpperCase()+globalAI.slice(1)+'...');
+}
+
+function previewPrompt(id){
+  const values=getValues(id);
+  const t=TEMPLATES[id];
+  const prompt=t.prompt(values);
+  const box=document.getElementById('preview-'+id);
+  if(!box)return;
+  box.classList.toggle('show');
+  box.textContent=prompt;
+}
+
+function showToast(msg){
+  const toast=document.getElementById('toast');
+  document.getElementById('toast-msg').textContent=msg;
+  toast.classList.add('show');
+  setTimeout(()=>toast.classList.remove('show'),2500);
+}
+
+window.addEventListener('scroll',()=>{
+  const p=document.getElementById('scroll-progress');
+  const pct=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100;
+  p.style.width=pct+'%';
+  const btn=document.getElementById('back-to-top');
+  window.scrollY>400?btn.classList.add('visible'):btn.classList.remove('visible');
+});
+
+const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in-view')}),{threshold:.05});
+document.querySelectorAll('.fade-in').forEach(s=>io.observe(s));
+
+document.getElementById('sidebar-toggle').addEventListener('click',()=>{
+  document.querySelector('aside').classList.add('sidebar-open');
+  document.getElementById('sidebar-backdrop').classList.add('active');
+  document.body.style.overflow='hidden';
+});
+document.getElementById('sidebar-backdrop').addEventListener('click',()=>{
+  document.querySelector('aside').classList.remove('sidebar-open');
+  document.getElementById('sidebar-backdrop').classList.remove('active');
+  document.body.style.overflow='';
+});
+
+buildForms();
+</script>
+  <script src="assets/portal-nav.js"></script>
+</body>
+</html>

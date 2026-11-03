@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Módulo 7 — Generador de Exámenes & Pruebas | EDOCENTIA</title>
+<meta name="description" content="Genera exámenes, pruebas escritas, test, cuestionarios y pruebas orales alineados con criterios de evaluación LOMLOE. Prompts listos para IA.">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:#f8fafc;color:#1e293b}
+#scroll-progress{position:fixed;top:0;left:0;width:0;height:4px;background:linear-gradient(90deg,#dc2626,#ef4444,#f97316);z-index:9999}
+.hero-section{background-image:linear-gradient(135deg,rgba(127,29,29,.93) 0%,rgba(153,27,27,.9) 60%,rgba(185,28,28,.85) 100%),url('https://images.unsplash.com/photo-1516979187457-637abb4f9353?q=80&w=2000&auto=format&fit=crop');background-size:cover;background-position:center;background-attachment:fixed}
+.hero-shimmer{background:linear-gradient(90deg,#fff 40%,rgba(255,255,255,.6) 50%,#fff 60%);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:shimmer 4s linear infinite}
+@keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
+.card-pro{background:#fff;border-radius:1.25rem;box-shadow:0 4px 20px rgba(0,0,0,.05);border:1px solid rgba(0,0,0,.04);transition:.3s}
+.card-pro:hover{transform:translateY(-2px);box-shadow:0 12px 35px rgba(0,0,0,.09)}
+aside nav a{transition:.25s;color:#475569;border-left:3px solid transparent;display:flex;align-items:center;gap:.6rem;padding:.6rem .9rem;border-radius:.75rem;font-size:.85rem;font-weight:500;text-decoration:none}
+aside nav a:hover{background:linear-gradient(90deg,rgba(220,38,38,.1),transparent)!important;color:#b91c1c;border-left-color:#dc2626;padding-left:1.2rem;font-weight:700}
+#sidebar-toggle{display:none;position:fixed;top:1rem;left:1rem;z-index:999;background:linear-gradient(135deg,#dc2626,#ef4444);color:#fff;border:none;width:2.8rem;height:2.8rem;border-radius:.9rem;align-items:center;justify-content:center;font-size:1.1rem;cursor:pointer}
+#sidebar-backdrop{display:none;position:fixed;inset:0;background:rgba(15,23,42,.5);z-index:490}
+@media(max-width:1023px){#sidebar-toggle{display:flex}aside{position:fixed!important;top:0;left:0;height:100dvh!important;width:85vw!important;max-width:340px!important;z-index:500;transform:translateX(-110%);transition:.35s;overflow-y:auto}aside.sidebar-open{transform:translateX(0)}#sidebar-backdrop.active{display:block}#main-content{width:100%!important}}
+details summary{user-select:none;cursor:pointer;list-style:none;outline:none}
+details summary::-webkit-details-marker{display:none}
+details summary .chev{transition:.3s}
+details[open] summary .chev{transform:rotate(180deg)}
+.field-label{display:block;font-size:.8rem;font-weight:700;color:#b91c1c;margin-bottom:.35rem}
+.field-input{width:100%;border:1.5px solid #fecaca;border-radius:.65rem;padding:.55rem .85rem;font-size:.85rem;color:#1e293b;font-family:'Plus Jakarta Sans',sans-serif;background:#fef2f2;transition:.2s;outline:none}
+.field-input:focus{border-color:#dc2626;box-shadow:0 0 0 3px rgba(220,38,38,.12);background:#fff}
+.field-input::placeholder{color:#94a3b8}
+.field-group{margin-bottom:1rem}
+textarea.field-input{resize:vertical;min-height:70px}
+.gen-btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.75rem 1.6rem;border-radius:.85rem;font-weight:700;font-size:.9rem;cursor:pointer;transition:.25s;border:none;width:100%;margin-top:.5rem}
+.gen-btn-red{background:linear-gradient(135deg,#dc2626,#ef4444);color:#fff;box-shadow:0 4px 16px rgba(220,38,38,.35)}
+.gen-btn-red:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(220,38,38,.5)}
+.gen-btn-rose{background:linear-gradient(135deg,#e11d48,#fb7185);color:#fff;box-shadow:0 4px 16px rgba(225,29,72,.3)}
+.gen-btn-rose:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(225,29,72,.45)}
+.prompt-result{background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:.75rem;padding:1.25rem;font-size:.8rem;line-height:1.7;color:#475569;white-space:pre-wrap;max-height:280px;overflow-y:auto;display:none;margin-top:.75rem}
+.prompt-result.show{display:block}
+.copy-btn{display:inline-flex;align-items:center;gap:.4rem;padding:.5rem 1.1rem;background:rgba(220,38,38,.1);border:1px dashed rgba(220,38,38,.4);border-radius:.6rem;color:#b91c1c;font-size:.78rem;font-weight:700;cursor:pointer;transition:.2s;margin-top:.5rem}
+.copy-btn:hover{background:rgba(220,38,38,.18);border-style:solid}
+.copy-btn.copied{background:rgba(16,185,129,.12);border-color:rgba(16,185,129,.4);color:#059669}
+.prompt-card{background:#fff;border:1.5px solid #e2e8f0;border-radius:1rem;padding:1.5rem;transition:.3s;margin-bottom:1rem}
+.prompt-card:hover{border-color:rgba(220,38,38,.3);box-shadow:0 8px 30px rgba(220,38,38,.09)}
+.fade-in{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s cubic-bezier(.4,0,.2,1)}
+.fade-in.in-view{opacity:1;transform:translateY(0)}
+#toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(80px);background:#1e293b;color:#fff;padding:.75rem 1.5rem;border-radius:1rem;font-size:.85rem;font-weight:600;z-index:9999;transition:.3s;display:flex;align-items:center;gap:.5rem}
+#toast.show{transform:translateX(-50%) translateY(0)}
+#back-to-top{position:fixed;bottom:2rem;right:2rem;width:3rem;height:3rem;background:linear-gradient(135deg,#dc2626,#ef4444);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;pointer-events:none;transform:translateY(20px);transition:.3s;z-index:998;border:none}
+#back-to-top.visible{opacity:1;pointer-events:all;transform:translateY(0)}
+.cat-icon{width:2.5rem;height:2.5rem;border-radius:.9rem;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+.exam-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1rem}
+@media(max-width:640px){.exam-grid{grid-template-columns:1fr}}
+</style>
+  <link rel="stylesheet" href="../assets/portal-nav.css">
+</head>
+<body class="antialiased">
+<div id="scroll-progress"></div>
+<button id="sidebar-toggle"><i class="fas fa-bars"></i></button>
+<div id="sidebar-backdrop"></div>
+<button id="back-to-top"><i class="fas fa-arrow-up"></i></button>
+<div id="toast"><i class="fas fa-pen text-red-400"></i> <span id="toast-msg">¡Listo!</span></div>
+
+<div class="flex min-h-screen">
+<aside class="w-64 flex-shrink-0 bg-white border-r border-slate-100 shadow-sm sticky top-0 h-screen overflow-y-auto z-50">
+  <div class="p-5 border-b border-slate-100">
+    <div class="flex items-center gap-2.5 mb-1">
+      <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-red-500 to-rose-700 flex items-center justify-center text-white shadow text-base">📝</div>
+      <div><div class="font-extrabold text-slate-800 text-sm leading-tight">Generador de Exámenes</div><div class="text-xs text-slate-400">Módulo 07 · EDOCENTIA</div></div>
+    </div>
+  </div>
+  <nav class="p-3 space-y-0.5">
+    <p class="text-xs font-bold text-slate-400 uppercase tracking-widest px-2 pt-3 pb-1">Partes del módulo</p>
+    <a href="#parte-1"><i class="fas fa-file-alt w-4 text-red-500"></i> Examen Escrito Completo</a>
+    <a href="#parte-2"><i class="fas fa-check-circle w-4 text-rose-500"></i> Test Tipo A/B/C/D</a>
+    <a href="#parte-3"><i class="fas fa-microphone w-4 text-pink-500"></i> Prueba Oral</a>
+    <a href="#parte-4"><i class="fas fa-tasks w-4 text-indigo-500"></i> Prueba Práctica</a>
+    <a href="#parte-5"><i class="fas fa-key w-4 text-amber-500"></i> Plantilla Corrección</a>
+    <hr class="my-2 border-slate-100">
+    <a href="../index.html"><i class="fas fa-home w-4 text-slate-400"></i> Homepage EDOCENTIA</a>
+    <a href="../app-ia.html"><i class="fas fa-robot w-4 text-violet-500"></i> App IA Interactiva</a>
+  </nav>
+</aside>
+
+<main id="main-content" class="flex-1 min-w-0">
+<section class="hero-section text-white py-16 px-8 md:px-14">
+  <div class="max-w-4xl">
+    <a href="../index.html" class="inline-flex items-center gap-2 text-white/70 hover:text-white text-xs font-semibold mb-5 transition-colors"><i class="fas fa-arrow-left"></i> Volver a EDOCENTIA</a>
+    <div class="inline-flex items-center gap-2 bg-white/15 border border-white/25 rounded-full px-4 py-1.5 text-xs font-semibold mb-4 backdrop-blur-sm">
+      <i class="fas fa-pen text-yellow-300"></i> Módulo 07 — Evaluación Sumativa
+    </div>
+    <h1 class="text-3xl md:text-5xl font-extrabold leading-tight mb-3 hero-shimmer">Generador de<br>Exámenes & Pruebas</h1>
+    <p class="text-base text-white/85 max-w-2xl leading-relaxed mb-5">Genera exámenes escritos, pruebas orales, tests y plantillas de corrección alineados con los criterios de evaluación LOMLOE. Proporciona el contenido y la IA hace el examen completo.</p>
+    <div class="flex flex-wrap gap-3">
+      <a href="#parte-1" class="bg-white text-red-700 font-bold px-5 py-2.5 rounded-xl text-sm shadow hover:-translate-y-0.5 transition-all">📝 Examen escrito</a>
+      <a href="#parte-2" class="bg-white/15 border border-white/30 text-white font-bold px-5 py-2.5 rounded-xl text-sm hover:bg-white/25 transition-all">✅ Test</a>
+      <a href="#parte-3" class="bg-white/15 border border-white/30 text-white font-bold px-5 py-2.5 rounded-xl text-sm hover:bg-white/25 transition-all">🎙️ Oral</a>
+    </div>
+  </div>
+</section>
+
+<div class="max-w-5xl mx-auto px-5 md:px-10 py-10 space-y-8">
+
+<!-- PARTE 1: EXAMEN ESCRITO -->
+<div id="parte-1" class="fade-in">
+<details class="card-pro !p-0 border border-slate-100" open>
+<summary class="flex items-center justify-between p-5 cursor-pointer">
+  <div class="flex items-center gap-3">
+    <div class="cat-icon bg-red-100 text-red-700">📝</div>
+    <div><div class="font-bold text-slate-800">Parte 1 — Examen Escrito Completo</div><div class="text-xs text-slate-400">Prueba tradicional o competencial con preguntas variadas y criterios</div></div>
+  </div>
+  <i class="fas fa-chevron-down text-slate-400 chev"></i>
+</summary>
+<div class="px-5 pb-6 pt-3 border-t border-slate-50">
+
+<div class="prompt-card">
+  <div class="font-bold text-slate-700 text-sm mb-3">📝 Examen escrito completo alineado con LOMLOE</div>
+  <div class="grid md:grid-cols-2 gap-3">
+    <div class="field-group"><label class="field-label">📚 Asignatura, nivel y unidad evaluada</label><input type="text" class="field-input" id="ex-materia" placeholder="Ej: Historia 4.º ESO — La Segunda República"></div>
+    <div class="field-group"><label class="field-label">📋 Saberes básicos / contenidos a examinar</label><textarea class="field-input" id="ex-contenidos" placeholder="Lista los contenidos que entran en el examen..."></textarea></div>
+    <div class="field-group"><label class="field-label">🎯 Criterios de evaluación (CE)</label><input type="text" class="field-input" id="ex-ce" placeholder="Ej: CE.CS.1.1, CE.CS.2.3 o descripción..."></div>
+    <div class="field-group"><label class="field-label">⏱️ Duración del examen</label><select class="field-input" id="ex-duracion"><option>45 minutos</option><option selected>55 minutos</option><option>1 hora</option><option>2 horas</option></select></div>
+    <div class="field-group"><label class="field-label">🎯 Estilo del examen</label><select class="field-input" id="ex-estilo"><option selected>Tradicional (preguntas teóricas + prácticas)</option><option>Competencial (contextos reales)</option><option>EVAU/Selectividad estilo</option><option>Por criterios (una parte por CE)</option><option>Mixed: test + desarrollo + caso práctico</option></select></div>
+    <div class="field-group"><label class="field-label">🔢 Número de preguntas y distribución</label><input type="text" class="field-input" id="ex-preguntas" placeholder="Ej: 2 test 20pts, 3 desarrollo 60pts, 1 ensayo 20pts"></div>
+    <div class="field-group md:col-span-2"><label class="field-label">📋 Información adicional del grupo</label><input type="text" class="field-input" id="ex-contexto" placeholder="Ej: grupo mixto, hay 2 ACINEES, nivel medio-alto, primera prueba del trimestre..."></div>
+  </div>
+  <button class="gen-btn gen-btn-red" onclick="generateAndShow('examen-completo')"><i class="fas fa-file-alt"></i> Generar examen completo</button>
+  <div class="prompt-result" id="result-examen-completo"></div>
+  <button class="copy-btn" id="copy-examen-completo" onclick="copyPrompt('examen-completo')" style="display:none"><i class="fas fa-copy"></i> Copiar</button>
+</div>
+
+</div>
+</details>
+</div>
+
+<!-- PARTE 2: TEST TIPO A B C D -->
+<div id="parte-2" class="fade-in">
+<details class="card-pro !p-0 border border-slate-100">
+<summary class="flex items-center justify-between p-5 cursor-pointer">
+  <div class="flex items-center gap-3">
+    <div class="cat-icon bg-rose-100 text-rose-700">✅</div>
+    <div><div class="font-bold text-slate-800">Parte 2 — Test de Opción Múltiple</div><div class="text-xs text-slate-400">Test tipo A-B-C-D con distractores, niveles y banco de preguntas</div></div>
+  </div>
+  <i class="fas fa-chevron-down text-slate-400 chev"></i>
+</summary>
+<div class="px-5 pb-6 pt-3 border-t border-slate-50">
+
+<div class="exam-grid">
+<div class="prompt-card">
+  <div class="text-2xl mb-2">✅</div>
+  <div class="font-bold text-slate-700 text-sm mb-3">Test de opción múltiple (A-B-C-D)</div>
+  <div class="field-group"><label class="field-label">📚 Asignatura y tema</label><input type="text" class="field-input" id="test-tema" placeholder="Ej: Biología 4.º ESO — Genética"></div>
+  <div class="field-group"><label class="field-label">🔢 Número de preguntas</label><select class="field-input" id="test-num"><option>10 preguntas</option><option selected>20 preguntas</option><option>30 preguntas</option><option>50 (banco)</option></select></div>
+  <div class="field-group"><label class="field-label">🎯 Distribución de dificultad</label><select class="field-input" id="test-dificultad"><option>Todas fáciles (recordar/comprender)</option><option selected>Mixta (fácil 40%, media 40%, difícil 20%)</option><option>Avanzado (aplicar/analizar)</option></select></div>
+  <button class="gen-btn gen-btn-red" onclick="generateAndShow('test-multiple')"><i class="fas fa-check-square"></i> Generar test</button>
+  <div class="prompt-result" id="result-test-multiple"></div>
+  <button class="copy-btn" id="copy-test-multiple" onclick="copyPrompt('test-multiple')" style="display:none"><i class="fas fa-copy"></i> Copiar</button>
+</div>
+
+<div class="prompt-card">
+  <div class="text-2xl mb-2">🎯</div>
+  <div class="font-bold text-slate-700 text-sm mb-3">Kahoot / Quiziz en 5 minutos</div>
+  <div class="field-group"><label class="field-label">📚 Tema y nivel</label><input type="text" class="field-input" id="kahoot-tema" placeholder="Ej: Inglés 3.º ESO — Present perfect"></div>
+  <div class="field-group"><label class="field-label">🔢 Número de preguntas</label><select class="field-input" id="kahoot-num"><option>5 preguntas (5 min)</option><option selected>10 preguntas (10 min)</option><option>15 preguntas (15 min)</option></select></div>
+  <button class="gen-btn gen-btn-rose" onclick="generateAndShow('kahoot-quiz')"><i class="fas fa-gamepad"></i> Generar Kahoot</button>
+  <div class="prompt-result" id="result-kahoot-quiz"></div>
+  <button class="copy-btn" id="copy-kahoot-quiz" onclick="copyPrompt('kahoot-quiz')" style="display:none"><i class="fas fa-copy"></i> Copiar</button>
+</div>
+</div>
+
+</div>
+</details>
+</div>
+
+<!-- PARTE 3: PRUEBA ORAL -->
+<div id="parte-3" class="fade-in">
+<details class="card-pro !p-0 border border-slate-100">
+<summary class="flex items-center justify-between p-5 cursor-pointer">
+  <div class="flex items-center gap-3">
+    <div class="cat-icon bg-pink-100 text-pink-700">🎙️</div>
+    <div><div class="font-bold text-slate-800">Parte 3 — Prueba Oral y Presentación</div><div class="text-xs text-slate-400">Protocolos de evaluación oral con rúbrica de expresión</div></div>
+  </div>
+  <i class="fas fa-chevron-down text-slate-400 chev"></i>
+</summary>
+<div class="px-5 pb-6 pt-3 border-t border-slate-50">
+
+<div class="prompt-card">
+  <div class="font-bold text-slate-700 text-sm mb-3">🎙️ Prueba oral con protocolo y rúbrica</div>
+  <div class="grid md:grid-cols-2 gap-3">
+    <div class="field-group"><label class="field-label">📚 Asignatura y tema</label><input type="text" class="field-input" id="oral-exam-tema" placeholder="Ej: Inglés B1 — Presentación de un tema libre"></div>
+    <div class="field-group"><label class="field-label">⏱️ Tiempo por alumno</label><select class="field-input" id="oral-tiempo"><option>2-3 minutos</option><option selected>5 minutos</option><option>10 minutos</option><option>15 minutos</option></select></div>
+    <div class="field-group"><label class="field-label">🎯 Formato de la prueba oral</label><select class="field-input" id="oral-formato-exam"><option selected>Presentación (alumno elige tema)</option><option>Preguntas y respuestas (docente pregunta)</option><option>Debate o discusión</option><option>Lectura en voz alta + preguntas</option><option>Simulación/roleplay</option></select></div>
+    <div class="field-group"><label class="field-label">🎯 CE evaluados</label><input type="text" class="field-input" id="oral-ce" placeholder="Ej: CE.EI.1.1, CE.EI.1.2 o descripción..."></div>
+  </div>
+  <button class="gen-btn gen-btn-red" onclick="generateAndShow('prueba-oral')"><i class="fas fa-microphone"></i> Generar prueba oral</button>
+  <div class="prompt-result" id="result-prueba-oral"></div>
+  <button class="copy-btn" id="copy-prueba-oral" onclick="copyPrompt('prueba-oral')" style="display:none"><i class="fas fa-copy"></i> Copiar</button>
+</div>
+
+</div>
+</details>
+</div>
+
+<!-- PARTE 4: PRUEBA PRÁCTICA -->
+<div id="parte-4" class="fade-in">
+<details class="card-pro !p-0 border border-slate-100">
+<summary class="flex items-center justify-between p-5 cursor-pointer">
+  <div class="flex items-center gap-3">
+    <div class="cat-icon bg-indigo-100 text-indigo-700">🔧</div>
+    <div><div class="font-bold text-slate-800">Parte 4 — Prueba Práctica</div><div class="text-xs text-slate-400">Resolución de casos, problemas, proyectos y producciones</div></div>
+  </div>
+  <i class="fas fa-chevron-down text-slate-400 chev"></i>
+</summary>
+<div class="px-5 pb-6 pt-3 border-t border-slate-50">
+
+<div class="prompt-card">
+  <div class="font-bold text-slate-700 text-sm mb-3">🔧 Prueba práctica / estudio de caso</div>
+  <div class="grid md:grid-cols-2 gap-3">
+    <div class="field-group"><label class="field-label">📚 Asignatura y nivel</label><input type="text" class="field-input" id="prac-materia" placeholder="Ej: Matemáticas 3.º ESO"></div>
+    <div class="field-group"><label class="field-label">🎯 Tipo de prueba práctica</label><select class="field-input" id="prac-tipo"><option selected>Resolución de problemas contextualizados</option><option>Estudio de caso real</option><option>Proyecto de investigación</option><option>Creación de un producto</option><option>Análisis de fuentes/datos</option></select></div>
+    <div class="field-group"><label class="field-label">📋 Contenidos que evalúa</label><input type="text" class="field-input" id="prac-contenidos" placeholder="Ej: fracciones, porcentajes, estadística básica..."></div>
+    <div class="field-group"><label class="field-label">⏱️ Duración</label><select class="field-input" id="prac-duracion"><option>55 min (1 sesión)</option><option selected>2 sesiones</option><option>1 semana (tarea)</option></select></div>
+  </div>
+  <button class="gen-btn gen-btn-red" onclick="generateAndShow('prueba-practica')"><i class="fas fa-tools"></i> Generar prueba práctica</button>
+  <div class="prompt-result" id="result-prueba-practica"></div>
+  <button class="copy-btn" id="copy-prueba-practica" onclick="copyPrompt('prueba-practica')" style="display:none"><i class="fas fa-copy"></i> Copiar</button>
+</div>
+
+</div>
+</details>
+</div>
+
+<!-- PARTE 5: PLANTILLA DE CORRECCIÓN -->
+<div id="parte-5" class="fade-in">
+<details class="card-pro !p-0 border border-slate-100">
+<summary class="flex items-center justify-between p-5 cursor-pointer">
+  <div class="flex items-center gap-3">
+    <div class="cat-icon bg-amber-100 text-amber-700">🔑</div>
+    <div><div class="font-bold text-slate-800">Parte 5 — Plantilla de Corrección y Solucionario</div><div class="text-xs text-slate-400">Criterios de corrección, baremos y respuestas modelo</div></div>
+  </div>
+  <i class="fas fa-chevron-down text-slate-400 chev"></i>
+</summary>
+<div class="px-5 pb-6 pt-3 border-t border-slate-50">
+
+<div class="prompt-card">
+  <div class="font-bold text-slate-700 text-sm mb-3">🔑 Plantilla de corrección + respuestas modelo</div>
+  <div class="grid md:grid-cols-2 gap-3">
+    <div class="field-group"><label class="field-label">📚 Examen que quieres corregir</label><input type="text" class="field-input" id="corr-materia" placeholder="Ej: Historia 4.º ESO — La Segunda República"></div>
+    <div class="field-group"><label class="field-label">📋 Preguntas del examen (resume o pega)</label><textarea class="field-input" id="corr-preguntas" placeholder="Ej: P1. Define conceptos (20pts), P2. Comenta fuente (30 pts), P3. Redacción (50 pts)..."></textarea></div>
+    <div class="field-group"><label class="field-label">📊 Sistema de puntuación</label><input type="text" class="field-input" id="corr-puntuacion" placeholder="Ej: total 10 pts, P1: 2pts, P2: 3pts, P3: 5pts..."></div>
+    <div class="field-group"><label class="field-label">📋 Criterios de calidad</label><select class="field-input" id="corr-criterios-tipo"><option selected>Con respuestas modelo completas</option><option>Solo criterios de corrección (sin respuesta)</option><option>Respuesta modelo + errores frecuentes</option></select></div>
+  </div>
+  <button class="gen-btn gen-btn-red" onclick="generateAndShow('plantilla-correccion')"><i class="fas fa-key"></i> Generar plantilla corrección</button>
+  <div class="prompt-result" id="result-plantilla-correccion"></div>
+  <button class="copy-btn" id="copy-plantilla-correccion" onclick="copyPrompt('plantilla-correccion')" style="display:none"><i class="fas fa-copy"></i> Copiar</button>
+</div>
+
+</div>
+</details>
+</div>
+
+</div>
+</main>
+</div>
+
+<script>
+window.addEventListener('scroll',()=>{document.getElementById('scroll-progress').style.width=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100+'%';document.getElementById('back-to-top').classList.toggle('visible',window.scrollY>400);});
+document.getElementById('back-to-top').onclick=()=>window.scrollTo({top:0,behavior:'smooth'});
+const io=new IntersectionObserver(e=>e.forEach(en=>{if(en.isIntersecting)en.target.classList.add('in-view')}),{threshold:.08});
+document.querySelectorAll('.fade-in').forEach(el=>io.observe(el));
+const toggle=document.getElementById('sidebar-toggle');
+const aside=document.querySelector('aside');
+const backdrop=document.getElementById('sidebar-backdrop');
+toggle.onclick=()=>{aside.classList.toggle('sidebar-open');backdrop.classList.toggle('active')};
+backdrop.onclick=()=>{aside.classList.remove('sidebar-open');backdrop.classList.remove('active')};
+function showToast(msg){document.getElementById('toast-msg').textContent=msg;document.getElementById('toast').classList.add('show');setTimeout(()=>document.getElementById('toast').classList.remove('show'),2500);}
+
+const PROMPTS={
+  'examen-completo':()=>{
+    const m=document.getElementById('ex-materia').value||'[materia y unidad]';
+    const c=document.getElementById('ex-contenidos').value||'[contenidos]';
+    const ce=document.getElementById('ex-ce').value||'[CE]';
+    const d=document.getElementById('ex-duracion').value;
+    const e=document.getElementById('ex-estilo').value;
+    const p=document.getElementById('ex-preguntas').value||'preguntas variadas';
+    const ctx=document.getElementById('ex-contexto').value;
+    return `Actúa como docente experto en evaluación educativa LOMLOE. Diseña un EXAMEN COMPLETO de ${d} para ${m}.\n\nCONTENIDOS: ${c}\nCRITERIOS DE EVALUACIÓN: ${ce}\nESTILO: ${e}\nDISTRIBUCIÓN: ${p}\n${ctx?'CONTEXTO DEL GRUPO: '+ctx:''}\n\nEl examen debe incluir:\n\n1. ENCABEZADO DEL EXAMEN\n• Nombre del centro, asignatura, nivel, curso, trimestre\n• Nombre del alumno/a, grupo, fecha\n• Instrucciones generales y tiempo disponible\n• Puntuación por sección\n\n2. PREGUNTAS DEL EXAMEN (siguiendo la distribución: ${p})\n\nPara CADA PREGUNTA:\n• Enunciado claro y completo\n• Puntuación asignada\n• Instrucciones específicas (extensión, formato...)\n• CE que evalúa\n\nTipos de preguntas incluidas (en ${e}):\n[Diseña las preguntas según el estilo y distribución solicitados, asegurando variedad de tipos y complejidad progresiva]\n\n3. ESPACIO DE RESPUESTA\nIndica cuánto espacio dar para cada respuesta\n\n4. PLANTILLA DE CORRECCIÓN (en sección aparte)\n• Respuesta modelo o criterios de corrección por pregunta\n• Baremo detallado (¿qué puntuar si está parcialmente correcto?)\n• Respuestas aceptables alternativas\n• Errores que descontan puntos\n\n5. ADAPTACIÓN PARA ALUMNADO CON NEE\n• Versión simplificada o con apoyos adicionales de las preguntas más difíciles\n\nFormato: listo para imprimir, con diseño limpio y profesional.`;
+  },
+  'test-multiple':()=>{const t=document.getElementById('test-tema').value||'[tema]';const n=document.getElementById('test-num').value;const d=document.getElementById('test-dificultad').value;return `Actúa como docente experto en evaluación. Diseña un TEST DE OPCIÓN MÚLTIPLE de ${n} para ${t}.\n\nDISTRIBUCIÓN DE DIFICULTAD: ${d}\n\nPara cada pregunta:\n\nPREGUNTA [N]: [ENUNCIADO CLARO]\na) [opción]\nb) [opción]\nc) [opción]\nd) [opción]\nRESPUESTA CORRECTA: [letra]\nCE evaluado: [código]\nNIVEL: [fácil/medio/difícil]\nJUSTIFICACIÓN: Por qué las otras 3 opciones (distractores) son incorrectas\n\nREGLAS DE DISEÑO:\n• Los 3 distractores deben ser plausibles (errores frecuentes reales)\n• Evitar "todas las anteriores", "ninguna de las anteriores"\n• Distribución aleatoria de las respuestas correctas (no siempre la B)\n• Lenguaje claro y sin trampa\n\nFinaliza con:\n• TABLA RESUMEN: pregunta → respuesta correcta (hoja para el docente)\n• INSTRUCCIONES PARA EL ALUMNO (cuánto descuenta un fallo, si es que descuenta)`;},
+  'kahoot-quiz':()=>{const t=document.getElementById('kahoot-tema').value||'[tema]';const n=document.getElementById('kahoot-num').value;return `Actúa como docente creativo. Genera ${n} PARA KAHOOT/QUIZIZ sobre ${t}.\n\nPara cada pregunta usa este formato exacto:\n\nPREGUNTA [N]: [QUESTION]\nA) [opción]\nB) [opción]\nC) [opción] (si hay 4 opciones)\nD) [opción]\n✅ CORRECTA: [letra + explicación breve]\n💡 DATO CURIOSO: [algo que el alumnado recordará]\n⏱ TIEMPO SUGERIDO: [X segundos]\n\nREQUISITOS:\n• Preguntas variadas: conceptos, aplicaciones, curiosidades\n• Formuladas de forma que inviten a pensar (no trivial)\n• Los distractores son errores frecuentes del alumnado\n• Vocabulario apropiado para el nivel\n\nFinaliza con:\n• CÓMO IMPLEMENTARLO: instrucciones para crear el Kahoot manualmente\n• SUGERENCIA de música/ambiente para la sesión`;},
+  'prueba-oral':()=>{const t=document.getElementById('oral-exam-tema').value||'[tema]';const ti=document.getElementById('oral-tiempo').value;const f=document.getElementById('oral-formato-exam').value;const ce=document.getElementById('oral-ce').value||'[CE]';return `Actúa como docente especialista en evaluación oral. Diseña una PRUEBA ORAL de ${ti} por alumno/a para ${t}.\n\nFORMATO: ${f}\nCRITERIOS: ${ce}\n\n1. PROTOCOLO PARA EL DOCENTE\n• Cómo organizar el calendario de pruebas orales (gestión del tiempo)\n• Qué preparar antes (entorno, material)\n• Cómo evaluar mientras se escucha\n• Qué hacer si el alumno se bloquea\n\n2. FICHA DE PRESENTACIÓN PARA EL ALUMNO\n• Qué se les pide exactamente en el formato ${f}\n• Cómo prepararse\n• Criterios que se evaluarán (sin nota total)\n• Consejos prácticos para la presentación\n\n3. PREGUNTAS O TEMAS\n• 5 opciones de tema/pregunta entre las que el alumno puede elegir (si aplica)\n• 10 preguntas que el docente puede hacer durante la prueba (follow-up)\n\n4. RÚBRICA DE EVALUACIÓN ORAL\nCriterios:\n• Contenido y corrección (X%)\n• Pronunciación/Articulación (X%)\n• Fluidez y coherencia (X%)\n• Expresión corporal y contacto visual (X%)\n• Respuesta a preguntas (X%)\n\nPara cada criterio: 4 niveles de logro con descriptores específicos\n\n5. CÓMO COMUNICAR LOS RESULTADOS\n• Feedback oral durante o después de la prueba\n• Cómo explicar la rúbrica al alumno`;},
+  'prueba-practica':()=>{const m=document.getElementById('prac-materia').value||'[materia]';const t=document.getElementById('prac-tipo').value;const c=document.getElementById('prac-contenidos').value||'[contenidos]';const d=document.getElementById('prac-duracion').value;return `Actúa como docente experto en evaluación auténtica. Diseña una PRUEBA PRÁCTICA de tipo "${t}" para ${m}, duración ${d}.\n\nCONTENIDOS: ${c}\n\n1. PRESENTACIÓN DEL RETO\n• Contexto real y motivador (por qué esta prueba importa)\n• Qué rol adopta el alumnado\n• Producto final que deben entregar\n\n2. INSTRUCCIONES COMPLETAS\n• Fase a fase con tiempo estimado\n• Recursos que pueden usar (o no pueden usar)\n• Trabajo individual o grupal\n\n3. EL RETO/PROBLEMA/CASO\n• Planteamiento completo del caso o problema práctico\n• Datos, fuentes o materiales que se proporcionan\n• Qué tienen que resolver o producir\n\n4. CRITERIOS DE EVALUACIÓN\n• Rúbrica con 4-5 criterios y 4 niveles\n• Cómo se calcula la nota final\n\n5. VARIANTE PARA NEE\n• Adaptación de la prueba para alumnado con necesidades específicas`;},
+  'plantilla-correccion':()=>{const m=document.getElementById('corr-materia').value||'[examen]';const p=document.getElementById('corr-preguntas').value||'[preguntas]';const pu=document.getElementById('corr-puntuacion').value||'total 10 pts';const t=document.getElementById('corr-criterios-tipo').value;return `Actúa como docente corrector. Diseña la PLANTILLA DE CORRECCIÓN para el examen de ${m}.\n\nPREGUNTAS: ${p}\nSISTEMA DE PUNTUACIÓN: ${pu}\nTIPO: ${t}\n\nLa plantilla incluye:\n\n1. ENCABEZADO DE CORRECCIÓN\n• Instrucciones para el corrector\n• Nota de corte y equivalencias\n• Tabla resumen de puntuaciones\n\n2. POR CADA PREGUNTA:\n\nPREGUNTA [N] — [X PUNTOS]\nRESPUESTA MODELO (si aplica):\n[Respuesta completa y bien redactada]\n\nCRITERIOS DE CORRECCIÓN:\n• Elementos imprescindibles para cada punto\n• Punto completo si: ...\n• Medio punto si: ...\n• Sin punto si: ...\n\nERRORES FRECUENTES DEL ALUMNADO:\n• Error 1: [descripción] → Descuenta X pts por...\n• Error 2: [descripción]\n\nCOMENTARIOS DE FEEDBACK PREPARADOS:\n• Para nota alta: "[comentario motivador]"\n• Para nota media: "[comentario orientativo]"\n• Para nota baja: "[comentario constructivo]"\n\n3. TABLA FINAL DE CALIFICACIONES\n| Pregunta | Puntos máx | Criterios resumen |\n\n4. RESUMEN DE CORRECCIÓN (para el docente)\nAlgo que te ayude a ser ágil y consistente al corregir 30 exámenes.`}
+};
+function generateAndShow(key){const prompt=PROMPTS[key]();const el=document.getElementById('result-'+key);el.textContent=prompt;el.classList.add('show');const btn=document.getElementById('copy-'+key);if(btn)btn.style.display='inline-flex';el.scrollIntoView({behavior:'smooth',block:'nearest'});}
+function copyPrompt(key){const el=document.getElementById('result-'+key);navigator.clipboard.writeText(el.textContent).then(()=>{const btn=document.getElementById('copy-'+key);if(btn){btn.classList.add('copied');btn.innerHTML='<i class="fas fa-check"></i> ¡Copiado!';}showToast('✅ Prompt copiado');setTimeout(()=>{if(btn){btn.classList.remove('copied');btn.innerHTML='<i class="fas fa-copy"></i> Copiar';}},2000);});}
+</script>
+  <script src="../assets/portal-nav.js"></script>
+</body>
+</html>

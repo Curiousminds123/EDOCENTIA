@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Módulo 2 — Visualizador de Notas & Análisis de Clase | EDOCENTIA</title>
+<meta name="description" content="Visualiza tus calificaciones con 10 tipos de gráficos interactivos. Analiza tu clase con IA y obtén interpretaciones pedagógicas. Introduce tus notas y genera análisis completos.">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:#f8fafc;color:#1e293b}
+#scroll-progress{position:fixed;top:0;left:0;width:0;height:4px;background:linear-gradient(90deg,#06b6d4,#6366f1,#f97316);z-index:9999;transition:width .1s linear}
+.hero-section{background-image:linear-gradient(135deg,rgba(6,182,212,.92) 0%,rgba(99,102,241,.9) 60%,rgba(139,92,246,.85) 100%),url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2000&auto=format&fit=crop');background-size:cover;background-position:center;background-attachment:fixed}
+.hero-shimmer{background:linear-gradient(90deg,#fff 40%,rgba(255,255,255,.6) 50%,#fff 60%);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:shimmer 4s linear infinite}
+@keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
+.gradient-text{background:linear-gradient(135deg,#06b6d4,#6366f1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.card-pro{background:#fff;border-radius:1.25rem;box-shadow:0 4px 20px rgba(0,0,0,.05);border:1px solid rgba(0,0,0,.04);transition:all .3s ease}
+.card-pro:hover{transform:translateY(-2px);box-shadow:0 12px 35px rgba(0,0,0,.09)}
+aside nav a{transition:all .25s ease;color:#475569;border-left:3px solid transparent;display:flex;align-items:center;gap:.6rem;padding:.6rem .9rem;border-radius:.75rem;font-size:.85rem;font-weight:500;text-decoration:none}
+aside nav a:hover{background:linear-gradient(90deg,rgba(6,182,212,.1),transparent)!important;color:#0891b2;border-left-color:#06b6d4;padding-left:1.2rem;font-weight:700}
+#sidebar-toggle{display:none;position:fixed;top:1rem;left:1rem;z-index:999;background:linear-gradient(135deg,#06b6d4,#6366f1);color:#fff;border:none;width:2.8rem;height:2.8rem;border-radius:.9rem;align-items:center;justify-content:center;font-size:1.1rem;cursor:pointer;box-shadow:0 4px 16px rgba(6,182,212,.4)}
+#sidebar-backdrop{display:none;position:fixed;inset:0;background:rgba(15,23,42,.5);backdrop-filter:blur(4px);z-index:490}
+@media(max-width:1023px){#sidebar-toggle{display:flex}aside{position:fixed!important;top:0;left:0;height:100dvh!important;width:85vw!important;max-width:340px!important;z-index:500;transform:translateX(-110%);transition:transform .35s cubic-bezier(.4,0,.2,1);overflow-y:auto}aside.sidebar-open{transform:translateX(0);box-shadow:8px 0 40px rgba(0,0,0,.18)}#sidebar-backdrop.active{display:block}#main-content{width:100%!important}}
+details{transition:box-shadow .3s ease}
+details:hover{border-color:rgba(6,182,212,.25)!important}
+details[open]{box-shadow:0 8px 30px rgba(6,182,212,.08)!important}
+details summary{user-select:none;cursor:pointer;list-style:none;outline:none}
+details summary::-webkit-details-marker{display:none}
+details summary .chev{transition:transform .3s ease}
+details[open] summary .chev{transform:rotate(180deg)}
+.field-group{margin-bottom:1rem}
+.field-label{display:block;font-size:.8rem;font-weight:700;color:#0891b2;margin-bottom:.35rem}
+.field-input{width:100%;border:1.5px solid #cffafe;border-radius:.65rem;padding:.55rem .85rem;font-size:.85rem;color:#1e293b;font-family:'Plus Jakarta Sans',sans-serif;background:#f0fdff;transition:all .2s ease;outline:none}
+.field-input:focus{border-color:#06b6d4;box-shadow:0 0 0 3px rgba(6,182,212,.12);background:#fff}
+.field-input::placeholder{color:#94a3b8}
+.gen-btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.75rem 1.6rem;border-radius:.85rem;font-weight:700;font-size:.9rem;cursor:pointer;transition:all .25s ease;border:none;width:100%;margin-top:.5rem}
+.gen-btn-cyan{background:linear-gradient(135deg,#06b6d4,#6366f1);color:#fff;box-shadow:0 4px 16px rgba(6,182,212,.35)}
+.gen-btn-cyan:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(6,182,212,.5)}
+.prompt-result{background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:.75rem;padding:1.25rem;font-size:.8rem;line-height:1.7;color:#475569;white-space:pre-wrap;max-height:250px;overflow-y:auto;word-break:break-word;display:none;margin-top:.75rem}
+.prompt-result.show{display:block}
+.copy-btn{display:inline-flex;align-items:center;gap:.4rem;padding:.5rem 1.1rem;background:rgba(6,182,212,.1);border:1px dashed rgba(6,182,212,.4);border-radius:.6rem;color:#0891b2;font-size:.78rem;font-weight:700;cursor:pointer;transition:all .2s ease;margin-top:.5rem}
+.copy-btn:hover{background:rgba(6,182,212,.18);border-style:solid}
+.copy-btn.copied{background:rgba(16,185,129,.12);border-color:rgba(16,185,129,.4);color:#059669}
+.prompt-card{background:#fff;border:1.5px solid #e2e8f0;border-radius:1rem;padding:1.5rem;transition:all .3s ease;margin-bottom:1rem}
+.prompt-card:hover{border-color:rgba(6,182,212,.3);box-shadow:0 8px 30px rgba(6,182,212,.09)}
+.fade-in{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s cubic-bezier(.4,0,.2,1)}
+.fade-in.in-view{opacity:1;transform:translateY(0)}
+#toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(80px);background:#1e293b;color:#fff;padding:.75rem 1.5rem;border-radius:1rem;font-size:.85rem;font-weight:600;z-index:9999;transition:transform .3s ease;display:flex;align-items:center;gap:.5rem;box-shadow:0 8px 30px rgba(0,0,0,.25)}
+#toast.show{transform:translateX(-50%) translateY(0)}
+#back-to-top{position:fixed;bottom:2rem;right:2rem;width:3rem;height:3rem;background:linear-gradient(135deg,#06b6d4,#6366f1);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;pointer-events:none;transform:translateY(20px);transition:all .3s ease;z-index:998;border:none;box-shadow:0 8px 25px rgba(6,182,212,.4)}
+#back-to-top.visible{opacity:1;pointer-events:all;transform:translateY(0)}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:#f1f5f9}
+::-webkit-scrollbar-thumb{background:#a5f3fc;border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:#06b6d4}
+.cat-icon{width:2.5rem;height:2.5rem;border-radius:.9rem;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+/* NOTAS INPUT */
+.notas-input{font-family:'Plus Jakarta Sans',monospace;font-size:.85rem;background:#f0fdff;border:1.5px solid #cffafe;border-radius:.75rem;padding:1rem;width:100%;min-height:120px;resize:vertical;outline:none;transition:all .2s ease}
+.notas-input:focus{border-color:#06b6d4;background:#fff;box-shadow:0 0 0 3px rgba(6,182,212,.12)}
+/* GRAPH CARDS */
+.chart-card{background:#fff;border-radius:1rem;padding:1.25rem;border:1.5px solid #e0f2fe;box-shadow:0 2px 12px rgba(6,182,212,.08)}
+.chart-type-btn{padding:.4rem .85rem;border-radius:.6rem;font-size:.75rem;font-weight:700;cursor:pointer;border:1.5px solid #e2e8f0;background:#fff;color:#475569;transition:all .2s ease}
+.chart-type-btn:hover{border-color:#06b6d4;color:#0891b2}
+.chart-type-btn.active{background:#06b6d4;border-color:#06b6d4;color:#fff}
+</style>
+  <link rel="stylesheet" href="../assets/portal-nav.css">
+</head>
+<body class="antialiased">
+<div id="scroll-progress"></div>
+<button id="sidebar-toggle"><i class="fas fa-bars"></i></button>
+<div id="sidebar-backdrop"></div>
+<button id="back-to-top"><i class="fas fa-arrow-up"></i></button>
+<div id="toast"><i class="fas fa-check-circle text-emerald-400"></i> <span id="toast-msg">¡Listo!</span></div>
+
+<div class="flex min-h-screen">
+<!-- SIDEBAR -->
+<aside class="w-64 flex-shrink-0 bg-white border-r border-slate-100 shadow-sm sticky top-0 h-screen overflow-y-auto z-50">
+  <div class="p-5 border-b border-slate-100">
+    <div class="flex items-center gap-2.5 mb-1">
+      <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-cyan-500 to-indigo-700 flex items-center justify-center text-white shadow text-base">📊</div>
+      <div>
+        <div class="font-extrabold text-slate-800 text-sm leading-tight">Visualizador de Notas</div>
+        <div class="text-xs text-slate-400">Módulo 02 · EDOCENTIA</div>
+      </div>
+    </div>
+  </div>
+  <nav class="p-3 space-y-0.5">
+    <p class="text-xs font-bold text-slate-400 uppercase tracking-widest px-2 pt-3 pb-1">Partes del módulo</p>
+    <a href="#parte-1"><i class="fas fa-chart-bar w-4 text-cyan-500"></i> Gráficos de Notas</a>
+    <a href="#parte-2"><i class="fas fa-brain w-4 text-indigo-500"></i> Análisis con IA</a>
+    <a href="#parte-3"><i class="fas fa-users w-4 text-violet-500"></i> Perfil de Grupo</a>
+    <a href="#parte-4"><i class="fas fa-exclamation-triangle w-4 text-orange-500"></i> Alumnado en Riesgo</a>
+    <a href="#parte-5"><i class="fas fa-chart-line w-4 text-emerald-500"></i> Evolución Trimestral</a>
+    <hr class="my-2 border-slate-100">
+    <a href="../index.html"><i class="fas fa-home w-4 text-slate-400"></i> Homepage EDOCENTIA</a>
+    <a href="../app-ia.html"><i class="fas fa-robot w-4 text-violet-500"></i> App IA Interactiva</a>
+    <a href="../app-prompts.html"><i class="fas fa-copy w-4 text-indigo-400"></i> Biblioteca Prompts</a>
+  </nav>
+</aside>
+
+<!-- MAIN -->
+<main id="main-content" class="flex-1 min-w-0">
+<section class="hero-section text-white py-16 px-8 md:px-14">
+  <div class="max-w-4xl">
+    <a href="../index.html" class="inline-flex items-center gap-2 text-white/70 hover:text-white text-xs font-semibold mb-5 transition-colors"><i class="fas fa-arrow-left"></i> Volver a EDOCENTIA</a>
+    <div class="inline-flex items-center gap-2 bg-white/15 border border-white/25 rounded-full px-4 py-1.5 text-xs font-semibold mb-4 backdrop-blur-sm">
+      <i class="fas fa-chart-bar text-yellow-300"></i> Módulo 02 — Análisis de Calificaciones
+    </div>
+    <h1 class="text-3xl md:text-5xl font-extrabold leading-tight mb-3 hero-shimmer">Visualizador de Notas<br>& Análisis de Clase</h1>
+    <p class="text-base text-white/85 max-w-2xl leading-relaxed mb-5">Introduce las notas de tu clase y visualízalas con 10 tipos de gráficos interactivos. Genera prompts para que la IA interprete los resultados y te dé orientaciones pedagógicas concretas.</p>
+    <div class="flex flex-wrap gap-3">
+      <a href="#parte-1" class="bg-white text-cyan-700 font-bold px-5 py-2.5 rounded-xl text-sm shadow hover:-translate-y-0.5 transition-all">📊 Ver gráficos</a>
+      <a href="#parte-2" class="bg-white/15 border border-white/30 text-white font-bold px-5 py-2.5 rounded-xl text-sm hover:bg-white/25 transition-all">🧠 Análisis IA</a>
+    </div>
+  </div>
+</section>
+
+<div class="max-w-5xl mx-auto px-5 md:px-10 py-10 space-y-8">
+
+<!-- PARTE 1: GRÁFICOS INTERACTIVOS -->
+<div id="parte-1" class="fade-in">
+<details class="card-pro !p-0 border border-slate-100" open>
+<summary class="flex items-center justify-between p-5 cursor-pointer">
+  <div class="flex items-center gap-3">
+    <div class="cat-icon bg-cyan-100 text-cyan-700">📊</div>
+    <div><div class="font-bold text-slate-800">Parte 1 — Visualizador de Notas en 10 Gráficos</div><div class="text-xs text-slate-400">Introduce notas separadas por comas y selecciona el tipo de gráfico</div></div>
+  </div>
+  <i class="fas fa-chevron-down text-slate-400 chev"></i>
+</summary>
+<div class="px-5 pb-6 pt-3 border-t border-slate-50">
+<div class="bg-cyan-50 border border-cyan-100 rounded-xl p-4 mb-5 text-sm text-cyan-800">
+  <i class="fas fa-info-circle mr-1 text-cyan-600"></i> <strong>¿Cómo funciona?</strong> Escribe las notas de tu clase separadas por comas (ej: 7,8,5,4,9,6,3,8,7,5,6,9,4), pon el nombre del grupo y pulsa "Visualizar". Selecciona cualquier tipo de gráfico para ver los datos de forma diferente.
+</div>
+
+<div class="grid md:grid-cols-3 gap-4 mb-5">
+  <div class="field-group">
+    <label class="field-label">📋 Nombre del grupo / clase</label>
+    <input type="text" class="field-input" id="grupo-nombre" placeholder="Ej: 3.º ESO B — Inglés, T1 2025">
+  </div>
+  <div class="field-group">
+    <label class="field-label">📊 Notas (separadas por comas)</label>
+    <input type="text" class="field-input" id="notas-input" placeholder="Ej: 7,8,5,4,9,6,3,8,7,5,6,9,4,7,8">
+  </div>
+  <div class="field-group">
+    <label class="field-label">🎯 Nota de corte (aprobado)</label>
+    <input type="number" class="field-input" id="nota-corte" value="5" min="1" max="10">
+  </div>
+</div>
+
+<!-- SELECTOR DE TIPO DE GRÁFICO -->
+<div class="mb-5">
+  <div class="text-xs font-bold text-slate-500 uppercase tracking-wide mb-3">Tipo de Gráfico:</div>
+  <div class="flex flex-wrap gap-2">
+    <button class="chart-type-btn active" onclick="setChartType('bar', this)">📊 Barras</button>
+    <button class="chart-type-btn" onclick="setChartType('horizontalBar', this)">☰ Barras Horiz.</button>
+    <button class="chart-type-btn" onclick="setChartType('line', this)">📈 Línea</button>
+    <button class="chart-type-btn" onclick="setChartType('pie', this)">🥧 Circular</button>
+    <button class="chart-type-btn" onclick="setChartType('doughnut', this)">🍩 Donut</button>
+    <button class="chart-type-btn" onclick="setChartType('scatter', this)">🔵 Dispersión</button>
+    <button class="chart-type-btn" onclick="setChartType('histogram', this)">📉 Histograma</button>
+    <button class="chart-type-btn" onclick="setChartType('radar', this)">🕸️ Radar</button>
+    <button class="chart-type-btn" onclick="setChartType('polarArea', this)">🌀 Área Polar</button>
+    <button class="chart-type-btn" onclick="setChartType('boxplot', this)">📦 Boxplot</button>
+  </div>
+</div>
+
+<button class="gen-btn gen-btn-cyan" onclick="renderChart()"><i class="fas fa-chart-bar"></i> Visualizar notas</button>
+
+<!-- STATS SUMMARY -->
+<div class="grid grid-cols-2 md:grid-cols-5 gap-3 mt-5" id="stats-container" style="display:none!important">
+  <div class="bg-cyan-50 rounded-xl p-3 text-center border border-cyan-100">
+    <div class="text-2xl font-black text-cyan-700" id="stat-media">—</div>
+    <div class="text-xs text-slate-500 mt-0.5">Media</div>
+  </div>
+  <div class="bg-emerald-50 rounded-xl p-3 text-center border border-emerald-100">
+    <div class="text-2xl font-black text-emerald-700" id="stat-aprobados">—</div>
+    <div class="text-xs text-slate-500 mt-0.5">Aprobados %</div>
+  </div>
+  <div class="bg-red-50 rounded-xl p-3 text-center border border-red-100">
+    <div class="text-2xl font-black text-red-700" id="stat-suspensos">—</div>
+    <div class="text-xs text-slate-500 mt-0.5">Suspensos %</div>
+  </div>
+  <div class="bg-indigo-50 rounded-xl p-3 text-center border border-indigo-100">
+    <div class="text-2xl font-black text-indigo-700" id="stat-max">—</div>
+    <div class="text-xs text-slate-500 mt-0.5">Máxima</div>
+  </div>
+  <div class="bg-orange-50 rounded-xl p-3 text-center border border-orange-100">
+    <div class="text-2xl font-black text-orange-700" id="stat-min">—</div>
+    <div class="text-xs text-slate-500 mt-0.5">Mínima</div>
+  </div>
+</div>
+
+<!-- CANVAS FOR CHART -->
+<div class="chart-card mt-5" style="display:none" id="chart-container">
+  <canvas id="myChart" style="max-height:380px"></canvas>
+</div>
+
+</div>
+</details>
+</div>
+
+<!-- PARTE 2: ANÁLISIS CON IA -->
+<div id="parte-2" class="fade-in">
+<details class="card-pro !p-0 border border-slate-100">
+<summary class="flex items-center justify-between p-5 cursor-pointer">
+  <div class="flex items-center gap-3">
+    <div class="cat-icon bg-indigo-100 text-indigo-700">🧠</div>
+    <div><div class="font-bold text-slate-800">Parte 2 — Análisis Pedagógico con IA</div><div class="text-xs text-slate-400">Pide a tu IA que interprete los resultados y te dé orientaciones</div></div>
+  </div>
+  <i class="fas fa-chevron-down text-slate-400 chev"></i>
+</summary>
+<div class="px-5 pb-6 pt-3 border-t border-slate-50">
+
+<div class="prompt-card">
+  <div class="font-bold text-slate-700 text-sm mb-3">🧠 Análisis completo de resultados de clase</div>
+  <div class="grid md:grid-cols-2 gap-3">
+    <div class="field-group">
+      <label class="field-label">📚 Asignatura y nivel</label>
+      <input type="text" class="field-input" id="anal-materia" placeholder="Ej: Matemáticas 2.º ESO">
+    </div>
+    <div class="field-group">
+      <label class="field-label">📊 Notas del grupo (separadas por comas)</label>
+      <input type="text" class="field-input" id="anal-notas" placeholder="Ej: 7,8,5,4,9,6,3,8,7,5,6">
+    </div>
+    <div class="field-group">
+      <label class="field-label">📋 ¿Qué se evaluó?</label>
+      <input type="text" class="field-input" id="anal-que" placeholder="Ej: examen de álgebra básica, proyecto ABP, SA...">
+    </div>
+    <div class="field-group">
+      <label class="field-label">🗓️ Trimestre y momento del curso</label>
+      <input type="text" class="field-input" id="anal-trimestre" placeholder="Ej: 1.er trimestre, mitad de curso...">
+    </div>
+    <div class="field-group">
+      <label class="field-label">🎯 ¿Qué quieres mejorar?</label>
+      <input type="text" class="field-input" id="anal-objetivo" placeholder="Ej: reducir suspensos, motivar al grupo, atender diversidad...">
+    </div>
+    <div class="field-group">
+      <label class="field-label">📋 Contexto del grupo (opcional)</label>
+      <input type="text" class="field-input" id="anal-contexto" placeholder="Ej: grupo heterogéneo, varios ACINEES, buen nivel general...">
+    </div>
+  </div>
+  <button class="gen-btn gen-btn-cyan" onclick="generateAndShow('analisis-ia')"><i class="fas fa-brain"></i> Generar prompt de análisis</button>
+  <div class="prompt-result" id="result-analisis-ia"></div>
+  <button class="copy-btn" id="copy-analisis-ia" onclick="copyPrompt('analisis-ia')" style="display:none"><i class="fas fa-copy"></i> Copiar prompt</button>
+</div>
+
+</div>
+</details>
+</div>
+
+<!-- PARTE 3: PERFIL DE GRUPO -->
+<div id="parte-3" class="fade-in">
+<details class="card-pro !p-0 border border-slate-100">
+<summary class="flex items-center justify-between p-5 cursor-pointer">
+  <div class="flex items-center gap-3">
+    <div class="cat-icon bg-violet-100 text-violet-700">👥</div>
+    <div><div class="font-bold text-slate-800">Parte 3 — Perfil de Grupo y Segmentación</div><div class="text-xs text-slate-400">Identifica los diferentes perfiles de tu clase y adapta tu enseñanza</div></div>
+  </div>
+  <i class="fas fa-chevron-down text-slate-400 chev"></i>
+</summary>
+<div class="px-5 pb-6 pt-3 border-t border-slate-50">
+
+<div class="prompt-card">
+  <div class="font-bold text-slate-700 text-sm mb-3">👥 Segmentación de grupo en perfiles de aprendizaje</div>
+  <div class="grid md:grid-cols-2 gap-3">
+    <div class="field-group">
+      <label class="field-label">📚 Asignatura, grupo y nivel</label>
+      <input type="text" class="field-input" id="perfil-materia" placeholder="Ej: Inglés, 4.º ESO C">
+    </div>
+    <div class="field-group">
+      <label class="field-label">📊 Distribución de notas (rangos)</label>
+      <input type="text" class="field-input" id="perfil-notas" placeholder="Ej: 3 alumn con <5, 8 entre 5-7, 12 entre 7-9, 4 con 9-10">
+    </div>
+    <div class="field-group">
+      <label class="field-label">👁️ Observaciones cualitativas del grupo</label>
+      <textarea class="field-input" id="perfil-obs" placeholder="¿Cómo es el grupo en actitud, motivación, trabajo en casa, comportamiento...?"></textarea>
+    </div>
+    <div class="field-group">
+      <label class="field-label">🎯 ¿Qué necesitas del análisis?</label>
+      <select class="field-input" id="perfil-necesidad">
+        <option>Identificar perfiles y estrategias diferenciadas</option>
+        <option>Plan de refuerzo para el grupo bajo</option>
+        <option>Enriquecimiento para alumnado avanzado</option>
+        <option>Estrategias para el grupo medio</option>
+        <option>Completo: todos los perfiles</option>
+      </select>
+    </div>
+  </div>
+  <button class="gen-btn gen-btn-cyan" onclick="generateAndShow('perfil-grupo')"><i class="fas fa-users"></i> Generar prompt de perfil</button>
+  <div class="prompt-result" id="result-perfil-grupo"></div>
+  <button class="copy-btn" id="copy-perfil-grupo" onclick="copyPrompt('perfil-grupo')" style="display:none"><i class="fas fa-copy"></i> Copiar prompt</button>
+</div>
+
+</div>
+</details>
+</div>
+
+<!-- PARTE 4: ALUMNADO EN RIESGO -->
+<div id="parte-4" class="fade-in">
+<details class="card-pro !p-0 border border-slate-100">
+<summary class="flex items-center justify-between p-5 cursor-pointer">
+  <div class="flex items-center gap-3">
+    <div class="cat-icon bg-orange-100 text-orange-700">⚠️</div>
+    <div><div class="font-bold text-slate-800">Parte 4 — Alumnado en Riesgo & Plan de Acción</div><div class="text-xs text-slate-400">Protocolos de intervención y planes de refuerzo</div></div>
+  </div>
+  <i class="fas fa-chevron-down text-slate-400 chev"></i>
+</summary>
+<div class="px-5 pb-6 pt-3 border-t border-slate-50">
+
+<div class="prompt-card">
+  <div class="font-bold text-slate-700 text-sm mb-3">⚠️ Plan de acción para alumnado que suspende</div>
+  <div class="grid md:grid-cols-2 gap-3">
+    <div class="field-group">
+      <label class="field-label">📚 Asignatura y nivel</label>
+      <input type="text" class="field-input" id="riesgo-materia" placeholder="Ej: Física y Química 4.º ESO">
+    </div>
+    <div class="field-group">
+      <label class="field-label">🔢 Número y porcentaje de suspensos</label>
+      <input type="text" class="field-input" id="riesgo-num" placeholder="Ej: 6 alumnos suspensos de 28 (21%)">
+    </div>
+    <div class="field-group">
+      <label class="field-label">📋 Causas detectadas</label>
+      <textarea class="field-input" id="riesgo-causas" placeholder="Ej: falta de base en matemáticas, problemas con el vocabulario científico, baja motivación, absentismo..."></textarea>
+    </div>
+    <div class="field-group">
+      <label class="field-label">🗓️ Tiempo disponible para refuerzo</label>
+      <input type="text" class="field-input" id="riesgo-tiempo" placeholder="Ej: 6 semanas antes de la evaluación final">
+    </div>
+  </div>
+  <button class="gen-btn gen-btn-cyan" onclick="generateAndShow('plan-riesgo')"><i class="fas fa-exclamation-triangle"></i> Generar plan de acción</button>
+  <div class="prompt-result" id="result-plan-riesgo"></div>
+  <button class="copy-btn" id="copy-plan-riesgo" onclick="copyPrompt('plan-riesgo')" style="display:none"><i class="fas fa-copy"></i> Copiar prompt</button>
+</div>
+
+</div>
+</details>
+</div>
+
+<!-- PARTE 5: EVOLUCIÓN TRIMESTRAL -->
+<div id="parte-5" class="fade-in">
+<details class="card-pro !p-0 border border-slate-100">
+<summary class="flex items-center justify-between p-5 cursor-pointer">
+  <div class="flex items-center gap-3">
+    <div class="cat-icon bg-emerald-100 text-emerald-700">📈</div>
+    <div><div class="font-bold text-slate-800">Parte 5 — Comparativa y Evolución Trimestral</div><div class="text-xs text-slate-400">Compara resultados entre trimestres y analiza la progresión</div></div>
+  </div>
+  <i class="fas fa-chevron-down text-slate-400 chev"></i>
+</summary>
+<div class="px-5 pb-6 pt-3 border-t border-slate-50">
+
+<div class="prompt-card">
+  <div class="font-bold text-slate-700 text-sm mb-3">📈 Análisis de evolución y comparativa trimestral</div>
+  <div class="grid md:grid-cols-2 gap-3">
+    <div class="field-group">
+      <label class="field-label">📚 Asignatura y grupo</label>
+      <input type="text" class="field-input" id="evol-materia" placeholder="Ej: Historia 3.º ESO B">
+    </div>
+    <div class="field-group">
+      <label class="field-label">📊 Notas T1 (comas)</label>
+      <input type="text" class="field-input" id="evol-t1" placeholder="Ej: 6,7,5,4,8,9,5,6,7,8">
+    </div>
+    <div class="field-group">
+      <label class="field-label">📊 Notas T2 (comas)</label>
+      <input type="text" class="field-input" id="evol-t2" placeholder="Ej: 7,8,6,5,8,9,6,7,8,9">
+    </div>
+    <div class="field-group">
+      <label class="field-label">📊 Notas T3 (si disponibles)</label>
+      <input type="text" class="field-input" id="evol-t3" placeholder="Ej: 7,8,6,5,8,9,6,7,8,9 (opcional)">
+    </div>
+  </div>
+  <button class="gen-btn gen-btn-cyan" onclick="generateAndShow('evol-trimestral'); renderEvolutionChart()"><i class="fas fa-chart-line"></i> Generar análisis y gráfico</button>
+  <div class="chart-card mt-4" id="evol-chart-container" style="display:none">
+    <canvas id="evolChart" style="max-height:300px"></canvas>
+  </div>
+  <div class="prompt-result" id="result-evol-trimestral"></div>
+  <button class="copy-btn" id="copy-evol-trimestral" onclick="copyPrompt('evol-trimestral')" style="display:none"><i class="fas fa-copy"></i> Copiar prompt</button>
+</div>
+
+</div>
+</details>
+</div>
+
+</div><!-- end main content -->
+</main>
+</div>
+
+<script>
+// SCROLL
+window.addEventListener('scroll',()=>{
+  document.getElementById('scroll-progress').style.width=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100+'%';
+  document.getElementById('back-to-top').classList.toggle('visible', window.scrollY>400);
+});
+document.getElementById('back-to-top').onclick=()=>window.scrollTo({top:0,behavior:'smooth'});
+const io=new IntersectionObserver(e=>e.forEach(en=>{if(en.isIntersecting)en.target.classList.add('in-view')}),{threshold:.08});
+document.querySelectorAll('.fade-in').forEach(el=>io.observe(el));
+const toggle=document.getElementById('sidebar-toggle');
+const aside=document.querySelector('aside');
+const backdrop=document.getElementById('sidebar-backdrop');
+toggle.onclick=()=>{aside.classList.toggle('sidebar-open');backdrop.classList.toggle('active')};
+backdrop.onclick=()=>{aside.classList.remove('sidebar-open');backdrop.classList.remove('active')};
+function showToast(msg){
+  document.getElementById('toast-msg').textContent=msg;
+  document.getElementById('toast').classList.add('show');
+  setTimeout(()=>document.getElementById('toast').classList.remove('show'),2500);
+}
+
+// CHART
+let currentChart=null;
+let currentChartType='bar';
+
+function setChartType(type, btn){
+  currentChartType=type;
+  document.querySelectorAll('.chart-type-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function parseNotas(){
+  const raw=document.getElementById('notas-input').value;
+  return raw.split(',').map(n=>parseFloat(n.trim())).filter(n=>!isNaN(n));
+}
+
+function renderChart(){
+  const notas=parseNotas();
+  if(notas.length===0){showToast('⚠️ Introduce notas separadas por comas');return;}
+  const corte=parseFloat(document.getElementById('nota-corte').value)||5;
+  const grupo=document.getElementById('grupo-nombre').value||'Mi clase';
+
+  // Stats
+  const media=(notas.reduce((a,b)=>a+b,0)/notas.length).toFixed(2);
+  const aprobados=notas.filter(n=>n>=corte).length;
+  const suspensos=notas.length-aprobados;
+  document.getElementById('stat-media').textContent=media;
+  document.getElementById('stat-aprobados').textContent=((aprobados/notas.length)*100).toFixed(0)+'%';
+  document.getElementById('stat-suspensos').textContent=((suspensos/notas.length)*100).toFixed(0)+'%';
+  document.getElementById('stat-max').textContent=Math.max(...notas);
+  document.getElementById('stat-min').textContent=Math.min(...notas);
+  document.getElementById('stats-container').style.display='grid';
+
+  // Prepare data
+  const container=document.getElementById('chart-container');
+  container.style.display='block';
+  if(currentChart)currentChart.destroy();
+
+  let data, options={responsive:true,plugins:{legend:{position:'top'},title:{display:true,text:grupo}}};
+
+  if(currentChartType==='histogram'){
+    const buckets=[0,0,0,0,0,0,0,0,0,0,0];
+    notas.forEach(n=>{const idx=Math.min(Math.floor(n),10);buckets[idx]++;});
+    data={labels:['0','1','2','3','4','5','6','7','8','9','10'],datasets:[{label:'Alumnado',data:buckets,backgroundColor:buckets.map((_,i)=>i<corte?'rgba(239,68,68,.7)':'rgba(6,182,212,.7)'),borderRadius:6}]};
+    currentChart=new Chart(document.getElementById('myChart'),{type:'bar',data,options});
+  } else if(currentChartType==='scatter'){
+    data={datasets:[{label:'Notas',data:notas.map((n,i)=>({x:i+1,y:n})),backgroundColor:'rgba(6,182,212,.7)',pointRadius:7}]};
+    currentChart=new Chart(document.getElementById('myChart'),{type:'scatter',data,options:{...options,scales:{y:{min:0,max:10}}}});
+  } else if(currentChartType==='boxplot'){
+    // Simple boxplot using bar + error bars simulation
+    const sorted=[...notas].sort((a,b)=>a-b);
+    const q1=sorted[Math.floor(sorted.length*.25)];
+    const q3=sorted[Math.floor(sorted.length*.75)];
+    data={labels:['Distribución'],datasets:[{label:'Q1',data:[q1],backgroundColor:'rgba(6,182,212,.3)',borderRadius:4},{label:'Media',data:[parseFloat(media)],backgroundColor:'rgba(99,102,241,.7)',borderRadius:4},{label:'Q3',data:[q3],backgroundColor:'rgba(249,115,22,.3)',borderRadius:4}]};
+    currentChart=new Chart(document.getElementById('myChart'),{type:'bar',data,options:{...options,scales:{y:{min:0,max:10}}}});
+  } else if(currentChartType==='horizontalBar'){
+    data={labels:notas.map((_,i)=>'Al.'+(i+1)),datasets:[{label:'Nota',data:notas,backgroundColor:notas.map(n=>n<corte?'rgba(239,68,68,.7)':'rgba(6,182,212,.7)'),borderRadius:4}]};
+    currentChart=new Chart(document.getElementById('myChart'),{type:'bar',data,options:{...options,indexAxis:'y'}});
+  } else if(currentChartType==='pie'||currentChartType==='doughnut'){
+    const buckets={'0-4':0,'5-6':0,'7-8':0,'9-10':0};
+    notas.forEach(n=>{if(n<5)buckets['0-4']++;else if(n<7)buckets['5-6']++;else if(n<9)buckets['7-8']++;else buckets['9-10']++;});
+    data={labels:Object.keys(buckets),datasets:[{data:Object.values(buckets),backgroundColor:['rgba(239,68,68,.7)','rgba(249,115,22,.7)','rgba(6,182,212,.7)','rgba(16,185,129,.7)']}]};
+    currentChart=new Chart(document.getElementById('myChart'),{type:currentChartType,data,options});
+  } else if(currentChartType==='radar'){
+    const metrics=['0-2','3-4','5-6','7-8','9-10'];
+    const vals=metrics.map((m,i)=>notas.filter(n=>{const ranges=[[0,2],[3,4],[5,6],[7,8],[9,10]];return n>=ranges[i][0]&&n<=ranges[i][1];}).length);
+    data={labels:metrics,datasets:[{label:'Alumnos por rango',data:vals,backgroundColor:'rgba(6,182,212,.2)',borderColor:'rgba(6,182,212,.8)',pointBackgroundColor:'rgba(6,182,212,.8)'}]};
+    currentChart=new Chart(document.getElementById('myChart'),{type:'radar',data,options});
+  } else if(currentChartType==='polarArea'){
+    const ranges=['1-2','3-4','5-6','7-8','9-10'];
+    const counts=ranges.map((r,i)=>{const lo=[1,3,5,7,9][i],hi=[2,4,6,8,10][i];return notas.filter(n=>n>=lo&&n<=hi).length;});
+    data={labels:ranges,datasets:[{data:counts,backgroundColor:['rgba(239,68,68,.6)','rgba(249,115,22,.6)','rgba(234,179,8,.6)','rgba(6,182,212,.6)','rgba(16,185,129,.6)']}]};
+    currentChart=new Chart(document.getElementById('myChart'),{type:'polarArea',data,options});
+  } else {
+    // Bar or Line
+    data={labels:notas.map((_,i)=>'Al.'+(i+1)),datasets:[{label:'Nota',data:notas,backgroundColor:notas.map(n=>n<corte?'rgba(239,68,68,.7)':'rgba(6,182,212,.7)'),borderColor:'rgba(6,182,212,.9)',fill:currentChartType==='line',tension:.3,borderRadius:currentChartType==='bar'?5:0}]};
+    currentChart=new Chart(document.getElementById('myChart'),{type:currentChartType==='bar'?'bar':'line',data,options:{...options,scales:{y:{min:0,max:10,grid:{color:'rgba(0,0,0,.06)'}},x:{grid:{display:false}}}}});
+  }
+  showToast('✅ Gráfico actualizado');
+}
+
+function renderEvolutionChart(){
+  const t1vals=document.getElementById('evol-t1').value.split(',').map(n=>parseFloat(n.trim())).filter(n=>!isNaN(n));
+  const t2vals=document.getElementById('evol-t2').value.split(',').map(n=>parseFloat(n.trim())).filter(n=>!isNaN(n));
+  const t3raw=document.getElementById('evol-t3').value;
+  const t3vals=t3raw?t3raw.split(',').map(n=>parseFloat(n.trim())).filter(n=>!isNaN(n)):[];
+  if(t1vals.length===0&&t2vals.length===0)return;
+  const avg=arr=>arr.length?(arr.reduce((a,b)=>a+b,0)/arr.length).toFixed(2):null;
+  const labels=['T1 Media','T2 Media'];
+  const avgData=[avg(t1vals),avg(t2vals)];
+  if(t3vals.length>0){labels.push('T3 Media');avgData.push(avg(t3vals));}
+  const container=document.getElementById('evol-chart-container');
+  container.style.display='block';
+  new Chart(document.getElementById('evolChart'),{type:'line',data:{labels,datasets:[{label:'Media del grupo',data:avgData,borderColor:'rgba(6,182,212,.9)',backgroundColor:'rgba(6,182,212,.1)',fill:true,tension:.4,pointRadius:8,pointBackgroundColor:'rgba(6,182,212,.9)'}]},options:{responsive:true,scales:{y:{min:0,max:10}},plugins:{legend:{position:'top'}}}});
+}
+
+// PROMPT GENERATOR
+const PROMPTS={
+  'analisis-ia':()=>{
+    const m=document.getElementById('anal-materia').value||'[materia]';
+    const n=document.getElementById('anal-notas').value||'[notas]';
+    const q=document.getElementById('anal-que').value||'[evaluación]';
+    const t=document.getElementById('anal-trimestre').value||'[trimestre]';
+    const o=document.getElementById('anal-objetivo').value||'mejorar resultados';
+    const c=document.getElementById('anal-contexto').value||'grupo estándar';
+    return `Actúa como orientador pedagógico y experto en evaluación educativa. Necesito que analices los resultados de mi clase y me des orientaciones concretas.
+
+DATOS:
+• Asignatura y nivel: ${m}
+• Lo que se evaluó: ${q}
+• Momento del curso: ${t}
+• Notas del grupo: ${n}
+• Contexto del grupo: ${c}
+• Mi objetivo principal: ${o}
+
+Proporciona un análisis pedagógico completo con:
+
+1. ANÁLISIS ESTADÍSTICO
+   • Media, mediana y moda del grupo
+   • Porcentaje de aprobados y suspensos
+   • Nota máxima, mínima y desviación típica
+   • Distribución por bandas (0-4 / 5-6 / 7-8 / 9-10) con número de alumnos en cada una
+   • ¿Qué nos dice esta distribución sobre el grupo?
+
+2. INTERPRETACIÓN PEDAGÓGICA
+   • ¿Qué revelan estos resultados sobre el proceso de enseñanza-aprendizaje?
+   • ¿Los resultados son coherentes con lo esperado para ${t}?
+   • ¿Qué ha funcionado bien? ¿Qué no?
+   • Posibles causas de los resultados (sin señalar a alumnos individualmente)
+
+3. SEGMENTACIÓN DEL GRUPO
+   • Perfil A (bajo: <5): características y necesidades
+   • Perfil B (medio: 5-7): características y necesidades  
+   • Perfil C (alto: 7-10): características y necesidades
+   • ¿Cómo equilibrar la atención a los tres grupos?
+
+4. PLAN DE ACCIÓN INMEDIATO (próximas 4 semanas)
+   Para el GRUPO BAJO:
+   • 3 estrategias de refuerzo concretas
+   • 2 actividades de recuperación específicas
+   Para el GRUPO MEDIO:
+   • 2 estrategias de consolidación
+   Para el GRUPO ALTO:
+   • 2 propuestas de enriquecimiento o ampliación
+
+5. RECOMENDACIONES METODOLÓGICAS
+   • ¿Qué cambios en la metodología podrían mejorar los resultados?
+   • Estrategias de feedback formativo concretas
+   • Cómo usar la evaluación para motivar al grupo
+
+6. COMUNICACIÓN A FAMILIAS
+   • Mensaje positivo general sobre el grupo para informar a familias
+   • Cómo comunicar los resultados individuales de manera constructiva
+
+7. INDICADORES DE SEGUIMIENTO
+   • ¿Cómo sabremos que el plan funciona?
+   • Qué debería mejorar en el próximo control/evaluación`;
+  },
+  'perfil-grupo':()=>{
+    const m=document.getElementById('perfil-materia').value||'[materia]';
+    const n=document.getElementById('perfil-notas').value||'[distribución]';
+    const o=document.getElementById('perfil-obs').value||'grupo estándar';
+    const nec=document.getElementById('perfil-necesidad').value;
+    return `Actúa como psicopedagogo y experto en atención a la diversidad. Analiza el perfil de mi clase de ${m}.
+
+DATOS DEL GRUPO:
+• Distribución de notas: ${n}
+• Observaciones cualitativas: ${o}
+• Necesidad principal: ${nec}
+
+Elabora un PERFIL COMPLETO DEL GRUPO con:
+
+1. MAPA DE PERFILES DE APRENDIZAJE
+   Define los diferentes perfiles presentes en el aula (con nombre, características académicas, emocionales y sociales)
+
+2. NECESIDADES PRIORITARIAS
+   Por cada perfil:
+   • ¿Qué necesita principalmente de mí como docente?
+   • ¿Qué estrategia funciona mejor con este perfil?
+   • ¿Qué errores debo evitar con este perfil?
+
+3. ESTRATEGIAS DIFERENCIADAS DE INSTRUCCIÓN
+   • Cómo estructurar las explicaciones para llegar a todos los perfiles
+   • Materiales diferenciados por nivel
+   • Tipos de agrupamiento más efectivos para ${m}
+
+4. PLAN DE ${nec.toUpperCase()}
+   • 5 acciones concretas a implementar
+   • Recursos y herramientas recomendados
+   • Cómo evaluar diferenciadamente
+
+5. HORARIO SEMANAL DE ATENCIÓN DIFERENCIADA
+   • Qué momento de la clase dedicar a cada perfil
+   • Tareas autónomas para el grupo avanzado mientras el docente apoya al grupo bajo
+
+6. INCLUSIÓN Y DUA
+   • Adaptaciones de acceso a la representación
+   • Adaptaciones de expresión y acción
+   • Estrategias de motivación para cada perfil`;
+  },
+  'plan-riesgo':()=>{
+    const m=document.getElementById('riesgo-materia').value||'[materia]';
+    const n=document.getElementById('riesgo-num').value||'alumnos suspensos';
+    const c=document.getElementById('riesgo-causas').value||'causas diversas';
+    const t=document.getElementById('riesgo-tiempo').value||'6 semanas';
+    return `Actúa como especialista en intervención educativa y planes de mejora. Diseña un PLAN DE ACCIÓN URGENTE para ${m}.
+
+SITUACIÓN: ${n} suspenden.
+CAUSAS DETECTADAS: ${c}
+TIEMPO DISPONIBLE: ${t}
+
+El plan debe incluir:
+
+1. DIAGNÓSTICO RÁPIDO
+   • Análisis de las causas detectadas: ${c}
+   • ¿Son causas académicas, motivacionales, familiares o metodológicas?
+   • ¿Qué es lo más urgente de resolver?
+
+2. PLAN DE INTERVENCIÓN (${t})
+   Para cada semana:
+   • Objetivo concreto de la semana
+   • 2-3 actividades de refuerzo específicas para ${m}
+   • Estrategia de seguimiento
+
+3. RECURSOS Y MATERIALES DE REFUERZO
+   • Materiales adaptados para trabajar los contenidos fallidos
+   • Recursos digitales recomendados (gratuitos)
+   • Ejercicios graduados por nivel
+
+4. ESTRATEGIAS PEDAGÓGICAS
+   • Metodologías efectivas para recuperar aprendizajes en ${m}
+   • Técnicas de estudio para que el alumnado aprenda a aprender
+   • Cómo motivar al alumnado en situación de suspenso
+
+5. COMUNICACIÓN CON FAMILIAS
+   • Modelo de carta/email para informar a las familias
+   • Puntos clave a comunicar de forma constructiva
+   • Compromisos que pedir a las familias
+
+6. PRUEBA DE RECUPERACIÓN
+   • Estructura de la prueba de recuperación para ${m}
+   • Cómo diseñarla para ser justa y accesible
+   • Actividades previas de preparación para la recuperación
+
+7. SEGUIMIENTO Y EVALUACIÓN DEL PLAN
+   • Indicadores de mejora a vigilar semana a semana
+   • Cuándo considerar que el alumno está «en vía de recuperación»`;
+  },
+  'evol-trimestral':()=>{
+    const m=document.getElementById('evol-materia').value||'[materia]';
+    const t1=document.getElementById('evol-t1').value||'[notas T1]';
+    const t2=document.getElementById('evol-t2').value||'[notas T2]';
+    const t3=document.getElementById('evol-t3').value;
+    return `Actúa como evaluador educativo experto. Analiza la EVOLUCIÓN TRIMESTRAL de ${m}.
+
+DATOS:
+T1: ${t1}
+T2: ${t2}
+${t3?'T3: '+t3:''}
+
+Proporciona:
+
+1. COMPARATIVA ESTADÍSTICA
+   • Media de cada trimestre y evolución
+   • Porcentaje de aprobados/suspensos por trimestre
+   • ¿Ha mejorado, empeorado o se ha mantenido el grupo?
+
+2. ANÁLISIS DE LA PROGRESIÓN
+   • ¿Qué explica la evolución observada?
+   • Alumno tipo que ha mejorado vs. alumno tipo que ha empeorado
+   • ¿Hay una tendencia clara en el grupo?
+
+3. IDENTIFICACIÓN DE CASOS ESPECIALES
+   • Alumnado que ha mejorado significativamente: ¿qué ha podido contribuir?
+   • Alumnado que ha empeorado: ¿posibles causas y acciones?
+
+4. RECALIBRACIÓN DE LA METODOLOGÍA
+   • ¿Qué cambiar para el siguiente trimestre?
+   • Qué ha funcionado bien y debe mantenerse
+   • Actividades o estrategias que no han dado resultado
+
+5. PREVISIÓN Y OBJETIVOS PARA EL TRIMESTRE SIGUIENTE
+   • Meta realista de mejora del grupo
+   • 3 acciones concretas para conseguirla
+   • Cómo presentar la evolución al alumnado de forma motivadora`;
+  }
+};
+
+function generateAndShow(key){
+  const prompt=PROMPTS[key]();
+  const el=document.getElementById('result-'+key);
+  el.textContent=prompt;
+  el.classList.add('show');
+  const btn=document.getElementById('copy-'+key);
+  if(btn)btn.style.display='inline-flex';
+  el.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function copyPrompt(key){
+  const el=document.getElementById('result-'+key);
+  navigator.clipboard.writeText(el.textContent).then(()=>{
+    const btn=document.getElementById('copy-'+key);
+    if(btn){btn.classList.add('copied');btn.innerHTML='<i class="fas fa-check"></i> ¡Copiado!';}
+    showToast('✅ Prompt copiado');
+    setTimeout(()=>{if(btn){btn.classList.remove('copied');btn.innerHTML='<i class="fas fa-copy"></i> Copiar prompt';}},2000);
+  });
+}
+</script>
+  <script src="../assets/portal-nav.js"></script>
+</body>
+</html>

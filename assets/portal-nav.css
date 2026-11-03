@@ -1,0 +1,30 @@
+.portal-shortcuts {
+  position: fixed;
+  z-index: 9998;
+  top: 12px;
+  right: 14px;
+  display: flex;
+  gap: 5px;
+  padding: 5px;
+  border: 1px solid rgba(32, 54, 46, .18);
+  border-radius: 5px;
+  background: rgba(255, 254, 250, .96);
+  box-shadow: 0 2px 12px rgba(32, 54, 46, .1);
+  font: 600 10px/1.2 "DM Sans", "Segoe UI", sans-serif;
+}
+.portal-shortcuts a {
+  padding: 7px 9px;
+  color: #24533e;
+  text-decoration: none;
+}
+.portal-shortcuts a:hover, .portal-shortcuts a:focus-visible {
+  background: #e5eee7;
+  color: #193c30;
+}
+@media (max-width: 560px) {
+  .portal-shortcuts { top: 8px; right: 8px; padding: 3px; }
+  .portal-shortcuts a { padding: 7px; font-size: 9px; }
+}
+@media print {
+  .portal-shortcuts { display: none; }
+}

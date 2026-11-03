@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Módulo 1 — Tareas Competenciales & Situaciones de Aprendizaje | EDOCENTIA</title>
+<meta name="description" content="Genera tareas competenciales, situaciones de aprendizaje y proyectos ABP alineados con LOMLOE. Introduce tu asignatura, nivel y contenidos y obtén el prompt perfecto.">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--indigo:#6366f1;--violet:#8b5cf6;--orange:#f97316;--dark:#0a0f1e}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:#f8fafc;color:#1e293b;margin:0}
+#scroll-progress{position:fixed;top:0;left:0;width:0;height:4px;background:linear-gradient(90deg,#6366f1,#a78bfa,#f97316);z-index:9999;transition:width .1s linear}
+.hero-section{background-image:linear-gradient(135deg,rgba(99,102,241,.93) 0%,rgba(139,92,246,.9) 60%,rgba(249,115,22,.85) 100%),url('https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?q=80&w=2000&auto=format&fit=crop');background-size:cover;background-position:center;background-attachment:fixed}
+.hero-shimmer{background:linear-gradient(90deg,#fff 40%,rgba(255,255,255,.6) 50%,#fff 60%);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:shimmer 4s linear infinite}
+@keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
+.gradient-text{background:linear-gradient(135deg,#6366f1,#f97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.card-pro{background:#fff;border-radius:1.25rem;box-shadow:0 4px 20px rgba(0,0,0,.05);border:1px solid rgba(0,0,0,.04);transition:all .3s ease}
+.card-pro:hover{transform:translateY(-2px);box-shadow:0 12px 35px rgba(0,0,0,.09)}
+/* SIDEBAR */
+aside nav a{transition:all .25s ease;color:#475569;border-left:3px solid transparent;display:flex;align-items:center;gap:.6rem;padding:.6rem .9rem;border-radius:.75rem;font-size:.85rem;font-weight:500;text-decoration:none}
+aside nav a:hover,aside nav a.active{background:linear-gradient(90deg,rgba(99,102,241,.1),transparent)!important;color:#6366f1;border-left-color:#6366f1;padding-left:1.2rem;font-weight:700}
+#sidebar-toggle{display:none;position:fixed;top:1rem;left:1rem;z-index:999;background:linear-gradient(135deg,#6366f1,#a78bfa);color:#fff;border:none;width:2.8rem;height:2.8rem;border-radius:.9rem;align-items:center;justify-content:center;font-size:1.1rem;cursor:pointer;box-shadow:0 4px 16px rgba(99,102,241,.4)}
+#sidebar-backdrop{display:none;position:fixed;inset:0;background:rgba(15,23,42,.5);backdrop-filter:blur(4px);z-index:490}
+@media(max-width:1023px){#sidebar-toggle{display:flex}aside{position:fixed!important;top:0;left:0;height:100dvh!important;width:85vw!important;max-width:340px!important;z-index:500;transform:translateX(-110%);transition:transform .35s cubic-bezier(.4,0,.2,1);overflow-y:auto}aside.sidebar-open{transform:translateX(0);box-shadow:8px 0 40px rgba(0,0,0,.18)}#sidebar-backdrop.active{display:block}#main-content{width:100%!important}}
+/* ACCORDIONS */
+details{transition:box-shadow .3s ease}
+details:hover{border-color:rgba(99,102,241,.25)!important}
+details[open]{box-shadow:0 8px 30px rgba(99,102,241,.08)!important}
+details summary{user-select:none;cursor:pointer;list-style:none;outline:none}
+details summary::-webkit-details-marker{display:none}
+details summary .chev{transition:transform .3s ease}
+details[open] summary .chev{transform:rotate(180deg)}
+/* PROMPT CARDS */
+.prompt-card{background:#fff;border:1.5px solid #e2e8f0;border-radius:1rem;padding:1.5rem;transition:all .3s ease;position:relative;overflow:hidden;margin-bottom:1rem}
+.prompt-card:hover{border-color:rgba(99,102,241,.3);box-shadow:0 8px 30px rgba(99,102,241,.09)}
+/* FIELDS */
+.field-group{margin-bottom:1rem}
+.field-label{display:block;font-size:.8rem;font-weight:700;color:#4f46e5;margin-bottom:.35rem}
+.field-input{width:100%;border:1.5px solid #e0e7ff;border-radius:.65rem;padding:.55rem .85rem;font-size:.85rem;color:#1e293b;font-family:'Plus Jakarta Sans',sans-serif;background:#fafbff;transition:all .2s ease;outline:none}
+.field-input:focus{border-color:#6366f1;box-shadow:0 0 0 3px rgba(99,102,241,.12);background:#fff}
+.field-input::placeholder{color:#94a3b8}
+select.field-input{cursor:pointer}
+textarea.field-input{resize:vertical;min-height:80px}
+/* BUTTONS */
+.gen-btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.75rem 1.6rem;border-radius:.85rem;font-weight:700;font-size:.9rem;cursor:pointer;transition:all .25s ease;border:none;width:100%;margin-top:.5rem}
+.gen-btn-primary{background:linear-gradient(135deg,#6366f1,#a78bfa);color:#fff;box-shadow:0 4px 16px rgba(99,102,241,.35)}
+.gen-btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(99,102,241,.5)}
+.gen-btn-secondary{background:linear-gradient(135deg,#f97316,#fb923c);color:#fff;box-shadow:0 4px 16px rgba(249,115,22,.3)}
+.gen-btn-secondary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(249,115,22,.45)}
+/* PROMPT BOX */
+.prompt-result{background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:.75rem;padding:1.25rem;font-size:.8rem;line-height:1.7;color:#475569;white-space:pre-wrap;max-height:250px;overflow-y:auto;word-break:break-word;display:none;margin-top:.75rem}
+.prompt-result.show{display:block}
+/* COPY BUTTON */
+.copy-btn{display:inline-flex;align-items:center;gap:.4rem;padding:.5rem 1.1rem;background:rgba(99,102,241,.1);border:1px dashed rgba(99,102,241,.4);border-radius:.6rem;color:#6366f1;font-size:.78rem;font-weight:700;cursor:pointer;transition:all .2s ease;margin-top:.5rem}
+.copy-btn:hover{background:rgba(99,102,241,.18);border-style:solid}
+.copy-btn.copied{background:rgba(16,185,129,.12);border-color:rgba(16,185,129,.4);color:#059669}
+/* TAGS */
+.tag{display:inline-flex;align-items:center;gap:.3rem;padding:.2rem .6rem;border-radius:20px;font-size:.68rem;font-weight:700}
+.tag-eso{background:#e0e7ff;color:#4f46e5}
+.tag-bach{background:#ffedd5;color:#c2410c}
+.tag-fp{background:#dcfce7;color:#15803d}
+.tag-all{background:#f1f5f9;color:#475569}
+/* FADE IN */
+.fade-in{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s cubic-bezier(.4,0,.2,1)}
+.fade-in.in-view{opacity:1;transform:translateY(0)}
+/* TOAST */
+#toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(80px);background:#1e293b;color:#fff;padding:.75rem 1.5rem;border-radius:1rem;font-size:.85rem;font-weight:600;z-index:9999;transition:transform .3s ease;display:flex;align-items:center;gap:.5rem;box-shadow:0 8px 30px rgba(0,0,0,.25)}
+#toast.show{transform:translateX(-50%) translateY(0)}
+.section-divider{height:2px;background:linear-gradient(90deg,transparent,#e2e8f0 30%,#e2e8f0 70%,transparent);border:none;margin:0}
+#back-to-top{position:fixed;bottom:2rem;right:2rem;width:3rem;height:3rem;background:linear-gradient(135deg,#6366f1,#a78bfa);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;pointer-events:none;transform:translateY(20px);transition:all .3s ease;z-index:998;border:none;box-shadow:0 8px 25px rgba(99,102,241,.4)}
+#back-to-top.visible{opacity:1;pointer-events:all;transform:translateY(0)}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:#f1f5f9}
+::-webkit-scrollbar-thumb{background:#c7d2fe;border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:#6366f1}
+.cat-icon{width:2.5rem;height:2.5rem;border-radius:.9rem;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+</style>
+  <link rel="stylesheet" href="../assets/portal-nav.css">
+</head>
+<body class="antialiased">
+<div id="scroll-progress"></div>
+<button id="sidebar-toggle"><i class="fas fa-bars"></i></button>
+<div id="sidebar-backdrop"></div>
+<button id="back-to-top"><i class="fas fa-arrow-up"></i></button>
+<div id="toast"><i class="fas fa-check-circle text-emerald-400"></i> <span id="toast-msg">¡Prompt copiado!</span></div>
+
+<div class="flex min-h-screen">
+
+<!-- SIDEBAR -->
+<aside class="w-64 flex-shrink-0 bg-white border-r border-slate-100 shadow-sm sticky top-0 h-screen overflow-y-auto z-50">
+  <div class="p-5 border-b border-slate-100">
+    <div class="flex items-center gap-2.5 mb-1">
+      <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-700 flex items-center justify-center text-white shadow text-base">🎯</div>
+      <div>
+        <div class="font-extrabold text-slate-800 text-sm leading-tight">Tareas Competenciales</div>
+        <div class="text-xs text-slate-400">Módulo 01 · EDOCENTIA</div>
+      </div>
+    </div>
+  </div>
+  <nav class="p-3 space-y-0.5">
+    <p class="text-xs font-bold text-slate-400 uppercase tracking-widest px-2 pt-3 pb-1">Partes del módulo</p>
+    <a href="#parte-1"><i class="fas fa-seedling w-4 text-emerald-500"></i> Situaciones de Aprendizaje</a>
+    <a href="#parte-2"><i class="fas fa-star w-4 text-yellow-500"></i> Tareas Competenciales</a>
+    <a href="#parte-3"><i class="fas fa-project-diagram w-4 text-indigo-500"></i> Proyectos ABP</a>
+    <a href="#parte-4"><i class="fas fa-puzzle-piece w-4 text-pink-500"></i> Unidades Didácticas</a>
+    <a href="#parte-5"><i class="fas fa-chart-bar w-4 text-cyan-500"></i> Rúbricas Integradas</a>
+    <hr class="my-2 border-slate-100">
+    <a href="../index.html"><i class="fas fa-home w-4 text-slate-400"></i> Homepage EDOCENTIA</a>
+    <a href="../app-ia.html"><i class="fas fa-robot w-4 text-violet-500"></i> App IA Interactiva</a>
+    <a href="../app-prompts.html"><i class="fas fa-copy w-4 text-indigo-400"></i> Biblioteca Prompts</a>
+  </nav>
+  <div class="p-3 mx-3 mb-3 rounded-2xl bg-gradient-to-br from-indigo-50 to-violet-50 border border-indigo-100">
+    <div class="text-xs font-bold text-indigo-700 mb-1">🎯 Módulo 01</div>
+    <div class="text-xs text-slate-500 leading-relaxed">Introduce tus datos, genera el prompt y lánzalo a tu IA favorita. El resultado es inmediato.</div>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<main id="main-content" class="flex-1 min-w-0">
+
+<!-- HERO -->
+<section class="hero-section text-white py-16 px-8 md:px-14">
+  <div class="max-w-4xl">
+    <a href="../index.html" class="inline-flex items-center gap-2 text-white/70 hover:text-white text-xs font-semibold mb-5 transition-colors"><i class="fas fa-arrow-left"></i> Volver a EDOCENTIA</a>
+    <div class="inline-flex items-center gap-2 bg-white/15 border border-white/25 rounded-full px-4 py-1.5 text-xs font-semibold mb-4 backdrop-blur-sm">
+      <i class="fas fa-bolt text-yellow-300"></i> Módulo 01 — Planificación Competencial
+    </div>
+    <h1 class="text-3xl md:text-5xl font-extrabold leading-tight mb-3 hero-shimmer">Tareas Competenciales<br>& Situaciones de Aprendizaje</h1>
+    <p class="text-base md:text-lg text-white/85 max-w-2xl leading-relaxed mb-5">Introduce tu asignatura, nivel y contenidos. Obtén prompts ultra-detallados para generar SA, tareas, proyectos y unidades completas alineadas con LOMLOE y los decretos autonómicos.</p>
+    <div class="flex flex-wrap gap-3">
+      <a href="#parte-1" class="bg-white text-indigo-700 font-bold px-5 py-2.5 rounded-xl text-sm shadow hover:-translate-y-0.5 transition-all">🌱 Situaciones SA</a>
+      <a href="#parte-2" class="bg-white/15 border border-white/30 text-white font-bold px-5 py-2.5 rounded-xl text-sm hover:bg-white/25 transition-all">⭐ Tareas</a>
+      <a href="#parte-3" class="bg-white/15 border border-white/30 text-white font-bold px-5 py-2.5 rounded-xl text-sm hover:bg-white/25 transition-all">🚀 ABP</a>
+      <a href="#parte-4" class="bg-white/15 border border-white/30 text-white font-bold px-5 py-2.5 rounded-xl text-sm hover:bg-white/25 transition-all">📖 Unidades</a>
+    </div>
+  </div>
+</section>
+
+<div class="max-w-5xl mx-auto px-5 md:px-10 py-10 space-y-8">
+
+<!-- INTRO CARD -->
+<div class="fade-in card-pro p-6">
+  <h2 class="font-extrabold text-slate-800 text-lg mb-4 flex items-center gap-2"><i class="fas fa-info-circle text-indigo-400"></i> ¿Cómo usar este módulo?</h2>
+  <div class="grid md:grid-cols-3 gap-4">
+    <div class="bg-indigo-50 rounded-xl p-4 text-center border border-indigo-100">
+      <div class="text-3xl mb-2">1️⃣</div>
+      <div class="font-bold text-indigo-800 text-sm">Rellena los campos</div>
+      <p class="text-xs text-slate-500 mt-1">Introduce materia, nivel, saberes básicos y competencias</p>
+    </div>
+    <div class="bg-violet-50 rounded-xl p-4 text-center border border-violet-100">
+      <div class="text-3xl mb-2">2️⃣</div>
+      <div class="font-bold text-violet-800 text-sm">Genera el prompt</div>
+      <p class="text-xs text-slate-500 mt-1">El botón construye un prompt ultra-detallado para ti</p>
+    </div>
+    <div class="bg-orange-50 rounded-xl p-4 text-center border border-orange-100">
+      <div class="text-3xl mb-2">3️⃣</div>
+      <div class="font-bold text-orange-800 text-sm">Cópialo y úsalo</div>
+      <p class="text-xs text-slate-500 mt-1">Pégalo en ChatGPT, Claude o Gemini y obtén el resultado</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PARTE 1: SITUACIONES DE APRENDIZAJE ═══ -->
+<div id="parte-1" class="fade-in">
+<details class="card-pro !p-0 border border-slate-100" open>
+<summary class="flex items-center justify-between p-5 cursor-pointer">
+  <div class="flex items-center gap-3">
+    <div class="cat-icon bg-emerald-100 text-emerald-700">🌱</div>
+    <div><div class="font-bold text-slate-800">Parte 1 — Situaciones de Aprendizaje (SA)</div><div class="text-xs text-slate-400">Contextos competenciales integrados · LOMLOE · ESO y Bachillerato</div></div>
+  </div>
+  <i class="fas fa-chevron-down text-slate-400 chev"></i>
+</summary>
+<div class="px-5 pb-6 pt-3 border-t border-slate-50">
+<div class="bg-emerald-50 border border-emerald-100 rounded-xl p-4 mb-5 text-sm text-emerald-800">
+  <i class="fas fa-lightbulb mr-1 text-emerald-600"></i> <strong>¿Qué es una SA?</strong> Una situación de aprendizaje es un contexto de vida real que el alumnado debe resolver movilizando sus saberes. Es la unidad básica de planificación en LOMLOE. La IA puede diseñarla completa: contexto, desafío, actividades secuenciadas, instrumentos y criterios de evaluación.
+</div>
+
+<!-- PROMPT 1.1 -->
+<div class="prompt-card">
+  <div class="flex flex-wrap items-center gap-2 mb-3">
+    <span class="tag tag-eso">ESO</span><span class="tag tag-bach">Bach.</span>
+    <span class="font-bold text-slate-700 text-sm">🌱 SA Completa desde cero</span>
+  </div>
+  <div class="grid md:grid-cols-2 gap-3">
+    <div class="field-group">
+      <label class="field-label">📚 Asignatura y curso</label>
+      <input type="text" class="field-input" id="sa1-materia" placeholder="Ej: Biología y Geología 3.º ESO">
+    </div>
+    <div class="field-group">
+      <label class="field-label">📋 Saberes básicos / Contenidos</label>
+      <input type="text" class="field-input" id="sa1-saberes" placeholder="Ej: La célula, ecosistemas, reproducción...">
+    </div>
+    <div class="field-group">
+      <label class="field-label">🎯 Competencias clave a trabajar</label>
+      <input type="text" class="field-input" id="sa1-competencias" placeholder="Ej: STEM, CPSAA, CC, CD...">
+    </div>
+    <div class="field-group">
+      <label class="field-label">🌍 Contexto o tema motivador (opcional)</label>
+      <input type="text" class="field-input" id="sa1-contexto" placeholder="Ej: cambio climático, tecnología, derechos humanos...">
+    </div>
+    <div class="field-group">
+      <label class="field-label">📐 Número de sesiones</label>
+      <input type="text" class="field-input" id="sa1-sesiones" placeholder="Ej: 5 sesiones de 55 minutos">
+    </div>
+    <div class="field-group">
+      <label class="field-label">👥 Agrupamiento</label>
+      <select class="field-input" id="sa1-agrupamiento">
+        <option>Individual</option>
+        <option selected>Grupos de 3-4</option>
+        <option>Parejas</option>
+        <option>Gran grupo</option>
+        <option>Mixto</option>
+      </select>
+    </div>
+  </div>
+  <button class="gen-btn gen-btn-primary" onclick="generateAndShow('sa-completa')"><i class="fas fa-magic"></i> Generar prompt SA completa</button>
+  <div class="prompt-result" id="result-sa-completa"></div>
+  <button class="copy-btn" id="copy-sa-completa" onclick="copyPrompt('sa-completa')" style="display:none"><i class="fas fa-copy"></i> Copiar prompt</button>
+</div>
+
+<!-- PROMPT 1.2 -->
+<div class="prompt-card">
+  <div class="flex flex-wrap items-center gap-2 mb-3">
+    <span class="tag tag-all">Todas</span>
+    <span class="font-bold text-slate-700 text-sm">🔗 SA Interdisciplinar (2 asignaturas)</span>
+  </div>
+  <div class="grid md:grid-cols-2 gap-3">
+    <div class="field-group">
+      <label class="field-label">📚 Asignatura 1 + Asignatura 2</label>
+      <input type="text" class="field-input" id="sa2-materias" placeholder="Ej: Matemáticas + Ciencias Sociales 4.º ESO">
+    </div>
+    <div class="field-group">
+      <label class="field-label">🔗 Punto de conexión entre ambas</label>
+      <input type="text" class="field-input" id="sa2-conexion" placeholder="Ej: estadística y demografía, geometría y arte...">
+    </div>
+    <div class="field-group">
+      <label class="field-label">🌍 Problemática real del contexto</label>
+      <input type="text" class="field-input" id="sa2-problema" placeholder="Ej: desigualdad, sostenibilidad, migraciones...">
+    </div>
+    <div class="field-group">
+      <label class="field-label">📦 Producto final esperado</label>
+      <input type="text" class="field-input" id="sa2-producto" placeholder="Ej: informe, exposición, campaña, vídeo, app...">
+    </div>
+  </div>
+  <button class="gen-btn gen-btn-primary" onclick="generateAndShow('sa-interdisciplinar')"><i class="fas fa-link"></i> Generar prompt SA interdisciplinar</button>
+  <div class="prompt-result" id="result-sa-interdisciplinar"></div>
+  <button class="copy-btn" id="copy-sa-interdisciplinar" onclick="copyPrompt('sa-interdisciplinar')" style="display:none"><i class="fas fa-copy"></i> Copiar prompt</button>
+</div>
+
+</div>
+</details>
+</div>
+
+<!-- ═══ PARTE 2: TAREAS COMPETENCIALES ═══ -->
+<div id="parte-2" class="fade-in">
+<details class="card-pro !p-0 border border-slate-100">
+<summary class="flex items-center justify-between p-5 cursor-pointer">
+  <div class="flex items-center gap-3">
+    <div class="cat-icon bg-yellow-100 text-yellow-700">⭐</div>
+    <div><div class="font-bold text-slate-800">Parte 2 — Tareas Competenciales</div><div class="text-xs text-slate-400">Actividades auténticas · Criterios de evaluación · Rúbricas</div></div>
+  </div>
+  <i class="fas fa-chevron-down text-slate-400 chev"></i>
+</summary>
+<div class="px-5 pb-6 pt-3 border-t border-slate-50">
+
+<div class="prompt-card">
+  <div class="flex flex-wrap items-center gap-2 mb-3">
+    <span class="tag tag-all">Todas</span>
+    <span class="font-bold text-slate-700 text-sm">⭐ Tarea Competencial con Rúbrica</span>
+  </div>
+  <div class="grid md:grid-cols-2 gap-3">
+    <div class="field-group">
+      <label class="field-label">📚 Asignatura y nivel</label>
+      <input type="text" class="field-input" id="tc1-materia" placeholder="Ej: Lengua Castellana 2.º ESO">
+    </div>
+    <div class="field-group">
+      <label class="field-label">📋 Saberes básicos implicados</label>
+      <input type="text" class="field-input" id="tc1-saberes" placeholder="Ej: texto argumentativo, conectores, coherencia...">
+    </div>
+    <div class="field-group">
+      <label class="field-label">🎯 Competencias específicas (CE)</label>
+      <input type="text" class="field-input" id="tc1-ce" placeholder="Ej: CE.LCL.1.2, CE.LCL.3.1...">
+    </div>
+    <div class="field-group">
+      <label class="field-label">🌍 Contexto real</label>
+      <input type="text" class="field-input" id="tc1-contexto" placeholder="Ej: debate escolar sobre el uso del móvil...">
+    </div>
+    <div class="field-group">
+      <label class="field-label">📦 Producto que entregará el alumnado</label>
+      <input type="text" class="field-input" id="tc1-producto" placeholder="Ej: carta formal, vídeo de 2 min, cartel, presentación...">
+    </div>
+    <div class="field-group">
+      <label class="field-label">📊 Tipo de evaluación</label>
+      <select class="field-input" id="tc1-evaluacion">
+        <option selected>Heteroevaluación (docente)</option>
+        <option>Coevaluación (entre pares)</option>
+        <option>Autoevaluación</option>
+        <option>Las tres combinadas</option>
+      </select>
+    </div>
+  </div>
+  <textarea class="field-input mt-2" id="tc1-extra" placeholder="Contexto adicional, dificultades del grupo, necesidades especiales... (opcional)" style="min-height:60px"></textarea>
+  <button class="gen-btn gen-btn-primary" onclick="generateAndShow('tarea-comp')"><i class="fas fa-star"></i> Generar prompt Tarea Competencial</button>
+  <div class="prompt-result" id="result-tarea-comp"></div>
+  <button class="copy-btn" id="copy-tarea-comp" onclick="copyPrompt('tarea-comp')" style="display:none"><i class="fas fa-copy"></i> Copiar prompt</button>
+</div>
+
+<div class="prompt-card">
+  <div class="flex flex-wrap items-center gap-2 mb-3">
+    <span class="tag tag-all">Todas</span>
+    <span class="font-bold text-slate-700 text-sm">🎯 Banco de Tareas para una Unidad</span>
+  </div>
+  <div class="grid md:grid-cols-2 gap-3">
+    <div class="field-group">
+      <label class="field-label">📚 Asignatura y unidad didáctica</label>
+      <input type="text" class="field-input" id="banco-materia" placeholder="Ej: Historia 4.º ESO – La Guerra Civil española">
+    </div>
+    <div class="field-group">
+      <label class="field-label">🔢 Número de tareas a generar</label>
+      <input type="text" class="field-input" id="banco-num" placeholder="Ej: 5 tareas de diferente tipo y complejidad">
+    </div>
+    <div class="field-group">
+      <label class="field-label">📋 Tipos de tareas deseados</label>
+      <input type="text" class="field-input" id="banco-tipos" placeholder="Ej: written, oral, creative, collaborative, digital...">
+    </div>
+    <div class="field-group">
+      <label class="field-label">🎯 Competencias principales</label>
+      <input type="text" class="field-input" id="banco-comp" placeholder="Ej: CCL, CD, CPSAA, CC...">
+    </div>
+  </div>
+  <button class="gen-btn gen-btn-secondary" onclick="generateAndShow('banco-tareas')"><i class="fas fa-list"></i> Generar banco de tareas</button>
+  <div class="prompt-result" id="result-banco-tareas"></div>
+  <button class="copy-btn" id="copy-banco-tareas" onclick="copyPrompt('banco-tareas')" style="display:none"><i class="fas fa-copy"></i> Copiar prompt</button>
+</div>
+
+</div>
+</details>
+</div>
+
+<!-- ═══ PARTE 3: PROYECTOS ABP ═══ -->
+<div id="parte-3" class="fade-in">
+<details class="card-pro !p-0 border border-slate-100">
+<summary class="flex items-center justify-between p-5 cursor-pointer">
+  <div class="flex items-center gap-3">
+    <div class="cat-icon bg-indigo-100 text-indigo-700">🚀</div>
+    <div><div class="font-bold text-slate-800">Parte 3 — Proyectos ABP / APS / STEAM</div><div class="text-xs text-slate-400">Aprendizaje Basado en Proyectos · Aprendizaje-Servicio · Proyectos STEAM</div></div>
+  </div>
+  <i class="fas fa-chevron-down text-slate-400 chev"></i>
+</summary>
+<div class="px-5 pb-6 pt-3 border-t border-slate-50">
+
+<div class="prompt-card">
+  <div class="flex flex-wrap items-center gap-2 mb-3">
+    <span class="tag tag-eso">ESO</span><span class="tag tag-bach">Bach.</span>
+    <span class="font-bold text-slate-700 text-sm">🚀 Proyecto ABP Completo</span>
+  </div>
+  <div class="grid md:grid-cols-2 gap-3">
+    <div class="field-group">
+      <label class="field-label">📚 Asignatura(s) implicada(s)</label>
+      <input type="text" class="field-input" id="abp-materias" placeholder="Ej: Ciencias Naturales + Tecnología 3.º ESO">
+    </div>
+    <div class="field-group">
+      <label class="field-label">❓ Pregunta conductora del proyecto</label>
+      <input type="text" class="field-input" id="abp-pregunta" placeholder="Ej: ¿Cómo podríamos hacer más sostenible nuestro centro?">
+    </div>
+    <div class="field-group">
+      <label class="field-label">📅 Duración del proyecto</label>
+      <input type="text" class="field-input" id="abp-duracion" placeholder="Ej: 3 semanas / 1 trimestre">
+    </div>
+    <div class="field-group">
+      <label class="field-label">📦 Producto final</label>
+      <input type="text" class="field-input" id="abp-producto" placeholder="Ej: prototipo, exposición, campaña pública, app...">
+    </div>
+    <div class="field-group">
+      <label class="field-label">🌍 Vinculación ODS</label>
+      <input type="text" class="field-input" id="abp-ods" placeholder="Ej: ODS 13 Acción Climática, ODS 4 Educación...">
+    </div>
+    <div class="field-group">
+      <label class="field-label">📋 Saberes básicos implicados</label>
+      <input type="text" class="field-input" id="abp-saberes" placeholder="Ej: ecosistemas, contaminación, energías renovables...">
+    </div>
+  </div>
+  <button class="gen-btn gen-btn-primary" onclick="generateAndShow('proyecto-abp')"><i class="fas fa-rocket"></i> Generar prompt Proyecto ABP</button>
+  <div class="prompt-result" id="result-proyecto-abp"></div>
+  <button class="copy-btn" id="copy-proyecto-abp" onclick="copyPrompt('proyecto-abp')" style="display:none"><i class="fas fa-copy"></i> Copiar prompt</button>
+</div>
+
+</div>
+</details>
+</div>
+
+<!-- ═══ PARTE 4: UNIDADES DIDÁCTICAS ═══ -->
+<div id="parte-4" class="fade-in">
+<details class="card-pro !p-0 border border-slate-100">
+<summary class="flex items-center justify-between p-5 cursor-pointer">
+  <div class="flex items-center gap-3">
+    <div class="cat-icon bg-blue-100 text-blue-700">📖</div>
+    <div><div class="font-bold text-slate-800">Parte 4 — Unidades Didácticas Completas</div><div class="text-xs text-slate-400">Secuencia de sesiones · Elementos curriculares · HTML listo para Aules</div></div>
+  </div>
+  <i class="fas fa-chevron-down text-slate-400 chev"></i>
+</summary>
+<div class="px-5 pb-6 pt-3 border-t border-slate-50">
+
+<div class="prompt-card">
+  <div class="flex flex-wrap items-center gap-2 mb-3">
+    <span class="tag tag-all">Todas</span>
+    <span class="font-bold text-slate-700 text-sm">📖 Unidad Didáctica Completa (PDF/Word)</span>
+  </div>
+  <div class="grid md:grid-cols-2 gap-3">
+    <div class="field-group">
+      <label class="field-label">📚 Asignatura, nivel y trimestre</label>
+      <input type="text" class="field-input" id="ud-materia" placeholder="Ej: Matemáticas 1.º ESO – 2.º trimestre">
+    </div>
+    <div class="field-group">
+      <label class="field-label">📌 Título de la unidad</label>
+      <input type="text" class="field-input" id="ud-titulo" placeholder="Ej: Los números enteros y la recta numérica">
+    </div>
+    <div class="field-group">
+      <label class="field-label">📋 Saberes básicos incluidos</label>
+      <textarea class="field-input" id="ud-saberes" placeholder="Lista los contenidos y saberes que cubre la unidad..."></textarea>
+    </div>
+    <div class="field-group">
+      <label class="field-label">🎯 Criterios de evaluación (códigos CE)</label>
+      <textarea class="field-input" id="ud-criterios" placeholder="Ej: CE.M.1.1, CE.M.2.3 o descripción de los criterios..."></textarea>
+    </div>
+    <div class="field-group">
+      <label class="field-label">📅 Número de sesiones</label>
+      <input type="text" class="field-input" id="ud-sesiones" placeholder="Ej: 12 sesiones">
+    </div>
+    <div class="field-group">
+      <label class="field-label">🗺️ Metodología principal</label>
+      <select class="field-input" id="ud-metodologia">
+        <option>Expositiva + práctica</option>
+        <option selected>Aprendizaje Basado en Proyectos</option>
+        <option>Flipped Classroom</option>
+        <option>Aprendizaje Cooperativo</option>
+        <option>Gamificación</option>
+        <option>Design Thinking</option>
+      </select>
+    </div>
+  </div>
+  <button class="gen-btn gen-btn-primary" onclick="generateAndShow('ud-completa')"><i class="fas fa-book"></i> Generar prompt Unidad Didáctica</button>
+  <div class="prompt-result" id="result-ud-completa"></div>
+  <button class="copy-btn" id="copy-ud-completa" onclick="copyPrompt('ud-completa')" style="display:none"><i class="fas fa-copy"></i> Copiar prompt</button>
+</div>
+
+</div>
+</details>
+</div>
+
+<!-- ═══ PARTE 5: RÚBRICAS INTEGRADAS ═══ -->
+<div id="parte-5" class="fade-in">
+<details class="card-pro !p-0 border border-slate-100">
+<summary class="flex items-center justify-between p-5 cursor-pointer">
+  <div class="flex items-center gap-3">
+    <div class="cat-icon bg-pink-100 text-pink-700">📊</div>
+    <div><div class="font-bold text-slate-800">Parte 5 — Rúbricas para Evaluación Competencial</div><div class="text-xs text-slate-400">Analíticas, holísticas y de proceso · Alineadas con decretos</div></div>
+  </div>
+  <i class="fas fa-chevron-down text-slate-400 chev"></i>
+</summary>
+<div class="px-5 pb-6 pt-3 border-t border-slate-50">
+
+<div class="prompt-card">
+  <div class="flex flex-wrap items-center gap-2 mb-3">
+    <span class="tag tag-all">Todas</span>
+    <span class="font-bold text-slate-700 text-sm">📊 Rúbrica para Evaluar una SA o Proyecto</span>
+  </div>
+  <div class="grid md:grid-cols-2 gap-3">
+    <div class="field-group">
+      <label class="field-label">📚 Asignatura y nivel</label>
+      <input type="text" class="field-input" id="rubrica-materia" placeholder="Ej: Inglés 3.º ESO">
+    </div>
+    <div class="field-group">
+      <label class="field-label">🌱 Tarea o SA a evaluar</label>
+      <input type="text" class="field-input" id="rubrica-tarea" placeholder="Ej: presentación oral sobre mi ciudad ideal">
+    </div>
+    <div class="field-group">
+      <label class="field-label">🎯 Criterios de evaluación implicados</label>
+      <input type="text" class="field-input" id="rubrica-criterios" placeholder="Ej: CE.EI.1.2, CE.EI.2.1 · expresión oral, vocabulario...">
+    </div>
+    <div class="field-group">
+      <label class="field-label">📊 Tipo de rúbrica</label>
+      <select class="field-input" id="rubrica-tipo">
+        <option selected>Analítica (criterio por criterio)</option>
+        <option>Holística (impresión global)</option>
+        <option>De proceso (seguimiento)</option>
+        <option>Mixta analítica + holística</option>
+      </select>
+    </div>
+    <div class="field-group">
+      <label class="field-label">👥 Tipo de evaluación</label>
+      <select class="field-input" id="rubrica-eval">
+        <option selected>Heteroevaluación</option>
+        <option>Coevaluación</option>
+        <option>Autoevaluación</option>
+        <option>Las tres (con ponderación)</option>
+      </select>
+    </div>
+    <div class="field-group">
+      <label class="field-label">🔢 Número de criterios</label>
+      <input type="text" class="field-input" id="rubrica-num" placeholder="Ej: 4 criterios principales">
+    </div>
+  </div>
+  <button class="gen-btn gen-btn-primary" onclick="generateAndShow('rubrica-sa')"><i class="fas fa-table"></i> Generar prompt Rúbrica</button>
+  <div class="prompt-result" id="result-rubrica-sa"></div>
+  <button class="copy-btn" id="copy-rubrica-sa" onclick="copyPrompt('rubrica-sa')" style="display:none"><i class="fas fa-copy"></i> Copiar prompt</button>
+</div>
+
+</div>
+</details>
+</div>
+
+<!-- RGPD -->
+<div class="fade-in card-pro border border-emerald-200 bg-gradient-to-br from-emerald-50 to-teal-50 p-5">
+  <div class="flex items-start gap-3">
+    <div class="w-9 h-9 rounded-xl bg-emerald-500 flex items-center justify-center text-white flex-shrink-0">🔒</div>
+    <div>
+      <h3 class="font-bold text-emerald-800 mb-1 text-sm">Privacidad y RGPD</h3>
+      <p class="text-xs text-emerald-700 leading-relaxed">Esta aplicación <strong>no recoge ni almacena datos</strong>. Los prompts se generan en tu navegador y los envías tú directamente a tu IA. <strong>Nunca incluyas datos personales de menores</strong> en los prompts.</p>
+    </div>
+  </div>
+</div>
+
+</div><!-- end main content -->
+</main>
+</div><!-- end flex -->
+
+<script>
+// SCROLL PROGRESS
+window.addEventListener('scroll',()=>{
+  const sp=document.getElementById('scroll-progress');
+  sp.style.width=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100+'%';
+  const btn=document.getElementById('back-to-top');
+  if(window.scrollY>400)btn.classList.add('visible');else btn.classList.remove('visible');
+});
+document.getElementById('back-to-top').onclick=()=>window.scrollTo({top:0,behavior:'smooth'});
+
+// REVEAL
+const io=new IntersectionObserver(e=>e.forEach(en=>{if(en.isIntersecting)en.target.classList.add('in-view')}),{threshold:.08});
+document.querySelectorAll('.fade-in').forEach(el=>io.observe(el));
+
+// SIDEBAR MOBILE
+const toggle=document.getElementById('sidebar-toggle');
+const aside=document.querySelector('aside');
+const backdrop=document.getElementById('sidebar-backdrop');
+toggle.onclick=()=>{aside.classList.toggle('sidebar-open');backdrop.classList.toggle('active')};
+backdrop.onclick=()=>{aside.classList.remove('sidebar-open');backdrop.classList.remove('active')};
+
+// TOAST
+function showToast(msg){
+  document.getElementById('toast-msg').textContent=msg;
+  document.getElementById('toast').classList.add('show');
+  setTimeout(()=>document.getElementById('toast').classList.remove('show'),2500);
+}
+
+// PROMPT GENERATORS
+const PROMPTS = {
+  'sa-completa': ()=>{
+    const m=document.getElementById('sa1-materia').value||'[asignatura y curso]';
+    const s=document.getElementById('sa1-saberes').value||'[saberes básicos]';
+    const c=document.getElementById('sa1-competencias').value||'[competencias clave]';
+    const ctx=document.getElementById('sa1-contexto').value||'un problema del mundo real';
+    const ses=document.getElementById('sa1-sesiones').value||'5 sesiones';
+    const ag=document.getElementById('sa1-agrupamiento').value;
+    return `Actúa como experto en didáctica y normativa educativa LOMLOE. Diseña una SITUACIÓN DE APRENDIZAJE COMPLETA para la asignatura ${m}.
+
+DATOS DE PARTIDA:
+• Saberes básicos implicados: ${s}
+• Competencias clave a desarrollar: ${c}
+• Contexto motivador: ${ctx}
+• Duración: ${ses}
+• Agrupamiento: ${ag}
+
+ESTRUCTURA OBLIGATORIA DE LA SA (sigue exactamente este formato):
+
+1. TÍTULO evocador de la SA (relacionado con el contexto real)
+
+2. DESCRIPCIÓN Y JUSTIFICACIÓN
+   - Contexto de vida real que sitúa al alumnado
+   - Por qué esta SA es relevante y motivadora
+   - Pregunta guía o reto que deben resolver
+
+3. VINCULACIÓN CURRICULAR
+   - Competencias clave implicadas (con código y descripción)
+   - Competencias específicas de la materia (con códigos del decreto)
+   - Criterios de evaluación concretos
+   - Saberes básicos trabajados
+
+4. SECUENCIA DE ACTIVIDADES (${ses})
+   Para cada actividad especifica:
+   - Nombre de la actividad
+   - Descripción detallada paso a paso
+   - Agrupamiento (${ag})
+   - Materiales y recursos necesarios
+   - Rol del docente
+   - Rol del alumnado
+   - Conexión con los saberes básicos
+
+5. PRODUCTO FINAL
+   - Descripción del artefacto/producto que entrega el alumnado
+   - Cómo se comparte o presenta (a quién, en qué formato)
+
+6. EVALUACIÓN
+   - Instrumentos de evaluación utilizados
+   - Rúbrica simplificada (4 criterios mínimo, 4 niveles de logro)
+   - Cómo se comunica el resultado al alumnado
+
+7. ATENCIÓN A LA DIVERSIDAD (DUA)
+   - 3 medidas de acceso a la representación
+   - 3 medidas de acción y expresión alternativas
+   - 3 medidas de implicación y motivación
+
+8. RECURSOS DIGITALES SUGERIDOS
+   - Al menos 3 herramientas o recursos recomendados
+
+Formato: documento estructurado, claro y listo para incluir en la programación didáctica.`;
+  },
+
+  'sa-interdisciplinar': ()=>{
+    const m=document.getElementById('sa2-materias').value||'[asignaturas]';
+    const con=document.getElementById('sa2-conexion').value||'[punto de conexión]';
+    const prob=document.getElementById('sa2-problema').value||'[problemática]';
+    const prod=document.getElementById('sa2-producto').value||'[producto final]';
+    return `Actúa como experto en diseño curricular LOMLOE. Diseña una SITUACIÓN DE APRENDIZAJE INTERDISCIPLINAR que conecte las asignaturas: ${m}.
+
+PUNTO DE CONEXIÓN: ${con}
+PROBLEMÁTICA REAL: ${prob}
+PRODUCTO FINAL: ${prod}
+
+Estructura la SA interdisciplinar con:
+
+1. TÍTULO Y DESCRIPCIÓN GENERAL
+   - Cómo se presentará al alumnado (historia, reto, misión...)
+   - Justificación de la interdisciplinariedad
+
+2. MAPA DE CONTRIBUCIONES POR ASIGNATURA
+   - Qué aporta cada materia al proyecto
+   - Saberes básicos de cada asignatura implicados
+   - Competencias específicas por materia
+   - Criterios de evaluación de cada departamento
+
+3. COMPETENCIAS CLAVE TRANSVERSALES
+   - Lista completa con códigos y descriptores del Perfil de Salida
+
+4. CRONOGRAMA DE COORDINACIÓN
+   - Cómo se coordinan los docentes
+   - Semanas/sesiones por asignatura
+   - Momentos de trabajo conjunto
+
+5. ACTIVIDADES PUENTE (interdisciplinares)
+   - 3 actividades donde convergen las dos materias
+   - Descripción detallada, recursos y agrupamiento
+
+6. PRODUCTO FINAL: ${prod}
+   - Cómo se construye con las dos materias
+   - Criterios de calidad del producto
+
+7. EVALUACIÓN COMPARTIDA
+   - Qué evalúa cada docente
+   - Rúbrica compartida con criterios de cada materia
+   - Cómo se calcula la nota final en cada asignatura
+
+8. PRESENTACIÓN Y DIFUSIÓN
+   - ¿A quién y cómo se presenta el producto?`;
+  },
+
+  'tarea-comp': ()=>{
+    const m=document.getElementById('tc1-materia').value||'[materia y nivel]';
+    const s=document.getElementById('tc1-saberes').value||'[saberes básicos]';
+    const ce=document.getElementById('tc1-ce').value||'[competencias específicas]';
+    const ctx=document.getElementById('tc1-contexto').value||'[contexto real]';
+    const prod=document.getElementById('tc1-producto').value||'[producto]';
+    const ev=document.getElementById('tc1-evaluacion').value;
+    const extra=document.getElementById('tc1-extra').value;
+    return `Actúa como docente experto en evaluación competencial LOMLOE. Diseña una TAREA COMPETENCIAL COMPLETA con rúbrica para ${m}.
+
+DATOS:
+• Saberes básicos: ${s}
+• Competencias específicas: ${ce}
+• Contexto real: ${ctx}
+• Producto que entrega el alumnado: ${prod}
+• Tipo de evaluación: ${ev}
+${extra ? '• Información adicional: '+extra : ''}
+
+ESTRUCTURA DE LA TAREA COMPETENCIAL:
+
+1. NOMBRE Y DESCRIPCIÓN DE LA TAREA
+   - Presentación motivadora al alumnado (en lenguaje accesible)
+   - Por qué esta tarea importa en su vida real
+
+2. RETO O PROBLEMA A RESOLVER
+   - Situación concreta que planteas al alumnado
+   - Rol que adopta el alumnado (cliente, científico, periodista, ciudadano...)
+   - Audiencia real del producto (a quién va dirigido)
+
+3. INSTRUCCIONES PASO A PASO
+   - Fase 1: Exploración y comprensión
+   - Fase 2: Planificación y organización
+   - Fase 3: Elaboración del producto
+   - Fase 4: Revisión y mejora
+   - Fase 5: Presentación y reflexión
+
+4. PRODUCTO FINAL: ${prod}
+   - Criterios de calidad del producto
+   - Extensión, formato y requisitos mínimos
+
+5. VINCULACIÓN CURRICULAR
+   - CE implicadas: ${ce}
+   - Saberes básicos movilizados: ${s}
+   - Competencias clave trabajadas
+
+6. RÚBRICA DE EVALUACIÓN (${ev})
+   - 4-5 criterios principales con peso porcentual
+   - 4 niveles: Inicio (1-3) / En proceso (4-5) / Consolidado (6-7) / Avanzado (8-10)
+   - Para cada criterio e indicador observable en cada nivel
+
+7. VERSIÓN PARA EL ALUMNADO
+   - Hoja de tarea en lenguaje accesible
+   - Checklist de autoevaluación antes de entregar
+
+8. ORIENTACIONES PARA EL DOCENTE
+   - Cómo presentar la tarea
+   - Errores frecuentes y cómo gestionarlos
+   - Adaptaciones para diferentes ritmos de aprendizaje`;
+  },
+
+  'banco-tareas': ()=>{
+    const m=document.getElementById('banco-materia').value||'[materia y unidad]';
+    const n=document.getElementById('banco-num').value||'5 tareas';
+    const t=document.getElementById('banco-tipos').value||'variadas';
+    const c=document.getElementById('banco-comp').value||'CCL, STEM, CD, CPSAA';
+    return `Actúa como experto en diseño curricular competencial LOMLOE. Crea un BANCO DE ${n} TAREAS COMPETENCIALES para: ${m}.
+
+Tipos de tareas solicitados: ${t}
+Competencias clave principales: ${c}
+
+Para CADA TAREA del banco, proporciona:
+
+TAREA [número]: [TÍTULO]
+─────────────────────────────────
+• TIPO: [escrita / oral / digital / creativa / investigación / colaborativa / visual]
+• COMPETENCIAS CLAVE: [códigos]
+• COMPETENCIAS ESPECÍFICAS: [códigos CE]
+• SABERES BÁSICOS MOVILIZADOS: [lista]
+• NIVEL DE COMPLEJIDAD: [básico / medio / avanzado]
+
+DESCRIPCIÓN:
+[Presentación motivadora de la tarea en 3-4 líneas]
+
+RETO:
+[¿Qué tiene que hacer exactamente el alumnado?]
+
+PRODUCTO FINAL:
+[Qué entrega, en qué formato]
+
+CRITERIOS DE CALIDAD:
+[4-5 puntos clave para que el producto esté bien hecho]
+
+INSTRUMENTO DE EVALUACIÓN SUGERIDO:
+[rúbrica analítica / holística / checklist / escala de valoración]
+
+ADAPTACIONES:
+• Para alumnado con dificultades: [adaptación]
+• Para alumnado avanzado: [extensión o approfundamiento]
+
+Termina con una TABLA RESUMEN de todas las tareas con: nombre, tipo, competencias, nivel y duración estimada.`;
+  },
+
+  'proyecto-abp': ()=>{
+    const m=document.getElementById('abp-materias').value||'[asignaturas]';
+    const p=document.getElementById('abp-pregunta').value||'[pregunta conductora]';
+    const d=document.getElementById('abp-duracion').value||'3 semanas';
+    const prod=document.getElementById('abp-producto').value||'[producto final]';
+    const ods=document.getElementById('abp-ods').value||'[ODS implicados]';
+    const s=document.getElementById('abp-saberes').value||'[saberes basicos]';
+    return `Actúa como experto en Aprendizaje Basado en Proyectos (ABP). Diseña un PROYECTO ABP COMPLETO para ${m}.
+
+PREGUNTA CONDUCTORA: "${p}"
+DURACIÓN: ${d}
+PRODUCTO FINAL: ${prod}
+ODS VINCULADOS: ${ods}
+SABERES BÁSICOS: ${s}
+
+El proyecto ABP debe incluir:
+
+1. PRESENTACIÓN DEL PROYECTO
+   - Título atractivo y motivador
+   - Contexto real que justifica el proyecto
+   - Audiencia real (a quién beneficia el producto)
+   - Por qué esta pregunta es importante
+
+2. OBJETIVOS COMPETENCIALES
+   - Competencias clave implicadas (con Perfil de Salida)
+   - Competencias específicas de cada materia
+   - Criterios de evaluación utilizados
+   - Saberes básicos trabajados: ${s}
+
+3. FASES DEL PROYECTO
+   FASE 1 – LANZAMIENTO (sesión 1-2):
+   • Actividad de enganche (hook) para motivar
+   • Presentación del reto y la pregunta conductora
+   • Formación de equipos y roles
+   
+   FASE 2 – INVESTIGACIÓN Y APRENDIZAJE:
+   • Recursos para investigar el tema
+   • Preguntas guía para cada etapa
+   • Minilecciones del docente (saberes necesarios)
+   • Actividades de andamiaje
+   
+   FASE 3 – PRODUCCIÓN:
+   • Actividades de creación del producto
+   • Revisión entre pares (protocolos de feedback)
+   • Refinamiento del producto
+   
+   FASE 4 – PRESENTACIÓN Y REFLEXIÓN:
+   • ¿Cómo se presenta el producto a la audiencia real?
+   • Metacognición y reflexión individual y grupal
+
+4. GESTIÓN DEL AULA
+   - Estructura de los equipos (roles: investigador, coordinador, creativo, portavoz...)
+   - Normas de trabajo en equipo
+   - Diario de proyecto (qué registra el alumnado cada sesión)
+
+5. EVALUACIÓN
+   - Rúbrica de evaluación del producto final
+   - Rúbrica de evaluación del proceso (hetero + auto + coeval)
+   - Portfolio de aprendizaje: qué incluye
+   - Cómo se calcula la nota final
+
+6. RECURSOS Y MATERIALES
+   - Materiales de investigación (webs, books, vídeos)
+   - Herramientas digitales (Canva, Google Drive, Prezi, etc.)
+   - Material del docente (guía del proyecto, plantillas)
+
+7. VINCULACIÓN ODS: ${ods}
+   - Cómo conecta el proyecto con los ODS indicados
+   - Actividad de toma de conciencia global
+
+8. DIFUSIÓN REAL DEL PRODUCTO
+   - A quién, cómo y cuándo se presenta
+   - Cómo se comparte más allá del aula`;
+  },
+
+  'ud-completa': ()=>{
+    const m=document.getElementById('ud-materia').value||'[asignatura, nivel y trimestre]';
+    const t=document.getElementById('ud-titulo').value||'[título de la unidad]';
+    const s=document.getElementById('ud-saberes').value||'[saberes básicos]';
+    const c=document.getElementById('ud-criterios').value||'[criterios de evaluación]';
+    const ses=document.getElementById('ud-sesiones').value||'12 sesiones';
+    const met=document.getElementById('ud-metodologia').value;
+    return `Actúa como docente experto en didáctica y normativa LOMLOE. Redacta una UNIDAD DIDÁCTICA COMPLETA para ${m}.
+
+TÍTULO: "${t}"
+SABERES BÁSICOS: ${s}
+CRITERIOS DE EVALUACIÓN: ${c}
+NÚMERO DE SESIONES: ${ses}
+METODOLOGÍA PRINCIPAL: ${met}
+
+ESTRUCTURA DE LA UNIDAD DIDÁCTICA:
+
+1. IDENTIFICACIÓN
+   • Asignatura, nivel, curso y trimestre
+   • Duración: ${ses}
+   • Lugar en la programación (posición dentro del curso)
+
+2. JUSTIFICACIÓN Y CONTEXTUALIZACIÓN
+   • Por qué esta unidad es relevante
+   • Conexión con unidades anteriores y posteriores
+   • Conexiones interdisciplinares
+
+3. CONTRIBUCIÓN AL PERFIL DE SALIDA
+   • Competencias clave desarrolladas (con descriptores operativos del RD 243/2022)
+
+4. OBJETIVOS DIDÁCTICOS
+   • Objetivos en términos de lo que el alumnado será capaz de hacer al finalizar
+
+5. VINCULACIÓN CURRICULAR COMPLETA
+   • Saberes básicos: ${s}
+   • Competencias específicas (con códigos CE)
+   • Criterios de evaluación: ${c}
+   • Descriptores operativos del Perfil de Salida
+
+6. CONTENIDOS ORGANIZADOS
+   • Conceptuales (saber)
+   • Procedimentales (saber hacer)
+   • Actitudinales (saber ser)
+
+7. METODOLOGÍA
+   Metodología principal: ${met}
+   • Estrategias de aula
+   • Tipos de agrupamiento por sesión
+   • Recursos materiales y digitales
+
+8. SECUENCIACIÓN DE SESIONES (${ses})
+   Para cada sesión indica:
+   • Número y título
+   • Saberes que se trabajan
+   • Actividades de inicio / desarrollo / cierre
+   • Recursos
+   • Rol del docente / del alumnado
+
+9. ATENCIÓN A LA DIVERSIDAD Y DUA
+   • Medidas ordinarias de atención
+   • Adaptaciones para ACINEES / altas capacidades
+   • Medidas desde el marco DUA (3 principios)
+
+10. EVALUACIÓN
+    • Sistema e instrumentos de evaluación
+    • Criterios de calificación (ponderación)
+    • Evaluación inicial / formativa / sumativa
+    • Rúbrica principal de la unidad
+    • Procedimientos de recuperación
+
+11. SITUACIÓN DE APRENDIZAJE INTEGRADORA
+    • Breve descripción de la SA que vertebra la unidad
+    • Producto final esperado
+
+Formato: documento profesional, estructurado y directamente usable en la memoria de programación.`;
+  },
+
+  'rubrica-sa': ()=>{
+    const m=document.getElementById('rubrica-materia').value||'[materia]';
+    const t=document.getElementById('rubrica-tarea').value||'[tarea/SA]';
+    const c=document.getElementById('rubrica-criterios').value||'[criterios]';
+    const tipo=document.getElementById('rubrica-tipo').value;
+    const ev=document.getElementById('rubrica-eval').value;
+    const n=document.getElementById('rubrica-num').value||'4 criterios';
+    return `Actúa como experto en evaluación competencial alineada con LOMLOE. Crea una RÚBRICA ${tipo.toUpperCase()} para evaluar "${t}" en ${m}.
+
+Criterios de evaluación implicados: ${c}
+Tipo: ${tipo}
+Evaluación: ${ev}
+Número de criterios: ${n}
+
+ESTRUCTURA DE LA RÚBRICA:
+
+1. DATOS GENERALES
+   • Nombre de la tarea/SA: ${t}
+   • Asignatura y nivel: ${m}
+   • Tipo de evaluación: ${ev}
+   • Criterios CE vinculados: ${c}
+
+2. RÚBRICA ${tipo.toUpperCase()} (formato tabla):
+   Niveles de logro: INICIO (1-3 pts) | EN PROCESO (4-5 pts) | CONSOLIDADO (6-7 pts) | AVANZADO (8-10 pts)
+
+   Para CADA criterio (${n}):
+   • Nombre del criterio
+   • Peso en la calificación final (%)
+   • Descriptor en cada nivel (redactado en tercera persona: "El alumno/a...")
+   • Indicadores observables concretos y medibles
+   • Vinculación con el CE del decreto
+
+3. TABLA DE CALIFICACIÓN FINAL
+   • Fórmula de cálculo combinando todos los criterios
+   • Equivalencia numérica
+
+4. INSTRUCCIONES DE USO
+   • Cómo presentar la rúbrica al alumnado antes de la tarea
+   • Cómo usarla durante la corrección
+   • Cómo comunicar los resultados
+
+5. VERSIÓN PARA EL ALUMNADO
+   • Rúbrica simplificada en lenguaje accesible
+   • Checklist de autoevaluación (para ${ev.includes('Auto') ? 'autoevaluación' : 'preparación previa'})
+
+6. BANCO DE COMENTARIOS DE FEEDBACK
+   • 3 comentarios tipo para cada nivel de logro
+   • Frases constructivas y orientadas a la mejora
+
+Formato: tablas claras, listas para copiar en Word o Google Docs.`;
+  }
+};
+
+function generateAndShow(key){
+  const prompt=PROMPTS[key]();
+  const el=document.getElementById('result-'+key);
+  el.textContent=prompt;
+  el.classList.add('show');
+  const btn=document.getElementById('copy-'+key);
+  if(btn)btn.style.display='inline-flex';
+  el.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+function copyPrompt(key){
+  const el=document.getElementById('result-'+key);
+  navigator.clipboard.writeText(el.textContent).then(()=>{
+    const btn=document.getElementById('copy-'+key);
+    if(btn){btn.classList.add('copied');btn.innerHTML='<i class="fas fa-check"></i> ¡Copiado!';}
+    showToast('✅ Prompt copiado en el portapapeles');
+    setTimeout(()=>{if(btn){btn.classList.remove('copied');btn.innerHTML='<i class="fas fa-copy"></i> Copiar prompt';}},2000);
+  });
+}
+</script>
+  <script src="../assets/portal-nav.js"></script>
+</body>
+</html>

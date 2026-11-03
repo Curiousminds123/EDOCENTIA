@@ -1,0 +1,1567 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AutoDocente CV – Normativa Secundaria y FP | Comunitat Valenciana</title>
+  <meta name="description" content="Marco normativo completo de la Comunitat Valenciana para docentes de ESO, Bachillerato y FP. Decreto 107/2022, 108/2022 y Decreto 114/2025." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+    :root {
+      --purple-doc: #6366f1;
+      --orange-doc: #f97316;
+      --red-doc:    #ef4444;
+      --lav-doc:    #a78bfa;
+      --bg-light:   #f8fafc;
+      --text-main:  #1e293b;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-main);
+      scroll-behavior: smooth;
+    }
+
+    /* ── PROGRESS BAR ── */
+    #scroll-progress {
+      position: fixed; top:0; left:0;
+      width:0; height:4px;
+      background: linear-gradient(90deg,#6366f1,#f97316,#ec4899);
+      z-index:9999;
+      transition: width .1s linear;
+      border-radius: 0 2px 2px 0;
+    }
+
+    /* ── HERO ── */
+    .hero-section {
+      background-image:
+        linear-gradient(135deg, rgba(99,102,241,.88) 0%, rgba(249,115,22,.82) 100%),
+        url('https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=2000&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+    .hero-shimmer {
+      background: linear-gradient(90deg,#fff 40%,rgba(255,255,255,.6) 50%,#fff 60%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmer 4s linear infinite;
+    }
+    @keyframes shimmer { 0%{background-position:-200% center} 100%{background-position:200% center} }
+
+    /* ── CARDS ── */
+    .card-pro {
+      transition: all .35s cubic-bezier(.4,0,.2,1);
+      background: #fff;
+      border-radius: 1.5rem;
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,.06);
+      padding: 2rem;
+      border: 1px solid rgba(0,0,0,.04);
+      position: relative; overflow: hidden;
+    }
+    .card-pro::before {
+      content:''; position:absolute; top:0; left:-100%;
+      width:60%; height:100%;
+      background: linear-gradient(90deg,transparent,rgba(255,255,255,.06),transparent);
+      transition: left .6s ease; pointer-events:none;
+    }
+    .card-pro:hover::before { left:140%; }
+    .card-pro:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,.14);
+    }
+
+    /* ── GRADIENT TEXT ── */
+    .gradient-text {
+      background: linear-gradient(135deg,var(--purple-doc),var(--orange-doc));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* ── ACCORDION / DETAILS ── */
+    details { transition: box-shadow .3s ease; }
+    details:hover { border-color: rgba(99,102,241,.25) !important; }
+    details[open] { box-shadow: 0 8px 30px rgba(99,102,241,.09) !important; }
+    details summary { user-select:none; cursor:pointer; list-style:none; outline:none; }
+    details summary::-webkit-details-marker { display:none; }
+    details summary .chevron { transition: transform .3s ease; }
+    details[open] summary .chevron { transform: rotate(180deg); }
+
+    /* ── SIDEBAR NAV ── */
+    aside nav a {
+      transition: all .25s ease;
+      color: #475569;
+      border-left: 3px solid transparent;
+    }
+    aside nav a:hover, aside nav a.active {
+      background: linear-gradient(90deg,rgba(99,102,241,.1),transparent) !important;
+      color: var(--purple-doc);
+      border-left-color: var(--purple-doc);
+      padding-left: 1.5rem;
+      font-weight: 700;
+    }
+
+    /* ── CONTENT ENTRANCE ── */
+    .content-section {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity .65s ease, transform .65s cubic-bezier(.4,0,.2,1);
+      scroll-margin-top: 110px;
+    }
+    .content-section.in-view { opacity:1; transform:translateY(0); }
+
+    /* ── section divider ── */
+    .section-divider {
+      height:2px;
+      background: linear-gradient(90deg,transparent,#e2e8f0 30%,#e2e8f0 70%,transparent);
+      border:none; margin:0;
+    }
+
+    /* ── BACK TO TOP ── */
+    #back-to-top {
+      position:fixed; bottom:2rem; right:2rem;
+      width:3.5rem; height:3.5rem;
+      background: linear-gradient(135deg,#6366f1,#a78bfa);
+      color:#fff; border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.25rem;
+      box-shadow: 0 8px 25px rgba(99,102,241,.4);
+      cursor:pointer;
+      opacity:0; pointer-events:none;
+      transform:translateY(20px) scale(.8);
+      transition: all .35s cubic-bezier(.4,0,.2,1);
+      z-index:998; border:2px solid rgba(255,255,255,.3);
+    }
+    #back-to-top.visible { opacity:1; pointer-events:all; transform:translateY(0) scale(1); }
+    #back-to-top:hover   { transform:translateY(-4px) scale(1.08); box-shadow:0 16px 40px rgba(99,102,241,.55); }
+
+    /* ── ICON BADGE ── */
+    .section-icon-badge {
+      transition: transform .35s cubic-bezier(.4,0,.2,1);
+      position: relative;
+    }
+    .section-icon-badge:hover { transform:scale(1.12) rotate(3deg); }
+    .section-icon-badge::after {
+      content:''; position:absolute; inset:-4px;
+      border-radius:inherit; background:inherit;
+      opacity:.2; animation:pulse-ring 2.5s ease-out infinite;
+      pointer-events:none;
+    }
+    @keyframes pulse-ring {
+      0%  { transform:scale(1); opacity:.2; }
+      100%{ transform:scale(1.5); opacity:0; }
+    }
+
+    /* ── TAGS ── */
+    .tag-estatal { background:#e0e7ff; color:#4f46e5; }
+    .tag-cv      { background:#ffedd5; color:#c2410c; }
+    .tag-orden   { background:#dcfce7; color:#15803d; }
+
+    /* ── PROMPT MODAL ── */
+    #prompt-modal-overlay {
+      position:fixed; inset:0;
+      background:rgba(15,23,42,.72);
+      backdrop-filter:blur(4px);
+      z-index:1001;
+      display:flex; align-items:center; justify-content:center;
+      padding:1.5rem;
+      opacity:0; pointer-events:none;
+      transition:opacity .25s ease;
+    }
+    #prompt-modal-overlay.open { opacity:1; pointer-events:all; }
+    #prompt-modal-box {
+      background:#0f172a;
+      border-radius:1.5rem; max-width:680px; width:100%;
+      padding:2rem; position:relative;
+      transform:scale(.95);
+      transition:transform .3s cubic-bezier(.4,0,.2,1);
+      box-shadow:0 24px 60px rgba(0,0,0,.4);
+      border:1px solid rgba(99,102,241,.3);
+    }
+    #prompt-modal-overlay.open #prompt-modal-box { transform:scale(1); }
+    #prompt-text-area {
+      width:100%;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(99,102,241,.2);
+      border-radius:1rem; color:#e2e8f0;
+      padding:1.25rem; font-size:.9rem; line-height:1.7;
+      font-family:'Plus Jakarta Sans',sans-serif;
+      resize:vertical; min-height:180px; margin-bottom:1rem;
+    }
+    #copy-prompt-btn {
+      width:100%;
+      background:linear-gradient(135deg,#6366f1,#a78bfa);
+      color:#fff; border:none; padding:.9rem 1.5rem;
+      border-radius:1rem; font-weight:700; font-size:1rem;
+      cursor:pointer; transition:all .25s ease;
+      display:flex; align-items:center; justify-content:center; gap:.5rem;
+    }
+    #copy-prompt-btn:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(99,102,241,.4); }
+    #copy-prompt-btn.copied { background:linear-gradient(135deg,#10b981,#34d399); }
+    .prompt-btn {
+      display:inline-flex; align-items:center; gap:.5rem;
+      padding:.5rem 1rem;
+      background:rgba(99,102,241,.08);
+      border:1px dashed rgba(99,102,241,.35);
+      border-radius:.75rem;
+      color:#6366f1; font-weight:600; font-size:.82rem;
+      cursor:pointer; transition:all .2s ease; margin-top:.75rem;
+    }
+    .prompt-btn:hover { background:rgba(99,102,241,.15); border-style:solid; transform:translateY(-1px); }
+
+    /* ── MOBILE SIDEBAR ── */
+    #sidebar-toggle {
+      display:none; position:fixed; top:1rem; left:1rem;
+      z-index:999;
+      background:linear-gradient(135deg,#6366f1,#a78bfa);
+      color:#fff; border:none;
+      width:2.8rem; height:2.8rem;
+      border-radius:.9rem;
+      align-items:center; justify-content:center;
+      font-size:1.1rem; cursor:pointer;
+      box-shadow:0 4px 16px rgba(99,102,241,.4);
+      transition:all .25s ease;
+    }
+    #sidebar-toggle:hover { transform:scale(1.07); }
+    #sidebar-backdrop {
+      display:none; position:fixed; inset:0;
+      background:rgba(15,23,42,.5);
+      backdrop-filter:blur(4px); z-index:490;
+    }
+    @media(max-width:1023px) {
+      #sidebar-toggle { display:flex; }
+      aside {
+        position:fixed !important; top:0; left:0;
+        height:100dvh !important; width:85vw !important;
+        max-width:340px !important; z-index:500;
+        transform:translateX(-110%);
+        transition:transform .35s cubic-bezier(.4,0,.2,1);
+        border-radius:0 !important; overflow-y:auto;
+      }
+      aside.sidebar-open { transform:translateX(0); box-shadow:8px 0 40px rgba(0,0,0,.18); }
+      aside>div { border-radius:0 !important; min-height:100%; padding-top:4.5rem !important; }
+      #sidebar-backdrop.active { display:block; }
+      #main-content { width:100% !important; padding-left:0 !important; }
+    }
+    @media (max-width:640px) {
+      .card-pro { padding:1.25rem !important; }
+    }
+
+    /* ── TOOLTIP ── */
+    .tooltip-term {
+      border-bottom:2px dashed #6366f1; cursor:help;
+      position:relative; color:#6366f1; font-weight:600;
+    }
+    .tooltip-term::after {
+      content:attr(data-tooltip);
+      position:absolute; bottom:calc(100% + 8px); left:50%;
+      transform:translateX(-50%) scale(.92);
+      background:#1e293b; color:#f8fafc;
+      padding:.5rem .9rem; border-radius:.7rem;
+      font-size:.75rem; font-weight:400;
+      max-width:240px; text-align:center;
+      box-shadow:0 8px 24px rgba(0,0,0,.2);
+      opacity:0; pointer-events:none;
+      transition:opacity .2s ease,transform .2s ease;
+      z-index:100; white-space:normal;
+    }
+    .tooltip-term:hover::after { opacity:1; transform:translateX(-50%) scale(1); }
+
+    /* ── STAGGER DELAYS ── */
+    .stagger-1{transition-delay:.05s}
+    .stagger-2{transition-delay:.1s}
+    .stagger-3{transition-delay:.15s}
+    .stagger-4{transition-delay:.2s}
+    .stagger-5{transition-delay:.25s}
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width:6px; }
+    ::-webkit-scrollbar-track { background:#f1f5f9; }
+    ::-webkit-scrollbar-thumb { background:#c7d2fe; border-radius:3px; }
+    ::-webkit-scrollbar-thumb:hover { background:#6366f1; }
+
+    /* competencias clave pills animation */
+    .cc-pill { transition:all .2s ease; cursor:default; }
+    .cc-pill:hover { transform:scale(1.07); box-shadow:0 4px 14px rgba(0,0,0,.12); }
+
+    /* timeline */
+    .tl-line { width:2px; background:linear-gradient(to bottom,#6366f1,#f97316); margin:0 auto; }
+
+    /* image hover */
+    .img-zoom { transition:transform .5s cubic-bezier(.4,0,.2,1); }
+    .img-wrap:hover .img-zoom { transform:scale(1.04); }
+  </style>
+  <link rel="stylesheet" href="../assets/portal-nav.css">
+</head>
+<body class="antialiased">
+
+<!-- ═══════════════ SCROLL PROGRESS ═══════════════ -->
+<div id="scroll-progress"></div>
+
+<!-- ═══════════════ BURGER / MOBILE ═══════════════ -->
+<button id="sidebar-toggle" aria-label="Abrir menú"><i class="fas fa-bars"></i></button>
+<div id="sidebar-backdrop"></div>
+
+<!-- ═══════════════ BACK TO TOP ═══════════════ -->
+<button id="back-to-top" aria-label="Subir al inicio"><i class="fas fa-arrow-up"></i></button>
+
+<!-- ═══════════════ PROMPT MODAL ═══════════════ -->
+<div id="prompt-modal-overlay">
+  <div id="prompt-modal-box">
+    <div class="flex items-center justify-between mb-4">
+      <span class="text-xs font-bold uppercase tracking-widest text-purple-400">✨ Prompt para IA</span>
+      <button onclick="closePrompt()" class="rounded-full w-8 h-8 flex items-center justify-center bg-white/10 text-slate-400 hover:bg-red-500 hover:text-white transition-all text-sm">✕</button>
+    </div>
+    <p id="prompt-modal-label" class="text-slate-400 text-sm mb-2"></p>
+    <textarea id="prompt-text-area" readonly></textarea>
+    <button id="copy-prompt-btn" onclick="copyPrompt()">
+      <i class="fas fa-copy"></i> Copiar Prompt
+    </button>
+  </div>
+</div>
+
+<!-- ═══════════════ APP LAYOUT ═══════════════ -->
+<div class="flex min-h-screen">
+
+  <!-- ══════════ SIDEBAR ══════════ -->
+  <aside class="w-72 flex-shrink-0 bg-white border-r border-slate-100 shadow-sm sticky top-0 h-screen overflow-y-auto z-50">
+    <div class="p-6 border-b border-slate-100">
+      <div class="flex items-center gap-3 mb-1">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-indigo-700 flex items-center justify-center text-white text-lg shadow-md">🎓</div>
+        <div>
+          <div class="font-extrabold text-slate-800 text-base leading-tight">AutoDocente CV</div>
+          <div class="text-xs text-slate-400 font-medium">Comunitat Valenciana</div>
+        </div>
+      </div>
+      <div class="mt-3 flex gap-2 flex-wrap">
+        <span class="text-xs bg-indigo-50 text-indigo-600 font-bold px-2 py-1 rounded-full border border-indigo-100">ESO</span>
+        <span class="text-xs bg-orange-50 text-orange-600 font-bold px-2 py-1 rounded-full border border-orange-100">BACH</span>
+        <span class="text-xs bg-emerald-50 text-emerald-600 font-bold px-2 py-1 rounded-full border border-emerald-100">FP</span>
+        <span class="text-xs bg-slate-50 text-slate-500 font-medium px-2 py-1 rounded-full border border-slate-100">2025–26</span>
+      </div>
+    </div>
+    <nav class="p-4 space-y-1">
+      <p class="text-xs font-bold text-slate-400 uppercase tracking-widest px-3 pt-2 pb-1">Normativa CV</p>
+      <a href="#intro"       class="nav-link flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm font-medium"><i class="fas fa-home w-4 text-indigo-400"></i> Introducción</a>
+      <a href="#eso"         class="nav-link flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm font-medium"><i class="fas fa-chalkboard-teacher w-4 text-indigo-400"></i> ESO</a>
+      <a href="#bachillerato" class="nav-link flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm font-medium"><i class="fas fa-graduation-cap w-4 text-orange-400"></i> Bachillerato</a>
+      <a href="#fp"          class="nav-link flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm font-medium"><i class="fas fa-tools w-4 text-emerald-500"></i> FP</a>
+      <a href="#comunes"     class="nav-link flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm font-medium"><i class="fas fa-sitemap w-4 text-slate-400"></i> Elementos Comunes</a>
+      <a href="#documentos"  class="nav-link flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm font-medium"><i class="fas fa-folder-open w-4 text-slate-400"></i> Documentos de Centro</a>
+      <a href="#inclusion"   class="nav-link flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm font-medium"><i class="fas fa-hands-helping w-4 text-pink-400"></i> Inclusión y DUA</a>
+      <a href="#metodologia" class="nav-link flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm font-medium"><i class="fas fa-lightbulb w-4 text-yellow-400"></i> Metodologías</a>
+      <a href="#programacion-did" class="nav-link flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm font-medium"><i class="fas fa-file-alt w-4 text-indigo-400"></i> Programación Didáctica</a>
+      <a href="#prompts"     class="nav-link flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm font-medium nav-activity" style="background:linear-gradient(135deg,rgba(99,102,241,.1),rgba(167,139,250,.07));border:1px solid rgba(99,102,241,.25);color:#5b5bd6"><i class="fas fa-magic w-4"></i> Prompts IA Docentes</a>
+      <a href="#recursos"    class="nav-link flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm font-medium"><i class="fas fa-link w-4 text-slate-400"></i> Recursos Oficiales</a>
+      <div class="mt-2 pt-2 border-t border-slate-100">
+        <p class="text-xs font-bold text-slate-400 uppercase tracking-widest px-3 pt-1 pb-1">Apps IA</p>
+        <a href="../app-prompts.html" class="nav-link flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm font-medium" style="color:#4f46e5"><i class="fas fa-copy w-4 text-indigo-400"></i> Biblioteca Prompts</a>
+        <a href="../app-ia.html" class="nav-link flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm font-medium" style="background:linear-gradient(135deg,rgba(139,92,246,.12),rgba(236,72,153,.08));border:1px solid rgba(139,92,246,.25);color:#7c3aed">
+          <i class="fas fa-robot w-4"></i> App IA Interactiva
+          <span class="ml-auto text-xs bg-violet-500 text-white px-1.5 py-0.5 rounded-full leading-none">NEW</span>
+        </a>
+      </div>
+    </nav>
+    <div class="p-4 mx-4 mb-4 rounded-2xl bg-gradient-to-br from-indigo-50 to-purple-50 border border-indigo-100">
+      <div class="text-xs font-bold text-indigo-700 mb-1">📅 Actualización normativa</div>
+      <div class="text-xs text-slate-500 leading-relaxed">Decreto 114/2025 (FP GM/GS) y Decreto 117/2025 (FP Básica) en vigor desde el curso <strong>2025–2026</strong>.</div>
+    </div>
+  </aside>
+
+  <!-- ══════════ MAIN CONTENT ══════════ -->
+  <main id="main-content" class="flex-1 min-w-0">
+
+    <!-- ══════════════════════════════════
+         HERO
+    ══════════════════════════════════ -->
+    <section class="hero-section text-white py-20 px-8 md:px-16">
+      <div class="max-w-4xl">
+        <div class="inline-flex items-center gap-2 bg-white/15 border border-white/25 rounded-full px-4 py-1.5 text-sm font-semibold mb-6 backdrop-blur-sm">
+          <i class="fas fa-map-marker-alt text-orange-300"></i> Comunitat Valenciana · Curso 2025–2026
+        </div>
+        <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4 hero-shimmer">
+          Marco Legal para Docentes<br>de Secundaria y FP
+        </h1>
+        <p class="text-lg md:text-xl text-white/85 max-w-2xl leading-relaxed mb-8">
+          Toda la normativa autonómica vigente: <strong class="text-white">Decreto 107/2022</strong> (ESO),
+          <strong class="text-white">Decreto 108/2022</strong> (Bachillerato) y los nuevos
+          <strong class="text-white">Decretos 114-117/2025</strong> (FP) con acordeones desplegables,
+          elementos de programación e IA integrada.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a href="#eso"  class="bg-white text-indigo-700 font-bold px-6 py-3 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all text-sm"><i class="fas fa-chalkboard-teacher mr-2"></i>ESO</a>
+          <a href="#bachillerato" class="bg-white/15 border border-white/30 text-white font-bold px-6 py-3 rounded-xl hover:bg-white/25 transition-all text-sm backdrop-blur-sm"><i class="fas fa-graduation-cap mr-2"></i>Bachillerato</a>
+          <a href="#fp"   class="bg-white/15 border border-white/30 text-white font-bold px-6 py-3 rounded-xl hover:bg-white/25 transition-all text-sm backdrop-blur-sm"><i class="fas fa-tools mr-2"></i>FP</a>
+        </div>
+        <!-- APP NAVIGATION -->
+        <div class="flex flex-wrap gap-3 mt-5 pt-5 border-t border-white/20">
+          <span class="text-white/60 text-sm font-medium self-center">Herramientas IA →</span>
+          <a href="../app-prompts.html" class="inline-flex items-center gap-2 bg-white/15 border border-white/30 text-white font-bold px-5 py-2.5 rounded-xl hover:bg-white/25 transition-all text-sm backdrop-blur-sm">
+            <i class="fas fa-copy text-yellow-300"></i> Biblioteca de Prompts
+          </a>
+          <a href="../app-ia.html" class="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500/80 to-pink-500/80 border border-white/30 text-white font-bold px-5 py-2.5 rounded-xl hover:opacity-90 transition-all text-sm backdrop-blur-sm shadow-lg">
+            <i class="fas fa-magic text-white"></i> App IA Interactiva
+            <span class="bg-white/25 text-xs px-1.5 py-0.5 rounded-full">NUEVO</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <div class="max-w-5xl mx-auto px-6 md:px-10 py-10 space-y-16">
+
+      <!-- ══════════════════════════════════
+           INTRO – CONTEXTO NORMATIVO
+      ══════════════════════════════════ -->
+      <section id="intro" class="content-section">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="section-icon-badge w-12 h-12 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-content-center text-white text-xl shadow-lg">🏛️</div>
+          <div>
+            <h2 class="text-2xl md:text-3xl font-extrabold text-slate-800 gradient-text">Contexto Normativo General</h2>
+            <p class="text-slate-500 text-sm">Marco legal estatal y autonómico aplicable</p>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6 mb-8">
+          <div class="card-pro">
+            <div class="flex items-start gap-4">
+              <div class="w-11 h-11 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-content-center text-xl flex-shrink-0">⚖️</div>
+              <div>
+                <h3 class="font-bold text-slate-800 mb-2">Ley Orgánica Estatal</h3>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                  <span class="tooltip-term" data-tooltip="Ley Orgánica de Modificación de la LOE – Aprobada el 29 de diciembre de 2020">LOMLOE</span> (Ley Orgánica 3/2020) es la norma marco estatal que rige todo el sistema educativo no universitario. Establece el enfoque por competencias, el Perfil de Salida y los elementos del currículo.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="card-pro">
+            <div class="flex items-start gap-4">
+              <div class="w-11 h-11 rounded-xl bg-orange-100 text-orange-600 flex items-center justify-content-center text-xl flex-shrink-0">🌊</div>
+              <div>
+                <h3 class="font-bold text-slate-800 mb-2">Normativa Autonómica CV</h3>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                  La <strong>Conselleria d'Educació, Universitats i Ocupació</strong> de la Generalitat Valenciana adapta el marco estatal mediante Decretos publicados en el <span class="tooltip-term" data-tooltip="Diari Oficial de la Generalitat Valenciana">DOGV</span>.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stats banner -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div class="bg-white rounded-2xl p-5 text-center border border-slate-100 shadow-sm hover:shadow-md transition-all hover:-translate-y-1">
+            <div class="text-3xl font-extrabold gradient-text mb-1">107</div>
+            <div class="text-xs text-slate-500 font-medium">Decreto ESO</div>
+          </div>
+          <div class="bg-white rounded-2xl p-5 text-center border border-slate-100 shadow-sm hover:shadow-md transition-all hover:-translate-y-1">
+            <div class="text-3xl font-extrabold gradient-text mb-1">108</div>
+            <div class="text-xs text-slate-500 font-medium">Decreto Bach.</div>
+          </div>
+          <div class="bg-white rounded-2xl p-5 text-center border border-slate-100 shadow-sm hover:shadow-md transition-all hover:-translate-y-1">
+            <div class="text-3xl font-extrabold gradient-text mb-1">114</div>
+            <div class="text-xs text-slate-500 font-medium">Decreto FP GM/GS</div>
+          </div>
+          <div class="bg-white rounded-2xl p-5 text-center border border-slate-100 shadow-sm hover:shadow-md transition-all hover:-translate-y-1">
+            <div class="text-3xl font-extrabold gradient-text mb-1">117</div>
+            <div class="text-xs text-slate-500 font-medium">Decreto FP Básica</div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="section-divider">
+
+      <!-- ══════════════════════════════════
+           ESO
+      ══════════════════════════════════ -->
+      <section id="eso" class="content-section">
+        <div class="flex items-center gap-3 mb-2">
+          <div class="section-icon-badge w-12 h-12 rounded-2xl bg-gradient-to-br from-indigo-500 to-indigo-700 flex items-center justify-content-center text-white text-xl shadow-lg">📚</div>
+          <div>
+            <h2 class="text-2xl md:text-3xl font-extrabold text-slate-800">Educación Secundaria Obligatoria <span class="gradient-text">(ESO)</span></h2>
+            <p class="text-slate-500 text-sm">Decreto 107/2022, de 5 de agosto · Modificado por Decreto 66/2024</p>
+          </div>
+        </div>
+
+        <!-- Image + intro -->
+        <div class="flex flex-col md:flex-row gap-6 my-6">
+          <div class="img-wrap rounded-2xl overflow-hidden flex-shrink-0 w-full md:w-72 h-48 md:h-auto shadow-lg">
+            <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?q=80&w=800&auto=format&fit=crop"
+                 alt="Alumnado ESO en aula moderna" class="img-zoom w-full h-full object-cover">
+          </div>
+          <div class="flex-1 space-y-3 text-sm text-slate-600 leading-relaxed">
+            <p>La ESO en la Comunitat Valenciana se rige por el <strong class="text-slate-800">Decreto 107/2022</strong>, que adapta la LOMLOE al contexto autonómico. Este decreto establece un enfoque completamente competencial con 8 competencias clave vinculadas al <span class="tooltip-term" data-tooltip="Conjunto de resultados del aprendizaje al finalizar la ESO">Perfil de Salida</span> del alumnado.</p>
+            <p>Ha sido modificado por el <strong>Decreto 66/2024</strong> y se desarrolla mediante la <strong>Orden 19/2023</strong> de la Conselleria de Educación.</p>
+            <div class="flex flex-wrap gap-2 pt-1">
+              <span class="tag-estatal text-xs font-bold px-3 py-1 rounded-full">Estatal: LOMLOE + RD 217/2022</span>
+              <span class="tag-cv text-xs font-bold px-3 py-1 rounded-full">CV: Decreto 107/2022</span>
+              <span class="tag-orden text-xs font-bold px-3 py-1 rounded-full">Desarrollo: Orden 19/2023</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ACORDEONES ESO -->
+        <div class="space-y-3">
+
+          <!-- Elementos del currículo -->
+          <details class="card-pro !p-0 border border-slate-100" open>
+            <summary class="flex items-center justify-between p-5 cursor-pointer">
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-content-center text-base">🧩</div>
+                <div>
+                  <div class="font-bold text-slate-800 text-sm">Elementos del Currículo ESO</div>
+                  <div class="text-xs text-slate-400">Competencias · Saberes · Criterios · Situaciones</div>
+                </div>
+              </div>
+              <i class="fas fa-chevron-down text-slate-400 chevron"></i>
+            </summary>
+            <div class="px-5 pb-5 pt-1 border-t border-slate-50">
+              <div class="grid md:grid-cols-3 gap-3 mt-3">
+                <div class="bg-indigo-50 rounded-xl p-4 border border-indigo-100 cc-pill">
+                  <div class="font-bold text-indigo-700 text-sm mb-1">🎯 Competencias Clave</div>
+                  <p class="text-xs text-slate-500 leading-relaxed">8 competencias vinculadas al Perfil de Salida. Referente transversal de toda la etapa.</p>
+                </div>
+                <div class="bg-emerald-50 rounded-xl p-4 border border-emerald-100 cc-pill">
+                  <div class="font-bold text-emerald-700 text-sm mb-1">📖 Saberes Básicos</div>
+                  <p class="text-xs text-slate-500 leading-relaxed">Conocimientos, destrezas y actitudes que constituyen el contenido propio de cada materia.</p>
+                </div>
+                <div class="bg-orange-50 rounded-xl p-4 border border-orange-100 cc-pill">
+                  <div class="font-bold text-orange-700 text-sm mb-1">📐 Criterios de Evaluación</div>
+                  <p class="text-xs text-slate-500 leading-relaxed">Referentes de nivel de desempeño. Indican qué se espera del alumnado en cada actividad.</p>
+                </div>
+                <div class="bg-purple-50 rounded-xl p-4 border border-purple-100 cc-pill">
+                  <div class="font-bold text-purple-700 text-sm mb-1">💡 Competencias Específicas</div>
+                  <p class="text-xs text-slate-500 leading-relaxed">Desempeños propios de cada materia que concretan las competencias clave en el contexto disciplinar.</p>
+                </div>
+                <div class="bg-cyan-50 rounded-xl p-4 border border-cyan-100 cc-pill">
+                  <div class="font-bold text-cyan-700 text-sm mb-1">🌱 Situaciones de Aprendizaje</div>
+                  <p class="text-xs text-slate-500 leading-relaxed">Contextos en los que el alumnado aplica los saberes de manera competencial e integrada.</p>
+                </div>
+                <div class="bg-rose-50 rounded-xl p-4 border border-rose-100 cc-pill">
+                  <div class="font-bold text-rose-700 text-sm mb-1">🏁 Perfil de Salida</div>
+                  <p class="text-xs text-slate-500 leading-relaxed">Metas de aprendizaje al terminar la ESO. Referente para la evaluación del grado de adquisición competencial.</p>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <!-- 8 Competencias Clave -->
+          <details class="card-pro !p-0 border border-slate-100">
+            <summary class="flex items-center justify-between p-5 cursor-pointer">
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-xl bg-yellow-100 text-yellow-600 flex items-center justify-content-center text-base">⭐</div>
+                <div>
+                  <div class="font-bold text-slate-800 text-sm">Las 8 Competencias Clave LOMLOE</div>
+                  <div class="text-xs text-slate-400">Referente del Perfil de Salida del alumnado</div>
+                </div>
+              </div>
+              <i class="fas fa-chevron-down text-slate-400 chevron"></i>
+            </summary>
+            <div class="px-5 pb-5 pt-1 border-t border-slate-50">
+              <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-3">
+                <div class="bg-indigo-600 text-white rounded-xl p-3 text-center cc-pill shadow-sm">
+                  <div class="font-extrabold text-lg">CCL</div>
+                  <div class="text-xs text-indigo-200 leading-tight mt-0.5">Comunicación Lingüística</div>
+                </div>
+                <div class="bg-blue-500 text-white rounded-xl p-3 text-center cc-pill shadow-sm">
+                  <div class="font-extrabold text-lg">CP</div>
+                  <div class="text-xs text-blue-100 leading-tight mt-0.5">Plurilingüe</div>
+                </div>
+                <div class="bg-emerald-600 text-white rounded-xl p-3 text-center cc-pill shadow-sm">
+                  <div class="font-extrabold text-lg">STEM</div>
+                  <div class="text-xs text-emerald-100 leading-tight mt-0.5">Matemática · Ciencias · Tecnología</div>
+                </div>
+                <div class="bg-cyan-600 text-white rounded-xl p-3 text-center cc-pill shadow-sm">
+                  <div class="font-extrabold text-lg">CD</div>
+                  <div class="text-xs text-cyan-100 leading-tight mt-0.5">Digital</div>
+                </div>
+                <div class="bg-orange-500 text-white rounded-xl p-3 text-center cc-pill shadow-sm">
+                  <div class="font-extrabold text-lg">CPSAA</div>
+                  <div class="text-xs text-orange-100 leading-tight mt-0.5">Personal, Social y Aprender a Aprender</div>
+                </div>
+                <div class="bg-red-500 text-white rounded-xl p-3 text-center cc-pill shadow-sm">
+                  <div class="font-extrabold text-lg">CC</div>
+                  <div class="text-xs text-red-100 leading-tight mt-0.5">Ciudadana</div>
+                </div>
+                <div class="bg-yellow-500 text-white rounded-xl p-3 text-center cc-pill shadow-sm">
+                  <div class="font-extrabold text-lg">CE</div>
+                  <div class="text-xs text-yellow-100 leading-tight mt-0.5">Emprendedora</div>
+                </div>
+                <div class="bg-pink-500 text-white rounded-xl p-3 text-center cc-pill shadow-sm">
+                  <div class="font-extrabold text-lg">CCEC</div>
+                  <div class="text-xs text-pink-100 leading-tight mt-0.5">Conciencia y Expresión Culturales</div>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <!-- Materias ESO -->
+          <details class="card-pro !p-0 border border-slate-100">
+            <summary class="flex items-center justify-between p-5 cursor-pointer">
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-xl bg-slate-100 text-slate-600 flex items-center justify-content-center text-base">📋</div>
+                <div>
+                  <div class="font-bold text-slate-800 text-sm">Estructura y Materias de la Etapa</div>
+                  <div class="text-xs text-slate-400">4 cursos · Materias obligatorias y optativas</div>
+                </div>
+              </div>
+              <i class="fas fa-chevron-down text-slate-400 chevron"></i>
+            </summary>
+            <div class="px-5 pb-5 pt-1 border-t border-slate-50">
+              <div class="overflow-x-auto mt-3">
+                <table class="min-w-full text-sm">
+                  <thead>
+                    <tr class="bg-slate-50 text-slate-500 text-xs uppercase tracking-wide">
+                      <th class="text-left px-4 py-3 rounded-l-xl font-semibold">Bloque</th>
+                      <th class="text-left px-4 py-3 font-semibold">Materias</th>
+                      <th class="text-left px-4 py-3 rounded-r-xl font-semibold">Cursos</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-slate-50">
+                    <tr class="hover:bg-indigo-50/40 transition-colors">
+                      <td class="px-4 py-3 font-semibold text-indigo-700">Troncales</td>
+                      <td class="px-4 py-3 text-slate-600">Lengua Cast. y Lit. · Matemáticas · Ciencias Sociales · Geografía e Historia</td>
+                      <td class="px-4 py-3 text-slate-500">1.º–4.º</td>
+                    </tr>
+                    <tr class="hover:bg-orange-50/40 transition-colors">
+                      <td class="px-4 py-3 font-semibold text-orange-700">Lengua CV</td>
+                      <td class="px-4 py-3 text-slate-600">Valencià: Llengua i Literatura · Inglés / L. Extranjera</td>
+                      <td class="px-4 py-3 text-slate-500">1.º–4.º</td>
+                    </tr>
+                    <tr class="hover:bg-emerald-50/40 transition-colors">
+                      <td class="px-4 py-3 font-semibold text-emerald-700">Específicas</td>
+                      <td class="px-4 py-3 text-slate-600">Educación Física · Religión/Valores Cívicos · Tecnología · Plástica · Música</td>
+                      <td class="px-4 py-3 text-slate-500">Según curso</td>
+                    </tr>
+                    <tr class="hover:bg-purple-50/40 transition-colors">
+                      <td class="px-4 py-3 font-semibold text-purple-700">Libre Elección</td>
+                      <td class="px-4 py-3 text-slate-600">Materias de libre configuración autonómica y de centro</td>
+                      <td class="px-4 py-3 text-slate-500">Según centro</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="mt-4 bg-indigo-50 rounded-xl p-3 border border-indigo-100 text-xs text-indigo-700">
+                <strong>ℹ️ Proyecto Lingüístico de Centro (PLC):</strong> Obligatorio en todos los centros. Regula el tratamiento de las lenguas del currículo y la L. extranjera.
+              </div>
+            </div>
+          </details>
+
+          <!-- Evaluación ESO -->
+          <details class="card-pro !p-0 border border-slate-100">
+            <summary class="flex items-center justify-between p-5 cursor-pointer">
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-content-center text-base">✅</div>
+                <div>
+                  <div class="font-bold text-slate-800 text-sm">Evaluación y Titulación ESO</div>
+                  <div class="text-xs text-slate-400">Criterial · Continua · Formativa</div>
+                </div>
+              </div>
+              <i class="fas fa-chevron-down text-slate-400 chevron"></i>
+            </summary>
+            <div class="px-5 pb-5 pt-1 border-t border-slate-50">
+              <ul class="mt-3 space-y-2 text-sm text-slate-600">
+                <li class="flex items-start gap-2"><i class="fas fa-check-circle text-emerald-500 mt-0.5 flex-shrink-0"></i>Evaluación <strong class="text-slate-700">criterial y continua</strong>: referenciada en los criterios de evaluación de cada materia.</li>
+                <li class="flex items-start gap-2"><i class="fas fa-check-circle text-emerald-500 mt-0.5 flex-shrink-0"></i>El equipo docente decide la <strong class="text-slate-700">promoción y titulación</strong> de manera colegiada.</li>
+                <li class="flex items-start gap-2"><i class="fas fa-check-circle text-emerald-500 mt-0.5 flex-shrink-0"></i>Puede titularse con <strong class="text-slate-700">materias no superadas</strong> si el equipo docente considera que el alumnado ha alcanzado los objetivos de etapa.</li>
+                <li class="flex items-start gap-2"><i class="fas fa-check-circle text-emerald-500 mt-0.5 flex-shrink-0"></i>Se pueden establecer <strong class="text-slate-700">PMAR</strong> (Programa de Mejora del Aprendizaje y Rendimiento) en 2.º y 3.º ESO.</li>
+                <li class="flex items-start gap-2"><i class="fas fa-check-circle text-emerald-500 mt-0.5 flex-shrink-0"></i>Título de <strong class="text-slate-700">Graduado/a en ESO</strong> al finalizar la etapa con el grado de adquisición competencial requerido.</li>
+              </ul>
+              <button class="prompt-btn" onclick="openPrompt('eval_eso','Actúa como experto en normativa educativa de la Comunitat Valenciana. Explícame cómo funciona la evaluación criterial en la ESO según el Decreto 107/2022. Incluye: tipos de evaluación, criterios de titulación, papel del equipo docente y cómo diseñar instrumentos de evaluación alineados con los criterios del Decreto. Dame ejemplos concretos para una materia de ciencias sociales en 3.º ESO.')">
+                <i class="fas fa-magic"></i> Prompt IA: Diseñar sistema de evaluación ESO
+              </button>
+            </div>
+          </details>
+
+        </div>
+      </section>
+
+      <hr class="section-divider">
+
+      <!-- ══════════════════════════════════
+           BACHILLERATO
+      ══════════════════════════════════ -->
+      <section id="bachillerato" class="content-section">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="section-icon-badge w-12 h-12 rounded-2xl bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-content-center text-white text-xl shadow-lg">🎓</div>
+          <div>
+            <h2 class="text-2xl md:text-3xl font-extrabold text-slate-800"><span class="gradient-text">Bachillerato</span></h2>
+            <p class="text-slate-500 text-sm">Decreto 108/2022, de 5 de agosto · Orden 19/2023</p>
+          </div>
+        </div>
+
+        <div class="flex flex-col md:flex-row gap-6 mb-6">
+          <div class="img-wrap rounded-2xl overflow-hidden flex-shrink-0 w-full md:w-72 h-48 shadow-lg">
+            <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=800&auto=format&fit=crop"
+                 alt="Alumnado Bachillerato estudiando" class="img-zoom w-full h-full object-cover">
+          </div>
+          <div class="flex-1 space-y-3 text-sm text-slate-600 leading-relaxed">
+            <p>El Bachillerato en la CV se regula por el <strong class="text-slate-800">Decreto 108/2022</strong>. Es una etapa postobligatoria de <strong>2 cursos</strong> que prepara para el acceso a la universidad (EBAU) o a ciclos formativos de grado superior.</p>
+            <p>Ofrece <strong>4 modalidades</strong> y un amplio catálogo de materias optativas y de modalidad para que el alumnado configure su itinerario académico.</p>
+            <div class="flex flex-wrap gap-2 pt-1">
+              <span class="tag-estatal text-xs font-bold px-3 py-1 rounded-full">Estatal: RD 243/2022</span>
+              <span class="tag-cv text-xs font-bold px-3 py-1 rounded-full">CV: Decreto 108/2022</span>
+              <span class="tag-orden text-xs font-bold px-3 py-1 rounded-full">Desarrollo: Orden 19/2023</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-3">
+
+          <!-- Modalidades -->
+          <details class="card-pro !p-0 border border-slate-100" open>
+            <summary class="flex items-center justify-between p-5 cursor-pointer">
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-xl bg-orange-100 text-orange-600 flex items-center justify-content-center text-base">🗂️</div>
+                <div>
+                  <div class="font-bold text-slate-800 text-sm">Modalidades de Bachillerato</div>
+                  <div class="text-xs text-slate-400">4 itinerarios académicos diferenciados</div>
+                </div>
+              </div>
+              <i class="fas fa-chevron-down text-slate-400 chevron"></i>
+            </summary>
+            <div class="px-5 pb-5 pt-1 border-t border-slate-50">
+              <div class="grid md:grid-cols-2 gap-4 mt-3">
+                <div class="bg-emerald-50 rounded-2xl p-5 border border-emerald-100 hover:-translate-y-1 transition-transform">
+                  <div class="flex items-center gap-2 mb-2"><span class="text-2xl">🔬</span><span class="font-bold text-emerald-800">Ciencias y Tecnología</span></div>
+                  <p class="text-xs text-slate-500 leading-relaxed">Matemáticas · Física · Química · Biología · Tecnología e Ing.</p>
+                </div>
+                <div class="bg-blue-50 rounded-2xl p-5 border border-blue-100 hover:-translate-y-1 transition-transform">
+                  <div class="flex items-center gap-2 mb-2"><span class="text-2xl">📜</span><span class="font-bold text-blue-800">Humanidades y CC. Sociales</span></div>
+                  <p class="text-xs text-slate-500 leading-relaxed">Historia · Literatura · Latín · Economía · CC. Sociales</p>
+                </div>
+                <div class="bg-pink-50 rounded-2xl p-5 border border-pink-100 hover:-translate-y-1 transition-transform">
+                  <div class="flex items-center gap-2 mb-2"><span class="text-2xl">🎨</span><span class="font-bold text-pink-800">Artes</span></div>
+                  <p class="text-xs text-slate-500 leading-relaxed">Artes Plásticas o Artes Escénicas y Música. Plástica · Dibujo · Historia del Arte</p>
+                </div>
+                <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200 hover:-translate-y-1 transition-transform">
+                  <div class="flex items-center gap-2 mb-2"><span class="text-2xl">🌍</span><span class="font-bold text-slate-700">General</span></div>
+                  <p class="text-xs text-slate-500 leading-relaxed">Itinerario flexible con combinación de materias de distintas modalidades.</p>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <!-- Evaluación Bach -->
+          <details class="card-pro !p-0 border border-slate-100">
+            <summary class="flex items-center justify-between p-5 cursor-pointer">
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-content-center text-base">📊</div>
+                <div>
+                  <div class="font-bold text-slate-800 text-sm">Evaluación, Titulación y EBAU</div>
+                  <div class="text-xs text-slate-400">Continua · Criterial · Acceso universidad</div>
+                </div>
+              </div>
+              <i class="fas fa-chevron-down text-slate-400 chevron"></i>
+            </summary>
+            <div class="px-5 pb-5 pt-1 border-t border-slate-50">
+              <ul class="mt-3 space-y-2.5 text-sm text-slate-600">
+                <li class="flex items-start gap-2"><i class="fas fa-circle text-orange-400 text-xs mt-1.5 flex-shrink-0"></i>Evaluación <strong>continua y criterial</strong> por materia. Nota mínima <strong>5/10</strong> para superar cada materia.</li>
+                <li class="flex items-start gap-2"><i class="fas fa-circle text-orange-400 text-xs mt-1.5 flex-shrink-0"></i>Se puede titular con alguna materia pendiente si el equipo docente considera que los objetivos de etapa están alcanzados.</li>
+                <li class="flex items-start gap-2"><i class="fas fa-circle text-orange-400 text-xs mt-1.5 flex-shrink-0"></i><strong>EBAU</strong> (Evaluación Bachillerato para Acceso Universidad): coordinada por las universidades valencianas.</li>
+                <li class="flex items-start gap-2"><i class="fas fa-circle text-orange-400 text-xs mt-1.5 flex-shrink-0"></i>Plan de recuperación obligatorio para materias no superadas al final de cada curso.</li>
+                <li class="flex items-start gap-2"><i class="fas fa-circle text-orange-400 text-xs mt-1.5 flex-shrink-0"></i>Materias de modalidad tienen <strong>mayor peso</strong> en la ponderación del acceso universitario.</li>
+              </ul>
+              <button class="prompt-btn" onclick="openPrompt('prog_bach','Actúa como docente experto en Bachillerato en la Comunitat Valenciana. Necesito que me ayudes a crear la estructura completa de una programación didáctica para [materia] de [1.º/2.º] Bachillerato, modalidad [modalidad], según el Decreto 108/2022. Incluye: competencias específicas, criterios de evaluación, saberes básicos, metodología, situaciones de aprendizaje y sistema de calificación. Dame también una tabla de instrumentos de evaluación ponderados.')">
+                <i class="fas fa-magic"></i> Prompt IA: Programación Didáctica Bachillerato
+              </button>
+            </div>
+          </details>
+
+          <!-- Trabajo de investigación -->
+          <details class="card-pro !p-0 border border-slate-100">
+            <summary class="flex items-center justify-between p-5 cursor-pointer">
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-content-center text-base">🔍</div>
+                <div>
+                  <div class="font-bold text-slate-800 text-sm">Trabajo Monográfico e Interdisciplinar</div>
+                  <div class="text-xs text-slate-400">Proyectos transversales · Co-docencia</div>
+                </div>
+              </div>
+              <i class="fas fa-chevron-down text-slate-400 chevron"></i>
+            </summary>
+            <div class="px-5 pb-5 pt-1 border-t border-slate-50">
+              <div class="mt-3 space-y-3 text-sm text-slate-600">
+                <p>El Decreto 108/2022 potencia el <strong>trabajo interdisciplinar</strong> y los proyectos que integren competencias de distintas materias. Se fomenta la colaboración entre departamentos didácticos.</p>
+                <div class="grid md:grid-cols-2 gap-3 mt-3">
+                  <div class="bg-purple-50 rounded-xl p-4 border border-purple-100">
+                    <div class="font-bold text-purple-800 text-sm mb-1">Proyecto de Investigación (optativo)</div>
+                    <p class="text-xs text-slate-500">Trabajo individual o grupal de carácter investigador que puede computar en la calificación final.</p>
+                  </div>
+                  <div class="bg-indigo-50 rounded-xl p-4 border border-indigo-100">
+                    <div class="font-bold text-indigo-800 text-sm mb-1">Proyectos Transversales</div>
+                    <p class="text-xs text-slate-500">Coordinación entre materias para desarrollar situaciones de aprendizaje integradas (STEM, cultura emprendedora, etc.).</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </details>
+
+        </div>
+      </section>
+
+      <hr class="section-divider">
+
+      <!-- ══════════════════════════════════
+           FP
+      ══════════════════════════════════ -->
+      <section id="fp" class="content-section">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="section-icon-badge w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-500 to-emerald-700 flex items-center justify-content-center text-white text-xl shadow-lg">⚙️</div>
+          <div>
+            <h2 class="text-2xl md:text-3xl font-extrabold text-slate-800">Formación Profesional <span class="gradient-text">(FP)</span></h2>
+            <p class="text-slate-500 text-sm">Ley Orgánica 3/2022 · Decretos 114/2025 y 117/2025 CV</p>
+          </div>
+        </div>
+
+        <div class="flex flex-col md:flex-row gap-6 mb-6">
+          <div class="img-wrap rounded-2xl overflow-hidden flex-shrink-0 w-full md:w-72 h-48 shadow-lg">
+            <img src="https://images.unsplash.com/photo-1581092921461-39b9d83a2e12?q=80&w=800&auto=format&fit=crop"
+                 alt="Alumnado FP en taller tecnológico" class="img-zoom w-full h-full object-cover">
+          </div>
+          <div class="flex-1 space-y-3 text-sm text-slate-600 leading-relaxed">
+            <p>La FP en la CV ha experimentado una <strong class="text-slate-800">reforma profunda</strong> con la <strong>Ley Orgánica 3/2022</strong> y el <strong>RD 659/2023</strong>. Los nuevos currículos autonómicos se establecen en los <strong>Decretos 114/2025</strong> y <strong>117/2025</strong>.</p>
+            <p>La implantación se realizó en <strong>2024-25</strong> (1.er curso) y <strong>2025-26</strong> (2.º curso), con módulos transversales completamente nuevos.</p>
+            <div class="flex flex-wrap gap-2 pt-1">
+              <span class="tag-estatal text-xs font-bold px-3 py-1 rounded-full">Estatal: LO 3/2022 + RD 659/2023</span>
+              <span class="tag-cv text-xs font-bold px-3 py-1 rounded-full">CV: Decreto 114/2025 (GM/GS)</span>
+              <span class="tag-cv text-xs font-bold px-3 py-1 rounded-full">CV: Decreto 117/2025 (Básica)</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-3">
+
+          <!-- Niveles de FP -->
+          <details class="card-pro !p-0 border border-slate-100" open>
+            <summary class="flex items-center justify-between p-5 cursor-pointer">
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-content-center text-base">🏗️</div>
+                <div>
+                  <div class="font-bold text-slate-800 text-sm">Niveles del Sistema de FP</div>
+                  <div class="text-xs text-slate-400">Grado Básico · Medio · Superior</div>
+                </div>
+              </div>
+              <i class="fas fa-chevron-down text-slate-400 chevron"></i>
+            </summary>
+            <div class="px-5 pb-5 pt-1 border-t border-slate-50">
+              <div class="mt-3 space-y-3">
+                <div class="flex gap-4 items-start bg-green-50 rounded-2xl p-4 border border-green-100 hover:shadow-md transition-shadow">
+                  <div class="w-14 h-14 rounded-xl bg-green-200 text-green-800 flex items-center justify-content-center text-2xl flex-shrink-0 font-black">GB</div>
+                  <div>
+                    <div class="font-bold text-green-800 mb-0.5">Grado Básico · Decreto 117/2025</div>
+                    <p class="text-xs text-slate-500 leading-relaxed">Acceso: 15–17 años, desde 2.º ESO. Duración: 2000h (2 años). Título de Educación Secundaria (para alumnado en riesgo de fracaso escolar). Regula el <span class="font-semibold">Decreto 117/2025</span>.</p>
+                  </div>
+                </div>
+                <div class="flex gap-4 items-start bg-blue-50 rounded-2xl p-4 border border-blue-100 hover:shadow-md transition-shadow">
+                  <div class="w-14 h-14 rounded-xl bg-blue-200 text-blue-800 flex items-center justify-content-center text-2xl flex-shrink-0 font-black">GM</div>
+                  <div>
+                    <div class="font-bold text-blue-800 mb-0.5">Grado Medio · Decreto 114/2025</div>
+                    <p class="text-xs text-slate-500 leading-relaxed">Acceso: Título Graduado ESO o prueba de acceso ≥17 años. Duración: 2000h. Título de <strong>Técnico</strong>. Da acceso a GS.</p>
+                  </div>
+                </div>
+                <div class="flex gap-4 items-start bg-purple-50 rounded-2xl p-4 border border-purple-100 hover:shadow-md transition-shadow">
+                  <div class="w-14 h-14 rounded-xl bg-purple-200 text-purple-800 flex items-center justify-content-center text-2xl flex-shrink-0 font-black">GS</div>
+                  <div>
+                    <div class="font-bold text-purple-800 mb-0.5">Grado Superior · Decreto 114/2025</div>
+                    <p class="text-xs text-slate-500 leading-relaxed">Acceso: Bachillerato o prueba de acceso ≥19 años. Duración: 2000h. Título de <strong>Técnico Superior</strong>. Acceso a universidad con reconocimiento de créditos.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <!-- Módulos transversales -->
+          <details class="card-pro !p-0 border border-slate-100">
+            <summary class="flex items-center justify-between p-5 cursor-pointer">
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-xl bg-yellow-100 text-yellow-600 flex items-center justify-content-center text-base">🆕</div>
+                <div>
+                  <div class="font-bold text-slate-800 text-sm">Nuevos Módulos Transversales (2024-25 →)</div>
+                  <div class="text-xs text-slate-400">Sustituyen a FOL y EIE · Obligatorios en todos los ciclos</div>
+                </div>
+              </div>
+              <i class="fas fa-chevron-down text-slate-400 chevron"></i>
+            </summary>
+            <div class="px-5 pb-5 pt-1 border-t border-slate-50">
+              <div class="grid md:grid-cols-2 gap-3 mt-3">
+                <div class="rounded-xl border border-blue-100 bg-blue-50 p-4 cc-pill">
+                  <div class="flex items-center gap-2 mb-1.5"><span class="text-xl">📋</span><span class="font-bold text-blue-800 text-sm">Itinerario para la Empleabilidad I</span></div>
+                  <p class="text-xs text-slate-500 leading-relaxed">Sustituto de FOL (1.er curso). Derechos laborales, inserción laboral, PRL, orientación profesional.</p>
+                </div>
+                <div class="rounded-xl border border-blue-100 bg-blue-50 p-4 cc-pill">
+                  <div class="flex items-center gap-2 mb-1.5"><span class="text-xl">📋</span><span class="font-bold text-blue-800 text-sm">Itinerario para la Empleabilidad II</span></div>
+                  <p class="text-xs text-slate-500 leading-relaxed">Sustituto de EIE (2.º curso). Emprendimiento, plan de negocio, economía digital.</p>
+                </div>
+                <div class="rounded-xl border border-cyan-100 bg-cyan-50 p-4 cc-pill">
+                  <div class="flex items-center gap-2 mb-1.5"><span class="text-xl">💻</span><span class="font-bold text-cyan-800 text-sm">Digitalización Aplicada al Sistema Productivo</span></div>
+                  <p class="text-xs text-slate-500 leading-relaxed">Industria 4.0, IA, ciberseguridad, automatización. Adaptado a cada familia profesional.</p>
+                </div>
+                <div class="rounded-xl border border-green-100 bg-green-50 p-4 cc-pill">
+                  <div class="flex items-center gap-2 mb-1.5"><span class="text-xl">🌱</span><span class="font-bold text-green-800 text-sm">Sostenibilidad Aplicada al Sistema Productivo</span></div>
+                  <p class="text-xs text-slate-500 leading-relaxed">ODS, economía circular, eficiencia energética y medioambiente en el sector productivo.</p>
+                </div>
+                <div class="rounded-xl border border-purple-100 bg-purple-50 p-4 cc-pill">
+                  <div class="flex items-center gap-2 mb-1.5"><span class="text-xl">🇬🇧</span><span class="font-bold text-purple-800 text-sm">Inglés Profesional</span></div>
+                  <p class="text-xs text-slate-500 leading-relaxed">Obligatorio en todos los ciclos. Comunicación profesional en inglés técnico adaptado al sector.</p>
+                </div>
+                <div class="rounded-xl border border-orange-100 bg-orange-50 p-4 cc-pill">
+                  <div class="flex items-center gap-2 mb-1.5"><span class="text-xl">🔗</span><span class="font-bold text-orange-800 text-sm">Proyecto Intermodular</span></div>
+                  <p class="text-xs text-slate-500 leading-relaxed">Integrador de competencias de los distintos módulos del ciclo. Carácter globalizador y práctico.</p>
+                </div>
+              </div>
+              <div class="mt-3 bg-amber-50 rounded-xl p-3 border border-amber-100 text-xs text-amber-700">
+                <strong>⚠️ Importante:</strong> Estos módulos son <strong>obligatorios</strong> en <strong>todos</strong> los ciclos formativos de Grado Básico, Medio y Superior. Sustituyen definitivamente a FOL y EIE.
+              </div>
+              <button class="prompt-btn" onclick="openPrompt('modulos_fp','Actúa como docente de FP experto en el nuevo marco normativo de la Ley Orgánica 3/2022 y el Decreto 114/2025 de la Comunitat Valenciana. Necesito diseñar una situación de aprendizaje para el módulo de [nombre del módulo] del ciclo de [nombre del ciclo], familia profesional [familia]. La situación debe integrar los resultados de aprendizaje (RA), los criterios de evaluación (CE), los contenidos y la metodología activa. Incluye también cómo articular la coordinación con la empresa para la FCT.')">
+                <i class="fas fa-magic"></i> Prompt IA: Diseñar Situación de Aprendizaje FP
+              </button>
+            </div>
+          </details>
+
+          <!-- FCT y Dual -->
+          <details class="card-pro !p-0 border border-slate-100">
+            <summary class="flex items-center justify-between p-5 cursor-pointer">
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-xl bg-slate-100 text-slate-600 flex items-center justify-content-center text-base">🏭</div>
+                <div>
+                  <div class="font-bold text-slate-800 text-sm">Formación en Empresa: FCT y FP Dual</div>
+                  <div class="text-xs text-slate-400">Corresponsabilidad empresa-centro</div>
+                </div>
+              </div>
+              <i class="fas fa-chevron-down text-slate-400 chevron"></i>
+            </summary>
+            <div class="px-5 pb-5 pt-1 border-t border-slate-50">
+              <div class="grid md:grid-cols-2 gap-4 mt-3 text-sm text-slate-600">
+                <div>
+                  <h4 class="font-bold text-slate-800 mb-2">📅 Horas mínimas de empresa</h4>
+                  <div class="space-y-2">
+                    <div class="flex justify-between items-center bg-slate-50 rounded-lg px-4 py-2.5">
+                      <span class="font-medium">Grado Básico</span><span class="font-bold text-emerald-600">200h min.</span>
+                    </div>
+                    <div class="flex justify-between items-center bg-slate-50 rounded-lg px-4 py-2.5">
+                      <span class="font-medium">Grado Medio</span><span class="font-bold text-blue-600">220h min.</span>
+                    </div>
+                    <div class="flex justify-between items-center bg-slate-50 rounded-lg px-4 py-2.5">
+                      <span class="font-medium">Grado Superior</span><span class="font-bold text-purple-600">280h min.</span>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <h4 class="font-bold text-slate-800 mb-2">🤝 FP Dual</h4>
+                  <ul class="space-y-1.5 text-xs">
+                    <li class="flex items-start gap-1.5"><i class="fas fa-check text-emerald-500 mt-0.5"></i> Hasta el <strong>50%</strong> de la formación en empresa</li>
+                    <li class="flex items-start gap-1.5"><i class="fas fa-check text-emerald-500 mt-0.5"></i> Acuerdos o contratos de formación en alternancia</li>
+                    <li class="flex items-start gap-1.5"><i class="fas fa-check text-emerald-500 mt-0.5"></i> Tutor de empresa + tutor del centro</li>
+                    <li class="flex items-start gap-1.5"><i class="fas fa-check text-emerald-500 mt-0.5"></i> Proyecto intermodular articulado con empresa</li>
+                    <li class="flex items-start gap-1.5"><i class="fas fa-check text-emerald-500 mt-0.5"></i> Mayor corresponsabilidad y co-diseño curricular</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <!-- Calendario implantación -->
+          <details class="card-pro !p-0 border border-slate-100">
+            <summary class="flex items-center justify-between p-5 cursor-pointer">
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-content-center text-base">📅</div>
+                <div>
+                  <div class="font-bold text-slate-800 text-sm">Calendario de Implantación FP Nueva</div>
+                  <div class="text-xs text-slate-400">Transición de LOE a nueva LO 3/2022</div>
+                </div>
+              </div>
+              <i class="fas fa-chevron-down text-slate-400 chevron"></i>
+            </summary>
+            <div class="px-5 pb-5 pt-1 border-t border-slate-50">
+              <div class="mt-4 space-y-4">
+                <div class="flex gap-4">
+                  <div class="flex flex-col items-center">
+                    <div class="w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-content-center text-sm font-bold flex-shrink-0">✓</div>
+                    <div class="w-0.5 bg-slate-200 flex-1 mt-1"></div>
+                  </div>
+                  <div class="pb-4">
+                    <div class="font-bold text-slate-800 text-sm">2024–2025 <span class="text-xs bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full ml-1">Completado</span></div>
+                    <p class="text-xs text-slate-500 mt-0.5 leading-relaxed">Implantación del <strong>1.er curso</strong> de los nuevos currículos (Decreto 114/2025 y 117/2025). Nuevos módulos transversales.</p>
+                  </div>
+                </div>
+                <div class="flex gap-4">
+                  <div class="flex flex-col items-center">
+                    <div class="w-8 h-8 rounded-full bg-indigo-500 text-white flex items-center justify-content-center text-sm font-bold flex-shrink-0 animate-pulse">→</div>
+                    <div class="w-0.5 bg-slate-200 flex-1 mt-1"></div>
+                  </div>
+                  <div class="pb-4">
+                    <div class="font-bold text-indigo-700 text-sm">2025–2026 <span class="text-xs bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded-full ml-1">Curso Actual</span></div>
+                    <p class="text-xs text-slate-500 mt-0.5 leading-relaxed">Implantación del <strong>2.º curso</strong>. Consolidación completa del nuevo modelo. FCT redefinida en todos los ciclos.</p>
+                  </div>
+                </div>
+                <div class="flex gap-4">
+                  <div class="flex flex-col items-center">
+                    <div class="w-8 h-8 rounded-full bg-slate-200 text-slate-500 flex items-center justify-content-center text-sm font-bold flex-shrink-0">◎</div>
+                  </div>
+                  <div>
+                    <div class="font-bold text-slate-600 text-sm">2026 → <span class="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full ml-1">Próximo</span></div>
+                    <p class="text-xs text-slate-500 mt-0.5">Consolidación del nuevo modelo de FP. Evaluación del sistema e implantación de posibles correcciones.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </details>
+
+        </div>
+      </section>
+
+      <hr class="section-divider">
+
+      <!-- ══════════════════════════════════
+           ELEMENTOS COMUNES
+      ══════════════════════════════════ -->
+      <section id="comunes" class="content-section">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="section-icon-badge w-12 h-12 rounded-2xl bg-gradient-to-br from-slate-600 to-slate-800 flex items-center justify-content-center text-white text-xl shadow-lg">🔗</div>
+          <h2 class="text-2xl md:text-3xl font-extrabold text-slate-800">Elementos <span class="gradient-text">Comunes</span> a Todas las Etapas</h2>
+        </div>
+        <div class="space-y-3">
+
+          <details class="card-pro !p-0 border border-slate-100" open>
+            <summary class="flex items-center justify-between p-5 cursor-pointer">
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-content-center text-base">🏛️</div>
+                <div>
+                  <div class="font-bold text-slate-800 text-sm">Organismo Competente</div>
+                  <div class="text-xs text-slate-400">Conselleria d'Educació · DOGV</div>
+                </div>
+              </div>
+              <i class="fas fa-chevron-down text-slate-400 chevron"></i>
+            </summary>
+            <div class="px-5 pb-5 pt-1 border-t border-slate-50">
+              <div class="mt-3 grid md:grid-cols-3 gap-3 text-sm">
+                <div class="bg-slate-50 rounded-xl p-4 border border-slate-100">
+                  <div class="font-bold text-slate-700 mb-1">📌 Conselleria</div>
+                  <p class="text-xs text-slate-500">Conselleria d'Educació, Universitats i Ocupació de la Generalitat Valenciana</p>
+                </div>
+                <div class="bg-slate-50 rounded-xl p-4 border border-slate-100">
+                  <div class="font-bold text-slate-700 mb-1">📰 DOGV</div>
+                  <p class="text-xs text-slate-500">Diari Oficial de la Generalitat Valenciana. Publicación de decretos, órdenes y resoluciones.</p>
+                </div>
+                <div class="bg-slate-50 rounded-xl p-4 border border-slate-100">
+                  <div class="font-bold text-slate-700 mb-1">🔍 Inspección</div>
+                  <p class="text-xs text-slate-500">3 servicios territoriales: Valencia, Alicante (Alacant) y Castellón (Castelló).</p>
+                </div>
+              </div>
+            </div>
+          </details>
+
+        </div>
+      </section>
+
+      <hr class="section-divider">
+
+      <!-- ══════════════════════════════════
+           DOCUMENTOS DE CENTRO
+      ══════════════════════════════════ -->
+      <section id="documentos" class="content-section">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="section-icon-badge w-12 h-12 rounded-2xl bg-gradient-to-br from-indigo-400 to-blue-600 flex items-center justify-content-center text-white text-xl shadow-lg">📁</div>
+          <h2 class="text-2xl md:text-3xl font-extrabold text-slate-800">Documentos <span class="gradient-text">Obligatorios de Centro</span></h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="card-pro stagger-1 flex gap-4 items-start">
+            <div class="w-12 h-12 rounded-xl bg-indigo-100 text-indigo-700 flex items-center justify-content-center text-lg font-black flex-shrink-0 shadow-sm">PEC</div>
+            <div>
+              <h3 class="font-bold text-slate-800 text-sm mb-1">Proyecto Educativo de Centro</h3>
+              <p class="text-xs text-slate-500 leading-relaxed">Documento identitario del centro. Incluye señas de identidad, valores, objetivos estratégicos y organización general.</p>
+            </div>
+          </div>
+          <div class="card-pro stagger-2 flex gap-4 items-start">
+            <div class="w-12 h-12 rounded-xl bg-orange-100 text-orange-700 flex items-center justify-content-center text-lg font-black flex-shrink-0 shadow-sm">PGA</div>
+            <div>
+              <h3 class="font-bold text-slate-800 text-sm mb-1">Programación General Anual</h3>
+              <p class="text-xs text-slate-500 leading-relaxed">Planificación anual del centro. Recoge objetivos, actividades y medidas de seguimiento por curso escolar.</p>
+            </div>
+          </div>
+          <div class="card-pro stagger-3 flex gap-4 items-start">
+            <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-content-center text-lg font-black flex-shrink-0 shadow-sm">PLC</div>
+            <div>
+              <h3 class="font-bold text-slate-800 text-sm mb-1">Proyecto Lingüístico de Centro</h3>
+              <p class="text-xs text-slate-500 leading-relaxed">Obligatorio en todos los centros. Define el tratamiento integrado de las lenguas: valenciano, castellano e inglés.</p>
+            </div>
+          </div>
+          <div class="card-pro stagger-4 flex gap-4 items-start">
+            <div class="w-12 h-12 rounded-xl bg-rose-100 text-rose-700 flex items-center justify-content-center text-lg font-black flex-shrink-0 shadow-sm">ROF</div>
+            <div>
+              <h3 class="font-bold text-slate-800 text-sm mb-1">Reglamento de Organización y Funcionamiento</h3>
+              <p class="text-xs text-slate-500 leading-relaxed">Normas de convivencia, organización interna y funcionamiento del centro educativo.</p>
+            </div>
+          </div>
+          <div class="card-pro stagger-1 flex gap-4 items-start">
+            <div class="w-12 h-12 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-content-center text-lg font-black flex-shrink-0 shadow-sm">POAT</div>
+            <div>
+              <h3 class="font-bold text-slate-800 text-sm mb-1">Plan de Orientación y Acción Tutorial</h3>
+              <p class="text-xs text-slate-500 leading-relaxed">Orientación académica, personal y profesional del alumnado. Coordinación con el departamento de orientación.</p>
+            </div>
+          </div>
+          <div class="card-pro stagger-2 flex gap-4 items-start">
+            <div class="w-12 h-12 rounded-xl bg-cyan-100 text-cyan-700 flex items-center justify-content-center text-lg font-black flex-shrink-0 shadow-sm">PAD</div>
+            <div>
+              <h3 class="font-bold text-slate-800 text-sm mb-1">Plan de Atención a la Diversidad</h3>
+              <p class="text-xs text-slate-500 leading-relaxed">Medidas ordinarias, específicas y extraordinarias para la respuesta educativa inclusiva según el Decreto 104/2018.</p>
+            </div>
+          </div>
+          <div class="card-pro stagger-3 flex gap-4 items-start md:col-span-2">
+            <div class="w-12 h-12 rounded-xl bg-indigo-600 text-white flex items-center justify-content-center text-base font-black flex-shrink-0 shadow-sm">PD</div>
+            <div>
+              <h3 class="font-bold text-slate-800 text-sm mb-1">Programaciones Didácticas</h3>
+              <p class="text-xs text-slate-500 leading-relaxed">Una por materia/módulo. Instrumento de planificación, desarrollo y evaluación. Recoge todos los elementos curriculares del decreto correspondiente (107, 108 o 114/2025). Su elaboración es responsabilidad del departamento didáctico.</p>
+              <button class="prompt-btn" onclick="openPrompt('prog_did_gen','Actúa como asesor pedagógico experto en la normativa de la Comunitat Valenciana. Necesito crear una Programación Didáctica completa para la materia de [materia] en [curso] de [etapa: ESO/Bachillerato] según el Decreto [107/2022 o 108/2022]. Dame todos los apartados obligatorios con indicaciones de contenido para cada sección: contextualización, competencias específicas, criterios de evaluación, saberes básicos (secuenciados por unidades/situaciones de aprendizaje), metodología, atención a la diversidad (DUA), evaluación y calificación, materiales y recursos. Adapta los ejemplos a mi materia y nivel.')">
+                <i class="fas fa-magic"></i> Prompt IA: Generar Programación Didáctica completa
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="section-divider">
+
+      <!-- ══════════════════════════════════
+           INCLUSIÓN Y DUA
+      ══════════════════════════════════ -->
+      <section id="inclusion" class="content-section">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="section-icon-badge w-12 h-12 rounded-2xl bg-gradient-to-br from-pink-500 to-rose-600 flex items-center justify-content-center text-white text-xl shadow-lg">♿</div>
+          <h2 class="text-2xl md:text-3xl font-extrabold text-slate-800">Inclusión y <span class="gradient-text">Atención a la Diversidad</span></h2>
+        </div>
+
+        <div class="card-pro mb-4">
+          <div class="flex flex-col md:flex-row gap-4 items-start">
+            <div class="flex-1 space-y-3 text-sm text-slate-600">
+              <p>La normativa de inclusión en la CV se basa en el <strong class="text-slate-800">Decreto 104/2018</strong>, de ordenación de las condiciones para la inclusión (precedente de LOMLOE), y la <strong>Orden 20/2019</strong>. El enfoque preferente es el <span class="tooltip-term" data-tooltip="Diseño Universal para el Aprendizaje: planificar desde el inicio para todos, eliminando barreras antes de que aparezcan">DUA</span>.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-3">
+          <details class="card-pro !p-0 border border-slate-100" open>
+            <summary class="flex items-center justify-between p-5 cursor-pointer">
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-xl bg-pink-100 text-pink-600 flex items-center justify-content-center text-base">🎯</div>
+                <div>
+                  <div class="font-bold text-slate-800 text-sm">Medidas de Respuesta Educativa</div>
+                  <div class="text-xs text-slate-400">Ordinarias · Específicas · Extraordinarias</div>
+                </div>
+              </div>
+              <i class="fas fa-chevron-down text-slate-400 chevron"></i>
+            </summary>
+            <div class="px-5 pb-5 pt-1 border-t border-slate-50">
+              <div class="mt-3 space-y-3 text-sm">
+                <div class="border-l-4 border-green-400 bg-green-50 rounded-r-2xl p-4">
+                  <div class="font-bold text-green-800 mb-1">Medidas Ordinarias (para todo el alumnado)</div>
+                  <p class="text-xs text-slate-500">Metodologías activas · DUA · Flexibilización organizativa · Tutorías personalizadas · Actividades de refuerzo y ampliación</p>
+                </div>
+                <div class="border-l-4 border-blue-400 bg-blue-50 rounded-r-2xl p-4">
+                  <div class="font-bold text-blue-800 mb-1">Medidas Específicas (ACINES / PMAR)</div>
+                  <p class="text-xs text-slate-500">
+                    <strong>ACINES</strong>: Adaptaciones Curriculares Individuales No Significativas (sin modificar criterios de evaluación) ·
+                    <strong>PMAR</strong>: Programa de Mejora del Aprendizaje y Rendimiento (2.º y 3.º ESO)
+                  </p>
+                </div>
+                <div class="border-l-4 border-rose-400 bg-rose-50 rounded-r-2xl p-4">
+                  <div class="font-bold text-rose-800 mb-1">Medidas Extraordinarias (ACIS)</div>
+                  <p class="text-xs text-slate-500">
+                    <strong>ACIS</strong>: Adaptaciones Curriculares Individuales Significativas. Modifican los criterios de evaluación. Requieren evaluación psicopedagógica y aprobación de inspección. Coordinadas con el departamento de orientación.
+                  </p>
+                </div>
+              </div>
+              <button class="prompt-btn" onclick="openPrompt('dua_prompt','Actúa como experto en Diseño Universal para el Aprendizaje (DUA) aplicado a la educación secundaria en España. Necesito adaptar la siguiente actividad/unidad de [materia] para un grupo heterogéneo de 3.º ESO aplicando los 3 principios del DUA: Representación, Acción y Expresión, e Implicación. El contenido es [describe el contenido]. Dame variantes concretas para cada principio y sugiere instrumentos de evaluación inclusivos que permitan al alumnado con ACINES o ACIS demostrar sus aprendizajes.')">
+                <i class="fas fa-magic"></i> Prompt IA: Adaptar actividad con DUA
+              </button>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <hr class="section-divider">
+
+      <!-- ══════════════════════════════════
+           METODOLOGÍAS
+      ══════════════════════════════════ -->
+      <section id="metodologia" class="content-section">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="section-icon-badge w-12 h-12 rounded-2xl bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-content-center text-white text-xl shadow-lg">💡</div>
+          <h2 class="text-2xl md:text-3xl font-extrabold text-slate-800">Metodologías <span class="gradient-text">Activas Recomendadas</span></h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="card-pro stagger-1">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-content-center text-base">🚀</div>
+              <h3 class="font-bold text-slate-800">ABP – Aprendizaje Basado en Proyectos</h3>
+            </div>
+            <p class="text-xs text-slate-500 leading-relaxed mb-2">El alumnado resuelve un problema o crea un producto real. Favorece la interdisciplinariedad y las competencias clave.</p>
+            <button class="prompt-btn text-xs" onclick="openPrompt('abp_prompt','Diseña un proyecto ABP completo para [materia] de [curso] ESO/Bachillerato con la siguiente temática: [tema]. Incluye: pregunta guía, fases del proyecto (semanas), productos finales, criterios de evaluación vinculados al Decreto 107/2022, rúbrica de evaluación y cómo integrar las competencias clave CCL, STEM y CD. El proyecto debe durar aproximadamente [N] semanas.')"><i class="fas fa-magic"></i> Prompt ABP</button>
+          </div>
+          <div class="card-pro stagger-2">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 rounded-xl bg-cyan-100 text-cyan-600 flex items-center justify-content-center text-base">♿</div>
+              <h3 class="font-bold text-slate-800">DUA – Diseño Universal para el Aprendizaje</h3>
+            </div>
+            <p class="text-xs text-slate-500 leading-relaxed mb-2">Marco de diseño inclusivo. Tres redes: afectiva (por qué), reconocimiento (qué) y estratégica (cómo). Enfoque preferente según normativa CV.</p>
+            <button class="prompt-btn text-xs" onclick="openPrompt('dua_prompt2','Aplica el marco DUA a una unidad didáctica de [materia] en [curso] sobre [tema]. Para cada principio (Representación, Acción y Expresión, Implicación) proporciona 3 estrategias concretas con recursos digitales y analógicos. Incluye también cómo adaptar la evaluación para alumnado con necesidades educativas (ACINES).')"><i class="fas fa-magic"></i> Prompt DUA</button>
+          </div>
+          <div class="card-pro stagger-3">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-content-center text-base">🤝</div>
+              <h3 class="font-bold text-slate-800">Aprendizaje Cooperativo</h3>
+            </div>
+            <p class="text-xs text-slate-500 leading-relaxed">Estructuras cooperativas (Rompecabezas, Lápices al centro, Folio giratorio). Desarrollo de CPSAA y competencia social.</p>
+          </div>
+          <div class="card-pro stagger-4">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 rounded-xl bg-orange-100 text-orange-600 flex items-center justify-content-center text-base">🎮</div>
+              <h3 class="font-bold text-slate-800">Gamificación y Design Thinking</h3>
+            </div>
+            <p class="text-xs text-slate-500 leading-relaxed">Mecánicas de juego y proceso creativo para resolver retos reales. Alta motivación e implicación del alumnado.</p>
+          </div>
+          <div class="card-pro stagger-5">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 rounded-xl bg-rose-100 text-rose-600 flex items-center justify-content-center text-base">🌍</div>
+              <h3 class="font-bold text-slate-800">Aprendizaje-Servicio (APS)</h3>
+            </div>
+            <p class="text-xs text-slate-500 leading-relaxed">Servicio comunitario vinculado a aprendizaje curricular. Favorece la competencia ciudadana (CC) y la emprendedora (CE).</p>
+          </div>
+          <div class="card-pro stagger-1">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-content-center text-base">🔬</div>
+              <h3 class="font-bold text-slate-800">STEM / STEAM</h3>
+            </div>
+            <p class="text-xs text-slate-500 leading-relaxed">Integración de Ciencias, Tecnología, Ingeniería, Arte y Matemáticas en proyectos transdisciplinares. Competencia STEM central en LOMLOE.</p>
+          </div>
+        </div>
+      </section>
+
+      <hr class="section-divider">
+
+      <!-- ══════════════════════════════════
+           PROGRAMACIÓN DIDÁCTICA (Guía)
+      ══════════════════════════════════ -->
+      <section id="programacion-did" class="content-section">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="section-icon-badge w-12 h-12 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-700 flex items-center justify-content-center text-white text-xl shadow-lg">📝</div>
+          <h2 class="text-2xl md:text-3xl font-extrabold text-slate-800">Guía de <span class="gradient-text">Programación Didáctica</span></h2>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-4 mb-6">
+          <div class="bg-indigo-50 rounded-2xl p-4 border border-indigo-100 text-center hover:-translate-y-1 transition-transform cursor-default">
+            <div class="text-3xl font-extrabold text-indigo-600 mb-1">12</div>
+            <div class="text-xs font-semibold text-slate-600">Apartados ESO/Bach.</div>
+          </div>
+          <div class="bg-emerald-50 rounded-2xl p-4 border border-emerald-100 text-center hover:-translate-y-1 transition-transform cursor-default">
+            <div class="text-3xl font-extrabold text-emerald-600 mb-1">10</div>
+            <div class="text-xs font-semibold text-slate-600">Apartados FP (Módulo)</div>
+          </div>
+          <div class="bg-orange-50 rounded-2xl p-4 border border-orange-100 text-center hover:-translate-y-1 transition-transform cursor-default">
+            <div class="text-3xl font-extrabold text-orange-600 mb-1">3</div>
+            <div class="text-xs font-semibold text-slate-600">Decretos autonómicos</div>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <!-- ESO/Bach -->
+          <div class="card-pro">
+            <h3 class="font-bold text-slate-800 mb-4 flex items-center gap-2"><span class="w-7 h-7 rounded-lg bg-indigo-100 text-indigo-600 flex items-center justify-content-center text-sm">📚</span> Programación ESO y Bachillerato</h3>
+            <ol class="space-y-2 text-sm text-slate-600" style="list-style:none;counter-reset:cnt">
+              <li style="counter-increment:cnt;display:flex;gap:.75rem;align-items:flex-start"><span style="min-width:22px;height:22px;background:linear-gradient(135deg,#6366f1,#a78bfa);color:#fff;font-size:.7rem;font-weight:700;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">1</span>Contextualización del centro y del grupo</li>
+              <li style="counter-increment:cnt;display:flex;gap:.75rem;align-items:flex-start"><span style="min-width:22px;height:22px;background:linear-gradient(135deg,#6366f1,#a78bfa);color:#fff;font-size:.7rem;font-weight:700;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">2</span>Contribución a las competencias clave y al Perfil de Salida</li>
+              <li style="counter-increment:cnt;display:flex;gap:.75rem;align-items:flex-start"><span style="min-width:22px;height:22px;background:linear-gradient(135deg,#6366f1,#a78bfa);color:#fff;font-size:.7rem;font-weight:700;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">3</span>Competencias específicas de la materia</li>
+              <li style="counter-increment:cnt;display:flex;gap:.75rem;align-items:flex-start"><span style="min-width:22px;height:22px;background:linear-gradient(135deg,#6366f1,#a78bfa);color:#fff;font-size:.7rem;font-weight:700;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">4</span>Criterios de evaluación</li>
+              <li style="counter-increment:cnt;display:flex;gap:.75rem;align-items:flex-start"><span style="min-width:22px;height:22px;background:linear-gradient(135deg,#6366f1,#a78bfa);color:#fff;font-size:.7rem;font-weight:700;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">5</span>Saberes básicos (secuenciados por S.A. / U.D.)</li>
+              <li style="counter-increment:cnt;display:flex;gap:.75rem;align-items:flex-start"><span style="min-width:22px;height:22px;background:linear-gradient(135deg,#6366f1,#a78bfa);color:#fff;font-size:.7rem;font-weight:700;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">6</span>Situaciones de aprendizaje y metodología</li>
+              <li style="counter-increment:cnt;display:flex;gap:.75rem;align-items:flex-start"><span style="min-width:22px;height:22px;background:linear-gradient(135deg,#6366f1,#a78bfa);color:#fff;font-size:.7rem;font-weight:700;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">7</span>Instrumentos y procedimientos de evaluación</li>
+              <li style="counter-increment:cnt;display:flex;gap:.75rem;align-items:flex-start"><span style="min-width:22px;height:22px;background:linear-gradient(135deg,#6366f1,#a78bfa);color:#fff;font-size:.7rem;font-weight:700;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">8</span>Criterios de calificación y recuperación</li>
+              <li style="counter-increment:cnt;display:flex;gap:.75rem;align-items:flex-start"><span style="min-width:22px;height:22px;background:linear-gradient(135deg,#6366f1,#a78bfa);color:#fff;font-size:.7rem;font-weight:700;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">9</span>Atención a la diversidad e inclusión (DUA)</li>
+              <li style="counter-increment:cnt;display:flex;gap:.75rem;align-items:flex-start"><span style="min-width:22px;height:22px;background:linear-gradient(135deg,#6366f1,#a78bfa);color:#fff;font-size:.7rem;font-weight:700;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">10</span>Materiales, recursos TIC y bibliografía</li>
+              <li style="counter-increment:cnt;display:flex;gap:.75rem;align-items:flex-start"><span style="min-width:22px;height:22px;background:linear-gradient(135deg,#6366f1,#a78bfa);color:#fff;font-size:.7rem;font-weight:700;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">11</span>Actividades complementarias y extraescolares</li>
+              <li style="counter-increment:cnt;display:flex;gap:.75rem;align-items:flex-start"><span style="min-width:22px;height:22px;background:linear-gradient(135deg,#6366f1,#a78bfa);color:#fff;font-size:.7rem;font-weight:700;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">12</span>Mecanismos de seguimiento y evaluación de la programación</li>
+            </ol>
+          </div>
+
+          <!-- FP -->
+          <div class="card-pro">
+            <h3 class="font-bold text-slate-800 mb-4 flex items-center gap-2"><span class="w-7 h-7 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-content-center text-sm">⚙️</span> Programación de Módulo FP</h3>
+            <ol class="space-y-2 text-sm text-slate-600" style="list-style:none;counter-reset:cnt2">
+              <li style="counter-increment:cnt2;display:flex;gap:.75rem;align-items:flex-start"><span style="min-width:22px;height:22px;background:linear-gradient(135deg,#10b981,#34d399);color:#fff;font-size:.7rem;font-weight:700;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">1</span>Resultados de Aprendizaje (RA)</li>
+              <li style="counter-increment:cnt2;display:flex;gap:.75rem;align-items:flex-start"><span style="min-width:22px;height:22px;background:linear-gradient(135deg,#10b981,#34d399);color:#fff;font-size:.7rem;font-weight:700;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">2</span>Criterios de Evaluación (CE) por RA</li>
+              <li style="counter-increment:cnt2;display:flex;gap:.75rem;align-items:flex-start"><span style="min-width:22px;height:22px;background:linear-gradient(135deg,#10b981,#34d399);color:#fff;font-size:.7rem;font-weight:700;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">3</span>Contenidos / Saberes Básicos</li>
+              <li style="counter-increment:cnt2;display:flex;gap:.75rem;align-items:flex-start"><span style="min-width:22px;height:22px;background:linear-gradient(135deg,#10b981,#34d399);color:#fff;font-size:.7rem;font-weight:700;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">4</span>Situaciones de Aprendizaje y Metodología</li>
+              <li style="counter-increment:cnt2;display:flex;gap:.75rem;align-items:flex-start"><span style="min-width:22px;height:22px;background:linear-gradient(135deg,#10b981,#34d399);color:#fff;font-size:.7rem;font-weight:700;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">5</span>Instrumentos y procedimientos de evaluación</li>
+              <li style="counter-increment:cnt2;display:flex;gap:.75rem;align-items:flex-start"><span style="min-width:22px;height:22px;background:linear-gradient(135deg,#10b981,#34d399);color:#fff;font-size:.7rem;font-weight:700;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">6</span>Criterios de calificación y ponderación por RA</li>
+              <li style="counter-increment:cnt2;display:flex;gap:.75rem;align-items:flex-start"><span style="min-width:22px;height:22px;background:linear-gradient(135deg,#10b981,#34d399);color:#fff;font-size:.7rem;font-weight:700;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">7</span>Actividades de refuerzo y recuperación</li>
+              <li style="counter-increment:cnt2;display:flex;gap:.75rem;align-items:flex-start"><span style="min-width:22px;height:22px;background:linear-gradient(135deg,#10b981,#34d399);color:#fff;font-size:.7rem;font-weight:700;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">8</span>Atención a la diversidad e inclusión</li>
+              <li style="counter-increment:cnt2;display:flex;gap:.75rem;align-items:flex-start"><span style="min-width:22px;height:22px;background:linear-gradient(135deg,#10b981,#34d399);color:#fff;font-size:.7rem;font-weight:700;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">9</span>Materiales, recursos y bibliografía</li>
+              <li style="counter-increment:cnt2;display:flex;gap:.75rem;align-items:flex-start"><span style="min-width:22px;height:22px;background:linear-gradient(135deg,#10b981,#34d399);color:#fff;font-size:.7rem;font-weight:700;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">10</span>Coordinación con empresa (FCT / FP Dual)</li>
+            </ol>
+            <button class="prompt-btn mt-4" onclick="openPrompt('prog_fp_mod','Actúa como experto en FP y normativa de la Comunitat Valenciana. Necesito la estructura completa de programación de módulo FP para [nombre del módulo] del ciclo de [nombre del ciclo] de [GM/GS], familia [familia profesional], según el Decreto 114/2025. Incluye: todos los Resultados de Aprendizaje con sus Criterios de Evaluación, propuesta de saberes básicos organizados en UDs, sistema de evaluación y calificación (ponderación por RA), instrumentos preferentes, situación de aprendizaje de ejemplo y coordinación FCT.')">
+              <i class="fas fa-magic"></i> Prompt IA: Programación de Módulo FP
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <hr class="section-divider">
+
+      <!-- ══════════════════════════════════
+           PROMPTS IA DOCENTES
+      ══════════════════════════════════ -->
+      <section id="prompts" class="content-section">
+        <div class="flex items-center gap-3 mb-2">
+          <div class="section-icon-badge w-12 h-12 rounded-2xl bg-gradient-to-br from-violet-500 to-indigo-700 flex items-center justify-content-center text-white text-xl shadow-lg">✨</div>
+          <div>
+            <h2 class="text-2xl md:text-3xl font-extrabold text-slate-800">Prompts IA para <span class="gradient-text">Docentes CV</span></h2>
+            <p class="text-slate-500 text-sm">Listos para copiar y usar en ChatGPT, Gemini, Claude…</p>
+          </div>
+        </div>
+
+        <div class="bg-indigo-50 rounded-2xl p-4 border border-indigo-100 mb-6 text-sm text-indigo-800">
+          <i class="fas fa-info-circle mr-2"></i> Haz clic en <strong>"Prompt IA"</strong> en cualquier sección para ver y copiar el prompt completo. Personaliza los campos entre <code class="bg-white px-1 rounded">[corchetes]</code>.
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-4">
+
+          <div class="card-pro border border-violet-100 bg-gradient-to-br from-violet-50 to-white">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 rounded-xl bg-violet-100 text-violet-600 flex items-center justify-content-center text-lg">🎯</div>
+              <h3 class="font-bold text-slate-800 text-sm">Situación de Aprendizaje ESO/Bach.</h3>
+            </div>
+            <p class="text-xs text-slate-500 mb-3">Genera una SA completa con contexto, retos, tareas, vinculación a criterios y rúbrica de evaluación.</p>
+            <button class="prompt-btn" onclick="openPrompt('sa_eso','Actúa como docente experto en diseño curricular según la LOMLOE y el Decreto 107/2022 de la Comunitat Valenciana. Diseña una Situación de Aprendizaje completa para la materia de [materia] de [curso] ESO con estas características:\n\n- Título sugerente y motivador\n- Contexto y justificación (por qué es relevante para el alumnado)\n- Competencias específicas que trabaja (cita los códigos del Decreto 107/2022)\n- Competencias clave (con sus abreviaturas oficiales: CCL, CP, STEM, CD, CPSAA, CC, CE, CCEC)\n- Criterios de evaluación (cita literalmente los del Decreto)\n- Saberes básicos implicados\n- Descripción de las tareas (mínimo 4 tareas secuenciadas y progresivas)\n- Producto o evidencia final\n- Metodología recomendada\n- Temporalización estimada (sesiones)\n- Instrumentos de evaluación y rúbrica de al menos 3 niveles de logro\n- Medidas DUA incorporadas\n\nTemática propuesta: [temática o problema real]')">
+              <i class="fas fa-magic"></i> Prompt Situación de Aprendizaje
+            </button>
+          </div>
+
+          <div class="card-pro border border-orange-100 bg-gradient-to-br from-orange-50 to-white">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 rounded-xl bg-orange-100 text-orange-600 flex items-center justify-content-center text-lg">📊</div>
+              <h3 class="font-bold text-slate-800 text-sm">Rúbrica de Evaluación por Criterios</h3>
+            </div>
+            <p class="text-xs text-slate-500 mb-3">Crea una rúbrica profesional alineada con los criterios de evaluación del decreto.</p>
+            <button class="prompt-btn" onclick="openPrompt('rubrica','Actúa como experto en evaluación educativa. Crea una rúbrica holocrática de evaluación para [materia] de [curso] de [ESO/Bachillerato/FP] adaptada al Decreto [107/2022 o 108/2022] de la Comunitat Valenciana. La rúbrica debe:\n\n- Evaluar los criterios de evaluación: [lista los criterios o indicar que el IA los sugiera]\n- Tener 4 niveles de logro: Inicio (1-3), Proceso (4-5), Consolidado (6-7), Avanzado (8-10)\n- Incluir descriptores claros, observables y medibles para cada nivel\n- Indicar el peso/ponderación de cada criterio en la nota final\n- Ser aplicable tanto por el docente como para autoevaluación o coevaluación del alumnado\n- Formato de tabla con las columnas: Criterio de Evaluación | Inicio | Proceso | Consolidado | Avanzado | Peso %')">
+              <i class="fas fa-magic"></i> Prompt Rúbrica
+            </button>
+          </div>
+
+          <div class="card-pro border border-emerald-100 bg-gradient-to-br from-emerald-50 to-white">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-content-center text-lg">💬</div>
+              <h3 class="font-bold text-slate-800 text-sm">Feedback Formativo Personalizado</h3>
+            </div>
+            <p class="text-xs text-slate-500 mb-3">Genera retroalimentación específica y constructiva para el alumnado basada en criterios.</p>
+            <button class="prompt-btn" onclick="openPrompt('feedback','Actúa como docente de [materia] de [curso] en un IES de la Comunitat Valenciana. He evaluado la siguiente tarea/trabajo del alumno/a [nombre o anónimo] y necesito proporcionarle feedback formativo personalizado.\n\nDescripción de la tarea: [describe la tarea]\nQué ha hecho bien el alumno/a: [puntos fuertes]\nQué debe mejorar: [áreas de mejora]\nCriterios de evaluación implicados: [lista los criterios del decreto]\n\nPor favor, redacta:\n1. Un comentario positivo inicial (2-3 frases)\n2. Áreas de mejora específicas y concretas (3-5 puntos)\n3. Sugerencias de mejora accionables\n4. Una pregunta reflexiva para que el alumno/a piense en su propio proceso de aprendizaje\n5. Una frase motivadora final\n\nTono: profesional, cercano, constructivo y empoderador.')">
+              <i class="fas fa-magic"></i> Prompt Feedback Formativo
+            </button>
+          </div>
+
+          <div class="card-pro border border-blue-100 bg-gradient-to-br from-blue-50 to-white">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-content-center text-lg">📋</div>
+              <h3 class="font-bold text-slate-800 text-sm">Examen / Prueba por Competencias</h3>
+            </div>
+            <p class="text-xs text-slate-500 mb-3">Diseña una prueba escrita o práctica alineada con los criterios de evaluación y los saberes básicos.</p>
+            <button class="prompt-btn" onclick="openPrompt('examen','Actúa como docente de [materia] de [curso] en la Comunitat Valenciana. Diseña una prueba escrita/oral/práctica por competencias para evaluar los siguientes criterios de evaluación del Decreto [107/2022 o 108/2022]: [lista los criterios].\n\nLa prueba debe:\n- Incluir preguntas de distinto nivel cognitivo (recuerdo, comprensión, aplicación, análisis, síntesis)\n- Tener mínimo [N] preguntas o ejercicios\n- Incluir al menos una tarea competencial abierta donde el alumno/a demuestre sus competencias en un contexto real o simulado\n- Indicar el valor/puntuación de cada pregunta\n- Incluir instrucciones claras para el alumnado\n- Añadir la tabla de criterios de evaluación con su ponderación en la nota final\n\nTiempo estimado: [N] minutos. Nivel: [básico/estándar/avanzado].')">
+              <i class="fas fa-magic"></i> Prompt Prueba por Competencias
+            </button>
+          </div>
+
+        </div>
+      </section>
+
+      <hr class="section-divider">
+
+      <!-- ══════════════════════════════════
+           RECURSOS OFICIALES
+      ══════════════════════════════════ -->
+      <section id="recursos" class="content-section">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="section-icon-badge w-12 h-12 rounded-2xl bg-gradient-to-br from-slate-500 to-slate-700 flex items-center justify-content-center text-white text-xl shadow-lg">🔗</div>
+          <h2 class="text-2xl md:text-3xl font-extrabold text-slate-800">Recursos y <span class="gradient-text">Legislación Oficial</span></h2>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-4">
+          <a href="https://dogv.gva.es" target="_blank" rel="noopener" class="card-pro group flex items-center gap-4 hover:border-indigo-200 cursor-pointer">
+            <div class="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-content-center text-2xl group-hover:bg-indigo-100 transition-colors flex-shrink-0">📰</div>
+            <div>
+              <div class="font-bold text-slate-800 text-sm group-hover:text-indigo-700 transition-colors">DOGV</div>
+              <div class="text-xs text-slate-400">Diari Oficial de la GVA</div>
+            </div>
+            <i class="fas fa-arrow-up-right-from-square text-slate-300 group-hover:text-indigo-400 ml-auto transition-colors text-xs"></i>
+          </a>
+          <a href="https://www.gva.es/es/inicio/procedimientos?id_proc=22464" target="_blank" rel="noopener" class="card-pro group flex items-center gap-4 hover:border-indigo-200 cursor-pointer">
+            <div class="w-12 h-12 rounded-xl bg-indigo-50 flex items-center justify-content-center text-2xl flex-shrink-0">📘</div>
+            <div>
+              <div class="font-bold text-slate-800 text-sm group-hover:text-indigo-700 transition-colors">Currículo ESO</div>
+              <div class="text-xs text-slate-400">Decreto 107/2022 GVA</div>
+            </div>
+            <i class="fas fa-arrow-up-right-from-square text-slate-300 group-hover:text-indigo-400 ml-auto transition-colors text-xs"></i>
+          </a>
+          <a href="https://www.gva.es/es/inicio/procedimientos?id_proc=22465" target="_blank" rel="noopener" class="card-pro group flex items-center gap-4 hover:border-orange-200 cursor-pointer">
+            <div class="w-12 h-12 rounded-xl bg-orange-50 flex items-center justify-content-center text-2xl flex-shrink-0">📗</div>
+            <div>
+              <div class="font-bold text-slate-800 text-sm group-hover:text-orange-700 transition-colors">Currículo Bach.</div>
+              <div class="text-xs text-slate-400">Decreto 108/2022 GVA</div>
+            </div>
+            <i class="fas fa-arrow-up-right-from-square text-slate-300 group-hover:text-orange-400 ml-auto transition-colors text-xs"></i>
+          </a>
+          <a href="https://www.gva.es/es/inicio/area_tematica/fp" target="_blank" rel="noopener" class="card-pro group flex items-center gap-4 hover:border-emerald-200 cursor-pointer">
+            <div class="w-12 h-12 rounded-xl bg-emerald-50 flex items-center justify-content-center text-2xl flex-shrink-0">📙</div>
+            <div>
+              <div class="font-bold text-slate-800 text-sm group-hover:text-emerald-700 transition-colors">Portal FP GVA</div>
+              <div class="text-xs text-slate-400">Decreto 114 y 117/2025</div>
+            </div>
+            <i class="fas fa-arrow-up-right-from-square text-slate-300 group-hover:text-emerald-400 ml-auto transition-colors text-xs"></i>
+          </a>
+          <a href="https://www.educacion.gob.es/inee" target="_blank" rel="noopener" class="card-pro group flex items-center gap-4 hover:border-blue-200 cursor-pointer">
+            <div class="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-content-center text-2xl flex-shrink-0">🏗️</div>
+            <div>
+              <div class="font-bold text-slate-800 text-sm group-hover:text-blue-700 transition-colors">INEE</div>
+              <div class="text-xs text-slate-400">Inst. Nac. Evaluación Educativa</div>
+            </div>
+            <i class="fas fa-arrow-up-right-from-square text-slate-300 group-hover:text-blue-400 ml-auto transition-colors text-xs"></i>
+          </a>
+          <a href="https://www.educacion.gob.es" target="_blank" rel="noopener" class="card-pro group flex items-center gap-4 hover:border-red-200 cursor-pointer">
+            <div class="w-12 h-12 rounded-xl bg-red-50 flex items-center justify-content-center text-2xl flex-shrink-0">🏫</div>
+            <div>
+              <div class="font-bold text-slate-800 text-sm group-hover:text-red-700 transition-colors">MEFP</div>
+              <div class="text-xs text-slate-400">Ministerio de Educación</div>
+            </div>
+            <i class="fas fa-arrow-up-right-from-square text-slate-300 group-hover:text-red-400 ml-auto transition-colors text-xs"></i>
+          </a>
+        </div>
+
+        <!-- Nota final -->
+        <div class="mt-8 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl p-6 border border-indigo-100 text-center">
+          <div class="text-2xl mb-2">📅</div>
+          <h3 class="font-bold text-slate-800 mb-1">Mantente actualizado/a</h3>
+          <p class="text-sm text-slate-500 max-w-lg mx-auto">La normativa educativa evoluciona. Consulta regularmente el <strong>DOGV</strong> y el portal de la <strong>Conselleria d'Educació de la GVA</strong> para resoluciones, instrucciones anuales de organización y posibles modificaciones de los decretos.</p>
+        </div>
+      </section>
+
+    </div><!-- /max-w-5xl -->
+
+    <!-- FOOTER -->
+    <footer class="bg-white border-t border-slate-100 py-8 px-6 text-center">
+      <div class="text-sm text-slate-400">
+        <span class="font-bold text-slate-600">AutoDocente CV</span> · Normativa Comunitat Valenciana · ESO, Bachillerato y FP
+        <br><span class="text-xs mt-1 block">Curso 2025–2026 · Basado en Decretos 107/2022, 108/2022, 114/2025 y 117/2025 (DOGV)</span>
+      </div>
+    </footer>
+
+  </main>
+</div><!-- /flex -->
+
+<script>
+/* ═══════════ SCROLL PROGRESS ═══════════ */
+window.addEventListener('scroll',()=>{
+  const p=document.getElementById('scroll-progress');
+  const pct=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100;
+  p.style.width=pct+'%';
+  const btn=document.getElementById('back-to-top');
+  window.scrollY>400?btn.classList.add('visible'):btn.classList.remove('visible');
+  updateActiveNav();
+});
+
+/* ═══════════ BACK TO TOP ═══════════ */
+document.getElementById('back-to-top').addEventListener('click',()=>{
+  window.scrollTo({top:0,behavior:'smooth'});
+});
+
+/* ═══════════ SECTION ENTRANCE ═══════════ */
+const io=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in-view'); });
+},{threshold:.08});
+document.querySelectorAll('.content-section').forEach(s=>io.observe(s));
+
+/* ═══════════ ACTIVE NAV ═══════════ */
+function updateActiveNav(){
+  const sections=[...document.querySelectorAll('.content-section')];
+  const links=[...document.querySelectorAll('aside nav a')];
+  let current='';
+  sections.forEach(s=>{
+    if(window.scrollY>=s.offsetTop-160) current='#'+s.id;
+  });
+  links.forEach(l=>{
+    l.classList.remove('active');
+    if(l.getAttribute('href')===current) l.classList.add('active');
+  });
+}
+
+/* ═══════════ MOBILE SIDEBAR ═══════════ */
+document.getElementById('sidebar-toggle').addEventListener('click',()=>{
+  document.querySelector('aside').classList.add('sidebar-open');
+  document.getElementById('sidebar-backdrop').classList.add('active');
+  document.body.style.overflow='hidden';
+});
+document.getElementById('sidebar-backdrop').addEventListener('click',closeSidebar);
+function closeSidebar(){
+  document.querySelector('aside').classList.remove('sidebar-open');
+  document.getElementById('sidebar-backdrop').classList.remove('active');
+  document.body.style.overflow='';
+}
+document.querySelectorAll('aside nav a').forEach(a=>{
+  a.addEventListener('click',()=>{ if(window.innerWidth<1024) closeSidebar(); });
+});
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeSidebar(); });
+
+/* ═══════════ PROMPT MODAL ═══════════ */
+const prompts={
+  eval_eso:'Actúa como experto en normativa educativa de la Comunitat Valenciana. Explícame cómo funciona la evaluación criterial en la ESO según el Decreto 107/2022. Incluye: tipos de evaluación, criterios de titulación, papel del equipo docente y cómo diseñar instrumentos de evaluación alineados con los criterios del Decreto. Dame ejemplos concretos para una materia de ciencias sociales en 3.º ESO.',
+  prog_bach:'Actúa como docente experto en Bachillerato en la Comunitat Valenciana. Necesito que me ayudes a crear la estructura completa de una programación didáctica para [materia] de [1.º/2.º] Bachillerato, modalidad [modalidad], según el Decreto 108/2022. Incluye: competencias específicas, criterios de evaluación, saberes básicos, metodología, situaciones de aprendizaje y sistema de calificación. Dame también una tabla de instrumentos de evaluación ponderados.',
+  modulos_fp:'Actúa como docente de FP experto en el nuevo marco normativo de la Ley Orgánica 3/2022 y el Decreto 114/2025 de la Comunitat Valenciana. Necesito diseñar una situación de aprendizaje para el módulo de [nombre del módulo] del ciclo de [nombre del ciclo], familia profesional [familia]. La situación debe integrar los resultados de aprendizaje (RA), los criterios de evaluación (CE), los contenidos y la metodología activa. Incluye también cómo articular la coordinación con la empresa para la FCT.',
+  prog_did_gen:'Actúa como asesor pedagógico experto en la normativa de la Comunitat Valenciana. Necesito crear una Programación Didáctica completa para la materia de [materia] en [curso] de [etapa: ESO/Bachillerato] según el Decreto [107/2022 o 108/2022]. Dame todos los apartados obligatorios con indicaciones de contenido para cada sección: contextualización, competencias específicas, criterios de evaluación, saberes básicos (secuenciados por unidades/situaciones de aprendizaje), metodología, atención a la diversidad (DUA), evaluación y calificación, materiales y recursos. Adapta los ejemplos a mi materia y nivel.',
+  dua_prompt:'Actúa como experto en Diseño Universal para el Aprendizaje (DUA) aplicado a la educación secundaria en España. Necesito adaptar la siguiente actividad/unidad de [materia] para un grupo heterogéneo de 3.º ESO aplicando los 3 principios del DUA: Representación, Acción y Expresión, e Implicación. El contenido es [describe el contenido]. Dame variantes concretas para cada principio y sugiere instrumentos de evaluación inclusivos que permitan al alumnado con ACINES o ACIS demostrar sus aprendizajes.',
+  dua_prompt2:'Aplica el marco DUA a una unidad didáctica de [materia] en [curso] sobre [tema]. Para cada principio (Representación, Acción y Expresión, Implicación) proporciona 3 estrategias concretas con recursos digitales y analógicos. Incluye también cómo adaptar la evaluación para alumnado con necesidades educativas (ACINES).',
+  abp_prompt:'Diseña un proyecto ABP completo para [materia] de [curso] ESO/Bachillerato con la siguiente temática: [tema]. Incluye: pregunta guía, fases del proyecto (semanas), productos finales, criterios de evaluación vinculados al Decreto 107/2022, rúbrica de evaluación y cómo integrar las competencias clave CCL, STEM y CD. El proyecto debe durar aproximadamente [N] semanas.',
+  prog_fp_mod:'Actúa como experto en FP y normativa de la Comunitat Valenciana. Necesito la estructura completa de programación de módulo FP para [nombre del módulo] del ciclo de [nombre del ciclo] de [GM/GS], familia [familia profesional], según el Decreto 114/2025. Incluye: todos los Resultados de Aprendizaje con sus Criterios de Evaluación, propuesta de saberes básicos organizados en UDs, sistema de evaluación y calificación (ponderación por RA), instrumentos preferentes, situación de aprendizaje de ejemplo y coordinación FCT.',
+  sa_eso:'Actúa como docente experto en diseño curricular según la LOMLOE y el Decreto 107/2022 de la Comunitat Valenciana. Diseña una Situación de Aprendizaje completa para la materia de [materia] de [curso] ESO con estas características:\n\n- Título sugerente y motivador\n- Contexto y justificación (por qué es relevante para el alumnado)\n- Competencias específicas que trabaja (cita los códigos del Decreto 107/2022)\n- Competencias clave (con sus abreviaturas oficiales: CCL, CP, STEM, CD, CPSAA, CC, CE, CCEC)\n- Criterios de evaluación (cita literalmente los del Decreto)\n- Saberes básicos implicados\n- Descripción de las tareas (mínimo 4 tareas secuenciadas y progresivas)\n- Producto o evidencia final\n- Metodología recomendada\n- Temporalización estimada (sesiones)\n- Instrumentos de evaluación y rúbrica de al menos 3 niveles de logro\n- Medidas DUA incorporadas\n\nTemática propuesta: [temática o problema real]',
+  rubrica:'Actúa como experto en evaluación educativa. Crea una rúbrica holística de evaluación para [materia] de [curso] de [ESO/Bachillerato/FP] adaptada al Decreto [107/2022 o 108/2022] de la Comunitat Valenciana. La rúbrica debe:\n\n- Evaluar los criterios de evaluación: [lista los criterios o indicar que el IA los sugiera]\n- Tener 4 niveles de logro: Inicio (1-3), Proceso (4-5), Consolidado (6-7), Avanzado (8-10)\n- Incluir descriptores claros, observables y medibles para cada nivel\n- Indicar el peso/ponderación de cada criterio en la nota final\n- Ser aplicable tanto por el docente como para autoevaluación o coevaluación del alumnado\n- Formato de tabla con las columnas: Criterio de Evaluación | Inicio | Proceso | Consolidado | Avanzado | Peso %',
+  feedback:'Actúa como docente de [materia] de [curso] en un IES de la Comunitat Valenciana. He evaluado la siguiente tarea/trabajo del alumno/a y necesito proporcionarle feedback formativo personalizado.\n\nDescripción de la tarea: [describe la tarea]\nQué ha hecho bien el alumno/a: [puntos fuertes]\nQué debe mejorar: [áreas de mejora]\nCriterios de evaluación implicados: [lista los criterios del decreto]\n\nPor favor, redacta:\n1. Un comentario positivo inicial (2-3 frases)\n2. Áreas de mejora específicas y concretas (3-5 puntos)\n3. Sugerencias de mejora accionables\n4. Una pregunta reflexiva para que el alumno/a piense en su propio proceso de aprendizaje\n5. Una frase motivadora final\n\nTono: profesional, cercano, constructivo y empoderador.',
+  examen:'Actúa como docente de [materia] de [curso] en la Comunitat Valenciana. Diseña una prueba escrita/oral/práctica por competencias para evaluar los siguientes criterios de evaluación del Decreto [107/2022 o 108/2022]: [lista los criterios].\n\nLa prueba debe:\n- Incluir preguntas de distinto nivel cognitivo (recuerdo, comprensión, aplicación, análisis, síntesis)\n- Tener mínimo [N] preguntas o ejercicios\n- Incluir al menos una tarea competencial abierta donde el alumno/a demuestre sus competencias en un contexto real o simulado\n- Indicar el valor/puntuación de cada pregunta\n- Incluir instrucciones claras para el alumnado\n- Añadir la tabla de criterios de evaluación con su ponderación en la nota final\n\nTiempo estimado: [N] minutos. Nivel: [básico/estándar/avanzado].'
+};
+
+function openPrompt(key,fallback){
+  const text=prompts[key]||(typeof fallback==='string'?fallback:'');
+  document.getElementById('prompt-text-area').value=text;
+  document.getElementById('prompt-modal-label').textContent='';
+  document.getElementById('prompt-modal-overlay').classList.add('open');
+  document.body.style.overflow='hidden';
+  const btn=document.getElementById('copy-prompt-btn');
+  btn.classList.remove('copied');
+  btn.innerHTML='<i class="fas fa-copy"></i> Copiar Prompt';
+}
+function closePrompt(){
+  document.getElementById('prompt-modal-overlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+function copyPrompt(){
+  const t=document.getElementById('prompt-text-area');
+  navigator.clipboard.writeText(t.value).then(()=>{
+    const btn=document.getElementById('copy-prompt-btn');
+    btn.classList.add('copied');
+    btn.innerHTML='<i class="fas fa-check"></i> ¡Copiado!';
+    setTimeout(()=>{ btn.classList.remove('copied'); btn.innerHTML='<i class="fas fa-copy"></i> Copiar Prompt'; },2000);
+  });
+}
+document.getElementById('prompt-modal-overlay').addEventListener('click',e=>{
+  if(e.target.id==='prompt-modal-overlay') closePrompt();
+});
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closePrompt(); });
+
+/* ═══════════ INIT ═══════════ */
+updateActiveNav();
+console.log('%cAutoDocente CV 🎓 | Comunitat Valenciana','color:#6366f1;font-weight:800;font-size:14px;');
+</script>
+  <script src="../assets/portal-nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Biblioteca de Prompts Docentes | AutoDocente CV</title>
+<meta name="description" content="Más de 60 prompts listos para copiar organizados por categoría, etapa y asignatura. Automatiza tu trabajo docente con IA.">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+:root{--purple:#6366f1;--orange:#f97316;--bg:#f8fafc;--text:#1e293b}
+*{box-sizing:border-box}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);margin:0}
+#scroll-progress{position:fixed;top:0;left:0;width:0;height:4px;background:linear-gradient(90deg,#6366f1,#f97316,#ec4899);z-index:9999;transition:width .1s linear;border-radius:0 2px 2px 0}
+#back-to-top{position:fixed;bottom:2rem;right:2rem;width:3rem;height:3rem;background:linear-gradient(135deg,#6366f1,#a78bfa);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;pointer-events:none;transform:translateY(20px);transition:all .3s ease;z-index:998;border:none;box-shadow:0 8px 25px rgba(99,102,241,.4);font-size:1rem}
+#back-to-top.visible{opacity:1;pointer-events:all;transform:translateY(0)}
+#back-to-top:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(99,102,241,.55)}
+.hero-section{background-image:linear-gradient(135deg,rgba(99,102,241,.9) 0%,rgba(249,115,22,.85) 100%),url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=2000&auto=format&fit=crop');background-size:cover;background-position:center;background-attachment:fixed}
+.hero-shimmer{background:linear-gradient(90deg,#fff 40%,rgba(255,255,255,.6) 50%,#fff 60%);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:shimmer 4s linear infinite}
+@keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
+.gradient-text{background:linear-gradient(135deg,#6366f1,#f97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.card-pro{background:#fff;border-radius:1.25rem;box-shadow:0 4px 20px rgba(0,0,0,.05);border:1px solid rgba(0,0,0,.04);transition:all .3s ease;position:relative;overflow:hidden}
+.card-pro:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(0,0,0,.1)}
+/* SIDEBAR */
+aside nav a{transition:all .25s ease;color:#475569;border-left:3px solid transparent;display:flex;align-items:center;gap:.6rem;padding:.6rem .9rem;border-radius:.75rem;font-size:.85rem;font-weight:500;text-decoration:none}
+aside nav a:hover,aside nav a.active{background:linear-gradient(90deg,rgba(99,102,241,.1),transparent)!important;color:#6366f1;border-left-color:#6366f1;padding-left:1.2rem;font-weight:700}
+#sidebar-toggle{display:none;position:fixed;top:1rem;left:1rem;z-index:999;background:linear-gradient(135deg,#6366f1,#a78bfa);color:#fff;border:none;width:2.8rem;height:2.8rem;border-radius:.9rem;align-items:center;justify-content:center;font-size:1.1rem;cursor:pointer;box-shadow:0 4px 16px rgba(99,102,241,.4)}
+#sidebar-backdrop{display:none;position:fixed;inset:0;background:rgba(15,23,42,.5);backdrop-filter:blur(4px);z-index:490}
+@media(max-width:1023px){#sidebar-toggle{display:flex}aside{position:fixed!important;top:0;left:0;height:100dvh!important;width:85vw!important;max-width:340px!important;z-index:500;transform:translateX(-110%);transition:transform .35s cubic-bezier(.4,0,.2,1);overflow-y:auto}aside.sidebar-open{transform:translateX(0);box-shadow:8px 0 40px rgba(0,0,0,.18)}#sidebar-backdrop.active{display:block}#main-content{width:100%!important}}
+/* ACCORDIONS */
+details{transition:box-shadow .3s ease}
+details:hover{border-color:rgba(99,102,241,.25)!important}
+details[open]{box-shadow:0 8px 30px rgba(99,102,241,.08)!important}
+details summary{user-select:none;cursor:pointer;list-style:none;outline:none}
+details summary::-webkit-details-marker{display:none}
+details summary .chev{transition:transform .3s ease}
+details[open] summary .chev{transform:rotate(180deg)}
+/* PROMPT CARDS */
+.prompt-card{background:#fff;border:1px solid #e2e8f0;border-radius:1rem;padding:1.25rem;transition:all .3s ease}
+.prompt-card:hover{border-color:rgba(99,102,241,.3);box-shadow:0 8px 30px rgba(99,102,241,.08)}
+.prompt-text{background:#f8fafc;border:1px solid #e2e8f0;border-radius:.75rem;padding:1rem;font-size:.82rem;line-height:1.7;color:#475569;white-space:pre-wrap;word-break:break-word;max-height:180px;overflow-y:auto;cursor:text;font-family:'Plus Jakarta Sans',sans-serif}
+.field-highlight{background:linear-gradient(135deg,rgba(99,102,241,.12),rgba(167,139,250,.12));color:#5b5bd6;border:1px solid rgba(99,102,241,.25);border-radius:.3rem;padding:0 .3rem;font-weight:600;font-size:.8rem}
+.copy-btn{display:inline-flex;align-items:center;gap:.4rem;padding:.5rem 1.1rem;background:rgba(99,102,241,.08);border:1px dashed rgba(99,102,241,.35);border-radius:.75rem;color:#6366f1;font-weight:600;font-size:.8rem;cursor:pointer;transition:all .2s ease;margin-top:.75rem}
+.copy-btn:hover{background:rgba(99,102,241,.15);border-style:solid;transform:translateY(-1px)}
+.copy-btn.copied{background:rgba(16,185,129,.1);border-color:rgba(16,185,129,.4);color:#059669}
+.stage-tag{display:inline-flex;align-items:center;gap:.3rem;padding:.2rem .6rem;border-radius:20px;font-size:.68rem;font-weight:700;letter-spacing:.3px}
+.tag-eso{background:#e0e7ff;color:#4f46e5}
+.tag-bach{background:#ffedd5;color:#c2410c}
+.tag-fp{background:#dcfce7;color:#15803d}
+.tag-all{background:#f1f5f9;color:#475569}
+/* FILTER TABS */
+.filter-tab{padding:.45rem 1rem;border-radius:20px;font-size:.8rem;font-weight:600;cursor:pointer;transition:all .2s ease;border:1px solid transparent}
+.filter-tab:hover{background:#e0e7ff;color:#4f46e5}
+.filter-tab.active{background:linear-gradient(135deg,#6366f1,#a78bfa);color:#fff;box-shadow:0 4px 12px rgba(99,102,241,.3)}
+/* SECTION ENTRANCE */
+.fade-in{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s cubic-bezier(.4,0,.2,1)}
+.fade-in.in-view{opacity:1;transform:translateY(0)}
+.section-divider{height:2px;background:linear-gradient(90deg,transparent,#e2e8f0 30%,#e2e8f0 70%,transparent);border:none;margin:0}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:#f1f5f9}
+::-webkit-scrollbar-thumb{background:#c7d2fe;border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:#6366f1}
+/* COPY TOAST */
+#toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(80px);background:#1e293b;color:#fff;padding:.75rem 1.5rem;border-radius:1rem;font-size:.85rem;font-weight:600;z-index:9999;transition:transform .3s ease;display:flex;align-items:center;gap:.5rem;box-shadow:0 8px 30px rgba(0,0,0,.25)}
+#toast.show{transform:translateX(-50%) translateY(0)}
+</style>
+  <link rel="stylesheet" href="assets/portal-nav.css">
+</head>
+<body class="antialiased">
+<div id="scroll-progress"></div>
+<button id="sidebar-toggle"><i class="fas fa-bars"></i></button>
+<div id="sidebar-backdrop"></div>
+<button id="back-to-top"><i class="fas fa-arrow-up"></i></button>
+<div id="toast"><i class="fas fa-check-circle text-emerald-400"></i> ¡Prompt copiado!</div>
+
+<div class="flex min-h-screen">
+
+<!-- ═══ SIDEBAR ═══ -->
+<aside class="w-64 flex-shrink-0 bg-white border-r border-slate-100 shadow-sm sticky top-0 h-screen overflow-y-auto z-50">
+  <div class="p-5 border-b border-slate-100">
+    <div class="flex items-center gap-2.5 mb-3">
+      <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-500 to-indigo-700 flex items-center justify-center text-white shadow">✨</div>
+      <div>
+        <div class="font-extrabold text-slate-800 text-sm leading-tight">Prompts Docentes</div>
+        <div class="text-xs text-slate-400">Biblioteca de IA</div>
+      </div>
+    </div>
+    <div class="flex gap-1.5 flex-wrap">
+      <span class="text-xs bg-indigo-50 text-indigo-600 font-bold px-2 py-0.5 rounded-full border border-indigo-100">ESO</span>
+      <span class="text-xs bg-orange-50 text-orange-600 font-bold px-2 py-0.5 rounded-full border border-orange-100">BACH</span>
+      <span class="text-xs bg-emerald-50 text-emerald-600 font-bold px-2 py-0.5 rounded-full border border-emerald-100">FP</span>
+    </div>
+  </div>
+  <nav class="p-3 space-y-0.5">
+    <p class="text-xs font-bold text-slate-400 uppercase tracking-widest px-2 pt-3 pb-1">Categorías</p>
+    <a href="#cat1"><i class="fas fa-file-alt w-4 text-indigo-400"></i> Programación Didáctica</a>
+    <a href="#cat2"><i class="fas fa-star w-4 text-yellow-400"></i> Evaluación y Rúbricas</a>
+    <a href="#cat3"><i class="fas fa-comments w-4 text-emerald-500"></i> Feedback y Comunicación</a>
+    <a href="#cat4"><i class="fas fa-seedling w-4 text-green-500"></i> Situaciones de Aprendizaje</a>
+    <a href="#cat5"><i class="fas fa-language w-4 text-blue-500"></i> Inglés y Lenguas</a>
+    <a href="#cat6"><i class="fas fa-flask w-4 text-cyan-500"></i> STEM y Laboratorio Virtual</a>
+    <a href="#cat7"><i class="fas fa-gamepad w-4 text-pink-500"></i> Gamificación y Recursos</a>
+    <a href="#cat8"><i class="fas fa-robot w-4 text-violet-500"></i> Apps y Artefactos Digitales</a>
+    <a href="#cat9"><i class="fas fa-hands-helping w-4 text-rose-400"></i> Inclusión y DUA</a>
+    <a href="#cat10"><i class="fas fa-tasks w-4 text-slate-400"></i> Gestión Docente</a>
+    <hr class="my-2 border-slate-100">
+    <a href="normativa-cv/index.html"><i class="fas fa-arrow-left w-4 text-slate-400"></i> Normativa CV</a>
+    <a href="app-ia.html" class="relative" style="background:linear-gradient(135deg,rgba(99,102,241,.1),rgba(167,139,250,.07));border:1px solid rgba(99,102,241,.2);color:#5b5bd6"><i class="fas fa-magic w-4"></i> App Interactiva IA <span class="ml-auto text-xs bg-indigo-500 text-white px-1.5 py-0.5 rounded-full">NUEVO</span></a>
+  </nav>
+  <div class="p-3 mx-3 mb-3 rounded-2xl bg-gradient-to-br from-indigo-50 to-purple-50 border border-indigo-100">
+    <div class="text-xs font-bold text-indigo-700 mb-1">💡 Cómo usar</div>
+    <div class="text-xs text-slate-500 leading-relaxed">Copia el prompt, pégalo en ChatGPT, Claude o Gemini y sustituye los <span class="text-indigo-600 font-semibold">[campos]</span> por tus datos.</div>
+  </div>
+</aside>
+
+<!-- ═══ MAIN ═══ -->
+<main id="main-content" class="flex-1 min-w-0">
+
+<!-- HERO -->
+<section class="hero-section text-white py-16 px-8 md:px-14">
+  <div class="max-w-4xl">
+    <div class="inline-flex items-center gap-2 bg-white/15 border border-white/25 rounded-full px-4 py-1.5 text-xs font-semibold mb-5 backdrop-blur-sm">
+      <i class="fas fa-magic text-yellow-300"></i> +60 Prompts · Listos para copiar
+    </div>
+    <h1 class="text-3xl md:text-5xl font-extrabold leading-tight mb-4 hero-shimmer">Biblioteca de Prompts<br>para Docentes</h1>
+    <p class="text-base md:text-lg text-white/85 max-w-2xl leading-relaxed mb-7">Prompts perfectos organizados por categoría, etapa y asignatura. Cópialos, adapta los <strong class="text-white">[campos entre corchetes]</strong> y pégalos en cualquier IA.</p>
+    <div class="flex flex-wrap gap-2">
+      <button onclick="filterAll('all')" class="filter-tab active" id="ftab-all" data-filter="all">🌐 Todos</button>
+      <button onclick="filterAll('eso')" class="filter-tab" id="ftab-eso" data-filter="eso">📚 ESO</button>
+      <button onclick="filterAll('bach')" class="filter-tab" id="ftab-bach" data-filter="bach">🎓 Bachillerato</button>
+      <button onclick="filterAll('fp')" class="filter-tab" id="ftab-fp" data-filter="fp">⚙️ FP</button>
+    </div>
+  </div>
+</section>
+
+<div class="max-w-5xl mx-auto px-5 md:px-10 py-10 space-y-6">
+
+<!-- ══ STATS ══ -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 fade-in">
+  <div class="card-pro p-4 text-center"><div class="text-2xl font-extrabold gradient-text">60+</div><div class="text-xs text-slate-500 mt-0.5">Prompts listos</div></div>
+  <div class="card-pro p-4 text-center"><div class="text-2xl font-extrabold gradient-text">10</div><div class="text-xs text-slate-500 mt-0.5">Categorías</div></div>
+  <div class="card-pro p-4 text-center"><div class="text-2xl font-extrabold gradient-text">3</div><div class="text-xs text-slate-500 mt-0.5">Etapas educativas</div></div>
+  <div class="card-pro p-4 text-center"><div class="text-2xl font-extrabold gradient-text">∞</div><div class="text-xs text-slate-500 mt-0.5">Adaptaciones posibles</div></div>
+</div>
+
+<!-- ══════════════════════════════
+  CATEGORÍA 1 – PROGRAMACIÓN DIDÁCTICA
+══════════════════════════════ -->
+<div id="cat1" class="fade-in">
+<details class="card-pro !p-0 border border-slate-100" open>
+<summary class="flex items-center justify-between p-5 cursor-pointer">
+  <div class="flex items-center gap-3">
+    <div class="w-10 h-10 rounded-xl bg-indigo-100 text-indigo-700 flex items-center justify-center text-lg">📝</div>
+    <div><div class="font-bold text-slate-800">Programación Didáctica y Planificación</div><div class="text-xs text-slate-400">ESO · Bachillerato · FP</div></div>
+  </div>
+  <i class="fas fa-chevron-down text-slate-400 chev"></i>
+</summary>
+<div class="px-5 pb-6 pt-2 border-t border-slate-50 space-y-4">
+
+  <div class="prompt-card" data-stage="eso">
+    <div class="flex flex-wrap items-center gap-2 mb-2">
+      <span class="stage-tag tag-eso">ESO</span>
+      <span class="font-semibold text-slate-700 text-sm">Programación Didáctica Anual – ESO</span>
+    </div>
+    <p class="text-xs text-slate-400 mb-2">Genera la estructura completa de una programación para cualquier materia de ESO.</p>
+    <div class="prompt-text" id="p1">Actúa como docente experto y asesor pedagógico de la Comunitat Valenciana. Crea una Programación Didáctica COMPLETA para la materia de [MATERIA] en [CURSO] de ESO, según el Decreto 107/2022.
+
+Incluye TODOS estos apartados:
+1. Contextualización del centro y del grupo
+2. Contribución a las competencias clave (CCL, CP, STEM, CD, CPSAA, CC, CE, CCEC) y al Perfil de Salida
+3. Competencias específicas de la materia (con códigos del Decreto)
+4. Criterios de evaluación (literales del Decreto 107/2022)
+5. Saberes básicos organizados en [Nº UNIDADES] Situaciones de Aprendizaje
+6. Metodología: [METODOLOGÍAS] (ABP, cooperativo, DUA, etc.)
+7. Instrumentos de evaluación y ponderación por trimestre
+8. Criterios de calificación
+9. Plan de recuperación
+10. Atención a la diversidad (DUA + ACINES)
+11. Materiales y recursos TIC
+12. Actividades complementarias
+
+El grupo tiene [Nº ALUMNOS] alumnos con [CARACTERÍSTICAS ESPECIALES si las hay].</div>
+    <button class="copy-btn" onclick="copyPrompt('p1',this)"><i class="fas fa-copy"></i> Copiar prompt</button>
+  </div>
+
+  <div class="prompt-card" data-stage="bach">
+    <div class="flex flex-wrap items-center gap-2 mb-2">
+      <span class="stage-tag tag-bach">Bachillerato</span>
+      <span class="font-semibold text-slate-700 text-sm">Programación Didáctica – Bachillerato</span>
+    </div>
+    <div class="prompt-text" id="p2">Eres un docente experto en Bachillerato (CV, Decreto 108/2022). Crea la programación didáctica completa de [MATERIA] de [1.º/2.º] Bachillerato, modalidad [MODALIDAD].
+
+Estructura requerida:
+1. Contextualización y relación con objetivos de etapa
+2. Competencias específicas + vinculación competencias clave
+3. Criterios de evaluación (del Decreto 108/2022)
+4. Saberes básicos secuenciados por [Nº] unidades
+5. Situaciones de aprendizaje: mínimo 2 desarrolladas en detalle
+6. Metodología activa: [METODOLOGÍAS ELEGIDAS]
+7. Trabajo interdisciplinar con [OTRAS MATERIAS]
+8. Evaluación: instrumentos, ponderación y criterios de calificación
+9. Plan de recuperación de pendientes
+10. Preparación EBAU (si procede)
+11. Recursos y bibliografía actualizados
+
+Dame primero el índice y luego desarrolla cada apartado.</div>
+    <button class="copy-btn" onclick="copyPrompt('p2',this)"><i class="fas fa-copy"></i> Copiar prompt</button>
+  </div>
+
+  <div class="prompt-card" data-stage="fp">
+    <div class="flex flex-wrap items-center gap-2 mb-2">
+      <span class="stage-tag tag-fp">FP</span>
+      <span class="font-semibold text-slate-700 text-sm">Programación de Módulo FP – Decreto 114/2025</span>
+    </div>
+    <div class="prompt-text" id="p3">Eres experto en FP y normativa de la CV. Crea la programación completa del módulo [NOMBRE DEL MÓDULO] del ciclo formativo de [NOMBRE DEL CICLO] ([GM/GS]), familia profesional [FAMILIA], según el Decreto 114/2025 de la Comunitat Valenciana.
+
+Incluye:
+1. Resultados de Aprendizaje (RA) con sus Criterios de Evaluación (CE)
+2. Contenidos/saberes básicos organizados en [Nº] Unidades de Trabajo (UT)
+3. Situaciones de aprendizaje: mínimo 2 completas con metodología, tareas y evaluación
+4. Tabla de instrumentos de evaluación por RA con ponderación
+5. Criterios de calificación (ponderación por RA en el módulo)
+6. Plan de recuperación
+7. Conexión con la FCT/FP Dual: qué contenidos se refuerzan en empresa
+8. Módulos transversales integrados: [Digitalización / Sostenibilidad / Inglés Profesional]
+9. Recursos y materiales actualizados al sector [SECTOR PROFESIONAL]
+10. Atención a la diversidad
+
+Horas del módulo: [HORAS]. Curso: [1.º/2.º].</div>
+    <button class="copy-btn" onclick="copyPrompt('p3',this)"><i class="fas fa-copy"></i> Copiar prompt</button>
+  </div>
+
+  <div class="prompt-card" data-stage="all">
+    <div class="flex flex-wrap items-center gap-2 mb-2">
+      <span class="stage-tag tag-all">Todas las etapas</span>
+      <span class="font-semibold text-slate-700 text-sm">Unidad Didáctica / Situación de Aprendizaje</span>
+    </div>
+    <div class="prompt-text" id="p4">Diseña una Situación de Aprendizaje (SA) completa para [MATERIA] de [CURSO] [ESO/Bachillerato] sobre la temática: [TEMÁTICA O PROBLEMA REAL].
+
+Estructura:
+🏷️ Título motivador y contexto real o cercano al alumnado
+🎯 Competencias específicas trabajadas
+🔑 Competencias clave implicadas (con abreviaturas oficiales)
+📐 Criterios de evaluación del Decreto [107/2022 o 108/2022]
+📚 Saberes básicos movilizados
+⚙️ Descripción de tareas (mínimo 4, secuenciadas de menor a mayor complejidad):
+  - Tarea 1: [activación de conocimientos previos]
+  - Tarea 2: [investigación o exploración]
+  - Tarea 3: [creación o aplicación]
+  - Tarea 4: [producto final o presentación]
+📦 Producto o evidencia final
+🕐 Temporalización: [Nº SEMANAS] semanas / [Nº SESIONES] sesiones
+🎨 Metodología principal: [ABP/Cooperativo/DUA/Design Thinking]
+📊 Rúbrica de evaluación con 4 niveles de logro
+♿ Medidas DUA incorporadas
+
+Nivel: [NIVEL EDUCATIVO]. Centro: [TIPO DE CENTRO si es relevante].</div>
+    <button class="copy-btn" onclick="copyPrompt('p4',this)"><i class="fas fa-copy"></i> Copiar prompt</button>
+  </div>
+
+</div>
+</details>
+</div>
+
+<!-- ══════════════════════════════
+  CATEGORÍA 2 – EVALUACIÓN Y RÚBRICAS
+══════════════════════════════ -->
+<div id="cat2" class="fade-in">
+<details class="card-pro !p-0 border border-slate-100">
+<summary class="flex items-center justify-between p-5 cursor-pointer">
+  <div class="flex items-center gap-3">
+    <div class="w-10 h-10 rounded-xl bg-yellow-100 text-yellow-700 flex items-center justify-center text-lg">⭐</div>
+    <div><div class="font-bold text-slate-800">Evaluación y Rúbricas</div><div class="text-xs text-slate-400">Criterial · Por competencias · Co-evaluación</div></div>
+  </div>
+  <i class="fas fa-chevron-down text-slate-400 chev"></i>
+</summary>
+<div class="px-5 pb-6 pt-2 border-t border-slate-50 space-y-4">
+
+  <div class="prompt-card" data-stage="all">
+    <div class="flex flex-wrap items-center gap-2 mb-2">
+      <span class="stage-tag tag-all">Todas las etapas</span>
+      <span class="font-semibold text-slate-700 text-sm">Rúbrica Holística por Criterios</span>
+    </div>
+    <div class="prompt-text" id="p5">Crea una rúbrica HOLÍSTICA completa para evaluar [TAREA/ACTIVIDAD/PROYECTO] en [MATERIA] de [CURSO] / [ETAPA].
+
+Criterios de evaluación a evaluar (del Decreto [107 o 108]/2022):
+- [CRITERIO 1]
+- [CRITERIO 2]
+- [CRITERIO 3]
+
+La rúbrica debe tener EXACTAMENTE 4 niveles de logro:
+🔴 Inicio (1–3): descriptores de lo que NO se ha alcanzado
+🟡 Proceso (4–5): descriptores de lo que se está logrando parcialmente
+🟢 Consolidado (6–7): descriptores de logro satisfactorio
+🔵 Avanzado (8–10): descriptores de excelencia y creatividad
+
+Para CADA criterio, especifica:
+- Descriptor claro, observable y medible en cada nivel
+- Peso en la calificación final (%)
+- Indicador de si es evaluable también para autoevaluación
+
+Formato: tabla con columnas: Criterio | Inicio | Proceso | Consolidado | Avanzado | Peso %
+También dame una versión simplificada para que el alumnado haga autoevaluación.</div>
+    <button class="copy-btn" onclick="copyPrompt('p5',this)"><i class="fas fa-copy"></i> Copiar prompt</button>
+  </div>
+
+  <div class="prompt-card" data-stage="all">
+    <div class="flex flex-wrap items-center gap-2 mb-2">
+      <span class="stage-tag tag-all">Todas las etapas</span>
+      <span class="font-semibold text-slate-700 text-sm">Prueba Escrita por Competencias</span>
+    </div>
+    <div class="prompt-text" id="p6">Diseña una prueba escrita por competencias para [MATERIA] de [CURSO] sobre los contenidos: [CONTENIDOS O SABERES BÁSICOS].
+
+La prueba debe:
+- Evaluar los criterios de evaluación: [CRITERIOS]
+- Durar [TIEMPO] minutos
+- Distribuirse en bloques de menor a mayor complejidad cognitiva (Taxonomía de Bloom):
+  BLOQUE 1 – Recordar / Comprender (30%): [Nº] preguntas objetivas / definiciones
+  BLOQUE 2 – Aplicar / Analizar (40%): [Nº] ejercicios o problemas con contexto real
+  BLOQUE 3 – Evaluar / Crear (30%): 1 tarea competencial abierta
+- Incluir contexto real o situación cercana al alumnado en la tarea final
+- Tener instrucciones claras, valor de cada pregunta y criterios de corrección
+- Añadir tabla de criterios de evaluación con su peso en la nota
+
+Nivel: [BÁSICO/ESTÁNDAR/AVANZADO]. Incluye también versión con adaptaciones para ACINES.</div>
+    <button class="copy-btn" onclick="copyPrompt('p6',this)"><i class="fas fa-copy"></i> Copiar prompt</button>
+  </div>
+
+  <div class="prompt-card" data-stage="all">
+    <div class="flex flex-wrap items-center gap-2 mb-2">
+      <span class="stage-tag tag-all">Todas las etapas</span>
+      <span class="font-semibold text-slate-700 text-sm">Instrumento de Autoevaluación y Coevaluación</span>
+    </div>
+    <div class="prompt-text" id="p7">Crea un instrumento de [AUTOEVALUACIÓN/COEVALUACIÓN] para el alumnado de [CURSO] [ETAPA] tras completar [PROYECTO/TAREA/SA].
+
+El instrumento debe:
+- Usar lenguaje accesible y adaptado al [CICLO/CURSO]
+- Incluir escala de valoración: Siempre / Casi siempre / A veces / Nunca (o 1-4)
+- Contemplar aspectos de: aprendizaje de contenidos, proceso de trabajo, habilidades sociales y capacidad de mejora
+- Terminar con 2 preguntas abiertas reflexivas:
+  "¿Qué es lo que más he aprendido?"
+  "¿Qué cambiaría si lo volviera a hacer?"
+- En la versión de COEVALUACIÓN: incluir criterios para evaluar a un compañero/a de forma constructiva
+- Formato: lista de ítems con escala + espacio de reflexión
+- Relacionar con los criterios de evaluación del Decreto [107/108/2022]</div>
+    <button class="copy-btn" onclick="copyPrompt('p7',this)"><i class="fas fa-copy"></i> Copiar prompt</button>
+  </div>
+
+  <div class="prompt-card" data-stage="fp">
+    <div class="flex flex-wrap items-center gap-2 mb-2">
+      <span class="stage-tag tag-fp">FP</span>
+      <span class="font-semibold text-slate-700 text-sm">Evaluación FP – Rúbrica por Resultados de Aprendizaje</span>
+    </div>
+    <div class="prompt-text" id="p8">Crea una rúbrica de evaluación para el módulo [MÓDULO] del ciclo [CICLO] [GM/GS] evaluando los Resultados de Aprendizaje (RA):
+- RA [Nº]: [descripción del RA]
+- RA [Nº]: [descripción del RA]
+
+Para CADA RA:
+1. Lista sus Criterios de Evaluación (CE) del Decreto 114/2025
+2. Crea descriptores para 3 niveles: No Alcanzado / En Proceso / Alcanzado / Superado
+3. Indica el peso de ese RA en la calificación final del módulo (%)
+4. Especifica el instrumento de evaluación preferente (práctica, portfolio, examen, proyecto…)
+
+Incluye también:
+- Lista de verificación (checklist) para prácticas de taller/empresa
+- Hoja de observación directa del docente
+- Propuesta de actividades de recuperación para cada RA no alcanzado</div>
+    <button class="copy-btn" onclick="copyPrompt('p8',this)"><i class="fas fa-copy"></i> Copiar prompt</button>
+  </div>
+
+</div>
+</details>
+</div>
+
+<!-- ══════════════════════════════
+  CATEGORÍA 3 – FEEDBACK Y COMUNICACIÓN
+══════════════════════════════ -->
+<div id="cat3" class="fade-in">
+<details class="card-pro !p-0 border border-slate-100">
+<summary class="flex items-center justify-between p-5 cursor-pointer">
+  <div class="flex items-center gap-3">
+    <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-lg">💬</div>
+    <div><div class="font-bold text-slate-800">Feedback, Informes y Comunicación</div><div class="text-xs text-slate-400">Familias · Alumnado · Equipo docente</div></div>
+  </div>
+  <i class="fas fa-chevron-down text-slate-400 chev"></i>
+</summary>
+<div class="px-5 pb-6 pt-2 border-t border-slate-50 space-y-4">
+
+  <div class="prompt-card" data-stage="all">
+    <div class="flex flex-wrap items-center gap-2 mb-2">
+      <span class="stage-tag tag-all">Todas las etapas</span>
+      <span class="font-semibold text-slate-700 text-sm">Feedback Formativo Personalizado</span>
+    </div>
+    <div class="prompt-text" id="p9">Eres docente de [MATERIA] en [CURSO] [ETAPA] en la Comunitat Valenciana. Redacta feedback formativo personalizado para el alumno/a [NOMBRE O "el alumno/a"] sobre [TAREA/ACTIVIDAD].
+
+Lo que ha hecho bien: [PUNTOS FUERTES]
+Áreas de mejora identificadas: [ASPECTOS A MEJORAR]
+Criterios de evaluación evaluados: [CRITERIOS]
+Calificación obtenida: [NOTA si procede]
+
+Redacta:
+1. ✅ Reconocimiento inicial positivo y específico (2-3 frases)
+2. 📈 3-5 áreas de mejora concretas y accionables (qué debe hacer diferente)
+3. 🔑 Recursos o estrategias que puede usar para mejorar
+4. ❓ Una pregunta reflexiva para que piense en su propio proceso
+5. 💪 Frase motivadora y de cierre
+
+Tono: [FORMAL/CERCANO/EMPODERADOR]. Extensión: máximo 200 palabras.
+Evita juicios de valor negativo. Usa la "feedback sandwich" integrando positivo-mejora-positivo.</div>
+    <button class="copy-btn" onclick="copyPrompt('p9',this)"><i class="fas fa-copy"></i> Copiar prompt</button>
+  </div>
+
+  <div class="prompt-card" data-stage="all">
+    <div class="flex flex-wrap items-center gap-2 mb-2">
+      <span class="stage-tag tag-all">Todas las etapas</span>
+      <span class="font-semibold text-slate-700 text-sm">Informe Trimestral para Familias</span>
+    </div>
+    <div class="prompt-text" id="p10">Eres tutor/a de [CURSO] [ETAPA]. Redacta un informe trimestral para las familias del alumno/a [NOMBRE], [TRIMESTRE] del curso [AÑO].
+
+Datos del alumno/a:
+- Calificaciones: [LISTA DE MATERIAS Y NOTAS]
+- Comportamiento en clase: [DESCRIPCIÓN]
+- Relaciones con compañeros/as: [DESCRIPCIÓN]
+- Participación y esfuerzo: [NIVEL]
+- Aspectos destacados positivos: [PUNTOS FUERTES]
+- Áreas de mejora prioritarias: [ASPECTOS]
+- Asistencia: [DATOS si procede]
+
+El informe debe:
+✅ Usar lenguaje claro, respetuoso y constructivo para las familias
+✅ Evitar jerga pedagógica excesiva
+✅ Incluir sugerencias concretas de apoyo desde casa
+✅ Cerrar con perspectivas positivas y próximos pasos
+✅ Extensión: 250-350 palabras
+✅ Formato: párrafos redactados (no lista), listo para enviar por email o imprimir</div>
+    <button class="copy-btn" onclick="copyPrompt('p10',this)"><i class="fas fa-copy"></i> Copiar prompt</button>
+  </div>
+
+  <div class="prompt-card" data-stage="all">
+    <div class="flex flex-wrap items-center gap-2 mb-2">
+      <span class="stage-tag tag-all">Todas las etapas</span>
+      <span class="font-semibold text-slate-700 text-sm">Comunicado Urgente a Familias</span>
+    </div>
+    <div class="prompt-text" id="p11">Redacta un comunicado [FORMAL/AMABLE] para las familias del grupo de [CURSO] sobre: [MOTIVO DEL COMUNICADO].
+
+Información a incluir:
+- Situación o novedad: [DESCRIPCIÓN DEL TEMA]
+- Fechas relevantes: [FECHAS si las hay]
+- Acción requerida por las familias: [QUÉ DEBEN HACER]
+- Persona de contacto: [NOMBRE Y DATOS si procede]
+
+El comunicado debe:
+- Ser claro y directo, máximo 150 palabras
+- Tener un tono [FORMAL/AMABLE/URGENTE]
+- Incluir saludo inicial y despedida cordial
+- Si es urgente: indicarlo claramente al inicio
+- Formato: listo para enviar por la app del centro (Itaca, Aules, etc.)
+
+Centro: [NOMBRE DEL CENTRO]. Firmado por: [NOMBRE DEL DOCENTE/TUTOR]</div>
+    <button class="copy-btn" onclick="copyPrompt('p11',this)"><i class="fas fa-copy"></i> Copiar prompt</button>
+  </div>
+
+</div>
+</details>
+</div>
+
+<!-- ══════════════════════════════
+  CATEGORÍA 4 – SITUACIONES DE APRENDIZAJE
+══════════════════════════════ -->
+<div id="cat4" class="fade-in">
+<details class="card-pro !p-0 border border-slate-100">
+<summary class="flex items-center justify-between p-5 cursor-pointer">
+  <div class="flex items-center gap-3">
+    <div class="w-10 h-10 rounded-xl bg-green-100 text-green-700 flex items-center justify-center text-lg">🌱</div>
+    <div><div class="font-bold text-slate-800">Situaciones de Aprendizaje y Metodologías</div><div class="text-xs text-slate-400">ABP · APS · Design Thinking · Gamificación</div></div>
+  </div>
+  <i class="fas fa-chevron-down text-slate-400 chev"></i>
+</summary>
+<div class="px-5 pb-6 pt-2 border-t border-slate-50 space-y-4">
+
+  <div class="prompt-card" data-stage="eso bach">
+    <div class="flex flex-wrap items-center gap-2 mb-2">
+      <span class="stage-tag tag-eso">ESO</span><span class="stage-tag tag-bach">Bach.</span>
+      <span class="font-semibold text-slate-700 text-sm">Proyecto ABP Completo</span>
+    </div>
+    <div class="prompt-text" id="p12">Diseña un Proyecto de Aprendizaje Basado en Proyectos (ABP) para [MATERIA] de [CURSO] [ETAPA].
+
+🔍 PREGUNTA GUÍA (auténtica, motivadora): [DÉJALA EN BLANCO O USA]: "¿Cómo podemos resolver/mejorar [PROBLEMA REAL DEL ENTORNO]?"
+
+📋 FICHA DEL PROYECTO:
+- Título: [sugerido por la IA]
+- Duración: [Nº SEMANAS] semanas / [Nº SESIONES] sesiones de [MINUTOS] min
+- Agrupamiento: [individual/parejas/grupos de Nº]
+- Materias implicadas (interdisciplinar): [MATERIAS ASOCIADAS]
+
+📅 FASES DEL PROYECTO:
+Fase 1 – Lanzamiento (semana 1): activación, pregunta guía y reto
+Fase 2 – Investigación (semanas 2-3): búsqueda, análisis, síntesis
+Fase 3 – Creación (semanas 4-5): desarrollo del producto
+Fase 4 – Presentación y evaluación (semana final)
+
+🎯 Producto final: [TIPO DE PRODUCTO: presentación/maqueta/app/vídeo/campaña...]
+📊 Rúbrica de evaluación con criterios del Decreto 107/2022
+🔑 Competencias clave trabajadas: [LISTA]
+♿ Adaptaciones DUA incorporadas</div>
+    <button class="copy-btn" onclick="copyPrompt('p12',this)"><i class="fas fa-copy"></i> Copiar prompt</button>
+  </div>
+
+  <div class="prompt-card" data-stage="all">
+    <div class="flex flex-wrap items-center gap-2 mb-2">
+      <span class="stage-tag tag-all">Todas las etapas</span>
+      <span class="font-semibold text-slate-700 text-sm">Aprendizaje-Servicio (APS)</span>
+    </div>
+    <div class="prompt-text" id="p13">Diseña un proyecto de Aprendizaje-Servicio (APS) para [MATERIA] de [CURSO] [ETAPA] que conecte el aprendizaje curricular con un servicio real a la comunidad.
+
+El proyecto debe:
+- Identificar una necesidad real del entorno: [NECESIDAD DETECTADA O DÉJALA EN BLANCO]
+- Vincular con los contenidos de la materia: [CONTENIDOS CURRICULARES]
+- Incluir las fases APS: Preparación > Acción > Reflexión > Evaluación
+- Definir el servicio concreto que realizará el alumnado: [TIPO DE SERVICIO]
+- Especificar la entidad colaboradora (opcional): [ENTIDAD o "buscar en el entorno"]
+- Duración: [SEMANAS]
+- Producto de aprendizaje + evidencia del servicio
+- Sistema de evaluación que contemple: aprendizaje, servicio y reflexión personal
+- Indicadores de impacto en la comunidad
+
+Competencias clave especialmente trabajadas: CC (Ciudadana) y CE (Emprendedora)
+Vincular con los criterios de evaluación del Decreto [107/108/2022]</div>
+    <button class="copy-btn" onclick="copyPrompt('p13',this)"><i class="fas fa-copy"></i> Copiar prompt</button>
+  </div>
+
+</div>
+</details>
+</div>
+
+<!-- ══════════════════════════════
+  CATEGORÍA 5 – INGLÉS Y LENGUAS
+══════════════════════════════ -->
+<div id="cat5" class="fade-in">
+<details class="card-pro !p-0 border border-slate-100">
+<summary class="flex items-center justify-between p-5 cursor-pointer">
+  <div class="flex items-center gap-3">
+    <div class="w-10 h-10 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center text-lg">🇬🇧</div>
+    <div><div class="font-bold text-slate-800">Inglés y Lenguas Extranjeras</div><div class="text-xs text-slate-400">Speaking · Writing · Reading · Listening · Grammar</div></div>
+  </div>
+  <i class="fas fa-chevron-down text-slate-400 chev"></i>
+</summary>
+<div class="px-5 pb-6 pt-2 border-t border-slate-50 space-y-4">
+
+  <div class="prompt-card" data-stage="eso bach">
+    <div class="flex flex-wrap items-center gap-2 mb-2">
+      <span class="stage-tag tag-eso">ESO</span><span class="stage-tag tag-bach">Bach.</span>
+      <span class="font-bold text-blue-600 text-xs">🗣️ SPEAKING</span>
+      <span class="font-semibold text-slate-700 text-sm">Actividad de Expresión Oral</span>
+    </div>
+    <div class="prompt-text" id="p14">Design a complete speaking activity for [YEAR GROUP] students at [A1/A2/B1/B1+/B2] level in English.
+
+Activity type: [DEBATE / ROLE PLAY / PRESENTATION / DISCUSSION / INTERVIEW]
+Topic: [TOPIC]
+Duration: [MINUTES] minutes per student/pair/group
+
+Include:
+1. 🎯 Learning objectives (CEFR descriptors for speaking)
+2. 📋 Step-by-step instructions for students (in simple English)
+3. 💬 Useful language bank: phrases, connectors, functional expressions
+4. 🃏 Role cards (if role-play) or discussion prompts (if debate)
+5. ⏱️ Timing breakdown (preparation + performance + feedback)
+6. 📊 Speaking rubric with 4 levels: Fluency | Vocabulary | Grammar | Pronunciation | Communication
+7. 🔄 Peer assessment sheet (simple, student-friendly)
+8. ♿ Scaffolding options for lower-level students
+
+Context: Spanish secondary school, [CLASS SIZE] students. Available resources: [MATERIALS/TECHNOLOGY]</div>
+    <button class="copy-btn" onclick="copyPrompt('p14',this)"><i class="fas fa-copy"></i> Copiar prompt</button>
+  </div>
+
+  <div class="prompt-card" data-stage="eso bach fp">
+    <div class="flex flex-wrap items-center gap-2 mb-2">
+      <span class="stage-tag tag-eso">ESO</span><span class="stage-tag tag-bach">Bach.</span><span class="stage-tag tag-fp">FP</span>
+      <span class="font-bold text-blue-600 text-xs">✍️ WRITING</span>
+      <span class="font-semibold text-slate-700 text-sm">Tarea de Escritura</span>
+    </div>
+    <div class="prompt-text" id="p15">Create a complete writing task for [YEAR GROUP] English learners at [LEVEL] CEFR.
+
+Text type: [ESSAY / FORMAL EMAIL / INFORMAL LETTER / REPORT / STORY / REVIEW / ARTICLE]
+Topic/Prompt: [WRITING PROMPT]
+Word count: [MIN]-[MAX] words
+Time available: [MINUTES]
+
+Provide:
+1. 📌 Clear task instructions in student-friendly language
+2. 🗺️ Planning scaffold: mind map template or guided questions
+3. 📝 Model text (professionally written) demonstrating the genre conventions
+4. 🔤 Useful vocabulary and expressions for this text type
+5. 📐 Structure guide: paragraph-by-paragraph breakdown
+6. ✅ Marking criteria aligned to CEFR [LEVEL]: Content | Organisation | Language | Range | Accuracy
+7. 🔁 Self-correction checklist before submitting
+8. 📈 Extension task for advanced students
+
+Context: Spanish IES, students' L1 is Spanish/Valencian.</div>
+    <button class="copy-btn" onclick="copyPrompt('p15',this)"><i class="fas fa-copy"></i> Copiar prompt</button>
+  </div>
+
+  <div class="prompt-card" data-stage="eso bach">
+    <div class="flex flex-wrap items-center gap-2 mb-2">
+      <span class="stage-tag tag-eso">ESO</span><span class="stage-tag tag-bach">Bach.</span>
+      <span class="font-bold text-blue-600 text-xs">👂 LISTENING</span>
+      <span class="font-semibold text-slate-700 text-sm">Actividad de Comprensión Oral</span>
+    </div>
+    <div class="prompt-text" id="p16">Create a complete listening activity based on the topic: [TOPIC] for [YEAR GROUP] at [CEFR LEVEL].
+
+I will use [a video from YouTube / an audio recording / a podcast] about [SPECIFIC CONTENT].
+
+Please provide:
+1. 🔍 Pre-listening tasks (2-3 activities to activate prior knowledge)
+2. 1st LISTENING – while listening:
+   - True/False statements (6 items)
+   - Gap-fill exercise
+3. 2nd LISTENING – for detail:
+   - Multiple choice questions (4-5 items)
+   - Note-taking grid
+4. 📝 Post-listening task: discussion questions or written response
+5. 🔤 Vocabulary focus: 8 key words from the audio with definitions and example sentences
+6. 📊 Assessment criteria for the listening comprehension
+7. ♿ Scaffolding: transcript excerpt for struggling learners
+
+Approximate audio duration: [MINUTES]. Accent: [BRITISH/AMERICAN/NEUTRAL]</div>
+    <button class="copy-btn" onclick="copyPrompt('p16',this)"><i class="fas fa-copy"></i> Copiar prompt</button>
+  </div>
+
+  <div class="prompt-card" data-stage="eso bach">
+    <div class="flex flex-wrap items-center gap-2 mb-2">
+      <span class="stage-tag tag-eso">ESO</span><span class="stage-tag tag-bach">Bach.</span>
+      <span class="font-bold text-blue-600 text-xs">📖 READING</span>
+      <span class="font-semibold text-slate-700 text-sm">Comprensión Lectora</span>
+    </div>
+    <div class="prompt-text" id="p17">Write a [GENRE] reading text and comprehension activities for [YEAR] English students at [CEFR LEVEL].
+
+Text topic: [TOPIC – current, engaging, linked to curriculum]
+Text length: approximately [200-400] words
+Text genre: [news article / blog post / short story / interview / factual text]
+
+Include:
+1. 📄 The reading text (appropriate vocabulary and syntax for level)
+2. 📝 Glossary of [5-8] key words with definitions
+3. 🔍 Comprehension questions:
+   - 3 literal questions (skim & scan)
+   - 2 inferential questions (read between the lines)
+   - 1 critical thinking / opinion question
+4. 📊 Language focus task (vocabulary in context / grammar structure)
+5. 🗣️ Speaking follow-up: 3 discussion questions
+6. 📈 Extension: research task or creative writing prompt related to topic
+
+Cross-curricular connection with: [OTHER SUBJECT if desired]</div>
+    <button class="copy-btn" onclick="copyPrompt('p17',this)"><i class="fas fa-copy"></i> Copiar prompt</button>
+  </div>
+
+  <div class="prompt-card" data-stage="fp">
+    <div class="flex flex-wrap items-center gap-2 mb-2">
+      <span class="stage-tag tag-fp">FP</span>
+      <span class="font-bold text-blue-600 text-xs">🏭 INGLÉS PROFESIONAL</span>
+      <span class="font-semibold text-slate-700 text-sm">Módulo Inglés Profesional FP</span>
+    </div>
+    <div class="prompt-text" id="p18">Design professional English materials for the "Inglés Profesional" module in a [CICLO FORMATIVO] vocational course, sector: [SECTOR].
+
+Students: [YEAR], level approximately [A2/B1], Spanish native speakers.
+Contact hours for this unit: [HOURS]
+
+Create:
+1. 📋 Unit overview: topic [PROFESSIONAL TOPIC], linked to sector vocabulary
+2. 🔤 Sector-specific vocabulary list (20 words with translations and example sentences)
+3. 🗣️ Role-play scenario: professional situation [e.g. job interview / customer service / team meeting / technical report]
+4. ✍️ Professional writing task: [email / report / CV / product description]
+5. 👂 Listening task: authentic professional audio (e.g. podcast, meeting, call)
+6. 📊 Assessment rubric aligned to B1 CEFR descriptors for professional contexts
+7. 🌐 Online resources and apps students can use to practise independently
+
+Link to "Itinerario para la Empleabilidad" module content where possible.</div>
+    <button class="copy-btn" onclick="copyPrompt('p18',this)"><i class="fas fa-copy"></i> Copiar prompt</button>
+  </div>
+
+  <div class="prompt-card" data-stage="eso bach">
+    <div class="flex flex-wrap items-center gap-2 mb-2">
+      <span class="stage-tag tag-eso">ESO</span><span class="stage-tag tag-bach">Bach.</span>
+      <span class="font-bold text-blue-600 text-xs">📐 GRAMMAR</span>
+      <span class="font-semibold text-slate-700 text-sm">Explicación + Práctica Gramatical</span>
+    </div>
+    <div class="prompt-text" id="p19">Explain the grammar structure [GRAMMAR POINT: e.g. Present Perfect vs Past Simple / Conditionals / Passive Voice] for Spanish-speaking students at [CEFR LEVEL], [YEAR GROUP].
+
+Format:
+1. 🧠 Clear explanation (in English, simple language) with comparison to Spanish equivalent
+2. 📐 Formation rules with formula diagrams
+3. 🌍 5 contextualised examples with the structure highlighted
+4. ⚠️ Common mistakes Spanish speakers make + corrections
+5. 🎯 Controlled practice: [10 gap-fill / transformation / error correction] exercises with answer key
+6. 🔄 Communicative practice: pair/group activity using the structure in context
+7. 🎮 Mini-game or challenge to practise (e.g. quick write, sentence relay, spot the mistake)
+8. 🏠 Optional homework task
+
+Topic context for examples: [THEME / UNIT TOPIC being studied]</div>
+    <button class="copy-btn" onclick="copyPrompt('p19',this)"><i class="fas fa-copy"></i> Copiar prompt</button>
+  </div>
+
+</div>
+</details>
+</div>
+
+<!-- ══════════════════════════════
+  CATEGORÍA 6 – STEM Y LABORATORIO VIRTUAL
+══════════════════════════════ -->
+<div id="cat6" class="fade-in">
+<details class="card-pro !p-0 border border-slate-100">
+<summary class="flex items-center justify-between p-5 cursor-pointer">
+  <div class="flex items-center gap-3">
+    <div class="w-10 h-10 rounded-xl bg-cyan-100 text-cyan-700 flex items-center justify-center text-lg">🔬</div>
+    <div><div class="font-bold text-slate-800">STEM y Laboratorio Virtual</div><div class="text-xs text-slate-400">Física · Química · Biología · Matemáticas · Tecnología</div></div>
+  </div>
+  <i class="fas fa-chevron-down text-slate-400 chev"></i>
+</summary>
+<div class="px-5 pb-6 pt-2 border-t border-slate-50 space-y-4">
+
+  <div class="prompt-card" data-stage="eso bach">
+    <div class="flex flex-wrap items-center gap-2 mb-2">
+      <span class="stage-tag tag-eso">ESO</span><span class="stage-tag tag-bach">Bach.</span>
+      <span class="font-semibold text-slate-700 text-sm">Simulador de Laboratorio Virtual</span>
+    </div>
+    <div class="prompt-text" id="p20">Diseña un laboratorio virtual COMPLETO sobre [EXPERIMENTO/FENÓMENO] para [MATERIA] de [CURSO].
+
+El laboratorio debe funcionar como una actividad guiada donde el alumnado:
+1. 🎯 Recibe el problema o pregunta de investigación: [PREGUNTA GUÍA]
+2. 📝 Formula hipótesis (plantilla proporcionada por ti)
+3. 🧪 Sigue el protocolo experimental paso a paso (con variables identificadas)
+4. 📊 Recoge y analiza datos en tablas y gráficas
+5. 💭 Extrae conclusiones y las contrasta con la hipótesis
+
+Dame:
+- Descripción detallada del experimento virtual (para usar con [PhET/Labster/Chemix/Pattlet])
+- Guión del alumno/a: paso a paso, preguntas guía, tablas de datos
+- Guía del docente: posibles errores, conceptos clave, preguntas socráticas
+- Conexión con los saberes básicos del Decreto 107/2022 para [MATERIA]
+- Evaluación: rúbrica e informe de laboratorio que debe entregar el alumnado
+- Extensión: ¿cómo se aplica esto en la vida real o en la industria?
+
+Nivel cognitivo: [BÁSICO/INTERMEDIO/AVANZADO]</div>
+    <button class="copy-btn" onclick="copyPrompt('p20',this)"><i class="fas fa-copy"></i> Copiar prompt</button>
+  </div>
+
+  <div class="prompt-card" data-stage="eso bach">
+    <div class="flex flex-wrap items-center gap-2 mb-2">
+      <span class="stage-tag tag-eso">ESO</span><span class="stage-tag tag-bach">Bach.</span>
+      <span class="font-semibold text-slate-700 text-sm">Problema STEM Contextualizado</span>
+    </div>
+    <div class="prompt-text" id="p21">Crea [Nº] problemas STEM contextualizados para [MATERIA] de [CURSO] sobre el tema [CONTENIDO].
+
+Para cada problema:
+1. 🌍 Contexto real y motivador (noticia, situación cotidiana, reto ambiental/social)
+2. 📊 Datos e información presentados en formato variado (tabla, gráfica, texto)
+3. ❓ Preguntas graduadas de menor a mayor dificultad (al menos 3 por problema):
+   - Nivel 1: cálculo directo o comprensión
+   - Nivel 2: aplicación con razonamiento
+   - Nivel 3: resolución creativa o diseño de solución
+4. 💡 Pistas o andamiaje para el alumnado que necesite apoyo
+5. ✅ Solución completa y justificada para el docente
+6. 🔗 Conexión interdisciplinar con [OTRAS MATERIAS]
+7. 🌱 Reflexión final: impacto científico, social o ambiental del problema
+
+Integra las competencias: STEM, CD (herramientas digitales) y CPSAA (resolución autónoma).</div>
+    <button class="copy-btn" onclick="copyPrompt('p21',this)"><i class="fas fa-copy"></i> Copiar prompt</button>
+  </div>
+
+  <div class="prompt-card" data-stage="eso bach">
+    <div class="flex flex-wrap items-center gap-2 mb-2">
+      <span class="stage-tag tag-eso">ESO</span><span class="stage-tag tag-bach">Bach.</span>
+      <span class="font-semibold text-slate-700 text-sm">Proyecto STEAM Interdisciplinar</span>
+    </div>
+    <div class="prompt-text" id="p22">Diseña un proyecto STEAM integrador para [CURSOS] que trabaje simultáneamente contenidos de [MATERIAS IMPLICADAS: Ej. Física + Matemáticas + Plástica + Inglés].
+
+🏗️ RETO CENTRAL: [DESCRIBE EL RETO O DÉJALO EN BLANCO PARA QUE LA IA LO PROPONGA]
+
+El proyecto debe incluir:
+- Producto final creativo: [Ej. diseño de un puente / mural científico / prototipo / app]
+- Rol de cada materia en el proyecto (tabla interdisciplinar)
+- Cronograma de [Nº SEMANAS] con actividades coordinadas entre departamentos
+- Evaluación compartida: rúbrica inter-áreas con criterios de cada materia
+- Presentación pública: cómo y ante quién se presentará el producto
+- Conexión con ODS (Objetivos de Desarrollo Sostenible): [ODS ELEGIDO o todos]
+
+Nivel: [CURSO Y ETAPA]. Materias coordinadas: [LISTA DE MATERIAS Y DOCENTES si los hay]</div>
+    <button class="copy-btn" onclick="copyPrompt('p22',this)"><i class="fas fa-copy"></i> Copiar prompt</button>
+  </div>
+
+</div>
+</details>
+</div>
+
+<!-- ══════════════════════════════
+  CATEGORÍA 7 – GAMIFICACIÓN Y RECURSOS
+══════════════════════════════ -->
+<div id="cat7" class="fade-in">
+<details class="card-pro !p-0 border border-slate-100">
+<summary class="flex items-center justify-between p-5 cursor-pointer">
+  <div class="flex items-center gap-3">
+    <div class="w-10 h-10 rounded-xl bg-pink-100 text-pink-700 flex items-center justify-center text-lg">🎮</div>
+    <div><div class="font-bold text-slate-800">Gamificación, Quiz y Recursos Lúdicos</div><div class="text-xs text-slate-400">Kahoot · Pasapalabra · Escape Room · Trivial · Bingo</div></div>
+  </div>
+  <i class="fas fa-chevron-down text-slate-400 chev"></i>
+</summary>
+<div class="px-5 pb-6 pt-2 border-t border-slate-50 space-y-4">
+
+  <div class="prompt-card" data-stage="all">
+    <div class="flex flex-wrap items-center gap-2 mb-2">
+      <span class="stage-tag tag-all">Todas las etapas</span>
+      <span class="font-semibold text-slate-700 text-sm">Quiz Kahoot / Quiziz – Batería de Preguntas</span>
+    </div>
+    <div class="prompt-text" id="p23">Crea [Nº] preguntas de tipo test para un quiz de [MATERIA] sobre el tema [TEMA/UNIDAD] para [CURSO].
+
+Para CADA pregunta incluye:
+- Enunciado claro (máx. 120 caracteres para Kahoot)
+- 4 opciones de respuesta (A, B, C, D) con EXACTAMENTE 1 correcta
+- Respuesta correcta señalada
+- Explicación breve de por qué es correcta (para el docente)
+- Nivel de dificultad: Fácil / Medio / Difícil
+
+Distribuye las preguntas así:
+- [Nº] preguntas fáciles (recordar / definiciones)
+- [Nº] preguntas medias (aplicar / relacionar)
+- [Nº] preguntas difíciles (analizar / evaluar)
+
+Formato: tabla con columnas: Pregunta | A | B | C | D | Correcta | Dificultad | Explicación
+
+También dame 3 preguntas de "imagen" describiendo qué imagen se usaría y por qué.
+
+Materia: [MATERIA]. Tema: [TEMA]. Curso: [CURSO].</div>
+    <button class="copy-btn" onclick="copyPrompt('p23',this)"><i class="fas fa-copy"></i> Copiar prompt</button>
+  </div>
+
+  <div class="prompt-card" data-stage="all">
+    <div class="flex flex-wrap items-center gap-2 mb-2">
+      <span class="stage-tag tag-all">Todas las etapas</span>
+      <span class="font-semibold text-slate-700 text-sm">Juego del Pasapalabra Educativo</span>
+    </div>
+    <div class="prompt-text" id="p24">Crea un "Pasapalabra" educativo completo para [MATERIA] de [CURSO] sobre el tema [TEMA].
+
+Para CADA letra del abecedario (o las que tú elijas) crea:
+- Una definición clara que lleve a una palabra que empieza por esa letra
+- La respuesta correcta
+- Una pista adicional si la definición es muy difícil
+- Si la letra no tiene término relevante del tema, indica "COMODÍN" con una pregunta extra
+
+Formato del rosco: 
+Letra A: "Con A. [DEFINICIÓN]" → Respuesta: [PALABRA]
+
+Total: [Nº] letras / palabras
+Dificultad: [BÁSICA para repasar / AVANZADA para ampliar]
+Posible uso: Kahoot, PowerPoint con transiciones, ruleta en línea, papel impreso
+
+Incluye también las instrucciones del juego para el alumnado y las normas de puntuación sugeridas.</div>
+    <button class="copy-btn" onclick="copyPrompt('p24',this)"><i class="fas fa-copy"></i> Copiar prompt</button>
+  </div>
+
+  <div class="prompt-card" data-stage="all">
+    <div class="flex flex-wrap items-center gap-2 mb-2">
+      <span class="stage-tag tag-all">Todas las etapas</span>
+      <span class="font-semibold text-slate-700 text-sm">Escape Room Educativo</span>
+    </div>
+    <div class="prompt-text" id="p25">Diseña un Escape Room educativo completo para [MATERIA] de [CURSO] con la temática: [TEMÁTICA / NARRATIVA].
+
+Estructura del Escape Room:
+🗺️ NARRATIVA: Historia envolvente que justifica el reto (2-3 párrafos)
+🔐 NÚMERO DE ENIGMAS: [4-6]
+⏱️ TIEMPO: [45-60] minutos
+👥 GRUPOS: [Nº] alumnos por equipo
+
+Para cada ENIGMA:
+- Título del enigma y descripción narrativa
+- Tipo de prueba: [cifrado / anagrama / crucigrama / cálculo / observación / creación]
+- Contenido curricular trabajado: [CONCEPTO O SABERES BÁSICOS]
+- Instrucciones claras para el alumnado
+- Solución (código o respuesta que desbloquea el siguiente enigma)
+- Pistas disponibles (máx. 2 por enigma)
+
+FINAL: Misión cumplida + reflexión de aprendizaje (metacognición)
+
+Materiales necesarios: [qué necesita el docente para prepararlo]
+Variante digital: cómo hacer esto con Google Forms / Breakout EDU Digital</div>
+    <button class="copy-btn" onclick="copyPrompt('p25',this)"><i class="fas fa-copy"></i> Copiar prompt</button>
+  </div>
+
+  <div class="prompt-card" data-stage="all">
+    <div class="flex flex-wrap items-center gap-2 mb-2">
+      <span class="stage-tag tag-all">Todas las etapas</span>
+      <span class="font-semibold text-slate-700 text-sm">Bingo de Vocabulario / Conceptos</span>
+    </div>
+    <div class="prompt-text" id="p26">Crea un juego de Bingo para [MATERIA] de [CURSO] para repasar [VOCABULARIO/CONCEPTOS] del tema [TEMA].
+
+Genera:
+1. Lista de [25] términos o conceptos clave (con su definición)
+2. [Nº] cartones de Bingo diferentes (cuadrícula 5x5) listos para imprimir
+   - Cada casilla: una palabra o imagen descriptiva
+   - Las casillas están distribuidas aleatoriamente en cada cartón
+3. Tarjetas del docente: definición para leer en voz alta (una por término)
+4. Reglas del juego adaptadas al aula
+5. Variante: el alumnado crea sus propios cartones (tarea de repaso activo)
+
+Formato de los cartones: tabla 5x5 lista para copiar en Word/Canva
+Materia: [MATERIA]. Tema: [TEMA]. Nivel: [CURSO]</div>
+    <button class="copy-btn" onclick="copyPrompt('p26',this)"><i class="fas fa-copy"></i> Copiar prompt</button>
+  </div>
+
+</div>
+</details>
+</div>
+
+<!-- ══════════════════════════════
+  CATEGORÍA 8 – APPS Y ARTEFACTOS DIGITALES
+══════════════════════════════ -->
+<div id="cat8" class="fade-in">
+<details class="card-pro !p-0 border border-slate-100">
+<summary class="flex items-center justify-between p-5 cursor-pointer">
+  <div class="flex items-center gap-3">
+    <div class="w-10 h-10 rounded-xl bg-violet-100 text-violet-700 flex items-center justify-center text-lg">🤖</div>
+    <div><div class="font-bold text-slate-800">Apps, Artefactos Digitales y Recursos Interactivos</div><div class="text-xs text-slate-400">Apps educativas · Chatbots · Infografías · Vídeo · Podcast</div></div>
+  </div>
+  <i class="fas fa-chevron-down text-slate-400 chev"></i>
+</summary>
+<div class="px-5 pb-6 pt-2 border-t border-slate-50 space-y-4">
+
+  <div class="prompt-card" data-stage="all">
+    <div class="flex flex-wrap items-center gap-2 mb-2">
+      <span class="stage-tag tag-all">Todas las etapas</span>
+      <span class="font-semibold text-slate-700 text-sm">App Educativa Interactiva (HTML)</span>
+    </div>
+    <div class="prompt-text" id="p27">Actúa como desarrollador web experto en educación. Crea una app educativa interactiva en HTML, CSS y JavaScript (un único archivo .html) sobre [TEMA] para [CURSO] [MATERIA].
+
+La app debe incluir:
+1. 🎨 Diseño atractivo, colorido y apropiado para [EDAD DEL ALUMNADO]
+2. 📚 Contenido educativo sobre [TEMA/CONCEPTOS]
+3. Tipo de actividad: [QUIZ INTERACTIVO / JUEGO / SIMULADOR / FLASHCARDS / MAPA INTERACTIVO / LINEA DEL TIEMPO]
+4. ✅ Feedback inmediato al alumnado (correcto/incorrecto con explicación)
+5. 📊 Contador de puntos / progreso visible
+6. 📱 Responsive (funciona en móvil y tablet)
+7. 🌐 Sin necesidad de internet (todo embebido en el HTML)
+8. 💾 Opción de "ver resultados" al finalizar
+
+Contenidos a incluir en la app: [LISTA DE CONCEPTOS, PREGUNTAS O CONTENIDO]
+Edad del alumnado: [AÑOS]. Idioma: [ESPAÑOL/INGLÉS/VALENCIANO]
+Estilo visual: [MODERNO/INFANTIL/PROFESIONAL/GAMING]</div>
+    <button class="copy-btn" onclick="copyPrompt('p27',this)"><i class="fas fa-copy"></i> Copiar prompt</button>
+  </div>
+
+  <div class="prompt-card" data-stage="all">
+    <div class="flex flex-wrap items-center gap-2 mb-2">
+      <span class="stage-tag tag-all">Todas las etapas</span>
+      <span class="font-semibold text-slate-700 text-sm">Chatbot Educativo Especializado</span>
+    </div>
+    <div class="prompt-text" id="p28">Diseña un chatbot educativo para [MATERIA] de [CURSO] que actúe como tutor personalizado sobre [TEMA].
+
+El chatbot debe:
+1. 🎭 Tener una personalidad y nombre: [NOMBRE DEL CHATBOT] – [DESCRIPCIÓN DE PERSONALIDAD]
+2. 🎯 Objetivo: ayudar al alumnado a [APRENDER / REPASAR / RESOLVER DUDAS / PREPARAR EXAMEN]
+3. 📋 Sistema de preguntas guiadas:
+   - Primero evalúa el nivel del usuario con 3 preguntas diagnóstico
+   - Adapta el nivel de dificultad según las respuestas
+   - Usa el método socrático: nunca da la respuesta directamente, guía con preguntas
+4. 💬 Tono: [AMIGABLE Y MOTIVADOR / FORMAL / GAMIFICADO]
+5. 🔄 Bucle de aprendizaje: explica > pregunta > retroalimentación > refuerza
+6. 📊 Al final: resumen de lo aprendido y áreas a reforzar
+
+Dame el PROMPT COMPLETO de sistema para configurarlo en [ChatGPT/Claude/Gemini/Poe]
++ 5 ejemplos de conversación tipo
++ Las instrucciones que darías al alumnado para usarlo
++ Cómo evaluar el uso del chatbot como actividad</div>
+    <button class="copy-btn" onclick="copyPrompt('p28',this)"><i class="fas fa-copy"></i> Copiar prompt</button>
+  </div>
+
+  <div class="prompt-card" data-stage="all">
+    <div class="flex flex-wrap items-center gap-2 mb-2">
+      <span class="stage-tag tag-all">Todas las etapas</span>
+      <span class="font-semibold text-slate-700 text-sm">Infografía Educativa</span>
+    </div>
+    <div class="prompt-text" id="p29">Diseña el contenido completo de una infografía educativa sobre [TEMA] para [MATERIA] de [CURSO].
+
+La infografía debe:
+- Formato: [VERTICAL/HORIZONTAL], diseñada para [Canva/PowerPoint/papel A3]
+- Cantidad de información: [5-8 bloques de contenido] bien diferenciados
+- Nivel de texto: frases cortas, máx. 15 palabras por bloque
+- Lenguaje: [TÉCNICO/DIVULGATIVO/ADAPTADO A [EDAD]]
+
+Para cada BLOQUE dame:
+1. 📌 Título del bloque (máx. 4 palabras)
+2. 📝 Contenido resumido (2-3 frases)
+3. 🎨 Sugerencia de icono o imagen representativa
+4. 🔢 Dato curioso o estadística impactante (si procede)
+5. 🎨 Color sugerido (en consonancia con paleta [COLORES ELEGIDOS])
+
+Estructura completa de la infografía:
+- Título principal llamativo
+- [Nº] secciones temáticas
+- Conclusión o llamada a la acción final
+- Fuentes consultadas (si son necesarias para el alumnado)
+
+Propósito: [EXPLICAR / RESUMIR / COMPARAR / MOSTRAR PROCESO / ESTADÍSTICAS]</div>
+    <button class="copy-btn" onclick="copyPrompt('p29',this)"><i class="fas fa-copy"></i> Copiar prompt</button>
+  </div>
+
+  <div class="prompt-card" data-stage="all">
+    <div class="flex flex-wrap items-center gap-2 mb-2">
+      <span class="stage-tag tag-all">Todas las etapas</span>
+      <span class="font-semibold text-slate-700 text-sm">Guión de Vídeo Educativo</span>
+    </div>
+    <div class="prompt-text" id="p30">Escribe el guión completo de un vídeo educativo sobre [TEMA] para [MATERIA] de [CURSO].
+
+Especificaciones:
+- Duración aproximada: [MINUTOS] minutos
+- Formato: [EXPLICATIVO / DOCUMENTAL / STORYTELLING / ANIMADO / PRESENTACIÓN]
+- Narrador/a: [VOZ EN OFF / DOCENTE A CÁMARA / PERSONAJE]
+- Público: [CURSO] – [EDAD] años
+
+Estructura del guión:
+🎬 INTRO (30 seg): gancho inicial, pregunta provocadora o hecho sorprendente sobre [TEMA]
+📚 DESARROLLO (secciones): [Nº] bloques temáticos con:
+  - Texto narrado (columna izquierda)
+  - Descripción de imagen/pantalla (columna derecha)
+  - Transición entre bloques
+🎯 CIERRE: resumen, conclusión y llamada a la acción o reflexión
+
+Incluye también:
+- Lista de recursos visuales necesarios (imágenes, gráficas, animaciones)
+- Música de fondo sugerida (estilo/tempo)
+- Preguntas de comprensión para después del vídeo
+- Tarea asociada al vídeo</div>
+    <button class="copy-btn" onclick="copyPrompt('p30',this)"><i class="fas fa-copy"></i> Copiar prompt</button>
+  </div>
+
+</div>
+</details>
+</div>
+
+<!-- ══════════════════════════════
+  CATEGORÍA 9 – INCLUSIÓN Y DUA
+══════════════════════════════ -->
+<div id="cat9" class="fade-in">
+<details class="card-pro !p-0 border border-slate-100">
+<summary class="flex items-center justify-between p-5 cursor-pointer">
+  <div class="flex items-center gap-3">
+    <div class="w-10 h-10 rounded-xl bg-rose-100 text-rose-700 flex items-center justify-center text-lg">♿</div>
+    <div><div class="font-bold text-slate-800">Inclusión, DUA y Adaptaciones</div><div class="text-xs text-slate-400">ACINES · ACIS · PMAR · DUA · Altas Capacidades</div></div>
+  </div>
+  <i class="fas fa-chevron-down text-slate-400 chev"></i>
+</summary>
+<div class="px-5 pb-6 pt-2 border-t border-slate-50 space-y-4">
+
+  <div class="prompt-card" data-stage="eso">
+    <div class="flex flex-wrap items-center gap-2 mb-2">
+      <span class="stage-tag tag-eso">ESO</span>
+      <span class="font-semibold text-slate-700 text-sm">Actividad con Principios DUA</span>
+    </div>
+    <div class="prompt-text" id="p31">Adapta la siguiente actividad/tarea aplicando los 3 principios del Diseño Universal para el Aprendizaje (DUA):
+
+ACTIVIDAD ORIGINAL: [DESCRIBE LA ACTIVIDAD]
+Materia: [MATERIA]. Curso: [CURSO]. Duración: [SESIONES].
+
+Para cada principio del DUA, dame 3 variantes concretas:
+
+♿ PRINCIPIO 1 – REPRESENTACIÓN (Cómo se presenta la información):
+  → Variante para distintos estilos de aprendizaje
+  → Recursos alternativos (audio, vídeo, esquema, texto, manipulativo)
+  → Glosario visual o apoyos visuales
+
+♿ PRINCIPIO 2 – ACCIÓN Y EXPRESIÓN (Cómo el alumnado muestra lo aprendido):
+  → Opciones de producto final (oral / escrito / digital / visual / práctico)
+  → Scaffold para quienes necesitan apoyo
+  → Opción de ampliación para alumnado de altas capacidades
+
+♿ PRINCIPIO 3 – IMPLICACIÓN (Cómo se motiva e implica al alumnado):
+  → Conexión con intereses del alumnado
+  → Opciones de elección y autonomía
+  → Estrategias para regular el esfuerzo y la atención
+
+Perfil del grupo: [DESCRIPCIÓN si hay ACINES, ACIS, altas capacidades, etc.]</div>
+    <button class="copy-btn" onclick="copyPrompt('p31',this)"><i class="fas fa-copy"></i> Copiar prompt</button>
+  </div>
+
+  <div class="prompt-card" data-stage="eso">
+    <div class="flex flex-wrap items-center gap-2 mb-2">
+      <span class="stage-tag tag-eso">ESO</span>
+      <span class="font-semibold text-slate-700 text-sm">Adaptación ACINES para Alumno/a</span>
+    </div>
+    <div class="prompt-text" id="p32">Crea una Adaptación Curricular Individual No Significativa (ACINES) para [NOMBRE O "el alumno/a"] en [MATERIA] de [CURSO] ESO.
+
+Descripción del alumno/a: [NECESIDADES EDUCATIVAS / DIAGNÓSTICO si procede]
+Dificultades principales: [ÁREAS DE DIFICULTAD]
+Puntos fuertes: [CAPACIDADES Y FORTALEZAS]
+
+La ACINES debe incluir:
+1. Criterios de evaluación que se mantienen (sin modificar)
+2. Medidas de acceso: [APOYOS MATERIALES Y PERSONALES]
+3. Adaptaciones en los instrumentos de evaluación (mismos criterios, diferente formato):
+   - En lugar de [PRUEBA ORIGINAL], evaluación mediante [ALTERNATIVA]
+4. Adaptaciones metodológicas y organizativas:
+   - Agrupamiento: [INDIVIDUAL/GRUPO REDUCIDO/PAREJA]
+   - Tiempo: [AMPLIACIÓN si procede]
+   - Materiales adaptados: [TIPOS]
+5. Objetivos prioritarios del trimestre: [LISTA]
+6. Coordinación con el Dpto. de Orientación y familia: [ACCIONES]
+7. Revisión trimestral: indicadores de progreso
+
+Normativa: Decreto 104/2018 y Orden 20/2019 de la Comunitat Valenciana.</div>
+    <button class="copy-btn" onclick="copyPrompt('p32',this)"><i class="fas fa-copy"></i> Copiar prompt</button>
+  </div>
+
+</div>
+</details>
+</div>
+
+<!-- ══════════════════════════════
+  CATEGORÍA 10 – GESTIÓN DOCENTE
+══════════════════════════════ -->
+<div id="cat10" class="fade-in">
+<details class="card-pro !p-0 border border-slate-100">
+<summary class="flex items-center justify-between p-5 cursor-pointer">
+  <div class="flex items-center gap-3">
+    <div class="w-10 h-10 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center text-lg">📋</div>
+    <div><div class="font-bold text-slate-800">Gestión y Organización Docente</div><div class="text-xs text-slate-400">Reuniones · Documentos · Normas · Actas · Informes</div></div>
+  </div>
+  <i class="fas fa-chevron-down text-slate-400 chev"></i>
+</summary>
+<div class="px-5 pb-6 pt-2 border-t border-slate-50 space-y-4">
+
+  <div class="prompt-card" data-stage="all">
+    <div class="flex flex-wrap items-center gap-2 mb-2">
+      <span class="stage-tag tag-all">Todas las etapas</span>
+      <span class="font-semibold text-slate-700 text-sm">Plan de Recuperación de Materia Pendiente</span>
+    </div>
+    <div class="prompt-text" id="p33">Diseña un Plan de Recuperación completo para [Nº] alumnos/as que tienen pendiente la materia de [MATERIA] de [CURSO ANTERIOR].
+
+El plan debe incluir:
+1. 📋 Contenidos mínimos imprescindibles para aprobar (saberes básicos esenciales)
+2. 📅 Cronograma: [Nº MESES] de duración con hitos de seguimiento
+3. 📝 Actividades de recuperación:
+   - [Nº] fichas de trabajo autónomo (describe su contenido)
+   - Prueba parcial en [FECHA/TRIMESTRE]
+   - Prueba final de recuperación
+4. 🏠 Tareas de trabajo en casa (carga realista: máx. [MINUTOS] por semana)
+5. 📊 Criterios de evaluación y calificación para la recuperación
+6. 🤝 Coordinación con familias: qué se les informa y cuándo
+7. 📌 Recursos de apoyo: [libros / webs / vídeos recomendados / plataformas]
+8. Comunicado formal a las familias del plan
+
+Materia: [MATERIA]. Nivel: [CURSO]. Número de alumnos/as: [Nº]</div>
+    <button class="copy-btn" onclick="copyPrompt('p33',this)"><i class="fas fa-copy"></i> Copiar prompt</button>
+  </div>
+
+  <div class="prompt-card" data-stage="all">
+    <div class="flex flex-wrap items-center gap-2 mb-2">
+      <span class="stage-tag tag-all">Todas las etapas</span>
+      <span class="font-semibold text-slate-700 text-sm">Evaluación Inicial del Grupo</span>
+    </div>
+    <div class="prompt-text" id="p34">Diseña una evaluación inicial diagnóstica para [MATERIA] de [CURSO] al inicio de [TRIMESTRE / CURSO ESCOLAR].
+
+Objetivos de la evaluación inicial:
+- Detectar conocimientos previos sobre: [CONTENIDOS PREVISTOS]
+- Identificar lagunas de aprendizaje del curso anterior
+- Conocer intereses, motivaciones y estilos de aprendizaje del grupo
+
+Instrumentos a usar (elige los que mejor se adapten):
+1. 📝 Prueba diagnóstica escrita o digital (10-15 preguntas de opción múltiple + 2-3 abiertas)
+2. 💬 Rutina de pensamiento: "Sé, quiero saber, aprenderé" / "Antes pensaba... Ahora pienso..."
+3. 🗣️ Actividad de debate o puesta en común inicial
+4. 📊 Cuestionario de intereses y métodos de estudio (anónimo)
+
+Para cada instrumento dame:
+- Las preguntas o actividades completas
+- Criterios de análisis (cómo leer los resultados)
+- Cómo usar los datos para personalizar la programación
+- Cómo comunicar los resultados al alumnado de forma positiva</div>
+    <button class="copy-btn" onclick="copyPrompt('p34',this)"><i class="fas fa-copy"></i> Copiar prompt</button>
+  </div>
+
+  <div class="prompt-card" data-stage="all">
+    <div class="flex flex-wrap items-center gap-2 mb-2">
+      <span class="stage-tag tag-all">Todas las etapas</span>
+      <span class="font-semibold text-slate-700 text-sm">Normas de Aula y Acuerdo de Convivencia</span>
+    </div>
+    <div class="prompt-text" id="p35">Ayúdame a co-crear las normas de aula y el acuerdo de convivencia para mi grupo de [CURSO] [ETAPA] de [MATERIA].
+
+El proceso que quiero seguir (indícame cómo guiar cada paso):
+1. 🗣️ Técnica participativa para que el alumnado proponga sus normas (10-15 min)
+2. 📝 Cómo redactar las normas en positivo (lo que SÍ hacemos, no lo que NO)
+3. 🤝 Modelo de "Contrato de Convivencia" para firmar alumnado, docente y familias
+4. 📋 Lista de consecuencias progresivas acordadas (leves > graves)
+5. 🎨 Cómo hacerlo visual y atractivo para exponerlo en el aula
+
+Genera también:
+- 8-10 normas de aula redactadas en positivo para [EDAD del grupo]
+- El texto del contrato de convivencia listo para personalizar e imprimir
+- Dinámica de grupo para la presentación en la 1ª semana de curso
+- Cómo revisarlas trimestralmente de forma participativa
+
+Edad del grupo: [AÑOS]. Características especiales: [si las hay]</div>
+    <button class="copy-btn" onclick="copyPrompt('p35',this)"><i class="fas fa-copy"></i> Copiar prompt</button>
+  </div>
+
+</div>
+</details>
+</div>
+
+<!-- CTA FINAL -->
+<div class="fade-in card-pro bg-gradient-to-br from-indigo-600 to-purple-700 text-white text-center p-10 border-0 mt-4">
+  <div class="text-4xl mb-3">🚀</div>
+  <h2 class="text-2xl font-extrabold mb-2">¿Quieres que la IA lo haga directamente?</h2>
+  <p class="text-indigo-100 mb-6 max-w-lg mx-auto text-sm">La versión interactiva te guía campo a campo y abre el chatbot con el prompt ya rellenado. Sin copiar ni pegar.</p>
+  <a href="app-ia.html" class="inline-flex items-center gap-2 bg-white text-indigo-700 font-bold px-8 py-3 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all text-sm">
+    <i class="fas fa-magic"></i> Ir a la App Interactiva IA
+  </a>
+</div>
+
+</div><!-- /max-w -->
+
+<footer class="bg-white border-t border-slate-100 py-6 px-6 text-center text-xs text-slate-400 mt-8">
+  <strong class="text-slate-600">AutoDocente CV</strong> · Biblioteca de Prompts Docentes · Comunitat Valenciana · ESO, Bachillerato y FP
+</footer>
+</main>
+</div>
+
+<script>
+// SCROLL PROGRESS
+window.addEventListener('scroll',()=>{
+  const p=document.getElementById('scroll-progress');
+  const pct=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100;
+  p.style.width=pct+'%';
+  const btn=document.getElementById('back-to-top');
+  window.scrollY>400?btn.classList.add('visible'):btn.classList.remove('visible');
+  updateNav();
+});
+document.getElementById('back-to-top').addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+// SECTION ENTRANCE
+const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in-view')}),{threshold:.05});
+document.querySelectorAll('.fade-in').forEach(s=>io.observe(s));
+
+// NAV ACTIVE
+function updateNav(){
+  const links=[...document.querySelectorAll('aside nav a')];
+  links.forEach(l=>l.classList.remove('active'));
+  const cats=['#cat1','#cat2','#cat3','#cat4','#cat5','#cat6','#cat7','#cat8','#cat9','#cat10'];
+  let current='';
+  cats.forEach(id=>{const el=document.querySelector(id);if(el&&window.scrollY>=el.offsetTop-200)current=id;});
+  if(current){const l=document.querySelector(`aside nav a[href="${current}"]`);if(l)l.classList.add('active');}
+}
+
+// MOBILE SIDEBAR
+document.getElementById('sidebar-toggle').addEventListener('click',()=>{
+  document.querySelector('aside').classList.add('sidebar-open');
+  document.getElementById('sidebar-backdrop').classList.add('active');
+  document.body.style.overflow='hidden';
+});
+document.getElementById('sidebar-backdrop').addEventListener('click',()=>{
+  document.querySelector('aside').classList.remove('sidebar-open');
+  document.getElementById('sidebar-backdrop').classList.remove('active');
+  document.body.style.overflow='';
+});
+
+// COPY PROMPT
+function copyPrompt(id, btn){
+  const text=document.getElementById(id).innerText;
+  navigator.clipboard.writeText(text).then(()=>{
+    btn.classList.add('copied');
+    btn.innerHTML='<i class="fas fa-check"></i> ¡Copiado!';
+    const toast=document.getElementById('toast');
+    toast.classList.add('show');
+    setTimeout(()=>{
+      btn.classList.remove('copied');
+      btn.innerHTML='<i class="fas fa-copy"></i> Copiar prompt';
+      toast.classList.remove('show');
+    },2200);
+  });
+}
+
+// FILTER BY STAGE
+function filterAll(stage){
+  document.querySelectorAll('.filter-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('ftab-'+stage).classList.add('active');
+  document.querySelectorAll('.prompt-card').forEach(card=>{
+    if(stage==='all'){card.style.display='';return;}
+    const s=card.getAttribute('data-stage')||'all';
+    card.style.display=(s==='all'||s.includes(stage))?'':'none';
+  });
+  // Open all details when filtering
+  if(stage!=='all') document.querySelectorAll('details').forEach(d=>d.open=true);
+}
+
+// HIGHLIGHT fields in prompts
+document.querySelectorAll('.prompt-text').forEach(el=>{
+  el.innerHTML=el.innerHTML.replace(/\[([^\]]+)\]/g,'<span class="field-highlight">[$1]</span>');
+});
+</script>
+  <script src="assets/portal-nav.js"></script>
+</body>
+</html>
