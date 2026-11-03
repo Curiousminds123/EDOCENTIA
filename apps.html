@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#faf8f5">
-  <meta name="description" content="Biblioteca abierta de recursos educativos con autoría y licencias Creative Commons de Compartir Igual (CC BY-SA). Repositorios de Curiousminds123 (Ana H. Iranzo) y comunidad docente.">
+  <meta name="theme-color" content="#f8f6f0">
+  <meta name="description" content="Busca aplicaciones educativas con autoría y licencias Creative Commons de compartir igual declaradas en el repositorio comunitario Vibe Coding Educativo y creaciones de Ana H. Iranzo.">
   <title>Biblioteca abierta (225 recursos) — EDOCENTIA</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,12 +16,14 @@
 </head>
 <body>
   <a class="skip-link" href="#contenido">Saltar al contenido</a>
-  
   <header class="site-header">
     <div class="shell header-inner">
       <a class="brand" href="index.html" aria-label="EDOCENTIA, inicio">
         <span class="brand-mark" aria-hidden="true">e.</span>
-        <span class="brand-name">EDOCENTIA</span>
+        <div class="brand-text">
+          <span class="brand-name">EDOCENTIA</span>
+          <span class="brand-sub">Creado por Ana H. Iranzo</span>
+        </div>
       </a>
       <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
         <span class="menu-toggle-label">Menú</span>
@@ -30,10 +32,8 @@
       <nav class="primary-nav catalog-nav" id="primary-nav" aria-label="Navegación principal">
         <a href="index.html">Inicio</a>
         <a href="index.html#herramientas">Herramientas EDOCENTIA</a>
-        <a href="app-ia.html">App IA</a>
-        <a href="app-prompts.html">Prompts</a>
-        <a href="index.html#sobre-edocentia">El proyecto</a>
-        <a class="nav-cta" href="https://github.com/Curiousminds123" target="_blank" rel="noopener">Curiousminds123 en GitHub <span aria-hidden="true">↗</span></a>
+        <a href="index.html#comunidad">Comunidad</a>
+        <a href="https://t.me/+F0qGBNdHTVowZjI0" target="_blank" rel="noopener" class="nav-cta">Comunidad Telegram <span aria-hidden="true">↗</span></a>
       </nav>
     </div>
   </header>
@@ -41,160 +41,40 @@
   <main id="contenido" class="catalog-main">
     <section class="catalog-intro shell">
       <a class="back-link" href="index.html"><span aria-hidden="true">←</span> Volver a EDOCENTIA</a>
-      <div class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> Catálogo de Recursos Abiertos</div>
+      <div class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> Recursos Educativos Abiertos</div>
       <h1>Una biblioteca hecha<br><em>para compartir.</em></h1>
-      <p class="catalog-lead">Aplicaciones y repositorios creados para aprender, enseñar e investigar. Cada ficha conserva el nombre de quien la creó, su descripción pedagógica y la licencia declarada.</p>
+      <p class="catalog-lead">Aplicaciones creadas por docentes para aprender, enseñar y experimentar. Cada ficha conserva el nombre de quien la creó, su descripción pedagógica y el enlace directo a su aplicación web con licencia de Compartir Igual.</p>
       <div class="catalog-credit">
-        <span class="credit-mark" aria-hidden="true">CC BY—SA</span>
-        <p>Esta colección reúne <strong>225 recursos</strong> bajo licencias de <strong>Compartir Igual (CC BY-SA)</strong> y licencias comunitarias docentes. Se reconocen las autorías y los derechos de reutilización abierta.</p>
+        <span class="credit-mark" aria-hidden="true">BY—SA</span>
+        <p>Esta selección reúne <strong>225 recursos</strong> con licencias abiertas de compartir igual. Las licencias <strong>BY-NC-SA</strong> limitan el uso comercial; en las licencias mixtas se distingue el código de los contenidos.</p>
       </div>
     </section>
 
-    <!-- SECCIÓN DESTACADA REPOSITORIOS CURIOUSMINDS123 -->
-    <section class="curious-featured shell" aria-labelledby="curious-title">
-      <div class="curious-header">
-        <div>
-          <h2 id="curious-title">Colección Curiousminds123 · Recursos de Ana H. Iranzo</h2>
-          <p>Herramientas de automatización docente y aplicaciones lingüísticas interactivas creadas con rigor pedagógico y código abierto.</p>
+    <!-- SECCIÓN CONTRIBUCIÓN Y COMUNIDAD EN LA BIBLIOTECA -->
+    <section class="shell community-section" style="margin-block: 20px 30px; padding: 32px;">
+      <div class="community-grid">
+        <div class="community-copy">
+          <div class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> Comunidad Docente</div>
+          <h2>Comparte tus creaciones y propuestas</h2>
+          <p>¿Has creado alguna herramienta web, juego o recurso interactivo para tus alumnos? Contribuye al sistema educativo compartiendo tus ideas con otros docentes en el canal abierto de Telegram.</p>
+          <div class="community-actions">
+            <a class="button button-community" href="https://t.me/+F0qGBNdHTVowZjI0" target="_blank" rel="noopener">
+              Compartir mis creaciones ↗
+            </a>
+            <a class="button button-telegram" href="https://t.me/+F0qGBNdHTVowZjI0" target="_blank" rel="noopener">
+              Unirse a Telegram ↗
+            </a>
+          </div>
         </div>
-        <div class="curious-author-badge">
-          <span>★</span> Autoría: <strong>Ana H. Iranzo</strong> · Compartir Igual
+        <div class="community-box-info">
+          <strong>Espacio de intercambio pedagógico</strong>
+          <p>Comparte experiencias didácticas de aula, resuelve dudas sobre uso de IA en la docencia y conecta con profesorado de diversas etapas educativas.</p>
         </div>
-      </div>
-
-      <div class="curious-grid">
-        <!-- 01: EDOCENTIA -->
-        <article class="curious-card" style="--curious-accent: var(--coral); --curious-bg: var(--coral-light);">
-          <div class="curious-card-top">
-            <div class="curious-icon-box">
-              <img src="assets/img/icon-6.png" alt="Icono EDOCENTIA">
-            </div>
-            <span class="curious-license-tag">CC BY-SA 4.0</span>
-          </div>
-          <h3>EDOCENTIA — Portal y Herramientas Docentes</h3>
-          <p>Portal integral con 10 módulos docentes para diseñar situaciones de aprendizaje, evaluación formativa, rúbricas LOMLOE y biblioteca abierta.</p>
-          <div class="curious-meta">
-            <span class="curious-tag">Gestión docente</span>
-            <span class="curious-tag">Evaluación</span>
-            <span class="curious-tag">IA Educativa</span>
-          </div>
-          <a class="curious-link" href="https://github.com/Curiousminds123/EDOCENTIA" target="_blank" rel="noopener">
-            <span>Ver repositorio en GitHub</span>
-            <span aria-hidden="true">↗</span>
-          </a>
-        </article>
-
-        <!-- 02: Español A1-B1 (soporte inglés) -->
-        <article class="curious-card" style="--curious-accent: var(--yellow); --curious-bg: var(--yellow-light);">
-          <div class="curious-card-top">
-            <div class="curious-icon-box">
-              <img src="assets/img/icon-1.png" alt="Icono Español A1-B1">
-            </div>
-            <span class="curious-license-tag">CC BY-SA 4.0</span>
-          </div>
-          <h3>App Español (ELE) A1-B1 con ayuda en inglés</h3>
-          <p>Aplicación didáctica interactiva para estudiantes de español inicial e intermedio, con explicaciones gramaticales y andamiaje en inglés.</p>
-          <div class="curious-meta">
-            <span class="curious-tag">Español ELE</span>
-            <span class="curious-tag">Niveles A1-B1</span>
-            <span class="curious-tag">English Support</span>
-          </div>
-          <a class="curious-link" href="https://github.com/Curiousminds123/APP-Espa-ol-a1b1-Ayuda-en-ingl-s" target="_blank" rel="noopener">
-            <span>Ver repositorio en GitHub</span>
-            <span aria-hidden="true">↗</span>
-          </a>
-        </article>
-
-        <!-- 03: Italiano A2-C1 -->
-        <article class="curious-card" style="--curious-accent: var(--lavender); --curious-bg: var(--lavender-light);">
-          <div class="curious-card-top">
-            <div class="curious-icon-box">
-              <img src="assets/img/icon-3.png" alt="Icono Italiano A2-C1">
-            </div>
-            <span class="curious-license-tag">CC BY-SA 4.0</span>
-          </div>
-          <h3>App Italiano A2-C1 con explicaciones en español</h3>
-          <p>Herramienta para estudiantes de lengua italiana (niveles A2 a C1) con refuerzo léxico, estructuras comunicativas y soporte en español.</p>
-          <div class="curious-meta">
-            <span class="curious-tag">Italiano</span>
-            <span class="curious-tag">Niveles A2-C1</span>
-            <span class="curious-tag">Lenguas romances</span>
-          </div>
-          <a class="curious-link" href="https://github.com/Curiousminds123/App-italiano-A2-C1-ayuda-espano" target="_blank" rel="noopener">
-            <span>Ver repositorio en GitHub</span>
-            <span aria-hidden="true">↗</span>
-          </a>
-        </article>
-
-        <!-- 04: Inglés A1-A2 -->
-        <article class="curious-card" style="--curious-accent: var(--sky); --curious-bg: var(--sky-light);">
-          <div class="curious-card-top">
-            <div class="curious-icon-box">
-              <img src="assets/img/icon-4.png" alt="Icono Inglés A1-A2">
-            </div>
-            <span class="curious-license-tag">CC BY-SA 4.0</span>
-          </div>
-          <h3>App Inglés A1-A2 para Secundaria y Adultos</h3>
-          <p>Consolidación de competencias lingüísticas clave en inglés básico, con dinámicas comunicativas y ejercicios prácticos de vocabulario.</p>
-          <div class="curious-meta">
-            <span class="curious-tag">Inglés / ESL</span>
-            <span class="curious-tag">A1-A2</span>
-            <span class="curious-tag">Destrezas básicas</span>
-          </div>
-          <a class="curious-link" href="https://github.com/Curiousminds123/APP-ingl-s-A1-A2" target="_blank" rel="noopener">
-            <span>Ver repositorio en GitHub</span>
-            <span aria-hidden="true">↗</span>
-          </a>
-        </article>
-
-        <!-- 05: Español A1-B1 (soporte francés) -->
-        <article class="curious-card" style="--curious-accent: var(--rose); --curious-bg: var(--rose-light);">
-          <div class="curious-card-top">
-            <div class="curious-icon-box">
-              <img src="assets/img/icon-11.png" alt="Icono Español Francés">
-            </div>
-            <span class="curious-license-tag">CC BY-SA 4.0</span>
-          </div>
-          <h3>App Español (ELE) A1-B1 con ayuda en francés</h3>
-          <p>Recurso para estudiantes francófonos o entornos bilingües de FLE/ELE, facilitando la comprensión y el contraste lingüístico.</p>
-          <div class="curious-meta">
-            <span class="curious-tag">Español ELE</span>
-            <span class="curious-tag">Aide en français</span>
-            <span class="curious-tag">A1-B1</span>
-          </div>
-          <a class="curious-link" href="https://github.com/Curiousminds123/App-espanol-A1-A2-B1-ayuda-en-franc-s" target="_blank" rel="noopener">
-            <span>Ver repositorio en GitHub</span>
-            <span aria-hidden="true">↗</span>
-          </a>
-        </article>
-
-        <!-- 06: Español A1.1 -->
-        <article class="curious-card" style="--curious-accent: var(--mint); --curious-bg: var(--mint-light);">
-          <div class="curious-card-top">
-            <div class="curious-icon-box">
-              <img src="assets/img/icon-8.png" alt="Icono Español A1.1">
-            </div>
-            <span class="curious-license-tag">CC BY-SA 4.0</span>
-          </div>
-          <h3>Español A1.1 — Iniciación comunicativa</h3>
-          <p>Primeros pasos en la lengua española: fórmulas de cortesía, presentaciones, entorno cotidiano y fonética básica.</p>
-          <div class="curious-meta">
-            <span class="curious-tag">ELE Iniciación</span>
-            <span class="curious-tag">Nivel A1.1</span>
-            <span class="curious-tag">Primeros pasos</span>
-          </div>
-          <a class="curious-link" href="https://github.com/Curiousminds123/ESPA-OL-A11" target="_blank" rel="noopener">
-            <span>Ver repositorio en GitHub</span>
-            <span aria-hidden="true">↗</span>
-          </a>
-        </article>
       </div>
     </section>
 
-    <!-- SECCIÓN EXPLORADOR DE CATÁLOGO GENERAL -->
     <section class="catalog-section shell" aria-labelledby="catalog-heading">
       <h2 id="catalog-heading" class="visually-hidden">Aplicaciones educativas con licencia de compartir igual</h2>
-      
       <div class="catalog-controls">
         <label class="search-control" for="catalog-search">
           <span class="control-label">Buscar por nombre, autor o tema</span>
@@ -205,37 +85,30 @@
           <select id="area-filter"><option value="">Todas las áreas</option></select>
         </label>
       </div>
-      
       <div class="result-line">
         <p id="result-count" aria-live="polite">Cargando recursos…</p>
-        <a class="source-link" href="https://vibe-coding-educativo.github.io/app_edu/" target="_blank" rel="noopener">Ver catálogo comunitario completo <span aria-hidden="true">↗</span></a>
+        <a class="source-link" href="https://vibe-coding-educativo.github.io/app_edu/" target="_blank" rel="noopener">Ver catálogo comunitario complementario <span aria-hidden="true">↗</span></a>
       </div>
-
       <div id="app-list" class="app-grid" aria-busy="true"></div>
-      
       <nav id="pagination" class="pagination" aria-label="Paginación del catálogo" hidden>
         <button id="previous-page" type="button">← Anterior</button>
         <span id="page-status" aria-live="polite"></span>
         <button id="next-page" type="button">Siguiente →</button>
       </nav>
-      
       <div id="empty-state" class="empty-state" hidden>
         <p class="empty-title">No encontramos recursos con esos filtros.</p>
-        <p>Prueba otra palabra clave o selecciona todas las áreas.</p>
+        <p>Prueba otra palabra o selecciona todas las áreas.</p>
       </div>
-      
       <div id="load-error" class="load-error" role="alert" hidden>
         <p class="empty-title">No se pudo cargar la biblioteca.</p>
-        <p>Comprueba que la página se sirve desde GitHub Pages o desde un servidor web local y vuelve a intentarlo.</p>
+        <p>Comprueba que la página se sirve desde un servidor web y vuelve a intentarlo.</p>
         <a class="text-link" href="https://vibe-coding-educativo.github.io/app_edu/" target="_blank" rel="noopener">Abrir el catálogo comunitario ↗</a>
       </div>
     </section>
 
-    <!-- NOTA DE FUENTE Y ATRIBUCIÓN -->
     <section class="source-note">
       <div class="shell source-note-inner">
-        <p><strong>Fuente y atribución</strong><br>
-        Catálogo que combina los repositorios de <strong>Curiousminds123 (Ana H. Iranzo)</strong> con la selección comunitaria del <a href="https://github.com/Vibe-Coding-Educativo/app_edu" target="_blank" rel="noopener">Repositorio de recursos educativos digitales de Vibe Coding Educativo</a>. Se mantienen los autores originales, descripciones y licencias declaradas bajo <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.es" target="_blank" rel="license noopener">Creative Commons BY-SA 4.0</a> (Compartir Igual). Las aplicaciones enlazadas pertenecen a sus respectivos autores.</p>
+        <p><strong>Fuente y atribución</strong><br>Catálogo de aplicaciones educativas abiertas de autoría docente y del repositorio comunitario de Vibe Coding Educativo. Se mantienen los autores, títulos, descripciones, enlaces y licencias declaradas por cada recurso bajo <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.es" target="_blank" rel="license noopener">Creative Commons BY-SA 4.0</a>. Las aplicaciones enlazadas pertenecen a sus respectivos autores y se abren directamente en sus páginas web.</p>
         <p class="snapshot-date">Actualizado el <time datetime="2026-11-03">3 de noviembre de 2026</time>.</p>
       </div>
     </section>
@@ -245,14 +118,17 @@
     <div class="shell footer-main">
       <a class="brand brand-footer" href="index.html">
         <span class="brand-mark" aria-hidden="true">e.</span>
-        <span class="brand-name">EDOCENTIA</span>
+        <div class="brand-text">
+          <span class="brand-name">EDOCENTIA</span>
+          <span class="brand-sub">Creado por Ana H. Iranzo</span>
+        </div>
       </a>
-      <p>Biblioteca abierta de recursos docentes con licencia Compartir Igual.</p>
+      <p>Una colección para descubrir, enseñar y compartir.</p>
       <a class="footer-top" href="#contenido">Volver arriba ↑</a>
     </div>
     <div class="shell footer-bottom">
-      <span>Colección Curiousminds123 · Ana H. Iranzo</span>
-      <a href="https://github.com/Curiousminds123/EDOCENTIA" target="_blank" rel="noopener">Código del proyecto en GitHub ↗</a>
+      <span>Creado por <strong>Ana H. Iranzo</strong>, asistida con IA.</span>
+      <a href="index.html">Volver a inicio ↗</a>
     </div>
   </footer>
 </body>

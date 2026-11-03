@@ -17,4 +17,10 @@ if (portalScript) {
   });
 
   document.body.append(navigation);
+
+  // Pie de página unificado para todos los módulos y herramientas
+  const portalFooter = document.createElement('footer');
+  portalFooter.className = 'portal-footer-bar';
+  portalFooter.innerHTML = '<div class="portal-footer-inner"><span>Creado por <strong>Ana H. Iranzo</strong>, asistida con IA.</span> · <a href="' + new URL('index.html', siteRoot).href + '">EDOCENTIA</a> · <a href="https://t.me/+F0qGBNdHTVowZjI0" target="_blank" rel="noopener">Comunidad Telegram</a></div>';
+  document.body.append(portalFooter);
 }
