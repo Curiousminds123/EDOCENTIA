@@ -65,58 +65,34 @@ function renderLicense(parent, license) {
   parent.append(parts);
 }
 
-function getAreaClass(area) {
-  if (!area) return 'area-docencia';
-  const a = area.toLowerCase();
-  if (a.includes('idioma') || a.includes('lengua') || a.includes('inglés') || a.includes('español') || a.includes('francés') || a.includes('italiano')) return 'area-idiomas';
-  if (a.includes('ciencia') || a.includes('biología') || a.includes('química') || a.includes('física') || a.includes('naturales')) return 'area-ciencias';
-  if (a.includes('matemática') || a.includes('cálculo') || a.includes('álgebra')) return 'area-matematicas';
-  if (a.includes('historia') || a.includes('geografía') || a.includes('humanidad') || a.includes('social') || a.includes('filosofía')) return 'area-humanidades';
-  if (a.includes('tecnolog') || a.includes('informática') || a.includes('programación') || a.includes('digital')) return 'area-tecnologia';
-  if (a.includes('arte') || a.includes('música') || a.includes('plástica') || a.includes('expresión')) return 'area-arte';
-  if (a.includes('educación física') || a.includes('deporte')) return 'area-educacion-fisica';
-  return 'area-docencia';
-}
-
-function getAreaIcon(area) {
-  if (!area) return '📚';
-  const a = area.toLowerCase();
-  if (a.includes('idioma') || a.includes('lengua') || a.includes('inglés') || a.includes('español') || a.includes('francés') || a.includes('italiano')) return '🗣️';
-  if (a.includes('ciencia') || a.includes('biología') || a.includes('química') || a.includes('física')) return '🔬';
-  if (a.includes('matemática')) return '📐';
-  if (a.includes('historia') || a.includes('geografía') || a.includes('social')) return '🌍';
-  if (a.includes('tecnolog') || a.includes('informática') || a.includes('programación')) return '💻';
-  if (a.includes('arte') || a.includes('música')) return '🎨';
-  if (a.includes('docencia') || a.includes('recurso') || a.includes('organización')) return '🧑‍🏫';
-  return '📚';
-}
-
-function renderCard(app) {
-  const areaClass = getAreaClass(app.area);
-  const icon = getAreaIcon(app.area);
-  const tags = app.tags ? app.tags.split(',').slice(0,3).map(t => `<span class="app-tag">${t.trim()}</span>`).join('') : '';
-  const licenseShort = app.license ? (app.license.includes('BY-SA') ? 'CC BY-SA 4.0' : app.license.includes('BY-NC') ? 'CC BY-NC-SA 4.0' : 'CC BY 4.0') : 'CC BY-SA 4.0';
-
-  const card = document.createElement('a');
-  card.className = `app-card-new ${areaClass}`;
-  card.href = app.url || '#';
-  card.target = '_blank';
-  card.rel = 'noopener noreferrer';
-  card.innerHTML = `
-    <div class="app-card-toprow">
-      <div class="app-card-icon" aria-hidden="true">${icon}</div>
-      <span class="app-card-license">${licenseShort}</span>
-    </div>
-    <h3>${app.title || 'Sin título'}</h3>
-    <p class="app-description">${app.description || ''}</p>
-    <div class="app-meta">${tags}</div>
-    <span class="app-open-new">Ver aplicación <span class="app-open-arrow">↗</span></span>
-  `;
-  return card;
-}
-
 function createAppCard(app) {
-  return renderCard(app);
+  const card = document.createElement('article');
+  card.className = 'app-card';
+  appendText(card, 'h3', '', app.title);
+  appendText(card, 'p', 'app-author', `Por ${app.author}`);
+  appendText(card, 'p', 'app-description', app.description || 'La ficha no incluye una descripción.');
+
+  const meta = document.createElement('div');
+  meta.className = 'app-meta';
+  createTag(meta, app.area);
+  createTag(meta, app.level);
+  createTag(meta, app.type);
+  card.append(meta);
+
+  const license = document.createElement('div');
+  license.className = 'app-license';
+  renderLicense(license, app.license);
+  card.append(license);
+
+  const open = document.createElement('a');
+  open.className = 'app-open';
+  open.href = app.url;
+  open.target = '_blank';
+  open.rel = 'noopener';
+  open.append(document.createTextNode('Abrir aplicación'));
+  appendText(open, 'span', '', '↗');
+  card.append(open);
+  return card;
 }
 
 function normalize(value) {
