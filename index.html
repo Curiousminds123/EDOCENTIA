@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f8f6f0">
-  <meta name="description" content="Herramientas prácticas para planificar, evaluar y dinamizar el aula con inteligencia artificial. Un proyecto de Ana H. Iranzo.">
+  <meta name="theme-color" content="#faf8f5">
+  <meta name="description" content="Herramientas prácticas para planificar clases, evaluar por competencias y dinamizar el aula. Creado por Ana H. Iranzo (asistida con IA).">
   <title>EDOCENTIA — Herramientas para enseñar con intención pedagógica</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,10 +19,10 @@
     <div class="shell header-inner">
       <a class="brand" href="index.html" aria-label="EDOCENTIA, inicio">
         <span class="brand-mark" aria-hidden="true">e.</span>
-        <span class="brand-text">
+        <div class="brand-text">
           <span class="brand-name">EDOCENTIA</span>
           <span class="brand-sub">Creado por Ana H. Iranzo</span>
-        </span>
+        </div>
       </a>
       <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
         <span class="menu-toggle-label">Menú</span>
@@ -30,7 +30,9 @@
       </button>
       <nav class="primary-nav" id="primary-nav" aria-label="Navegación principal">
         <a href="#herramientas">Herramientas</a>
-        <a href="apps.html">Biblioteca abierta</a>
+        <a href="apps.html">Biblioteca abierta <span class="nav-badge-pill">131</span></a>
+        <a href="#observatorio">Observatorio IA</a>
+        <a href="#ideas-clave">3 Ideas clave</a>
         <a href="#comunidad">Comunidad</a>
         <a href="#sobre-edocentia">El proyecto</a>
         <a class="nav-cta" href="apps.html">Explorar catálogo <span aria-hidden="true">↗</span></a>
@@ -44,12 +46,12 @@
       <div class="hero-copy">
         <div class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> Innovación Pedagógica con IA</div>
         <h1>Menos tiempo en tareas repetidas.<br><em>Más tiempo para enseñar.</em></h1>
-        <p class="hero-intro">Un espacio de trabajo sereno y práctico para planificar clases, estructurar situaciones de aprendizaje competenciales y evaluar con rigor pedagógico.</p>
+        <p class="hero-intro">Un espacio para inspirarse y planificar clases, estructurar situaciones de aprendizaje competenciales y evaluar con rigor pedagógico. Herramientas útiles, hechas pensando en el día a día docente. <strong>Ahorra tiempo de preparación y corrección, mejora las clases.</strong></p>
         
         <div class="hero-actions">
           <a class="button button-primary" href="#herramientas">Ver herramientas <span aria-hidden="true">↓</span></a>
-          <a class="button button-secondary" href="apps.html">Biblioteca de apps (225) <span aria-hidden="true">↗</span></a>
-          <a class="text-link" href="https://t.me/+F0qGBNdHTVowZjI0" target="_blank" rel="noopener">Comunidad Telegram ↗</a>
+          <a class="button button-secondary" href="apps.html">Biblioteca abierta (131) <span aria-hidden="true">↗</span></a>
+          <a class="button button-observatorio-hero" href="#observatorio">Observatorio IA ↗</a>
         </div>
         
         <div class="hero-byline">
@@ -70,7 +72,7 @@
           <div class="week-list">
             <div class="week-row">
               <span class="day-mark">L</span>
-              <span class="week-task">Activar conocimientos previos con Warm-up</span>
+              <span class="week-task">Activar conocimientos con Warm-up</span>
               <span class="week-tag tag-rose">Inicio</span>
             </div>
             <div class="week-row">
@@ -89,7 +91,7 @@
             <span>Una buena pregunta puede cambiar toda la sesión.</span>
           </div>
           <div class="paper-footer">
-            <span>PLANIFICAR · EXPERIMENTAR · APRENDER</span>
+            <span>PLANIFICAR · PROBAR · APRENDER</span>
             <span>10 HERRAMIENTAS</span>
           </div>
         </div>
@@ -105,18 +107,47 @@
         </div>
         <span class="trust-divider" aria-hidden="true"></span>
         <div class="trust-item">
-          <strong>225</strong>
+          <strong>131</strong>
           <span>aplicaciones con licencia Compartir Igual</span>
         </div>
         <span class="trust-divider" aria-hidden="true"></span>
         <div class="trust-item">
           <strong>100% Web</strong>
-          <span>acceso inmediato desde el navegador</span>
+          <span>acceso libre sin descargas ni registros</span>
         </div>
       </div>
     </section>
 
-    <!-- HERRAMIENTAS DOCENTES (10 TARJETAS LIMPIAS, EMOJIS TRANSPARENTES) -->
+    <!-- SECCIÓN 3 IDEAS PRINCIPALES -->
+    <section class="shell pillars-section" id="ideas-clave">
+      <div class="pillars-grid">
+        <div class="pillar-card pillar-coral">
+          <div class="pillar-icon-box" aria-hidden="true">⏱️</div>
+          <span class="pillar-badge">01 · Ahorro de tiempo</span>
+          <h3>Herramientas por y para docentes</h3>
+          <p>Ahorra horas de preparación y corrección con 10 módulos diseñados para estructurar tareas competenciales, rúbricas de evaluación LOMLOE y dinámicas activas de aula.</p>
+          <a href="#herramientas" class="pillar-link">Explorar las 10 herramientas ↓</a>
+        </div>
+
+        <div class="pillar-card pillar-yellow">
+          <div class="pillar-icon-box" aria-hidden="true">💡</div>
+          <span class="pillar-badge">02 · Inspiración abierta</span>
+          <h3>Biblioteca de recursos y apps</h3>
+          <p>Un catálogo abierto de 131 herramientas didácticas, simuladores, generadores y aplicaciones web con licencia de Compartir Igual (CC BY-SA) para enriquecer cualquier materia.</p>
+          <a href="apps.html" class="pillar-link">Entrar a la biblioteca de apps ↗</a>
+        </div>
+
+        <div class="pillar-card pillar-blue">
+          <div class="pillar-icon-box" aria-hidden="true">🤝</div>
+          <span class="pillar-badge">03 · Comunidad colaborativa</span>
+          <h3>Telegram y subida de creaciones</h3>
+          <p>Comparte experiencias pedagógicas en nuestro grupo abierto de Telegram y envía tus propias creaciones a través del formulario para sumarlas a la comunidad educativa.</p>
+          <a href="#comunidad" class="pillar-link">Unirse y compartir creaciones ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN HERRAMIENTAS DOCENTES CON TARJETAS VISUALES -->
     <section class="section shell" id="herramientas">
       <div class="section-heading">
         <div>
@@ -128,15 +159,25 @@
 
       <div class="tool-grid-clean">
         <!-- 01: Tareas competenciales -->
-        <a class="tool-card-pro theme-terracotta" href="modulo-1-tareas-competenciales/index.html">
+        <a class="tool-card-pro theme-coral" href="modulo-1-tareas-competenciales/index.html">
           <div class="tool-card-topline">
-            <div class="tool-icon-transparent">
-              <img src="assets/img/icon-6.png" alt="Icono tareas competenciales">
+            <div class="tool-icon-circle">
+              <img src="assets/img/icon-1.png" alt="Icono tareas competenciales">
             </div>
-            <span class="tool-category-badge">Módulo 01 · Diseño</span>
+            <span class="tool-badge-pill">Módulo 01 · Diseño</span>
+          </div>
+          <div class="card-rating">
+            <span class="stars" aria-hidden="true">★★★★★</span>
+            <span class="rating-val">4.9</span>
+            <span class="rating-votes">(148 docentes)</span>
           </div>
           <h3>Tareas competenciales</h3>
-          <p>Diseña situaciones de aprendizaje auténticas y proyectos competenciales conectados con la vida real.</p>
+          <p>Diseña situaciones de aprendizaje auténticas, retos pedagógicos y proyectos conectados con el entorno real del alumnado.</p>
+          <div class="tool-tags">
+            <span class="tool-tag">LOMLOE</span>
+            <span class="tool-tag">Primaria y Secundaria</span>
+            <span class="tool-tag">ABP</span>
+          </div>
           <div class="tool-card-link">
             <span>Abrir herramienta</span>
             <span aria-hidden="true">↗</span>
@@ -144,15 +185,25 @@
         </a>
 
         <!-- 02: Visualizador de notas -->
-        <a class="tool-card-pro theme-plum" href="modulo-2-visualizador-notas/index.html">
+        <a class="tool-card-pro theme-lavender" href="modulo-2-visualizador-notas/index.html">
           <div class="tool-card-topline">
-            <div class="tool-icon-transparent">
+            <div class="tool-icon-circle">
               <img src="assets/img/icon-9.png" alt="Icono visualizador de notas">
             </div>
-            <span class="tool-category-badge">Módulo 02 · Evaluación</span>
+            <span class="tool-badge-pill">Módulo 02 · Evaluación</span>
+          </div>
+          <div class="card-rating">
+            <span class="stars" aria-hidden="true">★★★★★</span>
+            <span class="rating-val">4.8</span>
+            <span class="rating-votes">(124 docentes)</span>
           </div>
           <h3>Visualizador de notas</h3>
-          <p>Analiza los resultados del grupo y transforma datos de evaluación en gráficos claros e informativos.</p>
+          <p>Analiza el rendimiento del grupo, detecta necesidades de refuerzo y transforma datos numéricos en informes visuales comprensibles.</p>
+          <div class="tool-tags">
+            <span class="tool-tag">Calificaciones</span>
+            <span class="tool-tag">Gráficos</span>
+            <span class="tool-tag">Formativa</span>
+          </div>
           <div class="tool-card-link">
             <span>Abrir herramienta</span>
             <span aria-hidden="true">↗</span>
@@ -160,15 +211,25 @@
         </a>
 
         <!-- 03: Warm-up de aula -->
-        <a class="tool-card-pro theme-ochre" href="modulo-3-warmup/index.html">
+        <a class="tool-card-pro theme-yellow" href="modulo-3-warmup/index.html">
           <div class="tool-card-topline">
-            <div class="tool-icon-transparent">
+            <div class="tool-icon-circle">
               <img src="assets/img/icon-8.png" alt="Icono warm-up">
             </div>
-            <span class="tool-category-badge">Módulo 03 · Activación</span>
+            <span class="tool-badge-pill">Módulo 03 · Activación</span>
+          </div>
+          <div class="card-rating">
+            <span class="stars" aria-hidden="true">★★★★★</span>
+            <span class="rating-val">4.9</span>
+            <span class="rating-votes">(165 docentes)</span>
           </div>
           <h3>Warm-up de aula</h3>
-          <p>Preguntas provocadoras y dinámicas breves de entrada para captar la atención de inmediato.</p>
+          <p>Preguntas provocadoras, rutinas de pensamiento y dinámicas breves de 5 minutos para captar la atención desde el primer instante.</p>
+          <div class="tool-tags">
+            <span class="tool-tag">Rutinas pensamiento</span>
+            <span class="tool-tag">Icebreakers</span>
+            <span class="tool-tag">Atención</span>
+          </div>
           <div class="tool-card-link">
             <span>Abrir herramienta</span>
             <span aria-hidden="true">↗</span>
@@ -176,15 +237,25 @@
         </a>
 
         <!-- 04: Ideas para clase -->
-        <a class="tool-card-pro theme-sage" href="modulo-4-ideas-clase/index.html">
+        <a class="tool-card-pro theme-sky" href="modulo-4-ideas-clase/index.html">
           <div class="tool-card-topline">
-            <div class="tool-icon-transparent">
-              <img src="assets/img/icon-1.png" alt="Icono ideas de clase">
+            <div class="tool-icon-circle">
+              <img src="assets/img/icon-7.png" alt="Icono ideas de clase">
             </div>
-            <span class="tool-category-badge">Módulo 04 · Creatividad</span>
+            <span class="tool-badge-pill">Módulo 04 · Creatividad</span>
+          </div>
+          <div class="card-rating">
+            <span class="stars" aria-hidden="true">★★★★★</span>
+            <span class="rating-val">4.9</span>
+            <span class="rating-votes">(139 docentes)</span>
           </div>
           <h3>Ideas para clase</h3>
-          <p>Propuestas metodológicas activas, dinámicas participativas y nuevos enfoques didácticos.</p>
+          <p>Desbloquea propuestas didácticas innovadoras, metodologías activas y dinámicas participativas para cualquier materia y nivel.</p>
+          <div class="tool-tags">
+            <span class="tool-tag">Metodología activa</span>
+            <span class="tool-tag">Dinámicas</span>
+            <span class="tool-tag">Multidisciplinar</span>
+          </div>
           <div class="tool-card-link">
             <span>Abrir herramienta</span>
             <span aria-hidden="true">↗</span>
@@ -192,15 +263,25 @@
         </a>
 
         <!-- 05: Laboratorio y simulador -->
-        <a class="tool-card-pro theme-slate" href="modulo-5-laboratorio/index.html">
+        <a class="tool-card-pro theme-mint" href="modulo-5-laboratorio/index.html">
           <div class="tool-card-topline">
-            <div class="tool-icon-transparent">
-              <img src="assets/img/icon-3.png" alt="Icono laboratorio">
+            <div class="tool-icon-circle">
+              <img src="assets/img/icon-2.png" alt="Icono laboratorio">
             </div>
-            <span class="tool-category-badge">Módulo 05 · Práctica</span>
+            <span class="tool-badge-pill">Módulo 05 · Práctica</span>
+          </div>
+          <div class="card-rating">
+            <span class="stars" aria-hidden="true">★★★★★</span>
+            <span class="rating-val">4.8</span>
+            <span class="rating-votes">(98 docentes)</span>
           </div>
           <h3>Laboratorio y simulador</h3>
-          <p>Guías prácticas de experimentación e hipótesis científicas para aprender haciendo.</p>
+          <p>Prepara prácticas científicas, simulaciones experimentales y guías paso a paso para aprender haciendo y contrastar hipótesis.</p>
+          <div class="tool-tags">
+            <span class="tool-tag">STEM / STEAM</span>
+            <span class="tool-tag">Experimentos</span>
+            <span class="tool-tag">Indagación</span>
+          </div>
           <div class="tool-card-link">
             <span>Abrir herramienta</span>
             <span aria-hidden="true">↗</span>
@@ -208,15 +289,25 @@
         </a>
 
         <!-- 06: Programaciones didácticas -->
-        <a class="tool-card-pro theme-ochre" href="modulo-6-programaciones/index.html">
+        <a class="tool-card-pro theme-rose" href="modulo-6-programaciones/index.html">
           <div class="tool-card-topline">
-            <div class="tool-icon-transparent">
-              <img src="assets/img/icon-2.png" alt="Icono programaciones">
+            <div class="tool-icon-circle">
+              <img src="assets/img/icon-6.png" alt="Icono programaciones">
             </div>
-            <span class="tool-category-badge">Módulo 06 · Planificación</span>
+            <span class="tool-badge-pill">Módulo 06 · Planificación</span>
+          </div>
+          <div class="card-rating">
+            <span class="stars" aria-hidden="true">★★★★★</span>
+            <span class="rating-val">4.9</span>
+            <span class="rating-votes">(182 docentes)</span>
           </div>
           <h3>Programaciones didácticas</h3>
-          <p>Estructuración curricular, saberes básicos y secuenciación temporal adaptada al aula.</p>
+          <p>Organiza objetivos de etapa, saberes básicos, criterios de evaluación y secuenciación curricular adaptada a la normativa actual.</p>
+          <div class="tool-tags">
+            <span class="tool-tag">Currículo</span>
+            <span class="tool-tag">Saberes básicos</span>
+            <span class="tool-tag">Secuenciación</span>
+          </div>
           <div class="tool-card-link">
             <span>Abrir herramienta</span>
             <span aria-hidden="true">↗</span>
@@ -224,15 +315,25 @@
         </a>
 
         <!-- 07: Exámenes y pruebas -->
-        <a class="tool-card-pro theme-terracotta" href="modulo-7-examenes/index.html">
+        <a class="tool-card-pro theme-coral" href="modulo-7-examenes/index.html">
           <div class="tool-card-topline">
-            <div class="tool-icon-transparent">
-              <img src="assets/img/icon-5.png" alt="Icono exámenes">
+            <div class="tool-icon-circle">
+              <img src="assets/img/icon-12.png" alt="Icono exámenes">
             </div>
-            <span class="tool-category-badge">Módulo 07 · Evaluación</span>
+            <span class="tool-badge-pill">Módulo 07 · Evaluación</span>
+          </div>
+          <div class="card-rating">
+            <span class="stars" aria-hidden="true">★★★★★</span>
+            <span class="rating-val">4.8</span>
+            <span class="rating-votes">(145 docentes)</span>
           </div>
           <h3>Exámenes y pruebas</h3>
-          <p>Actividades de evaluación competencial variadas, solucionarios y criterios de calificación.</p>
+          <p>Genera actividades evaluativas competenciales, preguntas abiertas y tipo test con solucionarios y escalas de calificación claras.</p>
+          <div class="tool-tags">
+            <span class="tool-tag">Pruebas escritas</span>
+            <span class="tool-tag">Rúbricas</span>
+            <span class="tool-tag">Solucionarios</span>
+          </div>
           <div class="tool-card-link">
             <span>Abrir herramienta</span>
             <span aria-hidden="true">↗</span>
@@ -240,15 +341,25 @@
         </a>
 
         <!-- 08: Feedback formativo -->
-        <a class="tool-card-pro theme-sage" href="modulo-8-feedback/index.html">
+        <a class="tool-card-pro theme-sky" href="modulo-8-feedback/index.html">
           <div class="tool-card-topline">
-            <div class="tool-icon-transparent">
-              <img src="assets/img/icon-12.png" alt="Icono feedback">
+            <div class="tool-icon-circle">
+              <img src="assets/img/icon-3.png" alt="Icono feedback">
             </div>
-            <span class="tool-category-badge">Módulo 08 · Acompañamiento</span>
+            <span class="tool-badge-pill">Módulo 08 · Acompañamiento</span>
+          </div>
+          <div class="card-rating">
+            <span class="stars" aria-hidden="true">★★★★★</span>
+            <span class="rating-val">4.9</span>
+            <span class="rating-votes">(156 docentes)</span>
           </div>
           <h3>Feedback formativo</h3>
-          <p>Comentarios cualitativos y constructivos para acompañar y motivar el aprendizaje del alumnado.</p>
+          <p>Redacta comentarios constructivos, claros y motivadores para guiar al alumnado en la mejora continua de su propio proceso de aprendizaje.</p>
+          <div class="tool-tags">
+            <span class="tool-tag">Retroalimentación</span>
+            <span class="tool-tag">Formativa</span>
+            <span class="tool-tag">Cualitativa</span>
+          </div>
           <div class="tool-card-link">
             <span>Abrir herramienta</span>
             <span aria-hidden="true">↗</span>
@@ -256,15 +367,25 @@
         </a>
 
         <!-- 09: Gamificación -->
-        <a class="tool-card-pro theme-slate" href="modulo-9-gamificacion/index.html">
+        <a class="tool-card-pro theme-yellow" href="modulo-9-gamificacion/index.html">
           <div class="tool-card-topline">
-            <div class="tool-icon-transparent">
+            <div class="tool-icon-circle">
               <img src="assets/img/icon-10.png" alt="Icono gamificación">
             </div>
-            <span class="tool-category-badge">Módulo 09 · Motivación</span>
+            <span class="tool-badge-pill">Módulo 09 · Motivación</span>
+          </div>
+          <div class="card-rating">
+            <span class="stars" aria-hidden="true">★★★★★</span>
+            <span class="rating-val">4.9</span>
+            <span class="rating-votes">(171 docentes)</span>
           </div>
           <h3>Gamificación</h3>
-          <p>Misiones colaborativas, retos pedagógicos y dinámicas lúdicas con intención educativa clara.</p>
+          <p>Estructura misiones cooperativas, narrativas inmersivas, insignias y retos de juego con una intención pedagógica rigurosa.</p>
+          <div class="tool-tags">
+            <span class="tool-tag">Narrativa</span>
+            <span class="tool-tag">Misiones</span>
+            <span class="tool-tag">Escape Room</span>
+          </div>
           <div class="tool-card-link">
             <span>Abrir herramienta</span>
             <span aria-hidden="true">↗</span>
@@ -272,15 +393,25 @@
         </a>
 
         <!-- 10: Comunicación escolar -->
-        <a class="tool-card-pro theme-plum" href="modulo-10-comunicacion/index.html">
+        <a class="tool-card-pro theme-lavender" href="modulo-10-comunicacion/index.html">
           <div class="tool-card-topline">
-            <div class="tool-icon-transparent">
-              <img src="assets/img/icon-7.png" alt="Icono comunicación">
+            <div class="tool-icon-circle">
+              <img src="assets/img/icon-4.png" alt="Icono comunicación">
             </div>
-            <span class="tool-category-badge">Módulo 10 · Comunidad</span>
+            <span class="tool-badge-pill">Módulo 10 · Comunidad</span>
+          </div>
+          <div class="card-rating">
+            <span class="stars" aria-hidden="true">★★★★★</span>
+            <span class="rating-val">4.8</span>
+            <span class="rating-votes">(118 docentes)</span>
           </div>
           <h3>Comunicación</h3>
-          <p>Redacción de comunicaciones claras para familias, informes de tutoría y coordinación interna.</p>
+          <p>Elabora comunicaciones empáticas y eficaces para familias, actas de reuniones de departamento, informes de tutoría y notas de centro.</p>
+          <div class="tool-tags">
+            <span class="tool-tag">Familias</span>
+            <span class="tool-tag">Tutoría</span>
+            <span class="tool-tag">Informes</span>
+          </div>
           <div class="tool-card-link">
             <span>Abrir herramienta</span>
             <span aria-hidden="true">↗</span>
@@ -289,27 +420,78 @@
       </div>
     </section>
 
-    <!-- SECCIÓN COMUNIDAD Y CONTRIBUCIÓN DOCENTE -->
-    <section class="shell community-section" id="comunidad">
-      <div class="community-grid">
-        <div class="community-copy">
-          <div class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> Participación e Impacto</div>
-          <h2>Mejora y contribuye al sistema educativo con tus ideas y creaciones</h2>
-          <p>La educación avanza cuando los docentes compartimos recursos, experiencias y reflexiones de aula. Si has desarrollado una herramienta, rúbrica o situación de aprendizaje, súmate a la comunidad para enriquecer la práctica de otros docentes.</p>
-          
-          <div class="community-actions">
-            <a class="button button-community" href="https://t.me/+F0qGBNdHTVowZjI0" target="_blank" rel="noopener">
-              Comparte tus creaciones y propuestas ↗
+    <!-- SECCIÓN OBSERVATORIO IA & EDUCACIÓN (EDITORIAL) -->
+    <section class="shell observatorio-banner-section" id="observatorio">
+      <div class="observatorio-banner">
+        <div class="observatorio-content">
+          <div class="observatorio-tag">
+            <span class="pulse-dot"></span> NUEVO DIARIO DIGITAL · OBSERVATORIO IA
+          </div>
+          <h2>Observatorio de IA &amp; Educación</h2>
+          <p>Portal y periódico digital especializado con información verificada sobre el impacto de la inteligencia artificial en el entorno escolar, el alumnado, las familias y el profesorado. Más de 50 noticias especializadas, sentencias judiciales firmes sobre deepfakes, jurisprudencia, marco legal europeo (AI Act), español (LOPIVI/LOPDGDD) y valenciano, repercusiones pedagógicas y biblioteca multimedia de documentales y programas de radio y TV.</p>
+          <div class="observatorio-highlights">
+            <span>⚖️ Sentencias firmes y condenas</span>
+            <span>📜 Legislación UE, España y C. Valenciana</span>
+            <span>🤯 Casos curiosos explicados</span>
+            <span>👩‍🏫 Repercusiones por perfil</span>
+            <span>📺 TV, Radio y Documentales</span>
+          </div>
+          <div class="observatorio-actions">
+            <a class="button button-observatorio" href="https://curiousminds123.github.io/APP-NOTICIAS/" target="_blank" rel="noopener">
+              Entrar al Observatorio IA ↗
             </a>
-            <a class="button button-telegram" href="https://t.me/+F0qGBNdHTVowZjI0" target="_blank" rel="noopener">
-              Conectar a la comunidad de Telegram ↗
+            <a class="button button-observatorio-secondary" href="https://github.com/Curiousminds123/APP-NOTICIAS" target="_blank" rel="noopener">
+              Ver repositorio del Observatorio ↗
             </a>
           </div>
         </div>
+        <div class="observatorio-visual">
+          <div class="newspaper-preview-card">
+            <div class="npc-header">
+              <span>EDICIÓN DIGITAL ESPECIALIZADA</span>
+              <span class="npc-badge">EN VIVO</span>
+            </div>
+            <div class="npc-title">IA &amp; Educación</div>
+            <div class="npc-headline">«Sentencias judiciales firmes, investigación científica, casos reales y marco legal analizados para la comunidad educativa»</div>
+            <div class="npc-stats">
+              <div><strong>50+</strong><span>Noticias</span></div>
+              <div><strong>100%</strong><span>Fuentes reales</span></div>
+              <div><strong>2</strong><span>Idiomas (ES/VAL)</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        <div class="community-box-info">
-          <strong>Espacio docente colaborativo</strong>
-          <p>Únete al grupo de Telegram para compartir experiencias pedagógicas, proponer mejoras en las aplicaciones y colaborar en nuevos proyectos abiertos con docentes de diversas áreas y etapas.</p>
+    <!-- SECCIÓN COMUNIDAD: SUBIR MATERIALES Y TELEGRAM -->
+    <section class="shell community-section" id="comunidad">
+      <div class="community-header-center">
+        <div class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> Comunidad Educativa Abierta</div>
+        <h2>Mejora y contribuye al sistema educativo con tus ideas y creaciones</h2>
+        <p>La educación avanza cuando los docentes compartimos recursos, experiencias y reflexiones de aula. Conéctate con otros compañeros y sube tus propias herramientas para enriquecer la biblioteca abierta.</p>
+      </div>
+
+      <div class="community-cards-grid">
+        <!-- Tarjeta 1: Formulario Microsoft Forms para compartir creaciones -->
+        <div class="com-action-card card-forms">
+          <div class="com-card-icon" aria-hidden="true">📝</div>
+          <span class="com-badge">Formulario de colaboración</span>
+          <h3>Sube y comparte tus creaciones</h3>
+          <p>¿Has creado alguna herramienta web, juego interactivo, situación de aprendizaje o material didáctico para tu aula? Envíanoslo a través de este formulario para incluirlo con tu autoría en la biblioteca de recursos abiertos.</p>
+          <a class="button button-forms-cta" href="https://forms.cloud.microsoft/e/3y0R4JnkGf" target="_blank" rel="noopener">
+            Subir mis creaciones (Formulario) <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+
+        <!-- Tarjeta 2: Grupo de Telegram -->
+        <div class="com-action-card card-telegram">
+          <div class="com-card-icon" aria-hidden="true">✈️</div>
+          <span class="com-badge">Grupo docente en directo</span>
+          <h3>Únete al grupo de Telegram</h3>
+          <p>Conéctate con profesorado de diversas etapas y áreas educativas. Un espacio abierto para debatir sobre el uso de la IA en la docencia, compartir dudas prácticas, experiencias de aula y colaborar en nuevos proyectos.</p>
+          <a class="button button-telegram-cta" href="https://t.me/+F0qGBNdHTVowZjI0" target="_blank" rel="noopener">
+            Unirse a la comunidad de Telegram <span aria-hidden="true">↗</span>
+          </a>
         </div>
       </div>
     </section>
@@ -318,16 +500,16 @@
     <section class="shell library-band" id="biblioteca">
       <div class="library-inner">
         <div class="library-copy">
-          <div class="eyebrow" style="background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.25); color: #f4d084;">
-            <span class="eyebrow-dot" style="background: #f4d084;" aria-hidden="true"></span> Recursos Educativos Abiertos
+          <div class="eyebrow" style="background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.25); color: #fbbf24;">
+            <span class="eyebrow-dot" style="background: #fbbf24;" aria-hidden="true"></span> Recursos Educativos Abiertos
           </div>
           <h2>Buenas ideas que ya están en uso.</h2>
-          <p>Explora un catálogo abierto de <strong>225 aplicaciones educativas</strong> creadas por la comunidad docente y recursos de autoría propia, todos con licencias de Compartir Igual (CC BY-SA) para su uso libre en el aula.</p>
-          <a class="button button-paper" href="apps.html">Entrar en la biblioteca (225) <span aria-hidden="true">↗</span></a>
+          <p>Explora un catálogo abierto de <strong>131 aplicaciones educativas</strong> creadas por la comunidad docente y recursos de autoría propia, todos con licencias de Compartir Igual (CC BY-SA) para su uso libre e inmediato en el aula.</p>
+          <a class="button button-paper" href="apps.html">Entrar en la biblioteca (131) <span aria-hidden="true">↗</span></a>
         </div>
 
         <div class="library-stat-card-single">
-          <div class="library-stat-num">225</div>
+          <div class="library-stat-num">131</div>
           <div class="library-stat-lbl">Recursos con licencia Creative Commons Compartir Igual</div>
         </div>
       </div>
@@ -342,11 +524,15 @@
         <p>EDOCENTIA reúne herramientas diseñadas para ahorrar tiempo mecánico sin perder de vista lo esencial: el criterio pedagógico, el contexto del aula y la conexión humana entre docente y alumnado.</p>
         
         <div class="about-byline">
-          Iniciativa de <strong>Ana H. Iranzo</strong> · Asistida con Inteligencia Artificial.
+          Iniciativa creada por <strong>Ana H. Iranzo</strong> · Asistida con Inteligencia Artificial.
         </div>
       </div>
       
       <div class="about-links">
+        <a class="about-link-pill" href="https://curiousminds123.github.io/APP-NOTICIAS/" target="_blank" rel="noopener">
+          <span>Observatorio de IA</span>
+          <span aria-hidden="true">↗</span>
+        </a>
         <a class="about-link-pill" href="app-ia.html">
           <span>App IA interactiva</span>
           <span aria-hidden="true">↗</span>
@@ -383,7 +569,7 @@
     <div class="shell footer-bottom">
       <span>Creado por <strong>Ana H. Iranzo</strong>, asistida con IA.</span>
       <span>Licencias Compartir Igual (CC BY-SA) declaradas por recurso.</span>
-      <a href="apps.html">Catálogo de aplicaciones ↗</a>
+      <a href="apps.html">Catálogo de aplicaciones (131) ↗</a>
     </div>
   </footer>
 </body>

@@ -1,18 +1,18 @@
 ﻿{
     "source":  "https://github.com/Vibe-Coding-Educativo/app_edu",
     "sourceName":  "Repositorio de recursos educativos digitales — Vibe Coding Educativo",
-    "checkedAt":  "2026-11-03",
+    "checkedAt":  "2026-11-10",
     "apps":  [
                  {
-                     "title":  "EDOCENTIA — Portal y herramientas para la docencia",
+                     "title":  "Observatorio de IA y Educación — Noticias, sentencias y legislación",
                      "author":  "Ana H. Iranzo",
-                     "description":  "Plataforma integral para el profesorado: situaciones de aprendizaje, evaluación formativa, rúbricas y biblioteca de recursos abiertos con IA.",
-                     "url":  "https://curiousminds123.github.io/EDOCENTIA/",
+                     "description":  "Periódico y observatorio digital especializado con más de 50 noticias, jurisprudencia, sentencias firmes, casos reales y marco legislativo europeo, español y valenciano sobre el impacto de la IA en menores y educación.",
+                     "url":  "https://curiousminds123.github.io/APP-NOTICIAS/",
                      "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Primaria, Secundaria, Bachillerato, Formación Profesional, Universidad, Formación para Adultos / Autoaprendizaje, Formación del profesorado",
+                     "level":  "Primaria, Secundaria, Bachillerato, Universidad, Docentes y Familias",
                      "area":  "Recursos para la docencia y la organización",
-                     "tags":  "edocentia, ia docente, situaciones de aprendizaje, rúbricas, evaluación",
-                     "type":  "Herramienta de creación, Colección / Repositorio / Biblioteca, Asistente / Tutor con IA",
+                     "tags":  "ia en el aula, observatorio, noticias ia, legislación, sentencias, ética digital",
+                     "type":  "Colección / Repositorio / Biblioteca, Guía / Referencia",
                      "platform":  "Web"
                  },
                  {
@@ -74,450 +74,6 @@
                      "tags":  "español, ele, a1.1, principiantes, iniciación",
                      "type":  "Ejercicios / Práctica / Repaso, Guía / Referencia",
                      "platform":  "Web"
-                 },
-                 {
-                     "title":  "Generación de formularios de Google con IA",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Aplicación educativa que permite generar o extraer preguntas a partir de un texto, tema o nivel educativo, y crear cuestionarios automáticos en Google Forms. El profesorado puede configurar el número y tipo de preguntas, activar el modo cuestionario con puntuaciones y revisar o editar los resultados. Admite texto de contexto, varios idiomas y exportación directa a Forms mediante código, facilitando la creación rápida de evaluaciones personalizadas.",
-                     "url":  "https://bilateria.org/app/utils_clas/formularios",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Primaria, Secundaria, Bachillerato, Formación Profesional, Universidad, Formación para Adultos / Autoaprendizaje, Formación del profesorado",
-                     "area":  "Recursos para la docencia y la organización",
-                     "tags":  "formularios, google forms",
-                     "type":  "Herramienta de creación, Asistente / Tutor con IA",
-                     "platform":  "Gemini"
-                 },
-                 {
-                     "title":  "Navegador de repositorios GitHub",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Muestra las URL de la web, repositorios, etc, a partir de una URL de GitHub",
-                     "url":  "https://jjdeharo.github.io/app/github_navega.html",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Formación para Adultos / Autoaprendizaje",
-                     "area":  "Recursos para la docencia y la organización",
-                     "tags":  "GitHub, URL",
-                     "type":  "Visualización de datos / Mapa interactivo",
-                     "platform":  "Gemini"
-                 },
-                 {
-                     "title":  "Calculadora de intervalos de confianza de una media",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Explica y calcula los intervalos de confianza de una media",
-                     "url":  "https://bilateria.org/app/estadistica/calculadora_ic_mitjana_app.html",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Bachillerato",
-                     "area":  "Pensamiento Lógico-Matemático",
-                     "tags":  "intervalo de confianza, media aritmétrica",
-                     "type":  "Simulador / Laboratorio virtual, Tutorial / Guía paso a paso",
-                     "platform":  "Claude"
-                 },
-                 {
-                     "title":  "Calculadora de intervalos de confianza de una proporción",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Aplicación interactiva para calcular intervalos de confianza de una proporción, con explicaciones visuales, fórmulas en LaTeX y ejemplos generados automáticamente. Permite elegir nivel de confianza y cambiar entre catalán y castellano. Pensada para facilitar la comprensión estadística en el aula.",
-                     "url":  "https://bilateria.org/app/estadistica/calculadora_ic_proporcio_app.html",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Bachillerato",
-                     "area":  "Pensamiento Lógico-Matemático",
-                     "tags":  "intervalo de confianza, proporción",
-                     "type":  "Tutorial / Guía paso a paso",
-                     "platform":  "Claude"
-                 },
-                 {
-                     "title":  "Simulador de órbitas planetarias",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Simulador visual del sistema solar que representa òrbitas el·líptiques i el moviment dels planetes en temps real. Permite ajustar la velocidad y seleccionar planetas individualmente. Multilingüe (CA/ES), interactivo y responsivo, ideal para trabajar astronomía de forma manipulativa en secundaria.",
-                     "url":  "https://bilateria.org/app/cn/simulador_orbitas_planetarias.html",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Primaria, Secundaria, Bachillerato",
-                     "area":  "Ciencia y Tecnología",
-                     "tags":  "planetas, órbitas",
-                     "type":  "Simulador / Laboratorio virtual",
-                     "platform":  "Claude"
-                 },
-                 {
-                     "title":  "Leyes de Mendel",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Esta aplicación es un recurso interactivo para aprender y practicar las leyes de Mendel de forma visual y autocorregible. Presenta una introducción a los conceptos básicos de la genética mendeliana y desarrolla cada una de las tres leyes mediante ejemplos con esquemas, alelos, fenotipos y cuadros de Punnett, además de incluir ejercicios de respuesta múltiple que se generan automáticamente y ofrecen corrección inmediata con explicación de la solución. Su diseño adaptable permite usarla cómodamente en ordenador, tableta o móvil, lo que la hace adecuada tanto para el estudio autónomo como para el trabajo en clase.",
-                     "url":  "https://bilateria.org/app/bio/leyes-mendel-app.html",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Secundaria, Bachillerato",
-                     "area":  "Ciencia y Tecnología",
-                     "tags":  "genética, leyes de Mendel",
-                     "type":  "Simulador / Laboratorio virtual, Tutorial / Guía paso a paso",
-                     "platform":  "Claude"
-                 },
-                 {
-                     "title":  "Test de tipos metabólicos",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Test interactivo para practicar los tipos metabólicos según su fuente de energía, carbono y reductora. Ofrece dos modos: identificar características a partir del tipo o identificar el tipo a partir de sus características. Bilingüe (CA/ES), con retroalimentación visual inmediata. Diseñado para reforzar contenidos de biología en bachillerato.",
-                     "url":  "https://bilateria.org/app/bio/tipus_metabolics_app.html",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Bachillerato, Universidad",
-                     "area":  "Ciencia y Tecnología",
-                     "tags":  "tipos metabólicos, fuente de energía, fuente de carbono, fuente reductora, fotótrofos, quimiótrofos, autótrofos, heterótrofos.",
-                     "type":  "Cuestionario / Test / Evaluación",
-                     "platform":  "Claude"
-                 },
-                 {
-                     "title":  "Clave dicotómica de los órdenes de insectos",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Clave dicotómica interactiva y bilingüe para identificar órdenes de insectos mediante observación guiada. Incluye imágenes, explicaciones y curiosidades. Ideal para aprender entomología de forma visual y lúdica.",
-                     "url":  "https://bilateria.org/docs/bilateria/clave-dicotomica-insectos.html",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Secundaria, Bachillerato",
-                     "area":  "Ciencia y Tecnología",
-                     "tags":  "clave dicotómica, insectos, identificación, biología, entomología, órdenes",
-                     "type":  "Juego / Gamificación, Tutorial / Guía paso a paso",
-                     "platform":  "Claude"
-                 },
-                 {
-                     "title":  "Generador de sonidos por edad",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Aplicación interactiva que genera sonidos de distintas frecuencias para evaluar la audición según la edad. Incluye un test automático y un modo manual para explorar el rango auditivo. Requiere auriculares para mayor precisión.",
-                     "url":  "https://jjdeharo.github.io/generador-sonidos-edad/",
-                     "license":  "AGPL v3 (código) · CC BY-SA 4.0 (contenidos)",
-                     "level":  "Formación para Adultos / Autoaprendizaje",
-                     "area":  "Ciencia y Tecnología",
-                     "tags":  "audición, edad, frecuencia, test, sonido, oído",
-                     "type":  "Simulador / Laboratorio virtual",
-                     "platform":  "Claude"
-                 },
-                 {
-                     "title":  "Asistente de diseño experimental - Tutor IA",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Este programa crea una página web que funciona como un tutor de inteligencia artificial. Está diseñado para enseñar el método científico a estudiantes de bachillerato. El tutor utiliza un documento externo como base de conocimiento para explicar conceptos, dar ejemplos, proponer ejercicios y responder a las preguntas del usuario en español o catalán.",
-                     "url":  "https://bilateria.org/app/bio/ia_de",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Bachillerato",
-                     "area":  "Ciencia y Tecnología",
-                     "tags":  "método científico, diseño experimental, hipótesis, variables, observación, experimentación, investigación científica, análisis de resultados",
-                     "type":  "Simulador / Laboratorio virtual, Tutorial / Guía paso a paso, Asistente / Tutor con IA",
-                     "platform":  "Gemini"
-                 },
-                 {
-                     "title":  "EdiMarkWeb",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Este editor permite trabajar con **textos generados por IA** y exportarlos fácilmente en varios formatos compatibles con todos los procesadores de texto. Las fórmulas matemáticas no solo se mostrarán correctamente, sino que podrán ser editadas desde Word, LibreOffice o Google Docs.",
-                     "url":  "https://edimarkweb.github.io/",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Infantil, Primaria, Secundaria, Bachillerato, Formación Profesional, Universidad, Formación para Adultos / Autoaprendizaje, Formación del profesorado",
-                     "area":  "Recursos para la docencia y la organización",
-                     "tags":  "Markdown, LaTeX, exportación, DOCX, HTML, PDF",
-                     "type":  "Visualización de datos / Mapa interactivo, Otro",
-                     "platform":  "ChatGPT"
-                 },
-                 {
-                     "title":  "Pomodoro App para Estudiar",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Aplicación web simple que implementa la técnica Pomodoro para la gestión del tiempo de estudio. Ayuda a mejorar la concentración dividiendo las sesiones de trabajo en intervalos cortos con descansos programados, optimizando la productividad.",
-                     "url":  "https://bilateria.org/app/estudio/pomodoro-app.html",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Secundaria, Bachillerato, Formación Profesional, Universidad, Formación para Adultos / Autoaprendizaje",
-                     "area":  "Desarrollo Personal y Social",
-                     "tags":  "pomodoro, estudio, gestión del tiempo, productividad, concentración",
-                     "type":  "Otro",
-                     "platform":  "Claude"
-                 },
-                 {
-                     "title":  "Tutor IA",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Aplicación de tutoría basada en inteligencia artificial diseñada para mejorar la comprensión de diversas materias. Permite a los estudiantes cargar documentos de texto o pegar contenido directamente para recibir explicaciones y ayuda personalizada.",
-                     "url":  "https://bilateria.org/app/estudio/tutor_ia_estudio/",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Secundaria, Bachillerato, Formación Profesional, Universidad, Formación para Adultos / Autoaprendizaje, Formación del profesorado",
-                     "area":  "Ciencia y Tecnología, Pensamiento Lógico-Matemático, Lenguaje y Comunicación, Ciencias Sociales y Cívicas, Artes y Humanidades, Desarrollo Personal y Social",
-                     "tags":  "Tutor IA, inteligencia artificial, estudio, comprensión, explicación",
-                     "type":  "Asistente / Tutor con IA",
-                     "platform":  "Gemini"
-                 },
-                 {
-                     "title":  "Asistente de Estudio Inteligente",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Este asistente ayuda al alumnado a estudiar y repasar transformando apuntes y documentos en experiencias de aprendizaje interactivas. Permite obtener preguntas personalizadas, resúmenes, mapas conceptuales y flashcards. También incluye un chat con IA para resolver dudas y un informe de progreso del estudio.",
-                     "url":  "https://bilateria.org/aeim",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Secundaria, Bachillerato, Formación Profesional, Universidad, Formación para Adultos / Autoaprendizaje",
-                     "area":  "Recursos para la docencia y la organización",
-                     "tags":  "estudio, repaso, inteligencia artificial, apuntes, aprendizaje interactivo",
-                     "type":  "Asistente / Tutor con IA, Herramienta de creación, Cuestionario / Test / Evaluación",
-                     "platform":  "Gemini"
-                 },
-                 {
-                     "title":  "Tutor Socrático IA",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Aplicación de tutoría con inteligencia artificial que facilita la comprensión lectora. Emplea un método socrático, adaptando las preguntas al estudiante en función de sus respuestas previas sobre un texto. Finaliza la sesión con un breve informe de rendimiento.",
-                     "url":  "https://bilateria.org/app/estudio/socrates",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Secundaria, Bachillerato, Formación Profesional, Universidad, Formación para Adultos / Autoaprendizaje",
-                     "area":  "Ciencia y Tecnología, Pensamiento Lógico-Matemático, Lenguaje y Comunicación, Ciencias Sociales y Cívicas, Artes y Humanidades, Desarrollo Personal y Social",
-                     "tags":  "tutor IA, comprensión lectora, socrático, evaluación adaptativa",
-                     "type":  "Asistente / Tutor con IA",
-                     "platform":  "Gemini"
-                 },
-                 {
-                     "title":  "Study Timer App",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Esta aplicación online utiliza la técnica Pomodoro para ayudarte a gestionar tu tiempo de estudio y mejorar la concentración. Configura intervalos personalizables de trabajo y descanso para optimizar tus sesiones de aprendizaje.",
-                     "url":  "https://bilateria.org/app/estudio/study-timer-app.html",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Secundaria, Bachillerato, Universidad, Formación para Adultos / Autoaprendizaje",
-                     "area":  "Desarrollo Personal y Social",
-                     "tags":  "estudio, pomodoro, temporizador, productividad, concentración",
-                     "type":  "Otro",
-                     "platform":  "Claude"
-                 },
-                 {
-                     "title":  "Juego de Ajedrez Interactivo Online",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Juega partidas de ajedrez online directamente en tu navegador. Este recurso interactivo te permite practicar y mejorar tus habilidades estratégicas y pensamiento lógico. Para jugar entre dos jugadores.",
-                     "url":  "https://jjdeharo.github.io/ajedrez/",
-                     "license":  "AGPL v3 (código) · CC BY-SA 4.0 (contenidos)",
-                     "level":  "Primaria, Secundaria, Bachillerato, Formación para Adultos / Autoaprendizaje",
-                     "area":  "Pensamiento Lógico-Matemático",
-                     "tags":  "ajedrez, juego, estrategia, lógica, online",
-                     "type":  "Juego / Gamificación",
-                     "platform":  "DeepSeek"
-                 },
-                 {
-                     "title":  "Mecanografía App",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Mecanografía App es una herramienta interactiva diseñada para enseñar y mejorar las habilidades de mecanografía. Ofrece lecciones estructuradas, ejercicios prácticos y tests para aprender la disposición del teclado y desarrollar la escritura a ciegas. Es un recurso ideal para el autoaprendizaje y la práctica continua.",
-                     "url":  "https://bilateria.org/app/mecanografia/mecanografia-app.html",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Primaria, Secundaria, Bachillerato, Formación para Adultos / Autoaprendizaje",
-                     "area":  "Ciencia y Tecnología, Lenguaje y Comunicación",
-                     "tags":  "mecanografía, escritura a ciegas, teclado, typing, aprender a escribir",
-                     "type":  "Juego / Gamificación, Tutorial / Guía paso a paso",
-                     "platform":  "Grok"
-                 },
-                 {
-                     "title":  "Ruleta Interactiva de Preguntas con IA",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Aplicación interactiva para crear juegos de preguntas y respuestas personalizables por tema y nivel. Utiliza IA para generar y validar preguntas, diseñada para jugar en equipos en el aula.",
-                     "url":  "https://bilateria.org/apps/juegos/ruleta/",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Primaria, Secundaria, Bachillerato, Universidad, Formación del profesorado",
-                     "area":  "Recursos para la docencia y la organización",
-                     "tags":  "Juego educativo, Preguntas IA, Gamificación, Aula interactiva",
-                     "type":  "Juego / Gamificación, Cuestionario / Test / Evaluación, Asistente / Tutor con IA",
-                     "platform":  "Gemini"
-                 },
-                 {
-                     "title":  "Práctica Interactiva de Derivada Compuesta (Regla de la Cadena)",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Aplicación web interactiva para practicar la regla de la cadena en el cálculo de derivadas de funciones compuestas. Presenta ejercicios variados y guía al usuario paso a paso en la aplicación de la fórmula, verificando los resultados intermedios y finales.",
-                     "url":  "https://bilateria.org/app/mat/deriva_composta.html",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Bachillerato, Universidad",
-                     "area":  "Pensamiento Lógico-Matemático",
-                     "tags":  "derivada, regla de la cadena, función compuesta, cálculo, matemáticas",
-                     "type":  "Simulador / Laboratorio virtual",
-                     "platform":  "Claude"
-                 },
-                 {
-                     "title":  "Practica Derivadas Simples: Calculadora Interactiva",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Aplicación interactiva para practicar el cálculo de derivadas simples de funciones polinómicas. Permite introducir la función, calcular la derivada paso a paso y verificar el resultado, proporcionando retroalimentación inmediata.",
-                     "url":  "https://bilateria.org/app/mat/deriva_simple.html",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Bachillerato, Universidad",
-                     "area":  "Pensamiento Lógico-Matemático",
-                     "tags":  "derivadas, cálculo, matemáticas, ejercicio, interactivo",
-                     "type":  "Simulador / Laboratorio virtual, Juego / Gamificación",
-                     "platform":  "Claude"
-                 },
-                 {
-                     "title":  "Derivadas de Funciones: Producto y Cociente",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Aplicación interactiva para practicar el cálculo de derivadas de funciones, centrándose en las reglas del producto y del cociente. Guía al usuario paso a paso, proporcionando feedback inmediato en cada etapa del proceso.",
-                     "url":  "https://bilateria.org/app/mat/deriva_mult_div.html",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Bachillerato, Universidad",
-                     "area":  "Pensamiento Lógico-Matemático",
-                     "tags":  "Derivadas, Cálculo, Matemáticas, Regla del producto, Regla del cociente",
-                     "type":  "Cuestionario / Test / Evaluación, Tutorial / Guía paso a paso",
-                     "platform":  "Claude"
-                 },
-                 {
-                     "title":  "Practicador de Derivadas",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Aplicación interactiva para practicar el cálculo de derivadas de funciones matemáticas. Ofrece ejercicios variados con retroalimentación instantánea para reforzar el aprendizaje y la habilidad en derivación.",
-                     "url":  "https://bilateria.org/app/mat/derivades-app.html",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Bachillerato",
-                     "area":  "Pensamiento Lógico-Matemático",
-                     "tags":  "derivadas, cálculo, funciones, matemáticas, práctica",
-                     "type":  "Simulador / Laboratorio virtual, Cuestionario / Test / Evaluación",
-                     "platform":  "Claude"
-                 },
-                 {
-                     "title":  "Calculadora y Visualizador de Tasa de Variación Media",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Esta aplicación interactiva calcula y visualiza la tasa de variación media (TVM) de una función definida por el usuario en un intervalo [a,b]. Muestra la fórmula, los cálculos paso a paso y una gráfica que representa la función y la recta secante cuya pendiente es la TVM.",
-                     "url":  "https://bilateria.org/app/mat/tvm-app.html",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Bachillerato, Universidad",
-                     "area":  "Pensamiento Lógico-Matemático",
-                     "tags":  "Tasa de variación media, función, cálculo, gráfica",
-                     "type":  "Simulador / Laboratorio virtual, Visualización de datos / Mapa interactivo",
-                     "platform":  "Claude"
-                 },
-                 {
-                     "title":  "Edicuatex - Editor de ejercicios matemáticos",
-                     "author":  "Juanjo de Haro",
-                     "description":  "EdiCuaTeX es un editor web diseñado para crear ecuaciones con expresiones matemáticas utilizando LaTeX. ",
-                     "url":  "https://edicuatex.github.io/",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Bachillerato, Formación Profesional, Universidad, Formación para Adultos / Autoaprendizaje",
-                     "area":  "Ciencia y Tecnología, Pensamiento Lógico-Matemático",
-                     "tags":  "Editor, LaTeX, ecuaciones, fórmulas, Matemáticas",
-                     "type":  "Herramienta de creación",
-                     "platform":  "Gemini"
-                 },
-                 {
-                     "title":  "Simulador de la Convergencia de la Media",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Explora visualmente la Ley de los Grandes Números. Genera muestras aleatorias y observa cómo la media muestral converge hacia la media poblacional a medida que aumenta el tamaño de la muestra.",
-                     "url":  "https://bilateria.org/app/estadistica/convergencia-media.html",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Bachillerato, Universidad",
-                     "area":  "Pensamiento Lógico-Matemático",
-                     "tags":  "estadística, convergencia, media, ley de los grandes números, simulación",
-                     "type":  "Simulador / Laboratorio virtual",
-                     "platform":  "Claude"
-                 },
-                 {
-                     "title":  "Visualizador Interactivo de Asíntotas de Funciones",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Esta aplicación interactiva permite a los usuarios introducir la expresión de una función matemática y visualizar su gráfica junto con sus asíntotas (verticales, horizontales y oblicuas). Facilita la comprensión del concepto de asíntota y su relación con el comportamiento gráfico de la función.",
-                     "url":  "https://bilateria.org/app/mat/funciones/asintotas/asintotas-app.html",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Bachillerato, Universidad",
-                     "area":  "Pensamiento Lógico-Matemático",
-                     "tags":  "asíntotas, funciones, gráficas, análisis matemático, visualización",
-                     "type":  "Simulador / Laboratorio virtual",
-                     "platform":  "Claude"
-                 },
-                 {
-                     "title":  "Ejercicios Interactivos de Dominio de Funciones Logarítmicas",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Esta aplicación ofrece ejercicios interactivos para practicar el cálculo del dominio de funciones logarítmicas. Los usuarios introducen sus respuestas y reciben retroalimentación inmediata, facilitando la comprensión y aplicación de las reglas matemáticas.",
-                     "url":  "https://bilateria.org/app/mat/funciones/domini_funcions_logaritmiques.html",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Bachillerato",
-                     "area":  "Pensamiento Lógico-Matemático",
-                     "tags":  "Dominio, Funciones logarítmicas, Matemáticas, Bachillerato, Ejercicios",
-                     "type":  "Cuestionario / Test / Evaluación",
-                     "platform":  "Claude"
-                 },
-                 {
-                     "title":  "Calculador de Dominio de Funciones Racionales",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Aplicación interactiva para calcular el dominio de funciones racionales. Permite introducir una función y obtener su dominio de manera rápida y eficiente.",
-                     "url":  "https://bilateria.org/app/mat/funciones/domni_racionals_app.html",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Bachillerato, Universidad",
-                     "area":  "Pensamiento Lógico-Matemático",
-                     "tags":  "dominio, funciones racionales, matemáticas, álgebra, cálculo",
-                     "type":  "Cuestionario / Test / Evaluación",
-                     "platform":  "Claude"
-                 },
-                 {
-                     "title":  "Práctica Interactiva: Monotonía de Funciones Exponenciales",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Esta aplicación ofrece ejercicios interactivos para practicar la determinación de la monotonía (creciente o decreciente) de funciones exponenciales. Los usuarios analizan ejemplos gráficos o algebraicos para identificar el comportamiento de la función, reforzando su comprensión del concepto.",
-                     "url":  "https://bilateria.org/app/mat/funciones/monotonia/practica_monotonia_exponencials_app.html",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Bachillerato, Universidad",
-                     "area":  "Pensamiento Lógico-Matemático",
-                     "tags":  "monotonía, funciones exponenciales, matemáticas, bachillerato, ejercicios",
-                     "type":  "Cuestionario / Test / Evaluación",
-                     "platform":  "Claude"
-                 },
-                 {
-                     "title":  "Práctica de Monotonía en Funciones Logarítmicas",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Aplicación interactiva para practicar la identificación de la monotonía (intervalos de crecimiento y decrecimiento) de funciones logarítmicas. Permite a los estudiantes analizar gráficos y comprobar su comprensión sobre este concepto fundamental del cálculo.",
-                     "url":  "https://bilateria.org/app/mat/funciones/monotonia/practica_monotonia_logaritmiques.html",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Bachillerato, Universidad",
-                     "area":  "Pensamiento Lógico-Matemático",
-                     "tags":  "Monotonía, Funciones logarítmicas, Análisis gráfico, Cálculo, Matemáticas",
-                     "type":  "Cuestionario / Test / Evaluación",
-                     "platform":  "Claude"
-                 },
-                 {
-                     "title":  "Practica la Monotonía de Funciones Polinómicas",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Herramienta interactiva diseñada para que los estudiantes practiquen la determinación de los intervalos donde una función polinómica es creciente o decreciente. Proporciona ejercicios variados y feedback inmediato para reforzar el aprendizaje del concepto de monotonía.",
-                     "url":  "https://bilateria.org/app/mat/funciones/monotonia/practica_monotonia_polinomis_app.html",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Bachillerato, Universidad",
-                     "area":  "Pensamiento Lógico-Matemático",
-                     "tags":  "monotonía, funciones, polinomios, práctica, matemáticas",
-                     "type":  "Cuestionario / Test / Evaluación",
-                     "platform":  "Claude"
-                 },
-                 {
-                     "title":  "Práctica de Monotonía de Funciones Racionales",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Aplicación interactiva para practicar la determinación de los intervalos de monotonía (crecimiento y decrecimiento) de funciones racionales. Presenta ejercicios prácticos donde el usuario introduce los intervalos y recibe retroalimentación inmediata.",
-                     "url":  "https://bilateria.org/app/mat/funciones/monotonia/practica_monotonia_racionals_app.html",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Bachillerato",
-                     "area":  "Pensamiento Lógico-Matemático",
-                     "tags":  "monotonía, funciones racionales, crecimiento, decrecimiento, práctica",
-                     "type":  "Cuestionario / Test / Evaluación",
-                     "platform":  "Claude"
-                 },
-                 {
-                     "title":  "Signo de Funciones Exponenciales - Simulador Interactivo",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Explora interactivamente el signo de las funciones exponenciales variando los parámetros base y exponente. Visualiza cómo cambian los valores de la función y su signo al modificar la expresión, facilitando la comprensión de su comportamiento.",
-                     "url":  "https://bilateria.org/app/mat/funciones/signos/signes_funcions_exponencials_app.html",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Secundaria, Bachillerato",
-                     "area":  "Pensamiento Lógico-Matemático",
-                     "tags":  "funciones exponenciales, signo funciones, base, exponente, matemáticas",
-                     "type":  "Cuestionario / Test / Evaluación",
-                     "platform":  "Claude"
-                 },
-                 {
-                     "title":  "Visualizador Interactivo del Signo de Funciones Logarítmicas",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Esta aplicación interactiva permite explorar visualmente cómo el signo de una función logarítmica cambia según su base y argumento. Los usuarios pueden ajustar parámetros y observar el impacto directo en la gráfica y los intervalos donde la función es positiva o negativa.",
-                     "url":  "https://bilateria.org/app/mat/funciones/signos/signes_funcions_logaritmiques.html",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Bachillerato",
-                     "area":  "Pensamiento Lógico-Matemático",
-                     "tags":  "logaritmos, funciones, signo, visualización, matemáticas",
-                     "type":  "Cuestionario / Test / Evaluación",
-                     "platform":  "Claude"
-                 },
-                 {
-                     "title":  "Explorador Interactivo de Signos de Polinomios",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Esta aplicación interactiva permite explorar cómo cambia el signo de un polinomio en diferentes intervalos. Visualiza las raíces del polinomio y observa cómo estas dividen la recta numérica, determinando los signos en cada sección.",
-                     "url":  "https://bilateria.org/app/mat/funciones/signos/signes_polinomis_app.html",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Bachillerato",
-                     "area":  "Pensamiento Lógico-Matemático",
-                     "tags":  "polinomios, signos, raíces, intervalos, matemáticas",
-                     "type":  "Cuestionario / Test / Evaluación",
-                     "platform":  "Claude"
-                 },
-                 {
-                     "title":  "Análisis del Signo de Funciones Racionales",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Esta aplicación interactiva permite analizar el signo de funciones racionales. Los usuarios pueden introducir una función y visualizar gráficamente los intervalos donde es positiva, negativa o cero. Es una herramienta útil para comprender las desigualdades y el comportamiento de este tipo de funciones.",
-                     "url":  "https://bilateria.org/app/mat/funciones/signos/signes_funcions_racionals_app.html",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Bachillerato",
-                     "area":  "Pensamiento Lógico-Matemático",
-                     "tags":  "funciones racionales, signo, desigualdades, análisis matemático, bachillerato",
-                     "type":  "Cuestionario / Test / Evaluación",
-                     "platform":  "Claude"
                  },
                  {
                      "title":  "Escape Room Digital: Descubre la Ermita",
@@ -626,330 +182,6 @@
                      "tags":  "",
                      "type":  "Herramienta de creación",
                      "platform":  "Gemini"
-                 },
-                 {
-                     "title":  "Tutor IA: Teorema de Bayes",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Este tutor interactivo con IA guía en el aprendizaje del Teorema de Bayes. Ofrece explicaciones, ejemplos y problemas con soluciones paso a paso, ideal para estudiantes y profesores que buscan un recurso dinámico.",
-                     "url":  "https://bilateria.org/app/probabilidad/bayes",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Bachillerato, Universidad, Formación para Adultos / Autoaprendizaje",
-                     "area":  "Pensamiento Lógico-Matemático, Ciencia y Tecnología",
-                     "tags":  "Teorema de Bayes, probabilidad, estadística, tutor IA, aprendizaje",
-                     "type":  "Asistente / Tutor con IA, Tutorial / Guía paso a paso",
-                     "platform":  "Gemini"
-                 },
-                 {
-                     "title":  "Simulador Interactivo de Distribución Binomial",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Explora la distribución de probabilidad binomial de forma interactiva. Modifica los parámetros \u0027n\u0027 (número de ensayos) y \u0027p\u0027 (probabilidad de éxito) para visualizar la función de probabilidad y calcular probabilidades acumuladas.",
-                     "url":  "https://bilateria.org/app/probabilidad/distribucio_binomial_app.html",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Bachillerato, Universidad",
-                     "area":  "Pensamiento Lógico-Matemático",
-                     "tags":  "distribución binomial, probabilidad, estadística, simulación, parámetros",
-                     "type":  "Simulador / Laboratorio virtual, Visualización de datos / Mapa interactivo",
-                     "platform":  "Claude"
-                 },
-                 {
-                     "title":  "Simulador de Distribución Normal",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Esta aplicación interactiva permite explorar la distribución normal (campana de Gauss). Los usuarios pueden ajustar la media y la desviación estándar, calcular probabilidades para rangos específicos y visualizar el área bajo la curva correspondiente.",
-                     "url":  "https://bilateria.org/app/probabilidad/distribucion-normal.html",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Bachillerato, Universidad",
-                     "area":  "Pensamiento Lógico-Matemático",
-                     "tags":  "distribución normal, probabilidad, estadística, campana de Gauss, simulador",
-                     "type":  "Simulador / Laboratorio virtual, Visualización de datos / Mapa interactivo",
-                     "platform":  "Claude"
-                 },
-                 {
-                     "title":  "Explorador Interactivo del Teorema de Bayes",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Esta aplicación interactiva permite explorar y visualizar el Teorema de Bayes. Los usuarios pueden modificar parámetros como prevalencia, sensibilidad y especificidad en diversos escenarios para comprender cómo se actualizan las probabilidades ante nueva evidencia, facilitando la comprensión de la inferencia bayesiana.",
-                     "url":  "https://bilateria.org/app/probabilidad/bayes_app.html",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Bachillerato, Universidad",
-                     "area":  "Pensamiento Lógico-Matemático, Ciencia y Tecnología",
-                     "tags":  "Teorema de Bayes, Probabilidad, Estadística, Inferencia Bayesiana",
-                     "type":  "Simulador / Laboratorio virtual, Visualización de datos / Mapa interactivo",
-                     "platform":  "Claude"
-                 },
-                 {
-                     "title":  "Simulador de Probabilidad Total",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Explora el Teorema de la Probabilidad Total mediante un simulador interactivo. Visualiza diagramas de árbol y calcula probabilidades condicionales y totales cambiando los valores de entrada. Ideal para comprender el funcionamiento de este teorema fundamental.",
-                     "url":  "https://bilateria.org/app/probabilidad/probabilidad_total_app.html",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Bachillerato, Universidad",
-                     "area":  "Pensamiento Lógico-Matemático",
-                     "tags":  "Probabilidad, Teorema Probabilidad Total, Diagrama Árbol, Probabilidad Condicional, Estadística",
-                     "type":  "Simulador / Laboratorio virtual",
-                     "platform":  "Claude"
-                 },
-                 {
-                     "title":  "Resolución Interactiva de Sistemas de Ecuaciones Lineales",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Aplicación interactiva para aprender a resolver sistemas de dos ecuaciones lineales con dos incógnitas. Explora los métodos gráfico y de sustitución, visualizando cada paso y practicando la resolución.",
-                     "url":  "https://bilateria.org/app/mat/sistemes-equacions-final.html",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Secundaria, Bachillerato",
-                     "area":  "Pensamiento Lógico-Matemático",
-                     "tags":  "Sistemas de ecuaciones, Ecuaciones lineales, Álgebra, Matemáticas, Resolución gráfica",
-                     "type":  "Simulador / Laboratorio virtual, Tutorial / Guía paso a paso",
-                     "platform":  "Claude"
-                 },
-                 {
-                     "title":  "Resolución de Sistemas de Ecuaciones",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Aplicación interactiva para resolver sistemas de ecuaciones lineales de 2x2 y 3x3. Permite introducir coeficientes manualmente o generar sistemas aleatorios (determinados, indeterminados o incompatibles), mostrando el análisis basado en rangos y la solución.",
-                     "url":  "https://bilateria.org/app/mat/sistemes_app.html",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Secundaria, Bachillerato, Universidad",
-                     "area":  "Pensamiento Lógico-Matemático",
-                     "tags":  "sistemas de ecuaciones, álgebra lineal, matemáticas, resolución, matrices",
-                     "type":  "Simulador / Laboratorio virtual",
-                     "platform":  "Claude"
-                 },
-                 {
-                     "title":  "KeyTrainer - Práctica de mecanografía",
-                     "author":  "Juanjo de Haro",
-                     "description":  "KeyTrainer es una aplicación web para practicar y mejorar las habilidades de mecanografía. Permite al usuario escribir texto generado aleatoriamente con diferentes niveles de complejidad o cargar su propio archivo de texto, y proporciona métricas en tiempo real como palabras por minuto, precisión, errores y tiempo transcurrido.",
-                     "url":  "https://bilateria.org/app/mecanografia/keytrainer.html",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Secundaria, Bachillerato, Formación Profesional, Universidad, Formación para Adultos / Autoaprendizaje",
-                     "area":  "Lenguaje y Comunicación, Ciencia y Tecnología",
-                     "tags":  "mecanografía, typing, velocidad, precisión, práctica",
-                     "type":  "Simulador / Laboratorio virtual, Otro",
-                     "platform":  "Claude"
-                 },
-                 {
-                     "title":  "Calendario ODS",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Calendario escolar interactivo que presenta efemérides y días internacionales vinculados a los Objetivos de Desarrollo Sostenible (ODS). Permite filtrar eventos por ODS, consultar ideas de actividades para el aula, marcar favoritos y generar con un chatbot una actividad didáctica sobre cada fecha.",
-                     "url":  "https://jjdeharo.github.io/calendario-ods/",
-                     "license":  "AGPL v3 (código) · CC BY-SA 4.0 (contenidos)",
-                     "level":  "Primaria, Secundaria, Bachillerato, Formación del profesorado",
-                     "area":  "Ciencias Sociales y Cívicas, Desarrollo Personal y Social, Recursos para la docencia y la organización",
-                     "tags":  "ODS, calendario escolar, efemérides, días internacionales",
-                     "type":  "Colección / Repositorio / Biblioteca, Otro",
-                     "platform":  "Claude"
-                 },
-                 {
-                     "title":  "Comparador interactivo de chatbots gratuitos",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Herramienta interactiva que permite comparar y seleccionar chatbots gratuitos. Los usuarios asignan importancia a diversas características (generación de imágenes, carga de documentos, etc.) para obtener una clasificación personalizada según sus preferencias.",
-                     "url":  "https://bilateria.org/docs/bilateria/comparacion_chatbots.html",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Universidad, Formación para Adultos / Autoaprendizaje, Formación del profesorado",
-                     "area":  "Ciencia y Tecnología, Recursos para la docencia y la organización",
-                     "tags":  "chatbots, inteligencia artificial, comparativa, herramientas, selección",
-                     "type":  "Otro",
-                     "platform":  "Claude"
-                 },
-                 {
-                     "title":  "Multiprompt",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Herramienta web que permite enviar un mismo prompt de texto a múltiples chatbots de inteligencia artificial simultáneamente. Facilita la comparación de respuestas o el uso concurrente de diferentes modelos de IA abriendo sus interfaces en pestañas separadas.",
-                     "url":  "https://jjdeharo.github.io/multiprompt/",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Secundaria, Bachillerato, Formación Profesional, Universidad, Formación para Adultos / Autoaprendizaje, Formación del profesorado",
-                     "area":  "Ciencia y Tecnología, Lenguaje y Comunicación, Recursos para la docencia y la organización",
-                     "tags":  "IA, chatbots, prompts, herramienta, inteligencia artificial",
-                     "type":  "Herramienta de creación",
-                     "platform":  "Claude"
-                 },
-                 {
-                     "title":  "Editor JSON Web Interactivo",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Aplicación web interactiva para visualizar, editar y validar archivos JSON de forma jerárquica. Permite modificar valores, añadir o eliminar propiedades/elementos, buscar contenido y guardar los datos en formato JSON o Markdown. Ideal para trabajar con estructuras de datos.",
-                     "url":  "https://bilateria.org/app/utils_infor/json-editor.html",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Bachillerato, Formación Profesional, Universidad, Formación para Adultos / Autoaprendizaje",
-                     "area":  "Ciencia y Tecnología",
-                     "tags":  "JSON, Editor, Datos Estructurados, Web, Herramienta",
-                     "type":  "Herramienta de creación",
-                     "platform":  "Claude"
-                 },
-                 {
-                     "title":  "Generador de enlaces de Google Drive",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Herramienta que permite generar enlaces directos de descarga o acceso a datos para documentos de Google Drive (Docs, Sheets, Slides, Drawings). Simplemente pega la URL del documento público y selecciona el formato deseado para obtener el enlace directo.",
-                     "url":  "https://jjdeharo.github.io/labia/utils_inf/generador_enlaces_google.html",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Secundaria, Bachillerato, Formación Profesional, Universidad, Formación para Adultos / Autoaprendizaje, Formación del profesorado",
-                     "area":  "Ciencia y Tecnología, Recursos para la docencia y la organización",
-                     "tags":  "Google Drive, enlaces directos, descarga, datos, documentos",
-                     "type":  "Herramienta de creación",
-                     "platform":  "Claude"
-                 },
-                 {
-                     "title":  "Selector de Colores",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Herramienta interactiva que permite seleccionar un color mediante un selector gráfico o sliders RGB y visualizar sus valores equivalentes en formato Hexadecimal, RGB, RGBA y HSL. Incluye funcionalidad para copiar los valores al portapapeles y soporte para múltiples idiomas (ES, CA).",
-                     "url":  "https://bilateria.org/app/utils_infor/color-selector.html",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Secundaria, Bachillerato, Formación Profesional, Universidad, Formación para Adultos / Autoaprendizaje",
-                     "area":  "Artes y Humanidades, Ciencia y Tecnología",
-                     "tags":  "selector colores, RGB, Hex, HSL, diseño web, herramienta",
-                     "type":  "Herramienta de creación",
-                     "platform":  "Claude"
-                 },
-                 {
-                     "title":  "Contador Regresivo TempoCero",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Herramienta web sencilla para gestionar el tiempo mediante una cuenta regresiva. Permite configurar el tiempo, usar presets, pausar, reanudar y añadir tiempo. Ideal para actividades con límite de tiempo en el aula o estudio personal.",
-                     "url":  "https://bilateria.org/app/utils_clas/contador-regresivo.html",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Infantil, Primaria, Secundaria, Bachillerato, Formación Profesional, Universidad, Formación para Adultos / Autoaprendizaje, Formación del profesorado",
-                     "area":  "Recursos para la docencia y la organización",
-                     "tags":  "contador regresivo, temporizador, gestión tiempo, aula, productividad",
-                     "type":  "Juego / Gamificación, Otro",
-                     "platform":  "Claude"
-                 },
-                 {
-                     "title":  "Generador aleatorio de grupos (GAG)",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Herramienta web para crear grupos aleatorios a partir de una lista de nombres. Permite definir el tamaño de los grupos y decidir qué hacer con los alumnos restantes, facilitando la organización de actividades en el aula de forma rápida y sencilla.",
-                     "url":  "https://bilateria.org/app/utils_clas/generador_aleatorio_grupos.html",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Primaria, Secundaria, Bachillerato, Formación Profesional, Universidad, Formación para Adultos / Autoaprendizaje, Formación del profesorado",
-                     "area":  "Recursos para la docencia y la organización",
-                     "tags":  "generador de grupos, trabajo en grupo, aleatorio, gestión de aula, dinámicas de aula",
-                     "type":  "Herramienta de creación",
-                     "platform":  "ChatGPT"
-                 },
-                 {
-                     "title":  "GeCo - Generador de Equipos Cooperativos",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Aplicación web para generar equipos de trabajo cooperativo para estudiantes. Permite introducir alumnos por tipologías, definir el número de miembros por equipo y elegir entre diferentes estrategias de agrupación (heterogénea, homogénea, temporal), gestionando automáticamente los alumnos sobrantes.",
-                     "url":  "https://bilateria.org/app/utils_clas/geco/",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Infantil, Primaria, Secundaria, Bachillerato, Formación Profesional, Universidad, Formación para Adultos / Autoaprendizaje, Formación del profesorado",
-                     "area":  "Recursos para la docencia y la organización",
-                     "tags":  "Equipos cooperativos, Generador de grupos, Organización aula, Trabajo colaborativo, Diferenciación",
-                     "type":  "Herramienta de creación",
-                     "platform":  "ChatGPT"
-                 },
-                 {
-                     "title":  "Lanzador de dados",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Esta aplicación web simula el lanzamiento de uno o dos dados de seis caras, mostrando el resultado numérico. Es una herramienta útil para generar números aleatorios o apoyar actividades de juego y probabilidad en el aula.",
-                     "url":  "https://bilateria.org/app/utils_clas/dados-juego.html",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Primaria, Secundaria, Bachillerato",
-                     "area":  "Recursos para la docencia y la organización",
-                     "tags":  "dados, simulación, probabilidad, juego, azar",
-                     "type":  "Simulador / Laboratorio virtual, Juego / Gamificación",
-                     "platform":  "ChatGPT"
-                 },
-                 {
-                     "title":  "Generador de Parejas Aleatorias",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Herramienta simple para crear parejas aleatorias entre dos listas de elementos introducidos por el usuario. Permite emparejar nombres, conceptos o cualquier conjunto de ítems y muestra los elementos que quedan sin pareja.",
-                     "url":  "https://bilateria.org/app/utils_clas/Parejas%20Aleatorias",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Infantil, Primaria, Secundaria, Bachillerato, Formación Profesional, Universidad, Formación para Adultos / Autoaprendizaje, Formación del profesorado",
-                     "area":  "Recursos para la docencia y la organización",
-                     "tags":  "parejas aleatorias, emparejamiento, grupos, sorteo, herramienta",
-                     "type":  "Juego / Gamificación, Otro",
-                     "platform":  "ChatGPT"
-                 },
-                 {
-                     "title":  "Simulación de Presión Osmótica",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Simulación interactiva que permite explorar el fenómeno de la presión osmótica. Permite ajustar la concentración de soluto y disolvente, el tamaño de los poros de la membrana y la temperatura para observar el movimiento de partículas, el flujo de disolvente y calcular la presión osmótica resultante.",
-                     "url":  "https://bilateria.org/app/bio/osmosis-simulation.html",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Bachillerato, Universidad",
-                     "area":  "Ciencia y Tecnología",
-                     "tags":  "Osmosis, Presión osmótica, Simulación, Membrana semipermeable, Disoluciones",
-                     "type":  "Simulador / Laboratorio virtual",
-                     "platform":  "Claude"
-                 },
-                 {
-                     "title":  "Rúbrica interactiva",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Aplicación web interactiva para crear, configurar, previsualizar y utilizar rúbricas de evaluación personalizadas. Permite definir criterios, niveles de desempeño con puntuaciones, añadir descripciones detalladas en una matriz, evaluar alumnos individualmente guardando su calificación y comentarios, y generar informes imprimibles de la rúbrica o las evaluaciones de los alumnos.",
-                     "url":  "https://bilateria.org/app/utils_clas/rubrica-interactiva.html",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Primaria, Secundaria, Bachillerato, Formación Profesional, Universidad, Formación del profesorado",
-                     "area":  "Recursos para la docencia y la organización",
-                     "tags":  "rúbrica,evaluación,calificación,docencia,personalizable",
-                     "type":  "Cuestionario / Test / Evaluación, Herramienta de creación",
-                     "platform":  "Claude"
-                 },
-                 {
-                     "title":  "Selector aleatorio de nombres",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Herramienta web interactiva que permite introducir una lista de nombres y seleccionar uno de ellos al azar mediante una animación visual y sonora. Es útil para realizar sorteos, seleccionar participantes o dinamizar actividades en grupo.",
-                     "url":  "https://bilateria.org/app/utils_clas/selector_aleatorio_nombres.html",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Primaria, Secundaria, Bachillerato, Formación Profesional, Universidad, Formación para Adultos / Autoaprendizaje, Formación del profesorado",
-                     "area":  "Recursos para la docencia y la organización",
-                     "tags":  "selector, aleatorio, nombres, sorteo, lista, herramienta docente",
-                     "type":  "Juego / Gamificación, Otro",
-                     "platform":  "Claude"
-                 },
-                 {
-                     "title":  "Generador de códigos QR online",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Aplicación web simple para generar códigos QR a partir de diversos tipos de datos, como URLs, texto libre, información de contacto, correos electrónicos, números de teléfono, mensajes SMS, eventos, credenciales de Wi-Fi y ubicaciones geográficas. Permite descargar el código QR generado como una imagen.",
-                     "url":  "https://bilateria.org/app/utils_clas/qr.html",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Primaria, Secundaria, Bachillerato, Formación Profesional, Universidad, Formación para Adultos / Autoaprendizaje, Formación del profesorado",
-                     "area":  "Recursos para la docencia y la organización",
-                     "tags":  "generador QR, códigos QR, crear QR, herramienta online, utilidad educativa",
-                     "type":  "Herramienta de creación",
-                     "platform":  "Claude"
-                 },
-                 {
-                     "title":  "Calculadora de Entropía, Redundancia y Densidad del Léxico",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Esta herramienta web analiza la riqueza y complejidad léxica de textos, calculando métricas como la entropía, redundancia y densidad del léxico. Ayuda a los educadores a adaptar materiales escritos para apoyar el Diseño Universal para el Aprendizaje (DUA), permitiendo subir archivos de texto o pegar directamente el contenido.",
-                     "url":  "https://jjdeharo.github.io/utilidades/entropia/",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Secundaria, Bachillerato, Formación Profesional, Universidad, Formación para Adultos / Autoaprendizaje, Formación del profesorado",
-                     "area":  "Lenguaje y Comunicación, Recursos para la docencia y la organización",
-                     "tags":  "análisis léxico, DUA, entropía, redundancia, densidad léxica",
-                     "type":  "Herramienta de creación",
-                     "platform":  "ChatGPT"
-                 },
-                 {
-                     "title":  "Analizador de Legibilidad de Textos",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Herramienta online que analiza la legibilidad de textos en varios idiomas (castellano, catalán, gallego, inglés) utilizando fórmulas específicas. Permite determinar si un texto es adecuado para diferentes niveles educativos (Primaria, Secundaria, Bachillerato, Adultos) basándose en principios del Diseño Universal para el Aprendizaje (DUA), calculando puntuaciones e interpretaciones.",
-                     "url":  "https://jjdeharo.github.io/utilidades/legibilidad/",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Primaria, Secundaria, Bachillerato, Formación para Adultos / Autoaprendizaje",
-                     "area":  "Lenguaje y Comunicación, Recursos para la docencia y la organización",
-                     "tags":  "legibilidad, texto, DUA, análisis, enseñanza",
-                     "type":  "Otro",
-                     "platform":  "Claude"
-                 },
-                 {
-                     "title":  "Contador de caracteres, palabras y bytes",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Herramienta en línea sencilla que permite contar caracteres, palabras, párrafos y bytes en un texto dado. También calcula el tiempo estimado de lectura y la longitud media de las palabras. Útil para estudiantes, escritores o cualquier persona que necesite analizar la longitud y estructura de un texto.",
-                     "url":  "https://bilateria.org/app/utils_text/contador_palabras.html",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Primaria, Secundaria, Bachillerato, Formación Profesional, Universidad, Formación para Adultos / Autoaprendizaje, Formación del profesorado",
-                     "area":  "Lenguaje y Comunicación, Recursos para la docencia y la organización",
-                     "tags":  "contador de texto, contar palabras, contar caracteres, longitud texto, análisis de texto, herramienta de escritura",
-                     "type":  "Otro",
-                     "platform":  "Claude"
-                 },
-                 {
-                     "title":  "Generador de Nubes de Palabras",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Herramienta web que permite generar nubes de palabras interactivas a partir de texto proporcionado por el usuario (pegado o cargado desde un archivo TXT). Ayuda a visualizar la frecuencia de los términos en un texto, excluyendo palabras comunes y personalizando la apariencia de la nube.",
-                     "url":  "https://bilateria.org/app/utils_text/nube-palabras.html",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Secundaria, Bachillerato, Formación Profesional, Universidad, Formación para Adultos / Autoaprendizaje, Formación del profesorado",
-                     "area":  "Lenguaje y Comunicación, Ciencia y Tecnología, Recursos para la docencia y la organización",
-                     "tags":  "nube de palabras, visualización de texto, frecuencia de palabras, análisis de contenido, herramienta educativa",
-                     "type":  "Herramienta de creación, Visualización de datos / Mapa interactivo",
-                     "platform":  "Claude"
                  },
                  {
                      "title":  "Simulador de sólido (Física y Química)",
@@ -1084,54 +316,6 @@
                      "platform":  "Gemini"
                  },
                  {
-                     "title":  "Rueda de palabras IA",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Juego educativo online estilo \"Rueda de palabras\" que genera preguntas y respuestas para un tema, nivel y dificultad especificados por el usuario, utilizando inteligencia artificial. Permite practicar vocabulario y conceptos de diversas áreas de conocimiento.",
-                     "url":  "https://bilateria.org/app/juegos/rueda",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Secundaria, Bachillerato, Formación Profesional, Universidad, Formación para Adultos / Autoaprendizaje, Formación del profesorado",
-                     "area":  "Ciencia y Tecnología, Pensamiento Lógico-Matemático, Lenguaje y Comunicación, Ciencias Sociales y Cívicas, Artes y Humanidades",
-                     "tags":  "Rueda de palabras, Juego educativo, IA generativa, Pasapalabra, Cuestionario",
-                     "type":  "Juego / Gamificación, Cuestionario / Test / Evaluación, Asistente / Tutor con IA",
-                     "platform":  "Gemini"
-                 },
-                 {
-                     "title":  "El gran reto (versión integral con IA)",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Aplicación educativa tipo juego de preguntas y respuestas (\"El gran reto\") que permite generar cuestionarios personalizados sobre cualquier tema o nivel educativo, o a partir de documentos cargados por el usuario (TXT, MD, DOCX, PDF), utilizando inteligencia artificial (Gemini).",
-                     "url":  "https://bilateria.org/app/juegos/reto/",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Primaria, Secundaria, Bachillerato, Universidad, Formación para Adultos / Autoaprendizaje, Formación del profesorado",
-                     "area":  "Recursos para la docencia y la organización",
-                     "tags":  "Quiz, Juego educativo, Generador de preguntas, Inteligencia Artificial, Evaluación",
-                     "type":  "Juego / Gamificación, Cuestionario / Test / Evaluación, Herramienta de creación, Asistente / Tutor con IA",
-                     "platform":  "Gemini"
-                 },
-                 {
-                     "title":  "El gran reto",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Aplicación web que simula un concurso de preguntas y respuestas. Permite cargar conjuntos de preguntas desde un archivo JSON externo, adaptándose a diversos temas y niveles educativos. Incluye comodines (50:50, llamada, público) y una escala de premios para gamificar el aprendizaje y la evaluación de conocimientos.",
-                     "url":  "https://jjdeharo.github.io/millonario/",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Secundaria, Bachillerato, Formación Profesional, Universidad, Formación para Adultos / Autoaprendizaje",
-                     "area":  "Recursos para la docencia y la organización, Ciencia y Tecnología, Pensamiento Lógico-Matemático, Lenguaje y Comunicación, Ciencias Sociales y Cívicas, Artes y Humanidades, Desarrollo Personal y Social",
-                     "tags":  "quiz, juego educativo, gamificación, evaluación, preguntas y respuestas, millonario",
-                     "type":  "Juego / Gamificación, Cuestionario / Test / Evaluación",
-                     "platform":  "Gemini"
-                 },
-                 {
-                     "title":  "Diagrama de Voronoi Interactivo",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Aplicación web interactiva para visualizar diagramas de Voronoi. Permite al usuario añadir puntos haciendo clic en un lienzo y observar cómo se generan y actualizan las regiones de Voronoi en tiempo real, explicando el concepto y sus aplicaciones.",
-                     "url":  "https://bilateria.org/app/mat/voronoi.html",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Secundaria, Bachillerato, Universidad",
-                     "area":  "Pensamiento Lógico-Matemático",
-                     "tags":  "Voronoi, diagramas, geometría computacional, visualización, interactivo",
-                     "type":  "Visualización de datos / Mapa interactivo",
-                     "platform":  "Claude"
-                 },
-                 {
                      "title":  "Mínimo Común Múltiplo (MCM)",
                      "author":  "Emmarin04",
                      "description":  "Esta aplicación web resuelve el problema de encontrar el Mínimo Común Múltiplo (MCM) entre varios números enteros, un concepto fundamental en matemáticas. Su propósito educativo es ayudar a estudiantes y docentes a comprender y visualizar paso a paso cómo se identifican los múltiplos de cada número, cómo se encuentran los comunes y cuál es el menor de ellos. El usuario solo debe ingresar los números separados por comas y hacer clic en “Calcular MCM” para ver el desarrollo completo del proceso, lo que facilita el aprendizaje y refuerza la comprensión del concepto.",
@@ -1264,18 +448,6 @@
                      "platform":  "Gemini"
                  },
                  {
-                     "title":  "Planificador de Rutas con OpenStreetMap",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Herramienta web interactiva para planificar rutas en un mapa basado en OpenStreetMap. Permite añadir y reordenar paradas, seleccionar el modo de transporte y visualizar la ruta calculada con distancia y tiempo estimados. Ideal para proyectos de geografía y planificación.",
-                     "url":  "https://jjdeharo.github.io/app/open_ruta/index.html",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Primaria, Secundaria, Bachillerato, Universidad",
-                     "area":  "Ciencias Sociales y Cívicas, Ciencia y Tecnología",
-                     "tags":  "Mapas, Rutas, Geografía, Planificación, OpenStreetMap",
-                     "type":  "Visualización de datos / Mapa interactivo",
-                     "platform":  "Gemini"
-                 },
-                 {
                      "title":  "JeoCel: Jeopardy sobre la célula",
                      "author":  "EBoixader",
                      "description":  "Juego del Jeopardy sobre la CÉLULA con 4 temáticas: orgánulos celulares, ciclo celular, teoría celular y tejidos, Y 5 niveles de dificultad de las preguntas. \n\nDebe jugarse por equipos en el aula y poner a prueba los conocimientos sobre esta temática.",
@@ -1360,30 +532,6 @@
                      "platform":  "ChatGPT"
                  },
                  {
-                     "title":  "Calculadora de MCD y mcm",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Esta herramienta interactiva calcula el Máximo Común Divisor (MCD) y el Mínimo Común Múltiplo (mcm) de varios números, mostrando el proceso paso a paso mediante la descomposición simultánea en factores primos. Permite a los usuarios visualizar los factores comunes y no comunes para comprender el cálculo.",
-                     "url":  "https://jjdeharo.github.io/app/calc_mcd_mcm/index.html",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Primaria, Secundaria",
-                     "area":  "Pensamiento Lógico-Matemático",
-                     "tags":  "MCD, mcm, GCD, LCM, descomposición, factores primos, matemáticas, calculadora",
-                     "type":  "Tutorial / Guía paso a paso, Otro",
-                     "platform":  "Gemini"
-                 },
-                 {
-                     "title":  "Boletín Semanal Vibe Coding Educativo",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Aplicación web que actúa como un archivo consultable de los boletines semanales del grupo de Telegram Vibe Coding Educativo. Permite a los usuarios navegar, buscar y filtrar resúmenes de conversaciones por fecha y palabras clave, así como leer el contenido completo de cada boletín, incluyendo enlaces multimedia y secciones de preguntas frecuentes.",
-                     "url":  "https://vibe-coding-educativo.github.io/boletin/",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Formación para Adultos / Autoaprendizaje, Formación del profesorado",
-                     "area":  "Ciencia y Tecnología, Recursos para la docencia y la organización",
-                     "tags":  "boletín, newsletter, tecnología educativa, programación, archivo, repositorio",
-                     "type":  "Colección / Repositorio / Biblioteca",
-                     "platform":  "Gemini"
-                 },
-                 {
                      "title":  "Pasapalabra Musical: Ritmo y Saber",
                      "author":  "María Teresa González",
                      "description":  "El \"Pasapalabra Musical\" puede ser una herramienta muy versátil en el aula de música o en cualquier asignatura que desee integrar conocimientos musicales.\n\n¿Cómo podemos utilizarlo en clase?\n\nIntroducción o Revisión de Temas:\n\nAl inicio de una unidad: Para activar conocimientos previos sobre un periodo histórico, un género o conceptos de lenguaje musical.\n\nAl final de una unidad: Como repaso lúdico antes de una evaluación formal.\n\nConsolidación de Contenidos: Después de explicar un tema, jugar al Pasapalabra ayuda a fijar los conceptos de manera divertida.\n\nEvaluación Formativa: Permite al docente observar rápidamente el nivel de comprensión del alumnado sobre un tema sin la presión de un examen tradicional.\n\nActividad de Motivación: Ideal para romper la rutina, energizar la clase o como recompensa por un buen trabajo.\n\nCompetición por Equipos: Divide la clase en pequeños grupos. Cada grupo tiene su turno para responder. Esto fomenta la colaboración interna y la discusión entre compañeros.\n\nDiferenciación: Puedes asignar categorías específicas a grupos con diferentes niveles de conocimiento, o permitirles elegir la categoría que deseen reforzar.\n\nCreación de Contenido: Anima a los estudiantes a investigar y crear sus propias preguntas para futuras partidas, lo que profundiza su aprendizaje.\n\n¿Qué podemos evaluar con él?\n\nConocimiento Conceptual: ¿Identifican los alumnos los compositores, obras, géneros o términos musicales?\n\nDominio del Vocabulario: ¿Utilizan correctamente la terminología musical?\n\nVelocidad de Recuperación: ¿Pueden acceder a la información de forma rápida y precisa?\n\nEstrategia de Juego: En el modo por equipos, ¿cómo gestionan el tiempo, las pistas y los \"pasapalabra\"?\n\nParticipación y Colaboración: En el trabajo en grupo, ¿participan todos los miembros? ¿Se ayudan mutuamente?\n\nEjemplo de Uso en Clase con Pizarra Digital Interactiva (PDI)\nImagina una clase de 4º de la ESO (15-16 años) estudiando el Romanticismo musical.\n\nObjetivo Pedagógico: Consolidar conocimientos sobre compositores, obras, características y conceptos clave del Romanticismo y del Lenguaje Musical.\n\nConfiguración:\n\nProyección: Proyecta la interfaz del \"Pasapalabra Musical: Ritmo y Saber\" en la Pizarra Digital Interactiva.\n\nModo de Juego: Selecciona \"2 Jugadores\" para fomentar la competición entre equipos.\n\nCategoría: Elige \"Historia de la Música\" para centrarte en el Romanticismo, o \"General\" si quieres mezclar con otros temas. También podrías jugar una ronda de \"Lenguaje Musical\" para repasar conceptos teóricos.\n\nEquipos: Divide la clase en dos o tres equipos (por ejemplo, \"Los Románticos\" y \"Los Virtuosos\"). Cada equipo elige un portavoz para el turno.\n\nDesarrollo de la Actividad:\n\nInicio del Juego: El profesor pulsa \"Reiniciar\". La primera pregunta aparece en la pantalla.\n\nTurno del Equipo 1:\n\nEl profesor lee la pregunta en voz alta.\n\nLos miembros del equipo discuten la respuesta en voz baja.\n\nEl portavoz del equipo se acerca a la PDI y escribe la respuesta en el campo de texto usando el teclado de la PDI, o la dice en voz alta para que el profesor la escriba.\n\nSi el equipo no sabe la respuesta, puede decir \"Pasapalabra\" para que la pregunta quede pendiente y pase el turno al otro equipo.\n\nSi el equipo necesita una pista, puede pedirla (\"Pedir Pista\"). El profesor explica la penalización de tiempo y la pista aparece en pantalla.\n\nEl profesor hace clic en \"Responder\".\n\nRetroalimentación: Si es correcta, suena el sonido de acierto, la letra se pone verde y se suma un acierto. Si es incorrecta, suena el sonido de error, la letra se pone roja.\n\nTurno del Equipo 2: Se repite el proceso.\n\nRondas Sucesivas: Los equipos se turnan para responder a las preguntas restantes, incluyendo las que se dejaron en \"Pasapalabra\".\n\nFin del Juego: Cuando se agota el tiempo o se completan todas las preguntas, el juego muestra el resultado final. Suena el sonido de fin de juego.\n\nDiscusión y Evaluación:\n\nAnálisis Post-Pregunta: Después de cada respuesta (especialmente las incorrectas o las que generaron debate), el profesor puede pausar brevemente para:\n\nAclarar la respuesta correcta.\n\nRevisar el concepto musical asociado.\n\nPreguntar a otros alumnos si sabían la respuesta o por qué creen que la respuesta correcta es esa.\n\nEvaluación Formativa: El profesor puede tomar nota de las preguntas que causaron más dificultad para reforzar esos temas en futuras clases. La puntuación final de cada equipo puede servir como un indicador general del dominio del contenido.\n\nReflexión: Al final, se puede abrir un debate sobre las preguntas más difíciles, los nuevos aprendizajes o qué estrategias usaron los equipos.\n\nEste enfoque convierte el aprendizaje en una actividad dinámica, participativa y memorable, utilizando la tecnología de la PDI para maximizar la interacción.",
@@ -1420,18 +568,6 @@
                      "platform":  "Gemini"
                  },
                  {
-                     "title":  "BoletinIA - Resumen semanal y pódcats de ChatGPT-IA-edu",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Boletín informativo centrado en el uso de la inteligencia artificial en el ámbito educativo a partir de los resúmenes de las conversaciones semanales del grupo. Proporciona recursos, noticias y reflexiones para educadores interesados en integrar la IA en sus prácticas.",
-                     "url":  "https://chatgpt-ia-edu.github.io/boletin/",
-                     "license":  "AGPL v3 (código) · CC BY-SA 4.0 (contenidos)",
-                     "level":  "Formación para Adultos / Autoaprendizaje, Formación del profesorado",
-                     "area":  "Recursos para la docencia y la organización",
-                     "tags":  "IA, educación, ChatGPT-IA-edu, tecnología educativa, boletín",
-                     "type":  "Colección / Repositorio / Biblioteca",
-                     "platform":  "Gemini"
-                 },
-                 {
                      "title":  "Escritorio Interactivo",
                      "author":  "María Teresa González ",
                      "description":  "El Escritorio para el Aula es un entorno digital interactivo diseñado para ser el centro de control de la clase moderna. Su principal fortaleza es la flexibilidad: en lugar de ser una única herramienta, es un lienzo en blanco donde puedes abrir, mover y combinar múltiples \"widgets\" o mini-herramientas según las necesidades de cada momento.\n\nEste enfoque modular te permite crear un espacio de trabajo visual y dinámico, perfectamente adaptado para apoyar metodologías activas, gestionar eficazmente el aula y fomentar la participación del alumnado.\n\nFundamentación Pedagógica\nEsta herramienta se apoya en varios pilares pedagógicos clave:\n\nGestión Visual del Aula: Proporciona señales visuales claras e inmediatas (Semáforo, Gestos de Trabajo, Temporizador) que ayudan a los estudiantes a autorregularse y a entender las expectativas de cada tarea sin necesidad de interrupciones verbales constantes.\n\nFomento de la Autonomía: Herramientas como la Lista de Trabajo y el Calendario empoderan a los alumnos para que tomen el control de su propio aprendizaje, planifiquen sus tareas y gestionen su tiempo.\n\nMetodologías Activas: Es el compañero ideal para el Aprendizaje Cooperativo (con los generadores de grupos), la Gamificación (con el marcador, los dados o los torneos) y el Aprendizaje Basado en Proyectos, al permitir organizar todas las fases y recursos en un solo lugar.\n\nFlexibilidad y Personalización: No hay dos clases iguales. El sistema de widgets permite al docente adaptar el entorno a cada materia, grupo y actividad, mostrando solo lo necesario y evitando distracciones.\n\nDescripción y Ejemplos de Uso de las Herramientas\nGrupo 1: Gestión y Organización del Aula\nHerramientas: Temporizador ⏱️, Medidor de Sonido 🔊, Semáforo 🚦, Calendario 📅, Lista de Trabajo ✅.\n\nObjetivo: Estructurar la sesión, gestionar el tiempo y el ambiente, y organizar las tareas.\n\nEjemplo de Uso:\n\nAl empezar una actividad, abre el widget de Lista de Trabajo con los 3 pasos a seguir. Pon el Temporizador en 15 minutos para la duración total. Usa el Semáforo en verde para indicar que pueden empezar y muévelo a ámbar cuando queden 2 minutos. El Medidor de Sonido puede estar visible para que los propios alumnos controlen el nivel de ruido.\n\nGrupo 2: Recursos y Contenidos\nHerramientas: Bloc de Notas 📝, Agregador de Medios 🖼️, Gestos de Trabajo 🤫, Generador QR 📱.\n\nObjetivo: Presentar información, compartir recursos digitales y comunicar instrucciones de forma visual y efectiva.\n\nEjemplo de Uso:\n\nPara empezar una unidad, abre el Agregador de Medios y carga un vídeo de YouTube introductorio. Mientras lo ven, puedes tener abierto el Bloc de Notas con las preguntas clave que deberán responder. Después, usa el Generador QR para compartir un enlace a un artículo o a un formulario. Durante el trabajo posterior, utiliza los Gestos de Trabajo para indicar si es momento de silencio, hablar en susurros o trabajar en equipo.\n\nGrupo 3: Gamificación y Dinamización\nHerramientas: Grupos Aleatorios 🧑‍🤝‍🧑, Grupos Cooperativos 🤝, Selector Aleatorio 🎯, Lanzar Dados 🎲, Disparador de Ideas 💡, Generador de Torneos 🏆, Marcador 💯.\n\nObjetivo: Aumentar la motivación, repasar contenidos de forma lúdica y gestionar la participación y la competición sana.\n\nEjemplo de Uso:\n\nConcurso de repaso: Divide la clase con el Generador de Grupos Aleatorios y abre el Marcador con los nombres de los equipos. Usa el Selector Aleatorio para elegir qué equipo empieza. Haz una pregunta y, si aciertan, pueden Lanzar los Dados para sumar puntos. Para una actividad final, puedes usar el Generador de Torneos para una ronda de \"campeones\".",
@@ -1465,18 +601,6 @@
                      "area":  "Ciencia y Tecnología, Artes y Humanidades",
                      "tags":  "parámetros del sonido, onda sonora, frecuencia, intensidad, fase onda, cualidades del sonido",
                      "type":  "Simulador / Laboratorio virtual",
-                     "platform":  "Gemini"
-                 },
-                 {
-                     "title":  "EdiMarkWeb: Editor Markdown y HTML con LaTeX",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Editor web que permite escribir y previsualizar texto en formato Markdown con soporte para fórmulas matemáticas en LaTeX. Incluye funciones de guardado, apertura, impresión y alternancia de temas, facilitando la creación de documentos técnicos y educativos.",
-                     "url":  "https://jjdeharo.github.io/edimarkweb/",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Secundaria, Bachillerato, Formación Profesional, Universidad, Formación para Adultos / Autoaprendizaje, Formación del profesorado",
-                     "area":  "Recursos para la docencia y la organización",
-                     "tags":  "Markdown, HTML, Editor, LaTeX, Matemáticas, Escritura, Web",
-                     "type":  "Herramienta de creación",
                      "platform":  "Gemini"
                  },
                  {
@@ -1552,30 +676,6 @@
                      "platform":  "Google AI Studio"
                  },
                  {
-                     "title":  "Diario de clase",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Aplicación web diseñada para ayudar a los docentes a organizar su día a día. Permite gestionar horarios de clases, listar alumnos y tomar anotaciones tanto de la planificación de sus clases como del alumnado, facilitando la administración educativa. No es un gestor de notas",
-                     "url":  "https://jjdeharo.github.io/diario/",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Formación para Adultos / Autoaprendizaje, Formación del profesorado",
-                     "area":  "Recursos para la docencia y la organización",
-                     "tags":  "Gestión de aula, Horario escolar, Organización docente, Cuaderno digital, Herramienta para profesores",
-                     "type":  "Herramienta de creación, Visualización de datos / Mapa interactivo",
-                     "platform":  "Gemini"
-                 },
-                 {
-                     "title":  "Asistente de Diseño Experimental con IA",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Herramienta interactiva que guía a los usuarios en la creación de diseños experimentales rigurosos, siguiendo el método científico. Utiliza inteligencia artificial para generar un diseño inicial y ofrecer asesoramiento personalizado en cada paso, permitiendo también refinar el resultado.",
-                     "url":  "https://ja.cat/adexper",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Secundaria, Bachillerato, Universidad, Formación para Adultos / Autoaprendizaje",
-                     "area":  "Ciencia y Tecnología",
-                     "tags":  "diseño experimental, método científico, inteligencia artificial, investigación, laboratorio",
-                     "type":  "Asistente / Tutor con IA, Herramienta de creación",
-                     "platform":  "Gemini"
-                 },
-                 {
                      "title":  "Escritorio Interactivo",
                      "author":  "Pablo G. Guízar",
                      "description":  "Esta aplicación proporciona un escritorio virtual personalizable con 25 widgets interactivos, como cronómetros y generadores de grupos, para organizar y dinamizar el aula. Permite a los docentes personalizar su espacio de trabajo sin instalaciones, facilitando la gestión y la interactividad en clase.",
@@ -1636,18 +736,6 @@
                      "platform":  "Gemini"
                  },
                  {
-                     "title":  "Conexión en Directo",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Conexión en Directo es una suite de herramientas interactivas diseñada para fomentar la participación simultánea de los estudiantes en el aula. Incluye funcionalidades como votaciones en tiempo real, creación de nubes de palabras dinámicas, sesiones de lluvia de ideas con votación, muros interactivos para enviar mensajes cortos y el programa QPlay para hacer concursos en clase. Programas estilo mentimeter, padlet y kahoot",
-                     "url":  "https://jjdeharo.github.io/directo/",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Primaria, Secundaria, Bachillerato, Formación Profesional, Universidad, Formación para Adultos / Autoaprendizaje, Formación del profesorado",
-                     "area":  "Recursos para la docencia y la organización",
-                     "tags":  "participación, votación, lluvia de ideas, aula, herramientas interactivas",
-                     "type":  "Juego / Gamificación, Cuestionario / Test / Evaluación, Herramienta de creación, Presentación / Infografía interactiva, Visualización de datos / Mapa interactivo",
-                     "platform":  "Gemini"
-                 },
-                 {
                      "title":  "Movimiento Rectilíneo Uniforme",
                      "author":  "Rafael Cabrera",
                      "description":  "Esta unidad educativa cuenta con 17 simuladores interactivos (incluidas actividades) que permiten explorar el Movimiento Rectilíneo Uniforme (MRU) ajustando parámetros de velocidad y posición inicial. Los usuarios pueden visualizar en tiempo real cómo estos cambios afectan la gráfica posición-tiempo, la ecuación y la tabla de valores, facilitando la comprensión de los conceptos clave de este tipo de movimiento. Finaliza con una SdA que pone en contexto lo aprendido.",
@@ -1681,30 +769,6 @@
                      "area":  "Recursos para la docencia y la organización",
                      "tags":  "Educación física, diario de sesiones, organización de aula",
                      "type":  "Otro",
-                     "platform":  "Gemini"
-                 },
-                 {
-                     "title":  "QPlay: Concursos Interactivos para el Aula",
-                     "author":  "Juanjo de Haro",
-                     "description":  "QPlay es una herramienta para crear concursos tipo Kahoot, permitiendo generar cuestionarios con IA o desde cero. Ofrece un editor completo para personalizar preguntas y respuestas con imágenes, fórmulas LaTeX y formato Markdown. Ideal para dinamizar el aprendizaje y la evaluación en el aula.",
-                     "url":  "https://jjdeharo.github.io/qplay/",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Primaria, Secundaria, Bachillerato, Formación Profesional, Universidad, Formación del profesorado",
-                     "area":  "Ciencia y Tecnología, Pensamiento Lógico-Matemático, Lenguaje y Comunicación, Idiomas, Ciencias Sociales y Cívicas, Artes y Humanidades, Recursos para la docencia y la organización",
-                     "tags":  "concursos, cuestionarios, IA, gamificación, editor",
-                     "type":  "Juego / Gamificación, Cuestionario / Test / Evaluación, Herramienta de creación, Asistente / Tutor con IA",
-                     "platform":  "Gemini"
-                 },
-                 {
-                     "title":  "Escritorio Digital",
-                     "author":  "María Teresa González, Juanjo de Haro, Pablo G. Guízar",
-                     "description":  "Esta caja de herramientas digital ofrece un escritorio personalizable con widgets interactivos para organizar, gestionar y dinamizar el aula. Incluye desde calculadoras y cronómetros hasta herramientas de participación, juegos y gestión de tareas, fomentando un entorno de aprendizaje dinámico.",
-                     "url":  "https://escritorio-digital.github.io/",
-                     "license":  "Creative Commons BY-SA (Reconocimiento-CompartirIgual)",
-                     "level":  "Infantil, Primaria, Secundaria, Bachillerato, Formación del profesorado",
-                     "area":  "Ciencia y Tecnología, Pensamiento Lógico-Matemático, Lenguaje y Comunicación, Idiomas, Ciencias Sociales y Cívicas, Artes y Humanidades, Recursos para la docencia y la organización",
-                     "tags":  "herramientas educativas, gestión aula, widgets interactivos, productividad docente, recursos didácticos",
-                     "type":  "Juego / Gamificación, Simulador / Laboratorio virtual, Herramienta de creación, Colección / Repositorio / Biblioteca",
                      "platform":  "Gemini"
                  },
                  {
@@ -1876,18 +940,6 @@
                      "platform":  "ChatGPT"
                  },
                  {
-                     "title":  "Plantilla Correctora Digital para Exámenes Tipo Test",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Herramienta web que permite al profesorado recoger y corregir automáticamente las respuestas de exámenes tipo test de elección múltiple. El test se entrega en papel, pero se responde usando la aplicación. Se integra con Google Sheets para almacenar datos, configurar pruebas y generar informes detallados con análisis estadísticos.",
-                     "url":  "https://jjdeharo.github.io/pcd/",
-                     "license":  "AGPL v3 (código) · CC BY-SA 4.0 (contenidos)",
-                     "level":  "Secundaria, Bachillerato, Formación Profesional, Universidad, Formación del profesorado",
-                     "area":  "Recursos para la docencia y la organización",
-                     "tags":  "Evaluación online, Exámenes tipo test, Google Sheets, Corrección automática, Herramienta docente",
-                     "type":  "Cuestionario / Test / Evaluación",
-                     "platform":  "ChatGPT"
-                 },
-                 {
                      "title":  "Joc del penjat",
                      "author":  "Felip Sarroca",
                      "description":  "Este juego del ahorcado digital desafía a los usuarios a adivinar palabras ocultas letra a letra. Promueve el desarrollo del vocabulario y la ortografía de una manera lúdica y atractiva.\n\nEl organizador del juego (profesor/a) introduce la palabra sin que se pueda leer y selecciona las letras que el alumnado va proponiendo.",
@@ -1945,18 +997,6 @@
                      "area":  "Ciencias Sociales y Cívicas, Artes y Humanidades",
                      "tags":  "Cristóbal Colón, exploraciones, historia, mapa interactivo, descubrimientos",
                      "type":  "Visualización de datos / Mapa interactivo, Presentación / Infografía interactiva",
-                     "platform":  "ChatGPT"
-                 },
-                 {
-                     "title":  "Ruta científica del HMS Beagle",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Esta aplicación interactiva permite explorar la histórica ruta del HMS Beagle y el viaje de Charles Darwin. Los usuarios pueden visualizar el trayecto en un mapa, filtrar las escalas por año, buscar puntos específicos y acceder a información histórica y científica detallada de cada ubicación.",
-                     "url":  "https://jjdeharo.github.io/viaje-beagle/",
-                     "license":  "AGPL v3 (código) · CC BY-SA 4.0 (contenidos)",
-                     "level":  "Secundaria, Bachillerato, Universidad, Formación para Adultos / Autoaprendizaje",
-                     "area":  "Ciencia y Tecnología, Ciencias Sociales y Cívicas",
-                     "tags":  "HMS Beagle, Charles Darwin, mapa interactivo, historia de la ciencia, geografía",
-                     "type":  "Visualización de datos / Mapa interactivo",
                      "platform":  "ChatGPT"
                  },
                  {
@@ -2029,18 +1069,6 @@
                      "area":  "Ciencia y Tecnología",
                      "tags":  "química, estequiometría, igualación de ecuaciones, reacciones químicas, simulador",
                      "type":  "Simulador / Laboratorio virtual, Cuestionario / Test / Evaluación",
-                     "platform":  "ChatGPT"
-                 },
-                 {
-                     "title":  "BoardLive - Pizarra Digital Colaborativa",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Pizarra digital colaborativa en tiempo real para clases, tutorías y talleres, que se usa desde el navegador sin instalar nada. Permite dibujar, escribir texto, insertar imágenes y PDF multipágina, y guardar el resultado en PDF, con permisos para que los invitados dibujen o solo lean. Sirve para practicar la colaboración y la lluvia de ideas, y para resolver explicaciones compartidas a distancia o en el aula.",
-                     "url":  "https://boardlive.github.io/",
-                     "license":  "AGPL v3 (código) · CC BY-SA 4.0 (contenidos)",
-                     "level":  "Primaria, Secundaria, Bachillerato, Formación Profesional, Universidad, Formación para Adultos / Autoaprendizaje, Formación del profesorado",
-                     "area":  "Recursos para la docencia y la organización",
-                     "tags":  "Pizarra digital, colaboración, tiempo real, lluvia de ideas, enseñanza remota",
-                     "type":  "Herramienta de creación",
                      "platform":  "ChatGPT"
                  },
                  {
@@ -2152,18 +1180,6 @@
                      "platform":  ""
                  },
                  {
-                     "title":  "Máquina de Galton Interactiva",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Simulador interactivo del Tablero de Galton (Quincunx) para demostrar la Distribución Binomial y su convergencia a la Distribución Normal (Teorema del Límite Central). Permite a los usuarios ajustar parámetros clave como el número de filas (N), la probabilidad de desviación (p), la gravedad y el rebote para observar su impacto directo en la forma de la distribución y las métricas estadísticas.",
-                     "url":  "https://jjdeharo.github.io/maquina_galton/",
-                     "license":  "AGPL v3 (código) · CC BY-SA 4.0 (contenidos)",
-                     "level":  "Secundaria, Bachillerato, Universidad, Formación para Adultos / Autoaprendizaje",
-                     "area":  "Pensamiento Lógico-Matemático, Ciencia y Tecnología",
-                     "tags":  "Probabilidad, Estadística, Distribución Normal, Máquina de Galton, Simulación",
-                     "type":  "Simulador / Laboratorio virtual, Visualización de datos / Mapa interactivo",
-                     "platform":  ""
-                 },
-                 {
                      "title":  "Klodski: Desafío de Lógica y Percepción Espacial",
                      "author":  "Mari Fernández Belmonte",
                      "description":  "Este minijuego tipo puzzle requiere que el usuario mueva bloques de manera estratégica para resolver un desafío espacial. Su objetivo es desarrollar habilidades cruciales de lógica, planificación y percepción visual. Es una herramienta interactiva diseñada para fomentar el razonamiento abstracto de forma entretenida y progresiva.",
@@ -2260,18 +1276,6 @@
                      "platform":  ""
                  },
                  {
-                     "title":  "EdEX: Editor de Estilos para eXeLearning",
-                     "author":  "Juanjo de Haro",
-                     "description":  "El Editor de Estilos para eXeLearning es una herramienta web innovadora diseñada para crear, personalizar y exportar temas visuales compatibles con eXeLearning. Permite cargar estilos oficiales o archivos ZIP, editar CSS, configurar fuentes y logotipos, y ajustar elementos visuales directamente desde una previsualización interactiva. Con soporte para estilos modernos y antiguos, facilita la modernización de contenidos educativos de forma intuitiva, exportando paquetes listos para usar que mejoran la experiencia de aprendizaje digital.",
-                     "url":  "https://exe-style-editor.github.io/",
-                     "license":  "AGPL v3 (código) · CC BY-SA 4.0 (contenidos)",
-                     "level":  "Secundaria, Bachillerato, Formación Profesional, Universidad, Formación para Adultos / Autoaprendizaje, Formación del profesorado",
-                     "area":  "Recursos para la docencia y la organización",
-                     "tags":  "eXeLearning, diseño web, CSS, personalización, REA",
-                     "type":  "Herramienta de creación",
-                     "platform":  ""
-                 },
-                 {
                      "title":  "El Tresor de la Font d\u0027en Pericot",
                      "author":  "Raül Torres, Gènia",
                      "description":  "Se trata de una herramienta interactiva basada en mecánicas de gamificación, con una estructura tipo “elige tu propia aventura”, que favorece la motivación y el aprendizaje activo. Está pensada especialmente para docentes que desean iniciarse en el uso educativo de la inteligencia artificial generativa (IAG).",
@@ -2308,18 +1312,6 @@
                      "platform":  ""
                  },
                  {
-                     "title":  "Reloj de Citas Cooperativo",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Herramienta digital diseñada para implementar la técnica de aprendizaje cooperativo \u0027Reloj de Citas\u0027, facilitando el emparejamiento dinámico y estructurado de estudiantes en el aula. Permite a los alumnos concertar citas virtuales en diferentes franjas horarias para realizar tareas colaborativas coordinadas en tiempo real por el docente.",
-                     "url":  "https://reloj-citas.github.io",
-                     "license":  "AGPL v3 (código) · CC BY-SA 4.0 (contenidos)",
-                     "level":  "Primaria, Secundaria, Bachillerato, Formación Profesional, Universidad, Formación para Adultos / Autoaprendizaje, Formación del profesorado",
-                     "area":  "Recursos para la docencia y la organización, Desarrollo Personal y Social",
-                     "tags":  "aprendizaje cooperativo, dinámicas de aula, gestión de grupos, emparejamiento, colaboración",
-                     "type":  "Otro",
-                     "platform":  ""
-                 },
-                 {
                      "title":  "IAGuar - Implementación Automatizada de Guardias",
                      "author":  "El profe de la bata",
                      "description":  "IAGuar es una aplicación web diseñada para simplificar la gestión de guardias en centros educativos. Gracias a esta herramienta, el equipo directivo puede registrar ausencias, asignar coberturas y hacer un seguimiento en tiempo real de cada tramo horario, mientras que el profesorado consulta y registra sus guardias de forma rápida y sin complicaciones.",
@@ -2344,30 +1336,6 @@
                      "platform":  ""
                  },
                  {
-                     "title":  "MendelSim — Simulador de Genética",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Simulador interactivo diseñado para el aprendizaje de la genética mendeliana mediante la visualización de cuadros de Punnett animados y análisis de pedigríes. La herramienta permite practicar cruces monohíbridos, dihíbridos y herencia ligada al sexo de forma práctica y guiada en el navegador. Dispone de un editor de pedigrís para editar los existentes o crear nuevos.",
-                     "url":  "https://mendelsim.github.io/",
-                     "license":  "AGPL v3 (código) · CC BY-SA 4.0 (contenidos)",
-                     "level":  "Secundaria, Bachillerato, Universidad",
-                     "area":  "Ciencia y Tecnología",
-                     "tags":  "genética, leyes de Mendel, biología, herencia, cuadros de Punnett",
-                     "type":  "Simulador / Laboratorio virtual, Herramienta de creación",
-                     "platform":  ""
-                 },
-                 {
-                     "title":  "Recursos Educativos Adaptativos Bayesianos",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Protocolo y herramientas para crear materiales educativos que se ajustan dinámicamente al nivel del alumno mediante inferencia bayesiana y entropía de Shannon. Permite generar evaluaciones e itinerarios personalizados que seleccionan las actividades con mayor utilidad pedagógica basándose en el estado de aprendizaje estimado.",
-                     "url":  "https://jjdeharo.github.io/recursos-adaptativos/",
-                     "license":  "AGPL v3 (código) · CC BY-SA 4.0 (contenidos)",
-                     "level":  "Secundaria, Bachillerato, Universidad, Formación Profesional, Formación del profesorado, Formación para Adultos / Autoaprendizaje",
-                     "area":  "Recursos para la docencia y la organización",
-                     "tags":  "aprendizaje adaptativo, inferencia bayesiana, inteligencia artificial, evaluación diagnóstica, pedagogía",
-                     "type":  "Tutorial / Guía paso a paso, Herramienta de creación",
-                     "platform":  ""
-                 },
-                 {
                      "title":  "OrtoCast (ortografía castellana)",
                      "author":  "Felip Sarroca",
                      "description":  "Recurso digital interactivo diseñado para el aprendizaje y perfeccionamiento de la ortografía en español a través de retos dinámicos. Facilita la identificación de reglas gramaticales y la corrección de errores comunes en un entorno de gamificación educativa.\n\nSe basa en la inferencia bayesiana y en la entropía de Shannon para adaptar los contenidos al nivel del alumno en función de sus aciertos y errores.\n\nCada una de las secciones de la app se puede instalar de modo independiente como aplicación para el móvil.",
@@ -2377,18 +1345,6 @@
                      "area":  "Lenguaje y Comunicación, Idiomas",
                      "tags":  "ortografía, lengua castellana, gamificación, escritura",
                      "type":  "Juego / Gamificación, Cuestionario / Test / Evaluación",
-                     "platform":  ""
-                 },
-                 {
-                     "title":  "Recursos metodológicos para el aula",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Plataforma digital que recopila más de doscientas técnicas de aprendizaje activo y evaluación educativa mediante fichas detalladas y un mapa visual interactivo. Facilita la selección de instrumentos pedagógicos a través de filtros avanzados, búsqueda libre y la exploración de relaciones entre evidencias y dimensiones transversales.",
-                     "url":  "https://metaceval.github.io",
-                     "license":  "AGPL v3 (código) · CC BY-SA 4.0 (contenidos)",
-                     "level":  "Secundaria, Bachillerato, Formación Profesional, Universidad, Formación para Adultos / Autoaprendizaje, Formación del profesorado",
-                     "area":  "Recursos para la docencia y la organización",
-                     "tags":  "aprendizaje activo, evaluación educativa, innovación pedagógica, técnicas didácticas, mapa interactivo",
-                     "type":  "Asistente / Tutor con IA, Colección / Repositorio / Biblioteca, Visualización de datos / Mapa interactivo",
                      "platform":  ""
                  },
                  {
@@ -2404,18 +1360,6 @@
                      "platform":  ""
                  },
                  {
-                     "title":  "OpenWorksheets: Creación de Fichas Interactivas y Autocorregibles",
-                     "author":  "Juanjo de Haro",
-                     "description":  "OpenWorksheets es una herramienta web que permite transformar documentos PDF e imágenes en fichas digitales dinámicas con diversos tipos de respuestas autocorregibles. El profesorado puede diseñar actividades personalizadas que se exportan como paquetes autónomos, facilitando la autoevaluación del alumnado sin necesidad de servidores ni registros de usuario. Es del estilo de Liveworksheets y TopWorksheets-",
-                     "url":  "https://openworksheets.github.io/",
-                     "license":  "AGPL v3 (código) · CC BY-SA 4.0 (contenidos)",
-                     "level":  "Primaria, Secundaria, Bachillerato, Formación Profesional, Universidad, Formación para Adultos / Autoaprendizaje",
-                     "area":  "Recursos para la docencia y la organización",
-                     "tags":  "fichas interactivas, autoevaluación, recursos educativos, PDF dinámico, herramienta docente",
-                     "type":  "Herramienta de creación, Cuestionario / Test / Evaluación",
-                     "platform":  ""
-                 },
-                 {
                      "title":  "OrtoCat",
                      "author":  "Felip Sarroca",
                      "description":  "OrtoCat és un recurs digital interactiu dissenyat per a l’aprenentatge i el perfeccionament de l’ortografia en català a través de reptes dinàmics. Facilita la identificació de normes ortogràfiques i gramaticals, així com la correcció d’errors habituals, dins d’un entorn de gamificació educativa.\n\nL’aplicació es basa en la inferència bayesiana i en l’entropia de Shannon per adaptar els continguts al nivell de cada alumne en funció dels seus encerts i errors. A més, cadascuna de les seccions de l’app es pot instal·lar de manera independent com a aplicació per al mòbil.",
@@ -2428,18 +1372,6 @@
                      "platform":  ""
                  },
                  {
-                     "title":  "Laboratorio de Combinatoria",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Plataforma educativa interactiva diseñada para el aprendizaje de la combinatoria mediante lecciones guiadas, simulaciones y un sistema de práctica adaptativa. Permite identificar fórmulas matemáticas a través de un árbol de decisiones lógico y visualizar todas las posibilidades de permutaciones, variaciones y combinaciones en un entorno experimental.",
-                     "url":  "https://jjdeharo.github.io/labcom/",
-                     "license":  "AGPL v3 (código) · CC BY-SA 4.0 (contenidos)",
-                     "level":  "Secundaria, Bachillerato, Universidad, Formación para Adultos / Autoaprendizaje",
-                     "area":  "Pensamiento Lógico-Matemático, Ciencia y Tecnología",
-                     "tags":  "combinatoria, matemáticas, probabilidad, estadística, permutaciones",
-                     "type":  "Simulador / Laboratorio virtual, Cuestionario / Test / Evaluación, Tutorial / Guía paso a paso, Asistente / Tutor con IA",
-                     "platform":  ""
-                 },
-                 {
                      "title":  "Elige tu IA: Guía Interactiva para Docentes",
                      "author":  "jc",
                      "description":  "Una herramienta interactiva diseñada para orientar a los educadores en la selección de la inteligencia artificial más adecuada para sus necesidades pedagógicas entre Gemini y NotebookLM. A través de una serie de preguntas guiadas, el usuario puede descubrir herramientas específicas para optimizar procesos de enseñanza y creación de contenidos.",
@@ -2449,18 +1381,6 @@
                      "area":  "Recursos para la docencia y la organización",
                      "tags":  "Inteligencia Artificial, Innovación Educativa, Herramientas Digitales, Recursos Docentes",
                      "type":  "Cuestionario / Test / Evaluación",
-                     "platform":  ""
-                 },
-                 {
-                     "title":  "BayesLab: Laboratorio Interactivo de Probabilidad Bayesiana",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Recurso web interactivo para el aprendizaje del Teorema de Bayes mediante diagnósticos adaptativos y práctica guiada personalizada. Utiliza inferencia bayesiana y modelos IRT para ajustar automáticamente el itinerario educativo según las necesidades y el progreso del estudiante.",
-                     "url":  "https://jjdeharo.github.io/bayeslab/",
-                     "license":  "AGPL v3 (código) · CC BY-SA 4.0 (contenidos)",
-                     "level":  "Bachillerato, Formación para Adultos / Autoaprendizaje",
-                     "area":  "Pensamiento Lógico-Matemático, Ciencia y Tecnología",
-                     "tags":  "Teorema de Bayes, Probabilidad, Aprendizaje Adaptativo, Matemáticas, Inferencia",
-                     "type":  "Simulador / Laboratorio virtual, Cuestionario / Test / Evaluación, Asistente / Tutor con IA",
                      "platform":  ""
                  },
                  {
@@ -2485,30 +1405,6 @@
                      "area":  "Pensamiento Lógico-Matemático",
                      "tags":  "Tantrix, lógica, geometría, rompecabezas, razonamiento espacial",
                      "type":  "Juego / Gamificación",
-                     "platform":  ""
-                 },
-                 {
-                     "title":  "AulaMap: Diseño y Organización del Plano de Clase",
-                     "author":  "Juanjo de Haro",
-                     "description":  "AulaMap permite dibujar el plano del aula con mesas, sillas y mobiliario, y colocar en él al alumnado de forma manual o aleatoria, importando las listas desde texto. También organiza equipos heterogéneos, homogéneos o temporales y puede imprimir o compartir el plano. Sirve al profesorado para ordenar el espacio, distribuir al grupo con criterios pedagógicos y preparar la tutoría sin necesidad de instalar nada.",
-                     "url":  "https://aulamap.github.io/",
-                     "license":  "AGPL v3 (código) · CC BY-SA 4.0 (contenidos)",
-                     "level":  "Infantil, Primaria, Secundaria, Bachillerato, Formación Profesional, Universidad, Formación del profesorado",
-                     "area":  "Recursos para la docencia y la organización",
-                     "tags":  "gestión de aula, plano de clase, organización escolar, diseño de espacios, tutoría",
-                     "type":  "Herramienta de creación",
-                     "platform":  ""
-                 },
-                 {
-                     "title":  "Sirena: Editor de diagramas Mermaid",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Sirena es una potente herramienta de creación que permite diseñar diagramas profesionales mediante la sintaxis Mermaid directamente en el navegador. Facilita la visualización de procesos complejos y la organización de ideas sin necesidad de registros ni servidores externos.",
-                     "url":  "https://sirenaapp.github.io/",
-                     "license":  "AGPL v3 (código) · CC BY-SA 4.0 (contenidos)",
-                     "level":  "Secundaria, Bachillerato, Formación Profesional, Universidad, Formación para Adultos / Autoaprendizaje, Formación del profesorado",
-                     "area":  "Ciencia y Tecnología, Pensamiento Lógico-Matemático, Recursos para la docencia y la organización",
-                     "tags":  "diagramas, Mermaid, flujogramas, pensamiento lógico, organización visual",
-                     "type":  "Herramienta de creación, Visualización de datos / Mapa interactivo",
                      "platform":  ""
                  },
                  {
@@ -2605,30 +1501,6 @@
                      "area":  "Recursos para la docencia y la organización",
                      "tags":  "gamificación, gestión de aula, sorteos, dinámicas de grupo, herramientas docentes",
                      "type":  "Juego / Gamificación, Otro",
-                     "platform":  ""
-                 },
-                 {
-                     "title":  "Subasta de frases",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Dinámica participativa en la que el profesorado crea una subasta y el alumnado se une con un código de sesión para pujar por frases, y las conexiones entre navegadores son en directo. Permite contrastar conocimientos (pujar por las afirmaciones correctas y defender la decisión), descubrir los valores y prioridades de un grupo repartiendo un presupuesto limitado, o relacionar frases con roles, donde acertar suma puntos y equivocarse resta. No requiere registro y los datos son efímeros.",
-                     "url":  "https://jjdeharo.github.io/subasta_frases/",
-                     "license":  "AGPL v3 (código) · CC BY-SA 4.0 (contenidos)",
-                     "level":  "Primaria, Secundaria, Bachillerato, Formación Profesional, Universidad, Formación para Adultos / Autoaprendizaje, Formación del profesorado",
-                     "area":  "Desarrollo Personal y Social, Ciencias Sociales y Cívicas, Recursos para la docencia y la organización",
-                     "tags":  "subasta, debate, valores, participación, gamificación, evaluación",
-                     "type":  "Juego / Gamificación, Herramienta de creación",
-                     "platform":  ""
-                 },
-                 {
-                     "title":  "Vibe coding responsable",
-                     "author":  "Juanjo de Haro",
-                     "description":  "Guía ética y de responsabilidad, no técnica, para docentes que publican materiales educativos creados con vibe coding. Desarrolla diez recomendaciones, cada una con su capítulo: contenido correcto, protección de datos del alumnado, código comprensible, accesibilidad, atribución, registro de decisiones, declaración del uso de IA y licencia libre. Incluye infografía, una animación, instrucciones descargables para crear con IA y una rúbrica (VCER) para evaluar un recurso. Se lee en la web, está disponible en PDF y se ofrece en cinco idiomas.",
-                     "url":  "https://vibe-coding-educativo.github.io/vibe-responsable",
-                     "license":  "AGPL-3.0 (código); CC-BY-SA-4.0 (contenidos)",
-                     "level":  "Formación del profesorado",
-                     "area":  "Recursos para la docencia y la organización, Ciencias Sociales y Cívicas",
-                     "tags":  "vibe coding, licencias libres, protección de datos, accesibilidad, transparencia IA, evaluación de recursos",
-                     "type":  "Tutorial / Guía paso a paso, Colección / Repositorio / Biblioteca, Presentación / Infografía interactiva",
                      "platform":  ""
                  },
                  {
